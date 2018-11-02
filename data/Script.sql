@@ -23,7 +23,10 @@ CREATE TABLE EL_REJUNTE.Cliente(
 	clie_tarjeta_id INT NULL,
 	clie_habilitado bit NOT NULL,
 	clie_usuario_id INT,
- CONSTRAINT PK_Cliente PRIMARY KEY (clie_id))
+ CONSTRAINT PK_Cliente PRIMARY KEY CLUSTERED(
+	clie_id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)ON [PRIMARY]
 GO
 
 IF NOT EXISTS (select * from sysobjects where name='Compra' and xtype='U')
@@ -32,7 +35,10 @@ CREATE TABLE EL_REJUNTE.Compra(
 	compra_fecha datetime NOT NULL,
 	compra_cantidad numeric(18, 0) NOT NULL,
 	compra_cliente_id INT NOT NULL,
- CONSTRAINT PK_Compra PRIMARY KEY (compra_id))
+ CONSTRAINT PK_Compra PRIMARY KEY CLUSTERED(
+	compra_id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)ON [PRIMARY]
 GO
 
 IF NOT EXISTS (select * from sysobjects where name='Direccion' and xtype='U')
@@ -44,7 +50,10 @@ CREATE TABLE EL_REJUNTE.Direccion(
 	dire_depto nvarchar(10) NULL,
 	dire_localidad nvarchar(10) NOT NULL,
 	dire_codigo_postal nvarchar(10) NOT NULL,
- CONSTRAINT PK_Direccion PRIMARY KEY (dire_id))
+ CONSTRAINT PK_Direccion PRIMARY KEY CLUSTERED(
+	dire_id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)ON [PRIMARY]
 GO
 
 IF NOT EXISTS (select * from sysobjects where name='Empresa' and xtype='U')
@@ -57,7 +66,10 @@ CREATE TABLE EL_REJUNTE.Empresa(
 	empre_direccion_id INT NULL,
 	empre_telefono nvarchar(50) NULL,
 	empre_usuario_id INT NULL,
-  CONSTRAINT PK_Empresa PRIMARY KEY (empre_id))
+ CONSTRAINT PK_Empresa PRIMARY KEY CLUSTERED(
+	empre_id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)ON [PRIMARY]
 GO
 
 IF NOT EXISTS (select * from sysobjects where name='Espectaculo' and xtype='U')
@@ -69,7 +81,10 @@ CREATE TABLE EL_REJUNTE.Espectaculo(
 	espec_fecha_venc datetime NULL,
 	espec_rubro_id INT NULL,
 	espec_estado nvarchar(255) NULL,
-  CONSTRAINT PK_Espectaculo PRIMARY KEY (espec_id))
+ CONSTRAINT PK_Espectaculo PRIMARY KEY CLUSTERED(
+	espec_id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)ON [PRIMARY]
 GO
 
 IF NOT EXISTS (select * from sysobjects where name='Estado' and xtype='U')
@@ -78,7 +93,10 @@ CREATE TABLE EL_REJUNTE.Estado(
 	estado_descripcion nvarchar(50) NOT NULL,
 	estado_inicial BIT NULL,
 	estado_final BIT NULL,
- CONSTRAINT PK_Estado PRIMARY KEY (estado_id))
+ CONSTRAINT PK_Estado PRIMARY KEY CLUSTERED(
+	estado_id ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)ON [PRIMARY]
 GO
 
 IF NOT EXISTS (select * from sysobjects where name='Factura' and xtype='U')
@@ -165,11 +183,11 @@ GO
 IF NOT EXISTS (select * from sysobjects where name='Puntaje' and xtype='U')
 CREATE TABLE EL_REJUNTE.Puntaje(
 	punt_id INT NOT NULL,
-	punt_id_cliente nvarchar(10) NOT NULL,
+	punt_cliente_id INT NOT NULL,
 	punt_cantidad nvarchar(10) NOT NULL,
 	punt_vencimiento datetime NOT NULL,
- CONSTRAINT PK_Usuario PRIMARY KEY CLUSTERED(
-	usuario_id ASC
+ CONSTRAINT PK_Puntaje PRIMARY KEY CLUSTERED(
+	punt_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 )ON [PRIMARY]
 GO
@@ -240,10 +258,10 @@ GO
 IF NOT EXISTS (select * from sysobjects where name='Ubicacion_Compra' and xtype='U')
 CREATE TABLE EL_REJUNTE.Ubicacion_Compra(
 	ubica_id INT NOT NULL,
-	compra_id INT NOT NULL
+	compra_id INT NOT NULL,
 CONSTRAINT PK_Ubicacion_Compra PRIMARY KEY CLUSTERED(
-	ubica_id ASC
-	compra_id ASC	
+	ubica_id ASC,
+	compra_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -251,10 +269,10 @@ GO
 IF NOT EXISTS (select * from sysobjects where name='Ubicacion_Publicacion' and xtype='U')
 CREATE TABLE EL_REJUNTE.Ubicacion_Publicacion(
 	ubica_id INT NOT NULL,
-	publi_id INT NOT NULL
+	publi_id INT NOT NULL,
 CONSTRAINT PK_Ubicacion_Publicacion PRIMARY KEY CLUSTERED(
-	ubica_id ASC
-	publi_id ASC	
+	ubica_id ASC,
+	publi_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -394,7 +412,7 @@ REFERENCES EL_REJUNTE.Ubicacion (ubica_id)
 GO
 ALTER TABLE EL_REJUNTE.Ubicacion_Publicacion CHECK CONSTRAINT FK_Ubicacion_Publicacion_Ubicacion
 GO
-ALTER TABLE EL_REJUNTE.Puntaje WITH CHECK ADD CONSTRAINT FK_Puntaje_Cliente FOREIGN KEY(punt_id_cliente)
+ALTER TABLE EL_REJUNTE.Puntaje WITH CHECK ADD CONSTRAINT FK_Puntaje_Cliente FOREIGN KEY(punt_cliente_id)
 REFERENCES EL_REJUNTE.Cliente (clie_id)
 GO
 ALTER TABLE EL_REJUNTE.Puntaje CHECK CONSTRAINT FK_Puntaje_Cliente
