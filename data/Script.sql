@@ -9,7 +9,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Cliente' and xtype='U')
 CREATE TABLE EL_REJUNTE.Cliente(
-	clie_id INT NOT NULL ,
+	clie_id INT NOT NULL IDENTITY(1,1),
 	clie_nombre nvarchar(50) NOT NULL,
 	clie_apellido nvarchar(50) NOT NULL,
 	clie_tipo_documento nvarchar(255) NOT NULL,
@@ -31,7 +31,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Compra' and xtype='U')
 CREATE TABLE EL_REJUNTE.Compra(
-	compra_id INT NOT NULL,
+	compra_id INT NOT NULL IDENTITY(1,1),
 	compra_fecha datetime NOT NULL,
 	compra_cantidad numeric(18, 0) NOT NULL,
 	compra_cliente_id INT NOT NULL,
@@ -43,7 +43,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Direccion' and xtype='U')
 CREATE TABLE EL_REJUNTE.Direccion(
-	dire_id INT NOT NULL,
+	dire_id INT NOT NULL IDENTITY(1,1),
 	dire_calle nvarchar(10) NOT NULL,
 	dire_numero nvarchar(10) NOT NULL,
 	dire_piso nvarchar(10) NULL,
@@ -58,7 +58,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Empresa' and xtype='U')
 CREATE TABLE EL_REJUNTE.Empresa(
-	empre_id INT NOT NULL ,
+	empre_id INT NOT NULL IDENTITY(1,1),
 	empre_razon_social nvarchar(255) NOT NULL,
 	empre_cuit nvarchar(255) NOT NULL,
 	empre_fecha_creacion datetime NOT NULL,
@@ -74,7 +74,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Espectaculo' and xtype='U')
 CREATE TABLE EL_REJUNTE.Espectaculo(
-	espec_id INT NOT NULL ,
+	espec_id INT NOT NULL IDENTITY(1,1),
 	espec_codigo numeric(18, 0) NULL,
 	espec_descripcion nvarchar(255) NOT NULL,
 	espec_fecha datetime NULL,
@@ -89,7 +89,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Estado' and xtype='U')
 CREATE TABLE EL_REJUNTE.Estado(
-	estado_id INT NOT NULL ,
+	estado_id INT NOT NULL IDENTITY(1,1),
 	estado_descripcion nvarchar(50) NOT NULL,
 	estado_inicial BIT NULL,
 	estado_final BIT NULL,
@@ -101,7 +101,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Factura' and xtype='U')
 CREATE TABLE EL_REJUNTE.Factura(
-	fact_id INT NOT NULL ,
+	fact_id INT NOT NULL IDENTITY(1,1),
 	fact_nro numeric(18, 0) NOT NULL,
 	fact_fecha datetime NOT NULL,
 	fact_total numeric(18, 2) NOT NULL,
@@ -137,7 +137,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Grado' and xtype='U')
 CREATE TABLE EL_REJUNTE.Grado(
-	grado_id INT NOT NULL ,
+	grado_id INT NOT NULL IDENTITY(1,1),
 	grado_descripcion nvarchar(50) NOT NULL,
 	grado_comision numeric(18, 0) NOT NULL,
 	grado_porcentaje numeric(18, 0) NOT NULL,
@@ -149,7 +149,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Item_Factura' and xtype='U')
 CREATE TABLE EL_REJUNTE.Item_Factura(
-	item_id INT NOT NULL ,
+	item_id INT NOT NULL IDENTITY(1,1),
 	item_monto numeric(18, 2) NOT NULL,
 	item_cantidad numeric(18, 0) NOT NULL,
 	item_descripcion nvarchar(60) NOT NULL,
@@ -163,7 +163,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Publicacion' and xtype='U')
 CREATE TABLE EL_REJUNTE.Publicacion(
-	publi_id INT NOT NULL ,
+	publi_id INT NOT NULL IDENTITY(1,1),
 	publi_descripcion nvarchar(50) NOT NULL,
 	publi_estado_id INT NULL,
 	publi_fecha_inicio datetime NOT NULL,
@@ -182,7 +182,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Puntaje' and xtype='U')
 CREATE TABLE EL_REJUNTE.Puntaje(
-	punt_id INT NOT NULL,
+	punt_id INT NOT NULL IDENTITY(1,1),
 	punt_cliente_id INT NOT NULL,
 	punt_cantidad nvarchar(10) NOT NULL,
 	punt_vencimiento datetime NOT NULL,
@@ -194,7 +194,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Rol' and xtype='U')
 CREATE TABLE EL_REJUNTE.Rol(
-	rol_id INT NOT NULL ,
+	rol_id INT NOT NULL IDENTITY(1,1),
 	rol_nombre nvarchar(60) NOT NULL,
 	rol_habilitado BIT NOT NULL,
  CONSTRAINT PK_Rol PRIMARY KEY CLUSTERED(
@@ -216,7 +216,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Rubro' and xtype='U')
 CREATE TABLE EL_REJUNTE.Rubro(
-	rubro_id INT NOT NULL,
+	rubro_id INT NOT NULL IDENTITY(1,1),
 	rubro_codigo nvarchar(10) NOT NULL,
 	rubro_descripcion nvarchar(255) NOT NULL,
  CONSTRAINT PK_Rubro PRIMARY KEY CLUSTERED(
@@ -227,7 +227,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Tarjeta' and xtype='U')
 CREATE TABLE EL_REJUNTE.Tarjeta(
-	tarj_id INT NOT NULL,
+	tarj_id INT NOT NULL IDENTITY(1,1),
 	tarj_numero nvarchar(16) NOT NULL,
 	tarj_cod_seguridad nvarchar(3) NOT NULL,
 	tarj_vencimiento BIT NULL,
@@ -241,7 +241,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Ubicacion' and xtype='U')
 CREATE TABLE EL_REJUNTE.Ubicacion(
-	ubica_id INT NOT NULL,
+	ubica_id INT NOT NULL IDENTITY(1,1),
 	ubica_fila [varbinary](3) NOT NULL,
 	ubica_asiento numeric(18, 0) NOT NULL,
 	ubica_sin_numerar BIT NULL,
@@ -279,7 +279,7 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Usuario' and xtype='U')
 CREATE TABLE EL_REJUNTE.Usuario(
-	usuario_id INT NOT NULL,
+	usuario_id INT NOT NULL IDENTITY(1,1),
 	usuario_username nvarchar(20) NOT NULL,
 	usuario_password nvarchar(50) NOT NULL,
 	usuario_habilitado BIT NOT NULL,
