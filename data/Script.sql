@@ -242,7 +242,7 @@ GO
 IF NOT EXISTS (select * from sysobjects where name='Ubicacion' and xtype='U')
 CREATE TABLE EL_REJUNTE.Ubicacion(
 	ubica_id INT NOT NULL IDENTITY(1,1),
-	ubica_fila [varbinary](3) NOT NULL,
+	ubica_fila varchar(3) NOT NULL,
 	ubica_asiento numeric(18, 0) NOT NULL,
 	ubica_sin_numerar BIT NULL,
 	ubica_precio numeric(18, 0) NOT NULL,

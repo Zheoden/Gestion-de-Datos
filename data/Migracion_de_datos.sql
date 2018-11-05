@@ -25,6 +25,13 @@ BEGIN
 	DECLARE @Espectaculo_Fecha_Venc datetime
 	DECLARE @Espectaculo_Rubro_Descripcion nvarchar(255)
 	DECLARE @Espectaculo_Estado nvarchar(255)
+	/* Variables para las Ubicaciones */
+	DECLARE @Ubicacion_Fila varchar(3)
+	DECLARE @Ubicacion_Asiento numeric(18,0)
+	DECLARE @Ubicacion_Sin_numerar bit
+	DECLARE @Ubicacion_Precio numeric(18,0)
+	DECLARE @Ubicacion_Tipo_Codigo numeric(18,0)
+	DECLARE @Ubicacion_Tipo_Descripcion nvarchar(255)
 	/* Variables para los Clientes */
 	DECLARE @Cli_Dni numeric(18,0)
 	DECLARE @Cli_Apellido nvarchar(255)
@@ -43,9 +50,10 @@ BEGIN
 	DECLARE @ID_Empresa INT
 	DECLARE @ID_Rubro INT
 	DECLARE @ID_Espectaculo INT
+	DECLARE @ID_Ubicacion INT
 	
 	DECLARE c_maestro CURSOR FOR
-		SELECT TOP 1000 gd.Espec_Empresa_Razon_Social, gd.Espec_Empresa_Cuit, gd.Espec_Empresa_Fecha_Creacion, gd.Espec_Empresa_Mail, gd.Espec_Empresa_Dom_Calle, gd.Espec_Empresa_Nro_Calle, gd.Espec_Empresa_Piso, gd.Espec_Empresa_Depto, gd.Espec_Empresa_Cod_Postal, gd.Espectaculo_Cod, gd.Espectaculo_Descripcion, gd.Espectaculo_Fecha, gd.Espectaculo_Fecha_Venc, gd.Espectaculo_Rubro_Descripcion, gd.Espectaculo_Estado, gd.Cli_Dni, gd.Cli_Apeliido, gd.Cli_Nombre, gd.Cli_Fecha_Nac, gd.Cli_Mail, gd.Cli_Dom_Calle, gd.Cli_Nro_Calle, gd.Cli_Piso, gd.Cli_Depto, gd.Cli_Cod_Postal
+		SELECT TOP 1000 gd.Espec_Empresa_Razon_Social, gd.Espec_Empresa_Cuit, gd.Espec_Empresa_Fecha_Creacion, gd.Espec_Empresa_Mail, gd.Espec_Empresa_Dom_Calle, gd.Espec_Empresa_Nro_Calle, gd.Espec_Empresa_Piso, gd.Espec_Empresa_Depto, gd.Espec_Empresa_Cod_Postal, gd.Espectaculo_Cod, gd.Espectaculo_Descripcion, gd.Espectaculo_Fecha, gd.Espectaculo_Fecha_Venc, gd.Espectaculo_Rubro_Descripcion, gd.Espectaculo_Estado, gd.Ubicacion_Fila, gd.Ubicacion_Asiento, gd.Ubicacion_Sin_numerar, gd.Ubicacion_Precio, gd.Ubicacion_Tipo_Codigo, gd.Ubicacion_Tipo_Descripcion, gd.Cli_Dni, gd.Cli_Apeliido, gd.Cli_Nombre, gd.Cli_Fecha_Nac, gd.Cli_Mail, gd.Cli_Dom_Calle, gd.Cli_Nro_Calle, gd.Cli_Piso, gd.Cli_Depto, gd.Cli_Cod_Postal
 		FROM gd_esquema.Maestra gd
 		WHERE   gd.Cli_Nombre IS NOT NULL AND
 				gd.Cli_Apeliido IS NOT NULL AND
@@ -53,7 +61,7 @@ BEGIN
 				gd.Cli_Mail IS NOT NULL
 			
 	OPEN c_maestro
-	FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Espec_Empresa_Dom_Calle, @Espec_Empresa_Nro_Calle, @Espec_Empresa_Piso, @Espec_Empresa_Depto, @Espec_Empresa_Cod_Postal, @Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Rubro_Descripcion, @Espectaculo_Estado, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Cli_Dom_Calle, @Cli_Nro_Calle, @Cli_Piso, @Cli_Depto, @Cli_Cod_Postal
+	FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Espec_Empresa_Dom_Calle, @Espec_Empresa_Nro_Calle, @Espec_Empresa_Piso, @Espec_Empresa_Depto, @Espec_Empresa_Cod_Postal, @Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Rubro_Descripcion, @Espectaculo_Estado, @Ubicacion_Fila ,@Ubicacion_Asiento ,@Ubicacion_Sin_numerar ,@Ubicacion_Precio ,@Ubicacion_Tipo_Codigo ,@Ubicacion_Tipo_Descripcion, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Cli_Dom_Calle, @Cli_Nro_Calle,@Cli_Piso, @Cli_Depto, @Cli_Cod_Postal
 
 	WHILE(@@FETCH_STATUS=0)
 	BEGIN
@@ -145,7 +153,7 @@ BEGIN
 		SET @ID_Direccion = NULL
 	/* Termina el clasificado de Empresas */
 	
-		/*Verifico si el Espectaculo ya existe o si es Especulo Nuev0*/
+		/*Verifico si el Espectaculo ya existe o si es Especulo Nuevo*/
 		SELECT @ID_Espectaculo = espec_id
 		FROM Espectaculo
 		WHERE espec_codigo = @Espectaculo_Cod AND
@@ -160,6 +168,23 @@ BEGIN
 		END
 	/* Termina el clasificado de Espectaculos */
 	
+		/*Verifico si la Ubicacion ya existe o si es Ubicacion Nueva*/
+		SELECT @ID_Ubicacion = ubica_id
+		FROM Ubicacion
+		WHERE ubica_fila = @Ubicacion_Fila AND
+			  ubica_asiento = @Ubicacion_Asiento AND
+			  ubica_sin_numerar = @Ubicacion_Sin_numerar AND
+			  ubica_precio = @Ubicacion_Precio AND
+			  ubica_tipo_codigo = @Ubicacion_Tipo_Codigo AND 
+			  ubica_tipo_descripcion = @Ubicacion_Tipo_Descripcion
+		IF(@ID_Espectaculo IS NULL)
+		BEGIN
+			INSERT INTO EL_REJUNTE.Ubicacion (ubica_fila , ubica_asiento, ubica_sin_numerar, ubica_precio, ubica_tipo_codigo, ubica_tipo_descripcion,ubica_facturada)
+			VALUES (@Ubicacion_Fila, @Ubicacion_Asiento, @Ubicacion_Sin_numerar, @Ubicacion_Precio, @Ubicacion_Tipo_Codigo, @Ubicacion_Tipo_Descripcion, 0)
+		END
+	
+	/* Termina el clasificado de Ubicaciones */
+	
 	/* Reinicio las variables Unicas */
 		SET @ID_Direccion = NULL
 		SET @ID_Direccion = NULL
@@ -167,17 +192,14 @@ BEGIN
 		SET @ID_Empresa = NULL
 		SET @ID_Rubro = NULL
 		SET @ID_Espectaculo = NULL
+		SET @ID_Ubicacion = NULL
+		
 		
 	/* Tomo la siguiente Linea */
-		FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Espec_Empresa_Dom_Calle, @Espec_Empresa_Nro_Calle, @Espec_Empresa_Piso, @Espec_Empresa_Depto, @Espec_Empresa_Cod_Postal, @Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Rubro_Descripcion, @Espectaculo_Estado, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Cli_Dom_Calle, @Cli_Nro_Calle,@Cli_Piso, @Cli_Depto, @Cli_Cod_Postal
+		FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Espec_Empresa_Dom_Calle, @Espec_Empresa_Nro_Calle, @Espec_Empresa_Piso, @Espec_Empresa_Depto, @Espec_Empresa_Cod_Postal, @Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Rubro_Descripcion, @Espectaculo_Estado, @Ubicacion_Fila ,@Ubicacion_Asiento ,@Ubicacion_Sin_numerar ,@Ubicacion_Precio ,@Ubicacion_Tipo_Codigo ,@Ubicacion_Tipo_Descripcion, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Cli_Dom_Calle, @Cli_Nro_Calle,@Cli_Piso, @Cli_Depto, @Cli_Cod_Postal
 	END
 	/* Termino de recorrer el Cursor, lo cierro y libero la memoria */
 	CLOSE c_maestro
 	DEALLOCATE c_maestro
 END
 GO
-
-
-
- 
-
