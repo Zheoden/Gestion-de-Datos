@@ -44,12 +44,12 @@ GO
 IF NOT EXISTS (select * from sysobjects where name='Direccion' and xtype='U')
 CREATE TABLE EL_REJUNTE.Direccion(
 	dire_id INT NOT NULL IDENTITY(1,1),
-	dire_calle nvarchar(10) NOT NULL,
-	dire_numero nvarchar(10) NOT NULL,
-	dire_piso nvarchar(10) NULL,
-	dire_depto nvarchar(10) NULL,
-	dire_localidad nvarchar(10) NOT NULL,
-	dire_codigo_postal nvarchar(10) NOT NULL,
+	dire_calle nvarchar(50) NOT NULL,
+	dire_numero nvarchar(50) NOT NULL,
+	dire_piso nvarchar(50) NULL,
+	dire_depto nvarchar(50) NULL,
+	dire_localidad nvarchar(50) NULL,
+	dire_codigo_postal nvarchar(50) NOT NULL,
  CONSTRAINT PK_Direccion PRIMARY KEY CLUSTERED(
 	dire_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
