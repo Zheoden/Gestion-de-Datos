@@ -14,9 +14,9 @@ BEGIN
 	DECLARE @ID_row INT
 
 	DECLARE c_maestro CURSOR FOR
-			SELECT TOP 100 gd.Cli_Dni, gd.Cli_Apeliido, gd.Cli_Nombre, gd.Cli_Fecha_Nac, gd.Cli_Mail, gd.Cli_Dom_Calle, gd.Cli_Nro_Calle, gd.Cli_Piso, gd.Cli_Depto, gd.Cli_Cod_Postal
-			FROM gd_esquema.Maestra gd
-			WHERE  gd.Cli_Nombre IS NOT NULL AND
+		SELECT TOP 100 gd.Cli_Dni, gd.Cli_Apeliido, gd.Cli_Nombre, gd.Cli_Fecha_Nac, gd.Cli_Mail, gd.Cli_Dom_Calle, gd.Cli_Nro_Calle, gd.Cli_Piso, gd.Cli_Depto, gd.Cli_Cod_Postal
+		FROM gd_esquema.Maestra gd
+		WHERE   gd.Cli_Nombre IS NOT NULL AND
 				gd.Cli_Apeliido IS NOT NULL AND
 				gd.Cli_Dni IS NOT NULL AND
 				gd.Cli_Mail IS NOT NULL
@@ -26,24 +26,28 @@ BEGIN
 
 	WHILE(@@FETCH_STATUS=0)
 	BEGIN
+	/*Empieza el clasificado */
+		/*Valido los datos que voy a insertar*/
 		IF(@Cli_Dom_Calle IS NOT NULL AND @Cli_Nro_Calle IS NOT NULL AND @Cli_Piso IS NOT NULL AND @Cli_Depto IS NOT NULL @Cli_Cod_Postal IS NOT NULL )
 		BEGIN
-		
-				SELECT @ID_row = dire_id 
-				FROM Direccion 
-				WHERE @Cli_Dom_Calle = dire_calle AND 
-					  @Cli_Nro_Calle = dire_numero AND 
-					  @Cli_Piso = dire_piso AND 
-					  @Cli_Depto = dire_depto AND 
-					  @Cli_Cod_Postal = dire_codigo_postal
+			/*Verifico si ya existe dentro de la tabla este registro, asi evito datos duplicados*/
+			SELECT @ID_row = dire_id 
+			FROM Direccion 
+			WHERE @Cli_Dom_Calle = dire_calle AND 
+				  @Cli_Nro_Calle = dire_numero AND 
+				  @Cli_Piso = dire_piso AND 
+				  @Cli_Depto = dire_depto AND 
+				  @Cli_Cod_Postal = dire_codigo_postal
 					  
 			IF(@ID_row IS NULL)
 			BEGIN
+				/*Si no existe el registro, lo inserto*/
 				INSERT INTO EL_REJUNTE.Direccion (dire_calle, dire_numero, dire_piso, dire_depto, dire_codigo_postal)
 				VALUES (@Cli_Dom_Calle, @Cli_Nro_Calle, @Cli_Piso, @Cli_Depto, @Cli_Cod_Postal)
 			END
 		END
-		
+		/* Termina el clasificado de Direcciones */
+		/*Ya que los valores son unicos, voy a traerme el ID del campo, en esta instancia tiene que existir si o si*/
 		SELECT @ID_row = dire_id 
 		FROM Direccion 
 		WHERE @Cli_Dom_Calle = dire_calle AND 
@@ -52,11 +56,13 @@ BEGIN
 			  @Cli_Depto = dire_depto AND 
 			  @Cli_Cod_Postal = dire_codigo_postal
 		
+		/*Hago el Insert de los Clientes, con sus respectivas Direcciones*/
 		INSERT INTO EL_REJUNTE.Cliente (clie_nombre, clie_apellido, clie_tipo_documento, clie_documento, clie_cuil, clie_email, clie_telefono, clie_direccion_id, clie_fecha_nacimiento,clie_fecha_creacion, clie_tarjeta_id, clie_habilitado, clie_usuario_id)
 		VALUES (@Cli_Nombre, @Cli_Apellido, 'DNI', @Cli_Dni, '123' , @Cli_Mail, 123, @ID_row, @Cli_Fecha_Nac, GETDATE(), null, 1, null)
 		
+		/*Reinicio el ID_row para que si no existe el campo, no me tome el valor del insert anterior*/
 		SET @ID_row = NULL
-	
+	/* Termina el clasificado de Clientes */
 		FETCH NEXT FROM c_maestro INTO @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Cli_Dom_Calle, @Cli_Nro_Calle, @Cli_Piso, @Cli_Depto, @Cli_Cod_Postal
 	END
 
