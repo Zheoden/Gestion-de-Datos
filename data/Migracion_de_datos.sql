@@ -1,7 +1,6 @@
 ﻿CREATE PROCEDURE EL_REJUNTE.Migracion
 AS
 BEGIN
-	DECLARE @retorno INT
 	DECLARE @Cli_Dni numeric(18,0)
 	DECLARE @Cli_Apellido nvarchar(255)
 	DECLARE @Cli_Nombre nvarchar(255)
