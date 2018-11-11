@@ -19,7 +19,9 @@ namespace PalcoNet
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Abm_Rol" + "." + "Form1").Unwrap();
+            nextForm.Show();
         }
     }
 }
