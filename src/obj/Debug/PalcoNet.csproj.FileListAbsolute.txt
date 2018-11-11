@@ -22,3 +22,13 @@ D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Form1.resources
 D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
 D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
 >>>>>>> 7accf525312683598702bb2f69ceed21c862c6d2
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe.config
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.pdb
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.csprojResolveAssemblyReference.cache
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.Form1.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Form1.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
