@@ -48,10 +48,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.dire_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -72,6 +72,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.gb_b_avanzada);
             this.groupBox1.Controls.Add(this.cb_busquedaAvanzada);
             this.groupBox1.Location = new System.Drawing.Point(9, 113);
@@ -91,11 +95,11 @@
             this.gb_b_avanzada.Controls.Add(this.label4);
             this.gb_b_avanzada.Controls.Add(this.label3);
             this.gb_b_avanzada.Controls.Add(this.label2);
-            this.gb_b_avanzada.Location = new System.Drawing.Point(4, 117);
+            this.gb_b_avanzada.Location = new System.Drawing.Point(4, 102);
             this.gb_b_avanzada.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gb_b_avanzada.Name = "gb_b_avanzada";
             this.gb_b_avanzada.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gb_b_avanzada.Size = new System.Drawing.Size(682, 98);
+            this.gb_b_avanzada.Size = new System.Drawing.Size(682, 113);
             this.gb_b_avanzada.TabIndex = 4;
             this.gb_b_avanzada.TabStop = false;
             this.gb_b_avanzada.Text = "Busqueda avanzada";
@@ -104,7 +108,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 68);
+            this.label4.Location = new System.Drawing.Point(14, 85);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 13);
@@ -114,7 +118,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 46);
+            this.label3.Location = new System.Drawing.Point(19, 59);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 13);
@@ -124,7 +128,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 21);
+            this.label2.Location = new System.Drawing.Point(54, 33);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
@@ -134,7 +138,7 @@
             // cb_busquedaAvanzada
             // 
             this.cb_busquedaAvanzada.AutoSize = true;
-            this.cb_busquedaAvanzada.Location = new System.Drawing.Point(566, 95);
+            this.cb_busquedaAvanzada.Location = new System.Drawing.Point(562, 81);
             this.cb_busquedaAvanzada.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_busquedaAvanzada.Name = "cb_busquedaAvanzada";
             this.cb_busquedaAvanzada.Size = new System.Drawing.Size(124, 17);
@@ -221,11 +225,6 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dire_id,
-            this.dire_calle,
-            this.dire_piso,
-            this.dire_numero});
             this.dataGridView1.Location = new System.Drawing.Point(4, 18);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
@@ -244,6 +243,7 @@
             this.button7.TabIndex = 2;
             this.button7.Text = "Limpiar";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // pictureBox1
             // 
@@ -256,44 +256,57 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(118, 18);
+            this.textBox1.Location = new System.Drawing.Point(118, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(209, 20);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(118, 43);
+            this.textBox2.Location = new System.Drawing.Point(118, 56);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(209, 20);
             this.textBox2.TabIndex = 1;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(118, 65);
+            this.textBox3.Location = new System.Drawing.Point(118, 82);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(209, 20);
             this.textBox3.TabIndex = 1;
             // 
-            // dire_id
+            // label5
             // 
-            this.dire_id.HeaderText = "dire_id";
-            this.dire_id.Name = "dire_id";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Nombre de rol:";
             // 
-            // dire_calle
+            // textBox4
             // 
-            this.dire_calle.HeaderText = "dire_calle";
-            this.dire_calle.Name = "dire_calle";
+            this.textBox4.Location = new System.Drawing.Point(100, 29);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(231, 20);
+            this.textBox4.TabIndex = 1;
             // 
-            // dire_piso
+            // comboBox1
             // 
-            this.dire_piso.HeaderText = "dire_piso";
-            this.dire_piso.Name = "dire_piso";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(163, 62);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(168, 21);
+            this.comboBox1.TabIndex = 7;
             // 
-            // dire_numero
+            // label6
             // 
-            this.dire_numero.HeaderText = "dire_numero";
-            this.dire_numero.Name = "dire_numero";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(139, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Listado de funcionalidades: ";
             // 
             // Form1
             // 
@@ -346,9 +359,9 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dire_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dire_calle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dire_piso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using PalcoNet.Utils;
 
 namespace PalcoNet.Abm_Rol
 {
@@ -37,10 +38,11 @@ namespace PalcoNet.Abm_Rol
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            /*SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT dire_id, dire_calle, dire_numero, dire_piso FROM EL_REJUNTE.Direccion";
             SqlCommand command = new SqlCommand(SQL, conn);
+
             command.Connection = conn;
             command.CommandType = CommandType.Text;
 
@@ -59,12 +61,17 @@ namespace PalcoNet.Abm_Rol
                 }
             }
 
-            Connection.close(conn);
+            Connection.close(conn);*/
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
