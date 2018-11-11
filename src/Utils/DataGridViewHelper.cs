@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-namespace PalcoNet
+namespace PalcoNet.Utils
 {
     public class DataGridViewHelper
     {

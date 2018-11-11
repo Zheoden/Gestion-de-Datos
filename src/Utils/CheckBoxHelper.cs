@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-namespace PalcoNet
+namespace PalcoNet.Utils
 {
     public class CheckBoxHelper
     {

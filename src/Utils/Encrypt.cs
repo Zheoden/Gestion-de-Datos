@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
 using System;
-namespace PalcoNet
+namespace PalcoNet.Utils
 {
     public class Encrypt
     {

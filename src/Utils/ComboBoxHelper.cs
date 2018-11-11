@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using System;
-namespace PalcoNet
+namespace PalcoNet.Utils
 {
     public class ComboBoxHelper 
     {
