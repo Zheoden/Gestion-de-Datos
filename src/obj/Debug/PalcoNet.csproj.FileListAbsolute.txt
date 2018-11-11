@@ -1,1 +1,2 @@
 \\VBOXSVR\PalcoNet\src\PalcoNet\bin\Debug\PalcoNet.exe.config
+D:\Github\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe.config

@@ -16,5 +16,18 @@ namespace PalcoNet.Abm_Rol
         {
             InitializeComponent();
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cb_busquedaAvanzada_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_busquedaAvanzada.Checked)
+            {
+
+            }
+        }
     }
 }
