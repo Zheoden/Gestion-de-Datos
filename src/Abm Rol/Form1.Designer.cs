@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb_b_avanzada = new System.Windows.Forms.GroupBox();
+            this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -38,10 +40,11 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button7 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.hidepanel = new System.Windows.Forms.Panel();
-            this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.gb_b_avanzada.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -58,8 +61,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.hidepanel);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.gb_b_avanzada);
             this.groupBox1.Controls.Add(this.cb_busquedaAvanzada);
             this.groupBox1.Location = new System.Drawing.Point(12, 139);
             this.groupBox1.Name = "groupBox1";
@@ -67,6 +69,30 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalle de Rol";
+            // 
+            // gb_b_avanzada
+            // 
+            this.gb_b_avanzada.Controls.Add(this.label4);
+            this.gb_b_avanzada.Controls.Add(this.label3);
+            this.gb_b_avanzada.Controls.Add(this.label2);
+            this.gb_b_avanzada.Location = new System.Drawing.Point(6, 144);
+            this.gb_b_avanzada.Name = "gb_b_avanzada";
+            this.gb_b_avanzada.Size = new System.Drawing.Size(909, 120);
+            this.gb_b_avanzada.TabIndex = 4;
+            this.gb_b_avanzada.TabStop = false;
+            this.gb_b_avanzada.Text = "Busqueda avanzada";
+            this.gb_b_avanzada.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // cb_busquedaAvanzada
+            // 
+            this.cb_busquedaAvanzada.AutoSize = true;
+            this.cb_busquedaAvanzada.Location = new System.Drawing.Point(754, 117);
+            this.cb_busquedaAvanzada.Name = "cb_busquedaAvanzada";
+            this.cb_busquedaAvanzada.Size = new System.Drawing.Size(160, 21);
+            this.cb_busquedaAvanzada.TabIndex = 4;
+            this.cb_busquedaAvanzada.Text = "Busqueda avanzada";
+            this.cb_busquedaAvanzada.UseVisualStyleBackColor = true;
+            this.cb_busquedaAvanzada.CheckedChanged += new System.EventHandler(this.cb_busquedaAvanzada_CheckedChanged);
             // 
             // button1
             // 
@@ -154,33 +180,32 @@
             this.button7.Text = "Limpiar";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // label2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(6, 144);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(909, 120);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Busqueda avanzada";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 17);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Texto libre:";
             // 
-            // hidepanel
+            // label3
             // 
-            this.hidepanel.Location = new System.Drawing.Point(6, 141);
-            this.hidepanel.Name = "hidepanel";
-            this.hidepanel.Size = new System.Drawing.Size(910, 123);
-            this.hidepanel.TabIndex = 5;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 17);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Texto libre exacto:";
             // 
-            // cb_busquedaAvanzada
+            // label4
             // 
-            this.cb_busquedaAvanzada.AutoSize = true;
-            this.cb_busquedaAvanzada.Location = new System.Drawing.Point(754, 117);
-            this.cb_busquedaAvanzada.Name = "cb_busquedaAvanzada";
-            this.cb_busquedaAvanzada.Size = new System.Drawing.Size(160, 21);
-            this.cb_busquedaAvanzada.TabIndex = 4;
-            this.cb_busquedaAvanzada.Text = "Busqueda avanzada";
-            this.cb_busquedaAvanzada.UseVisualStyleBackColor = true;
-            this.cb_busquedaAvanzada.CheckedChanged += new System.EventHandler(this.cb_busquedaAvanzada_CheckedChanged);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 84);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(128, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Selección acotada:";
             // 
             // Form1
             // 
@@ -200,6 +225,8 @@
             this.Text = "ABM ROL";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gb_b_avanzada.ResumeLayout(false);
+            this.gb_b_avanzada.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -219,8 +246,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Panel hidepanel;
+        private System.Windows.Forms.GroupBox gb_b_avanzada;
         private System.Windows.Forms.CheckBox cb_busquedaAvanzada;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

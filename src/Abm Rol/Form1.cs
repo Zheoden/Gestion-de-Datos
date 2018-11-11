@@ -26,7 +26,10 @@ namespace PalcoNet.Abm_Rol
         {
             if (cb_busquedaAvanzada.Checked)
             {
-
+                gb_b_avanzada.Visible = true;
+            }else
+            {
+                gb_b_avanzada.Visible = false;
             }
         }
     }

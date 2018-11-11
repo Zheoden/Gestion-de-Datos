@@ -10,3 +10,12 @@ G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
+D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
+D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
+D:\Github\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe
+D:\Github\Gestion-de-Datos\src\bin\Debug\PalcoNet.pdb
+D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.csprojResolveAssemblyReference.cache
+D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.Form1.resources
+D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Form1.resources
+D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
+D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
