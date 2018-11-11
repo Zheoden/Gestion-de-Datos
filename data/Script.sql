@@ -184,7 +184,7 @@ IF NOT EXISTS (select * from sysobjects where name='Puntaje' and xtype='U')
 CREATE TABLE EL_REJUNTE.Puntaje(
 	punt_id INT NOT NULL IDENTITY(1,1),
 	punt_cliente_id INT NOT NULL,
-	punt_cantidad nvarchar(10) NOT NULL,
+	punt_cantidad INT NOT NULL,
 	punt_vencimiento datetime NOT NULL,
  CONSTRAINT PK_Puntaje PRIMARY KEY CLUSTERED(
 	punt_id ASC
@@ -230,9 +230,9 @@ CREATE TABLE EL_REJUNTE.Tarjeta(
 	tarj_id INT NOT NULL IDENTITY(1,1),
 	tarj_numero nvarchar(16) NOT NULL,
 	tarj_cod_seguridad nvarchar(3) NOT NULL,
-	tarj_vencimiento BIT NULL,
-	tarj_titular INT NOT NULL,
-	tarj_tipo INT NOT NULL,
+	tarj_vencimiento datetime NULL,
+	tarj_titular nvarchar(50) NOT NULL,
+	tarj_tipo nvarchar(50) NOT NULL,
  CONSTRAINT PK_Tarjeta PRIMARY KEY CLUSTERED(
 	tarj_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

@@ -32,3 +32,4 @@ F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.Form1.resourc
 F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Form1.resources
 F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
 F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Login.FormLogin.resources
