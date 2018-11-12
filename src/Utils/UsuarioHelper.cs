@@ -36,7 +36,7 @@ namespace PalcoNet.Utils
 
             DataGridViewHelper.fill(command, dgvUser);
         }
-
+/*
         public static Rol getRolByUserHotel(string user, int hotel)
         {
             Rol rol = new Rol();
@@ -68,7 +68,7 @@ namespace PalcoNet.Utils
             Connection.close(conn);
 
             return rol;
-        }
+        }*/
 
         public static void enable(string username, Int32 idHotel, Boolean enable)
         {

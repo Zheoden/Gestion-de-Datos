@@ -14,5 +14,7 @@ namespace PalcoNet
         public bool habilitado { get; set; }
         public int cant_logeo_error { get; set; }
         public string tipo { get; set; }
+        public List<Rol> roles { get; set; }
+        public List<Funcionalidad> funcionalidades { get; set; }
     }
 }

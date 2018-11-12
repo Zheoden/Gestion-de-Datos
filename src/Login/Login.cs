@@ -11,7 +11,7 @@ namespace PalcoNet.Login
     class Login
     {
         public static Boolean isValidUser(Usuario user){
-            return UsuarioHelper.existUser(user.id);
+            return true;//UsuarioHelper.existUser(user.id);
         }
 
         public static int login(Usuario user, String password)

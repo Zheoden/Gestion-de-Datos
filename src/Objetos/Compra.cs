@@ -6,7 +6,7 @@ using PalcoNet;
 
 namespace PalcoNet
 {
-    public class Usuario
+    public class Compra
     {
         public int id { get; set; }
         public DateTime fecha { get; set; }

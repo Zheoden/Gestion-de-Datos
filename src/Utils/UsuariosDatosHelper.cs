@@ -10,47 +10,47 @@ namespace PalcoNet.Utils
 {
     public class UsuarioDatosHelper
     {
-        public static UsuarioDatos getUserData(String user)
+        public static Usuario getUserData(string username)
         {
-            UsuarioDatos userData = new UsuarioDatos();
 
-            SqlConnection conn = Connection.getConnection();
-
-            SqlCommand command = new SqlCommand();
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_cant_logeo_error, u.usuario_tipo_id, r.rol_nombre, r.rol_habilitado, f.func_descripcion " +
+                          "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Rol_Usuario ru, EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr, EL_REJUNTE.Funcionalidad f "+
+                          "WHERE ru.usuario_id = u.usuario_id AND " +
+                                "ru.rol_id = r.rol_id AND " +
+                                "fr.rol_id = r.rol_id AND " +
+                                "fr.funci_id = f.funci_id AND "+
+                                "u.usuario_username = " + username;
+            SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
-            command.CommandText = "LA_MAYORIA.sp_user_data_get_by_user";
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@p_user_name", user);
+            command.CommandType = CommandType.Text;
 
-            SqlDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            Usuario user = new Usuario();
 
             if (reader.HasRows)
             {
-                reader.Read();
-                userData.username = user;
-                userData.address = Convert.ToString(reader["Direccion"]);
-                userData.birthDate = Convert.ToDateTime(reader["Fecha_Nacimiento"]);
-                userData.documentNumber = Convert.ToInt32(reader["Nro_DNI"]);
-                userData.mail = reader["mail"].ToString();
-                userData.nameLastname = reader["Nombre_Apellido"].ToString();
-                userData.telephone = reader["Telefono"].ToString();
-                userData.typeDocument = Convert.ToInt16(reader["Tipo_DNI"]);
-                userData.typeDocumentDescription = reader["Descripcion"].ToString();
-
-                int enable = Convert.ToInt16(reader["Habilitado"]);
-
-                if (enable == 1)
-                    userData.enabled = true;
-                else
-                    userData.enabled = false;
+                while (reader.Read())
+                {
+                    MessageBox.Show(reader["usuario_id"].ToString());
+                    MessageBox.Show(reader["usuario_username"].ToString());
+                    MessageBox.Show(reader["usuario_password"].ToString());
+                    MessageBox.Show(reader["usuario_habilitado"].ToString());
+                    MessageBox.Show(reader["usuario_cant_logeo_error"].ToString());
+                    MessageBox.Show(reader["usuario_tipo_id"].ToString());
+                    MessageBox.Show(reader["rol_nombre"].ToString());
+                    MessageBox.Show(reader["rol_habilitado"].ToString());
+                    MessageBox.Show(reader["func_descripcion"].ToString());
+                }
             }
 
-            conn.Close();
+            Connection.close(conn);
 
-            return userData;
+            return user;
         }
-
-        public static void save(UsuarioDatos userData, Int32 hotel, Int32 rol, String password)
+/*
+        public static void save(Usuario userData, Int32 hotel, Int32 rol, String password)
         {
             SqlCommand sp_save_or_update_user = new SqlCommand();
             sp_save_or_update_user.CommandType = CommandType.StoredProcedure;
@@ -78,5 +78,6 @@ namespace PalcoNet.Utils
 
             ProcedureHelper.execute(sp_save_or_update_user, "save or update user data", false);
         }
+ */
     }
 }

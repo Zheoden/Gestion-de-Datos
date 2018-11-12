@@ -166,6 +166,8 @@
     <Compile Include="Utils\Encrypt.cs" />
     <Compile Include="Utils\FormHelper.cs" />
     <Compile Include="Utils\TextBoxHelper.cs" />
+    <Compile Include="Utils\UsuarioHelper.cs" />
+    <Compile Include="Utils\UsuariosDatosHelper.cs" />
     <EmbeddedResource Include="Abm Rol\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

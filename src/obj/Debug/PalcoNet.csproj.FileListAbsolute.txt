@@ -1,35 +1,10 @@
-\\VBOXSVR\PalcoNet\src\PalcoNet\bin\Debug\PalcoNet.exe.config
-D:\Github\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe.config
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe.config
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\bin\Debug\PalcoNet.pdb
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.Form1.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Form1.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Login.FormLogin.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
-<<<<<<< HEAD
-G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.csprojResolveAssemblyReference.cache
-=======
-D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
-D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
-D:\Github\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe
-D:\Github\Gestion-de-Datos\src\bin\Debug\PalcoNet.pdb
-D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.csprojResolveAssemblyReference.cache
-D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.Form1.resources
-D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Form1.resources
-D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
-D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
->>>>>>> 7accf525312683598702bb2f69ceed21c862c6d2
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe.config
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.pdb
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.csprojResolveAssemblyReference.cache
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.Form1.resources
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Form1.resources
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
-F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
-G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Login.FormLogin.resources

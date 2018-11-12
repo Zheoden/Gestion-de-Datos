@@ -25,13 +25,10 @@ namespace PalcoNet.Login
         }
 
         private void button_Login_Click(object sender, EventArgs e)
-        {
+        {/*
             Usuario user = new Usuario();
-            user.id = textBox_usuario.Text;
-
-            VarGlobal.usuario = user;
-
-            String pass = textbox_password.Text;
+            user.username = txtUsuario.Text;
+            user.password = txtPassword.Text;
 
             if (!Login.isValidUser(user))
             {
@@ -57,6 +54,6 @@ namespace PalcoNet.Login
                     MessageBox.Show("Contactese con el administrador para limpiar su clave");
                 }
             }
-        }
+        */}
     }
 }
