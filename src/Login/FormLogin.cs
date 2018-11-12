@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Data.SqlClient;
-using PalcoNet.Abm_Rol;
+using PalcoNet.Utils;
 
 namespace PalcoNet.Login
 {
@@ -25,7 +25,9 @@ namespace PalcoNet.Login
         }
 
         private void button_Login_Click(object sender, EventArgs e)
-        {/*
+        {
+
+            /*
             Usuario user = new Usuario();
             user.username = txtUsuario.Text;
             user.password = txtPassword.Text;

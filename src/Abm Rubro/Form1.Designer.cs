@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Abm_Rol
+﻿namespace PalcoNet.Abm_Rubro
 {
     partial class Form1
     {
@@ -66,9 +66,9 @@
             this.label1.Location = new System.Drawing.Point(9, 84);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 26);
+            this.label1.Size = new System.Drawing.Size(134, 26);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ABM Grado";
+            this.label1.Text = "ABM Rubro";
             // 
             // groupBox1
             // 

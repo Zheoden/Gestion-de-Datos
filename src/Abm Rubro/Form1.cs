@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using PalcoNet.Utils;
 
-namespace PalcoNet.Abm_Rol
+namespace PalcoNet.Abm_Rubro
 {
     public partial class Form1 : Form
     {
