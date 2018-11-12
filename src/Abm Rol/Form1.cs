@@ -20,11 +20,6 @@ namespace PalcoNet.Abm_Rol
             gb_b_avanzada.Visible = false;
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void cb_busquedaAvanzada_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_busquedaAvanzada.Checked)
@@ -37,9 +32,9 @@ namespace PalcoNet.Abm_Rol
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            /*SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT dire_id, dire_calle, dire_numero, dire_piso FROM EL_REJUNTE.Direccion";
             SqlCommand command = new SqlCommand(SQL, conn);
@@ -62,57 +57,7 @@ namespace PalcoNet.Abm_Rol
                 }
             }
 
-            Connection.close(conn);*/
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            Connection.close(conn);
         }
     }
 }
