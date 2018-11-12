@@ -94,121 +94,196 @@ namespace PalcoNet.Utils
             ProcedureHelper.execute(command, "Habilitar o deshabilitar usuario", false);
         }
 
-        public static void cleanLogin(string username)
+        public static void addFailLogin(string username)
         {
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "LA_MAYORIA.sp_user_clean_login";
-
-            command.Parameters.Add(new SqlParameter("@p_user_name", SqlDbType.VarChar, 255));
-            command.Parameters["@p_user_name"].Value = username;
-
-            ProcedureHelper.execute(command, "Limpiar intentos de login", false);
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
+                         "SET usuario_cant_logeo_error = (SELECT u.usuario_cant_logeo_error + 1 FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))" +
+                         "WHERE usuario_id = (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))";
+            command.Connection = conn;
+            command.Connection.Open();
+            command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
         }
 
-        public static Boolean existUser(string user)
+        public static void cleanFailLogin(string username)
         {
-            SqlCommand sp_check_user = new SqlCommand();
-            sp_check_user.CommandText = "LA_MAYORIA.sp_login_check_valid_user";
-            sp_check_user.Parameters.Add(new SqlParameter("@p_id", SqlDbType.VarChar));
-            sp_check_user.Parameters["@p_id"].Value = user;
-
-            var returnParameterIsValid = sp_check_user.Parameters.Add(new SqlParameter("@p_is_valid", SqlDbType.Bit));
-            returnParameterIsValid.Direction = ParameterDirection.InputOutput;
-
-            ProcedureHelper.execute(sp_check_user, "chequear usuario valido", false);
-
-            int isValid = Convert.ToInt16(returnParameterIsValid.Value);
-
-            if (isValid == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
+                         "SET usuario_cant_logeo_error = 0" +
+                         "WHERE usuario_id = (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))";
+            command.Connection = conn;
+            command.Connection.Open();
+            command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        public static Usuario getUserData(string username)
+        public static Boolean existUser(string username)
         {
-
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_cant_logeo_error, u.usuario_tipo_id, r.rol_nombre, r.rol_habilitado, f.func_descripcion " +
-                          "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Rol_Usuario ru, EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr, EL_REJUNTE.Funcionalidad f " +
-                          "WHERE ru.usuario_id = u.usuario_id AND " +
-                                "ru.rol_id = r.rol_id AND " +
-                                "fr.rol_id = r.rol_id AND " +
-                                "fr.funci_id = f.funci_id AND " +
-                                "u.usuario_username = " + username;
+            string SQL = "SELECT u.usuario_id " +
+                          "FROM EL_REJUNTE.Usuario u " +
+                          "WHERE UPPER(u.usuario_username) = UPPER('" + username + "')";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
             command.CommandType = CommandType.Text;
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
-            Usuario user = new Usuario();
 
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    MessageBox.Show(reader["usuario_id"].ToString());
-                    MessageBox.Show(reader["usuario_username"].ToString());
-                    MessageBox.Show(reader["usuario_password"].ToString());
-                    MessageBox.Show(reader["usuario_habilitado"].ToString());
-                    MessageBox.Show(reader["usuario_cant_logeo_error"].ToString());
-                    MessageBox.Show(reader["usuario_tipo_id"].ToString());
-                    MessageBox.Show(reader["rol_nombre"].ToString());
-                    MessageBox.Show(reader["rol_habilitado"].ToString());
-                    MessageBox.Show(reader["func_descripcion"].ToString());
+                    return reader["usuario_id"].ToString() != null;
                 }
             }
 
-            Connection.close(conn);
+            conn.Close();
+            return false;
+        }
 
-            return user;
+        public static Boolean usuarioHabilitado(string username)
+        {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT u.usuario_id " +
+                          "FROM EL_REJUNTE.Usuario u " +
+                          "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND " +
+                                "u.usuario_habilitado = 1";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    return reader["usuario_id"].ToString() != null;
+                }
+            }
+
+            conn.Close();
+            return false;
+        }
+
+        public static Boolean validLogin(string username, string password)
+        {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT u.usuario_id " +
+                          "FROM EL_REJUNTE.Usuario u " +
+                          "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND "+
+                                "UPPER(u.usuario_password) = UPPER('" + Encrypt.Sha256(password) + "')";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    return reader["usuario_id"].ToString() != null;
+                }
+            }
+
+            conn.Close();
+            return false;
+        }
+
+        public static Usuario getUserData(string username)
+        {
+            if (existUser(username))
+            {
+                SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+                conn.Open();
+                string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_cant_logeo_error, u.usuario_tipo, r.rol_id, r.rol_nombre, r.rol_habilitado, f.func_id, f.func_descripcion " +
+                              "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Rol_Usuario ru, EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr, EL_REJUNTE.Funcionalidad f " +
+                              "WHERE ru.usuario_id = u.usuario_id AND " +
+                                    "ru.rol_id = r.rol_id AND " +
+                                    "fr.rol_id = r.rol_id AND " +
+                                    "fr.func_id = f.func_id AND " +
+                                    "UPPER(u.usuario_username) = UPPER('" + username + "')";
+                SqlCommand command = new SqlCommand(SQL, conn);
+                command.Connection = conn;
+                command.CommandType = CommandType.Text;
+
+                SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+                Usuario user = new Usuario();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        user.id = Int32.Parse(reader["usuario_id"].ToString());
+                        user.username = reader["usuario_username"].ToString();
+                        user.password = reader["usuario_password"].ToString();
+                        user.habilitado = Convert.ToBoolean(reader["usuario_habilitado"].ToString());
+                        user.cant_logeo_error = Int32.Parse(reader["usuario_cant_logeo_error"].ToString());
+                        user.tipo = reader["usuario_tipo"].ToString();
+
+                        user.roles = new List<Rol>();
+                        Rol rol = new Rol();
+
+                        rol.id = Int32.Parse(reader["rol_id"].ToString());
+                        rol.nombre = reader["rol_nombre"].ToString();
+                        rol.habilitado = Convert.ToBoolean(reader["rol_habilitado"].ToString());
+
+                        user.roles.Add(rol);
+                        user.funcionalidades = new List<Funcionalidad>();
+                        Funcionalidad funcionalidad = new Funcionalidad();
+
+                        funcionalidad.id = Int32.Parse(reader["func_id"].ToString());
+                        funcionalidad.descripcion = reader["func_descripcion"].ToString();
+
+                        user.funcionalidades.Add(funcionalidad);
+                    }
+                }
+
+                conn.Close();
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
         /*
-                public static void save(Usuario userData, Int32 hotel, Int32 rol, String password)
-                {
-                    SqlCommand sp_save_or_update_user = new SqlCommand();
-                    sp_save_or_update_user.CommandType = CommandType.StoredProcedure;
-                    sp_save_or_update_user.CommandText = "LA_MAYORIA.sp_user_save_update";
+        public static void save(Usuario userData, Int32 hotel, Int32 rol, String password)
+        {
+            SqlCommand sp_save_or_update_user = new SqlCommand();
+            sp_save_or_update_user.CommandType = CommandType.StoredProcedure;
+            sp_save_or_update_user.CommandText = "LA_MAYORIA.sp_user_save_update";
 
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_user_name", userData.username);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_name_lastName", userData.nameLastname);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_id_type_document", userData.typeDocument);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_document_number", userData.documentNumber);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_mail", userData.mail);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_telephone", userData.telephone);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_address", userData.address);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_birthdate", userData.birthDate);
-            
-                    if (userData.enabled){
-                        sp_save_or_update_user.Parameters.AddWithValue("@p_enabled", 1);
-                    }else{
-                        sp_save_or_update_user.Parameters.AddWithValue("@p_enabled", 0);
-                    }
+            sp_save_or_update_user.Parameters.AddWithValue("@p_user_name", userData.username);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_name_lastName", userData.nameLastname);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_id_type_document", userData.typeDocument);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_document_number", userData.documentNumber);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_mail", userData.mail);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_telephone", userData.telephone);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_address", userData.address);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_birthdate", userData.birthDate);
+        
+            if (userData.enabled){
+                sp_save_or_update_user.Parameters.AddWithValue("@p_enabled", 1);
+            }else{
+                sp_save_or_update_user.Parameters.AddWithValue("@p_enabled", 0);
+            }
 
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_id_hotel", hotel);
-                    sp_save_or_update_user.Parameters.AddWithValue("@p_id_rol", rol);
-                    if (password != null)
-                        sp_save_or_update_user.Parameters.AddWithValue("@p_password", Encrypt.Sha256(password));
+            sp_save_or_update_user.Parameters.AddWithValue("@p_id_hotel", hotel);
+            sp_save_or_update_user.Parameters.AddWithValue("@p_id_rol", rol);
+            if (password != null)
+                sp_save_or_update_user.Parameters.AddWithValue("@p_password", Encrypt.Sha256(password));
 
-                    ProcedureHelper.execute(sp_save_or_update_user, "save or update user data", false);
-               }
-         */
+            ProcedureHelper.execute(sp_save_or_update_user, "save or update user data", false);
+        }*/
     }
 }

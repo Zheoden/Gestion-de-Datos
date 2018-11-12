@@ -8,7 +8,7 @@ namespace PalcoNet
 {
     public class Funcionalidad
     {
-        public int rol { get; set; }
+        public int id { get; set; }
         public string descripcion { get; set; }
     }
 }

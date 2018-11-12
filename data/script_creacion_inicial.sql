@@ -116,10 +116,10 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Func_Rol' and xtype='U')
 CREATE TABLE EL_REJUNTE.Func_Rol(
-	funci_id INT NOT NULL,
+	func_id INT NOT NULL,
 	rol_id INT NOT NULL,
  CONSTRAINT PK_Func_Rol PRIMARY KEY CLUSTERED (
-	funci_id ASC,
+	func_id ASC,
 	rol_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 )ON [PRIMARY]
@@ -127,10 +127,10 @@ GO
 
 IF NOT EXISTS (select * from sysobjects where name='Funcionalidad' and xtype='U')
 CREATE TABLE EL_REJUNTE.Funcionalidad(
-	funci_id INT NOT NULL IDENTITY(1,1),
+	func_id INT NOT NULL IDENTITY(1,1),
 	func_descripcion nvarchar(255) NOT NULL,
  CONSTRAINT PK_Funcionalidad PRIMARY KEY CLUSTERED(
-	funci_id ASC
+	func_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 )ON [PRIMARY]
 GO
@@ -332,8 +332,8 @@ REFERENCES EL_REJUNTE.Empresa (empre_id)
 GO
 ALTER TABLE EL_REJUNTE.Factura CHECK CONSTRAINT FK_Factura_Empresa
 GO
-ALTER TABLE EL_REJUNTE.Func_Rol WITH CHECK ADD CONSTRAINT FK_Func_Rol_Funcionalidad FOREIGN KEY(funci_id)
-REFERENCES EL_REJUNTE.Funcionalidad (funci_id)
+ALTER TABLE EL_REJUNTE.Func_Rol WITH CHECK ADD CONSTRAINT FK_Func_Rol_Funcionalidad FOREIGN KEY(func_id)
+REFERENCES EL_REJUNTE.Funcionalidad (func_id)
 GO
 ALTER TABLE EL_REJUNTE.Func_Rol CHECK CONSTRAINT FK_Func_Rol_Funcionalidad
 GO
@@ -437,7 +437,7 @@ GO
 INSERT INTO EL_REJUNTE.Rol_Usuario (rol_id ,usuario_id)
 VALUES (1 ,1 )
 GO
-INSERT INTO EL_REJUNTE.Func_Rol (funci_id , rol_id)
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
 VALUES (1 ,1 )
 GO
 

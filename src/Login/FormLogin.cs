@@ -26,7 +26,32 @@ namespace PalcoNet.Login
 
         private void button_Login_Click(object sender, EventArgs e)
         {
+            Usuario user = new Usuario();
+            user.username = txtUsuario.Text;
+            user.password = txtPassword.Text;
 
+            /* Verifico que sea un login valido */
+            if (UsuarioHelper.validLogin(user.username, user.password) && UsuarioHelper.usuarioHabilitado(user.username))
+            {
+                MessageBox.Show("Bienvenido!!!");
+                UsuarioHelper.cleanFailLogin(user.username);
+            }
+            else
+            {
+                MessageBox.Show("El usuario o la contraseña son invalidos");
+                UsuarioHelper.addFailLogin(user.username);
+                user = UsuarioHelper.getUserData(user.username);
+                if (user != null)
+                {
+                    if (user.cant_logeo_error > 2)
+                    {
+                        MessageBox.Show("Ingreso por lo menos 3 veces mal la contraseña. Su usuario fue bloqueado");
+                    }
+                }
+            }
+
+            /* Me traigo los datos */
+            //user = UsuarioHelper.getUserData("admin");
             /*
             Usuario user = new Usuario();
             user.username = txtUsuario.Text;
