@@ -124,32 +124,25 @@
     <Compile Include="Listado Estadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\FormLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\FormLogin.Designer.cs">
-      <DependentUpon>FormLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\Login.cs" />
     <Compile Include="Menu\MenuHelper.cs" />
     <Compile Include="Menu\MenuValidateHelper.cs" />
     <Compile Include="Menu\OpcionMenu.cs" />
-    <Compile Include="Objetos\Item_Factura.cs" />
-    <Compile Include="Objetos\Funcionalidad.cs" />
-    <Compile Include="Objetos\Rubro.cs" />
-    <Compile Include="Objetos\Rol.cs" />
-    <Compile Include="Objetos\Tarjeta.cs" />
-    <Compile Include="Objetos\Ubicacion.cs" />
+    <Compile Include="Objetos\Cliente.cs" />
+    <Compile Include="Objetos\Compra.cs" />
     <Compile Include="Objetos\Direccion.cs" />
     <Compile Include="Objetos\Empresa.cs" />
     <Compile Include="Objetos\Espectaculo.cs" />
     <Compile Include="Objetos\Estado.cs" />
     <Compile Include="Objetos\Factura.cs" />
+    <Compile Include="Objetos\Funcionalidad.cs" />
     <Compile Include="Objetos\Grado.cs" />
+    <Compile Include="Objetos\Item_Factura.cs" />
     <Compile Include="Objetos\Publicacion.cs" />
     <Compile Include="Objetos\Puntaje.cs" />
-    <Compile Include="Objetos\Compra.cs" />
-    <Compile Include="Objetos\Cliente.cs" />
+    <Compile Include="Objetos\Rol.cs" />
+    <Compile Include="Objetos\Rubro.cs" />
+    <Compile Include="Objetos\Tarjeta.cs" />
+    <Compile Include="Objetos\Ubicacion.cs" />
     <Compile Include="Objetos\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,14 +161,17 @@
     <Compile Include="Utils\TextBoxHelper.cs" />
     <Compile Include="Utils\UsuarioHelper.cs" />
     <Compile Include="Utils\UsuariosDatosHelper.cs" />
+    <EmbeddedResource Include="Abm Grado\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rubro\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInicial.resx">
       <DependentUpon>FormInicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\FormLogin.resx">
-      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

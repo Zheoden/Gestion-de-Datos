@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using PalcoNet.Utils;
 
 namespace PalcoNet.Abm_Rol
 {
@@ -29,6 +30,7 @@ namespace PalcoNet.Abm_Rol
             if (cb_busquedaAvanzada.Checked)
             {
                 gb_b_avanzada.Visible = true;
+
             }else
             {
                 gb_b_avanzada.Visible = false;
@@ -37,10 +39,11 @@ namespace PalcoNet.Abm_Rol
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            /*SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT dire_id, dire_calle, dire_numero, dire_piso FROM EL_REJUNTE.Direccion";
             SqlCommand command = new SqlCommand(SQL, conn);
+
             command.Connection = conn;
             command.CommandType = CommandType.Text;
 
@@ -59,10 +62,55 @@ namespace PalcoNet.Abm_Rol
                 }
             }
 
-            Connection.close(conn);
+            Connection.close(conn);*/
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
