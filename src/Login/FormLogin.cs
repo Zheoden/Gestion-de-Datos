@@ -33,8 +33,12 @@ namespace PalcoNet.Login
             /* Verifico que sea un login valido */
             if (UsuarioHelper.validLogin(user.username, user.password) && UsuarioHelper.usuarioHabilitado(user.username))
             {
-                MessageBox.Show("Bienvenido!!!");
+                MessageBox.Show("Bienvenido " + user.username);
                 UsuarioHelper.cleanFailLogin(user.username);
+
+                this.Hide();
+                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
+                nextForm.Show();
             }
             else
             {
@@ -49,38 +53,6 @@ namespace PalcoNet.Login
                     }
                 }
             }
-
-            /* Me traigo los datos */
-            //user = UsuarioHelper.getUserData("admin");
-            /*
-            Usuario user = new Usuario();
-            user.username = txtUsuario.Text;
-            user.password = txtPassword.Text;
-
-            if (!Login.isValidUser(user))
-            {
-                MessageBox.Show("No es un usuario valido");
-            }
-            else
-            {
-                int intentos = Login.login(user, pass);
-
-                if (intentos == 0)
-                {
-                    FormSeleccionRol fSeleccionRol = new FormSeleccionRol();
-                    this.Hide();
-                    fSeleccionRol.ShowDialog();
-                    this.Close();
-                }
-                else if (intentos < 3)
-                {
-                    MessageBox.Show("La contraseña es erronea. Lleva intentos : " + intentos);
-                }
-                else
-                {
-                    MessageBox.Show("Contactese con el administrador para limpiar su clave");
-                }
-            }
-        */}
+        }
     }
 }

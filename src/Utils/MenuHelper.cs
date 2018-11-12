@@ -2,13 +2,13 @@
 using System.Data;
 using System.Collections.Generic;
 using System;
-namespace PalcoNet
+namespace PalcoNet.Utils
 {
     public class MenuHelper
     {
-        public static SortedList<int, OpcionMenu> getOptionMenu(int idRol)
+        public static SortedList<int, Funcionalidad> getOptionMenu(int idRol)
         {
-            SortedList<int, OpcionMenu> menuOptions = new SortedList<int, OpcionMenu>();
+            SortedList<int, Funcionalidad> menuOptions = new SortedList<int, Funcionalidad>();
 
             SqlConnection conn = Connection.getConnection();
 
@@ -25,9 +25,9 @@ namespace PalcoNet
             {
                 while (reader.Read())
                 {
-                    OpcionMenu menuOption = new OpcionMenu();
+                    Funcionalidad menuOption = new Funcionalidad();
                     menuOption.descripcion = reader["Descripcion"].ToString();
-                    menuOption.idFuncionalidad = Convert.ToInt32(reader["Id_Funcionalidad"]);
+                    menuOption.id = Convert.ToInt32(reader["Id_Funcionalidad"]);
                     menuOptions.Add(position, menuOption);
                     position++;
                 }

@@ -94,11 +94,11 @@
     <Compile Include="Editar Publicacion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormInicial.cs">
+    <Compile Include="Menu\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInicial.Designer.cs">
-      <DependentUpon>FormInicial.cs</DependentUpon>
+    <Compile Include="Menu\FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Publicacion\Form1.cs">
       <SubType>Form</SubType>
@@ -131,9 +131,7 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Login.cs" />
-    <Compile Include="Menu\MenuHelper.cs" />
-    <Compile Include="Menu\MenuValidateHelper.cs" />
-    <Compile Include="Menu\OpcionMenu.cs" />
+    <Compile Include="Utils\MenuHelper.cs" />
     <Compile Include="Objetos\Cliente.cs" />
     <Compile Include="Objetos\Compra.cs" />
     <Compile Include="Objetos\Direccion.cs" />
@@ -176,8 +174,8 @@
     <EmbeddedResource Include="Abm Rubro\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormInicial.resx">
-      <DependentUpon>FormInicial.cs</DependentUpon>
+    <EmbeddedResource Include="Menu\FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
