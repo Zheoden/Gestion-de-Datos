@@ -26,16 +26,16 @@ namespace PalcoNet.Login
 
         private void button_Login_Click(object sender, EventArgs e)
         {
-            Usuario user = new Usuario();
-            user.username = txtUsuario.Text;
-            user.password = txtPassword.Text;
+            VariablesGlobales.usuario = new Usuario();
+            VariablesGlobales.usuario.username = txtUsuario.Text;
+            VariablesGlobales.usuario.password = txtPassword.Text;
 
             /* Verifico que sea un login valido */
-            if (UsuarioHelper.validLogin(user.username, user.password) && UsuarioHelper.usuarioHabilitado(user.username))
+            if (UsuarioHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password) && UsuarioHelper.usuarioHabilitado(VariablesGlobales.usuario.username))
             {
-                MessageBox.Show("Bienvenido " + user.username);
-                UsuarioHelper.cleanFailLogin(user.username);
-
+                MessageBox.Show("Bienvenido " + VariablesGlobales.usuario.username);
+                UsuarioHelper.cleanFailLogin(VariablesGlobales.usuario.username);
+                VariablesGlobales.usuario = UsuarioHelper.getUserData(VariablesGlobales.usuario.username);
                 this.Hide();
                 Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
                 nextForm.Show();
@@ -43,11 +43,11 @@ namespace PalcoNet.Login
             else
             {
                 MessageBox.Show("El usuario o la contraseña son invalidos");
-                UsuarioHelper.addFailLogin(user.username);
-                user = UsuarioHelper.getUserData(user.username);
-                if (user != null)
+                UsuarioHelper.addFailLogin(VariablesGlobales.usuario.username);
+                VariablesGlobales.usuario = UsuarioHelper.getUserData(VariablesGlobales.usuario.username);
+                if (VariablesGlobales.usuario != null)
                 {
-                    if (user.cant_logeo_error > 2)
+                    if (VariablesGlobales.usuario.cant_logeo_error > 2)
                     {
                         MessageBox.Show("Ingreso por lo menos 3 veces mal la contraseña. Su usuario fue bloqueado");
                     }

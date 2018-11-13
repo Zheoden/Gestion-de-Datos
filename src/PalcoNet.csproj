@@ -130,7 +130,7 @@
     <Compile Include="Login\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Login.cs" />
+    <Compile Include="Utils\VariablesGlobales.cs" />
     <Compile Include="Utils\MenuHelper.cs" />
     <Compile Include="Objetos\Cliente.cs" />
     <Compile Include="Objetos\Compra.cs" />

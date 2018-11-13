@@ -432,13 +432,37 @@ INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado)
 VALUES ('Administrador' , 1)
 GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
-VALUES ('Administrador')
+VALUES ('Abm Cliente')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Abm Empresa Espectaculo')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Abm Grado')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Abm Rol')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Abm Rubro')
 GO
 INSERT INTO EL_REJUNTE.Rol_Usuario (rol_id ,usuario_id)
 VALUES (1 ,1 )
 GO
 INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
 VALUES (1 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (2 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (3 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (4 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (5 ,1 )
 GO
 
 
@@ -796,4 +820,7 @@ BEGIN
 	CLOSE c_maestro
 	DEALLOCATE c_maestro
 END
+GO
+
+EXEC EL_REJUNTE.Migracion
 GO

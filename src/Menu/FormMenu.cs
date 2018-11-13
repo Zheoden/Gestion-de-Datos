@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using PalcoNet.Utils;
 
 namespace PalcoNet.Menu
 {
@@ -27,28 +28,10 @@ namespace PalcoNet.Menu
 
         private void Form1_Load(object sender, EventArgs e)
         {
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
-            conn.Open();
-            string SQL = "SELECT dire_id FROM EL_REJUNTE.Direccion WHERE dire_id=1";
-            SqlCommand command = new SqlCommand(SQL, conn);
-            command.Connection = conn;
-            command.CommandType = CommandType.Text;
-
-            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
-
-            if (reader.HasRows)
+            foreach (Funcionalidad func in VariablesGlobales.usuario.funcionalidades) 
             {
-                while (reader.Read())
-                {
-                    MessageBox.Show(reader["dire_id"].ToString());
-                }
+                cmbMenu.Items.Add(func.descripcion.ToString());
             }
-
-            Connection.close(conn);
         }
     }
 }
