@@ -34,12 +34,12 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gb_b_avanzada = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCampo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lstFiltros = new System.Windows.Forms.ListView();
+            this.txtSeleccionAcotada = new System.Windows.Forms.TextBox();
+            this.txtTextoExacto = new System.Windows.Forms.TextBox();
+            this.txtTextoLibre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnFiltro = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -105,12 +105,12 @@
             // 
             // gb_b_avanzada
             // 
-            this.gb_b_avanzada.Controls.Add(this.comboBox1);
+            this.gb_b_avanzada.Controls.Add(this.cmbCampo);
             this.gb_b_avanzada.Controls.Add(this.label6);
-            this.gb_b_avanzada.Controls.Add(this.listView1);
-            this.gb_b_avanzada.Controls.Add(this.textBox3);
-            this.gb_b_avanzada.Controls.Add(this.textBox2);
-            this.gb_b_avanzada.Controls.Add(this.textBox1);
+            this.gb_b_avanzada.Controls.Add(this.lstFiltros);
+            this.gb_b_avanzada.Controls.Add(this.txtSeleccionAcotada);
+            this.gb_b_avanzada.Controls.Add(this.txtTextoExacto);
+            this.gb_b_avanzada.Controls.Add(this.txtTextoLibre);
             this.gb_b_avanzada.Controls.Add(this.label4);
             this.gb_b_avanzada.Controls.Add(this.btnFiltro);
             this.gb_b_avanzada.Controls.Add(this.label3);
@@ -124,13 +124,13 @@
             this.gb_b_avanzada.TabStop = false;
             this.gb_b_avanzada.Text = "Busqueda avanzada";
             // 
-            // comboBox1
+            // cmbCampo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(118, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(168, 21);
-            this.comboBox1.TabIndex = 7;
+            this.cmbCampo.FormattingEnabled = true;
+            this.cmbCampo.Location = new System.Drawing.Point(118, 29);
+            this.cmbCampo.Name = "cmbCampo";
+            this.cmbCampo.Size = new System.Drawing.Size(168, 21);
+            this.cmbCampo.TabIndex = 7;
             // 
             // label6
             // 
@@ -141,34 +141,34 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Campo:";
             // 
-            // listView1
+            // lstFiltros
             // 
-            this.listView1.Location = new System.Drawing.Point(647, 30);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(316, 72);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lstFiltros.Location = new System.Drawing.Point(647, 30);
+            this.lstFiltros.Name = "lstFiltros";
+            this.lstFiltros.Size = new System.Drawing.Size(316, 72);
+            this.lstFiltros.TabIndex = 2;
+            this.lstFiltros.UseCompatibleStateImageBehavior = false;
             // 
-            // textBox3
+            // txtSeleccionAcotada
             // 
-            this.textBox3.Location = new System.Drawing.Point(118, 82);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(209, 20);
-            this.textBox3.TabIndex = 1;
+            this.txtSeleccionAcotada.Location = new System.Drawing.Point(118, 82);
+            this.txtSeleccionAcotada.Name = "txtSeleccionAcotada";
+            this.txtSeleccionAcotada.Size = new System.Drawing.Size(209, 20);
+            this.txtSeleccionAcotada.TabIndex = 1;
             // 
-            // textBox2
+            // txtTextoExacto
             // 
-            this.textBox2.Location = new System.Drawing.Point(118, 56);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(209, 20);
-            this.textBox2.TabIndex = 1;
+            this.txtTextoExacto.Location = new System.Drawing.Point(118, 56);
+            this.txtTextoExacto.Name = "txtTextoExacto";
+            this.txtTextoExacto.Size = new System.Drawing.Size(209, 20);
+            this.txtTextoExacto.TabIndex = 1;
             // 
-            // textBox1
+            // txtTextoLibre
             // 
-            this.textBox1.Location = new System.Drawing.Point(413, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(209, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtTextoLibre.Location = new System.Drawing.Point(413, 29);
+            this.txtTextoLibre.Name = "txtTextoLibre";
+            this.txtTextoLibre.Size = new System.Drawing.Size(209, 20);
+            this.txtTextoLibre.TabIndex = 1;
             // 
             // label4
             // 
@@ -190,6 +190,7 @@
             this.btnFiltro.TabIndex = 2;
             this.btnFiltro.Text = "Agregar filtro";
             this.btnFiltro.UseVisualStyleBackColor = true;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
             // label3
             // 
@@ -376,14 +377,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSeleccionAcotada;
+        private System.Windows.Forms.TextBox txtTextoExacto;
+        private System.Windows.Forms.TextBox txtTextoLibre;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbCampo;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstFiltros;
         private System.Windows.Forms.Button btnFiltro;
     }
 }

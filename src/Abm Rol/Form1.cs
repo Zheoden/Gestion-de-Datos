@@ -18,6 +18,7 @@ namespace PalcoNet.Abm_Rol
         {
             InitializeComponent();
             gb_b_avanzada.Visible = false;
+            cargarComboBoxCampos();
         }
 
         private void cb_busquedaAvanzada_CheckedChanged(object sender, EventArgs e)
@@ -58,6 +59,31 @@ namespace PalcoNet.Abm_Rol
             }
 
             Connection.close(conn);
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            string campo = cmbCampo.Text;
+            string texto_libre = txtTextoLibre.Text;
+            string seleccion_acotada = txtSeleccionAcotada.Text;
+            string texto_exacto = txtTextoExacto.Text;
+
+            if (campo != null)
+            {
+
+            }
+            else 
+            {
+                MessageBox.Show("Seleccione el campo por el cual se desea filtrar.");
+            }
+
+        }
+
+        private void cargarComboBoxCampos() {
+            cmbCampo.Items.Add("Test");
+            cmbCampo.Items.Add("Test1");
+            cmbCampo.Items.Add("Test2");
+            cmbCampo.Items.Add("Test3");
         }
     }
 }
