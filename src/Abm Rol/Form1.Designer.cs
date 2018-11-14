@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtNombreRol = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gb_b_avanzada = new System.Windows.Forms.GroupBox();
             this.lstFiltro = new System.Windows.Forms.ListBox();
@@ -78,7 +78,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtNombreRol);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.gb_b_avanzada);
             this.groupBox1.Controls.Add(this.cb_busquedaAvanzada);
@@ -91,12 +91,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalle de Rol";
             // 
-            // textBox4
+            // txtNombreRol
             // 
-            this.textBox4.Location = new System.Drawing.Point(100, 29);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(231, 20);
-            this.textBox4.TabIndex = 1;
+            this.txtNombreRol.Location = new System.Drawing.Point(100, 29);
+            this.txtNombreRol.Name = "txtNombreRol";
+            this.txtNombreRol.Size = new System.Drawing.Size(231, 20);
+            this.txtNombreRol.TabIndex = 1;
             // 
             // label5
             // 
@@ -416,7 +416,7 @@
         private System.Windows.Forms.TextBox txtSeleccionAcotada;
         private System.Windows.Forms.TextBox txtTextoExacto;
         private System.Windows.Forms.TextBox txtTextoLibre;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtNombreRol;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbCampo;
         private System.Windows.Forms.Label label6;

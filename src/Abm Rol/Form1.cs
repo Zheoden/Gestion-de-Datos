@@ -36,6 +36,10 @@ namespace PalcoNet.Abm_Rol {
                          "WHERE r.rol_id = fr.rol_id AND " +
                                "fr.func_id = f.func_id";
 
+            if (txtNombreRol.Text != "") {
+                SQL += " AND r.rol_nombre = " + "'" + txtNombreRol.Text.ToString()+ "'";
+            }
+
             if (cb_busquedaAvanzada.Checked) {
                 foreach (string item in lstFiltro.Items) {
                     string[] items = item.Split(':'); // la tercera posicion no me importa
@@ -77,6 +81,9 @@ namespace PalcoNet.Abm_Rol {
                     dataGridView1.Rows[cont].Cells[2].Value = reader["func_descripcion"].ToString();
                     cont++;
                 }
+            }
+            else {
+                MessageBox.Show("No se encontraron resultados para estos parametros, modifique alguno e intente nuevamente!");
             }
 
             Connection.close(conn);
