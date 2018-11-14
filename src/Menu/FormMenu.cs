@@ -10,17 +10,15 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using PalcoNet.Utils;
 
-namespace PalcoNet.Menu
-{
-    public partial class FormMenu : Form
-    {
-        public FormMenu()
-        {
+namespace PalcoNet.Menu {
+
+    public partial class FormMenu : Form {
+
+        public FormMenu() {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+        private void button1_Click(object sender, EventArgs e) {
             string opcion = cmbMenu.Text;
             opcion = opcion.Replace(' ', '_');
 
@@ -29,10 +27,8 @@ namespace PalcoNet.Menu
             nextForm.Show();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            foreach (Funcionalidad func in VariablesGlobales.usuario.funcionalidades) 
-            {
+        private void Form1_Load(object sender, EventArgs e) {
+            foreach (Funcionalidad func in VariablesGlobales.usuario.funcionalidades) {
                 cmbMenu.Items.Add(func.descripcion.ToString());
             }
         }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace PalcoNet.Utils
-{
-    public class FormHelper
-    {
+namespace PalcoNet.Utils {
+
+    public class FormHelper {
+
         public static Size growSize = new Size(100, 100);
     }
 }

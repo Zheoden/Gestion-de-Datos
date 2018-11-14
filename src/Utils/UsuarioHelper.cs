@@ -7,12 +7,11 @@ using System.Data.SqlClient;
 using System.Data;
 using PalcoNet;
 
-namespace PalcoNet.Utils
-{
-    public class UsuarioHelper
-    {
-        public static void search(string name, string rol, string hotel, DataGridView dgvUser)
-        {
+namespace PalcoNet.Utils {
+
+    public class UsuarioHelper {
+
+        public static void search(string name, string rol, string hotel, DataGridView dgvUser) {
             SqlCommand command = new SqlCommand();
             command.CommandText = "LA_MAYORIA.sp_user_search";
 
@@ -36,42 +35,40 @@ namespace PalcoNet.Utils
 
             DataGridViewHelper.fill(command, dgvUser);
         }
-/*
-        public static Rol getRolByUserHotel(string user, int hotel)
-        {
-            Rol rol = new Rol();
+        /*
+                public static Rol getRolByUserHotel(string user, int hotel)
+                {
+                    Rol rol = new Rol();
 
-            SqlConnection conn = Connection.getConnection();
-            SqlCommand command = new SqlCommand();
-            command.Connection = conn;
-            command.CommandText = "LA_MAYORIA.sp_user_search_rol_hotel_by_user";
-            command.CommandType = CommandType.StoredProcedure;
+                    SqlConnection conn = Connection.getConnection();
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = conn;
+                    command.CommandText = "LA_MAYORIA.sp_user_search_rol_hotel_by_user";
+                    command.CommandType = CommandType.StoredProcedure;
 
-            command.Parameters.Add(new SqlParameter("@p_user_name", SqlDbType.VarChar, 255));
-            if (user == string.Empty)
-                command.Parameters["@p_user_name"].Value = null;
-            else
-                command.Parameters["@p_user_name"].Value = user;
+                    command.Parameters.Add(new SqlParameter("@p_user_name", SqlDbType.VarChar, 255));
+                    if (user == string.Empty)
+                        command.Parameters["@p_user_name"].Value = null;
+                    else
+                        command.Parameters["@p_user_name"].Value = user;
 
-            command.Parameters.Add(new SqlParameter("@p_id_hotel", SqlDbType.Int));
-            command.Parameters["@p_id_hotel"].Value = hotel;
+                    command.Parameters.Add(new SqlParameter("@p_id_hotel", SqlDbType.Int));
+                    command.Parameters["@p_id_hotel"].Value = hotel;
 
-            SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader reader = command.ExecuteReader();
 
-            if (reader.HasRows)
-            {
-                reader.Read();
-                rol.id = Convert.ToInt32(reader["IdRol"]);
-                rol.description = Convert.ToString(reader["Descripcion"]);
-            }
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        rol.id = Convert.ToInt32(reader["IdRol"]);
+                        rol.description = Convert.ToString(reader["Descripcion"]);
+                    }
 
-            Connection.close(conn);
+                    Connection.close(conn);
 
-            return rol;
-        }*/
-
-        public static void enable(string username, Int32 idHotel, Boolean enable)
-        {
+                    return rol;
+                }*/
+        public static void enable(string username, Int32 idHotel, Boolean enable) {
             SqlCommand command = new SqlCommand();
             command.CommandText = "LA_MAYORIA.sp_user_enable_disable";
 
@@ -82,20 +79,17 @@ namespace PalcoNet.Utils
             command.Parameters["@p_id_hotel"].Value = idHotel;
 
             command.Parameters.Add(new SqlParameter("@p_enable_disable", SqlDbType.Int));
-            if (enable)
-            {
+            if (enable) {
                 command.Parameters["@p_enable_disable"].Value = 1;
             }
-            else
-            {
+            else {
                 command.Parameters["@p_enable_disable"].Value = 0;
             }
 
             ProcedureHelper.execute(command, "Habilitar o deshabilitar usuario", false);
         }
 
-        public static void addFailLogin(string username)
-        {
+        public static void addFailLogin(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
             command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
@@ -108,8 +102,7 @@ namespace PalcoNet.Utils
             conn.Close();
         }
 
-        public static void cleanFailLogin(string username)
-        {
+        public static void cleanFailLogin(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
             command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
@@ -122,8 +115,7 @@ namespace PalcoNet.Utils
             conn.Close();
         }
 
-        public static Boolean existUser(string username)
-        {
+        public static Boolean existUser(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT u.usuario_id " +
@@ -135,10 +127,8 @@ namespace PalcoNet.Utils
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
+            if (reader.HasRows) {
+                while (reader.Read()) {
                     return reader["usuario_id"].ToString() != null;
                 }
             }
@@ -147,8 +137,7 @@ namespace PalcoNet.Utils
             return false;
         }
 
-        public static Boolean usuarioHabilitado(string username)
-        {
+        public static Boolean usuarioHabilitado(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT u.usuario_id " +
@@ -161,10 +150,8 @@ namespace PalcoNet.Utils
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
+            if (reader.HasRows) {
+                while (reader.Read()) {
                     return reader["usuario_id"].ToString() != null;
                 }
             }
@@ -173,13 +160,12 @@ namespace PalcoNet.Utils
             return false;
         }
 
-        public static Boolean validLogin(string username, string password)
-        {
+        public static Boolean validLogin(string username, string password) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT u.usuario_id " +
                           "FROM EL_REJUNTE.Usuario u " +
-                          "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND "+
+                          "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND " +
                                 "UPPER(u.usuario_password) = UPPER('" + Encrypt.Sha256(password) + "')";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
@@ -187,10 +173,8 @@ namespace PalcoNet.Utils
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
+            if (reader.HasRows) {
+                while (reader.Read()) {
                     return reader["usuario_id"].ToString() != null;
                 }
             }
@@ -199,10 +183,8 @@ namespace PalcoNet.Utils
             return false;
         }
 
-        public static Usuario getUserData(string username)
-        {
-            if (existUser(username))
-            {
+        public static Usuario getUserData(string username) {
+            if (existUser(username)) {
                 SqlConnection conn = new SqlConnection(Connection.getStringConnection());
                 conn.Open();
                 string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_cant_logeo_error, u.usuario_tipo, r.rol_id, r.rol_nombre, r.rol_habilitado, f.func_id, f.func_descripcion " +
@@ -221,10 +203,8 @@ namespace PalcoNet.Utils
                 user.funcionalidades = new List<Funcionalidad>();
                 user.roles = new List<Rol>();
 
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
+                if (reader.HasRows) {
+                    while (reader.Read()) {
                         user.id = Int32.Parse(reader["usuario_id"].ToString());
                         user.username = reader["usuario_username"].ToString();
                         user.password = reader["usuario_password"].ToString();
@@ -241,14 +221,13 @@ namespace PalcoNet.Utils
                         if (user.roles.All(element => element.id != rol.id)) {
                             user.roles.Add(rol);
                         }
-                        
+
                         Funcionalidad funcionalidad = new Funcionalidad();
 
                         funcionalidad.id = Int32.Parse(reader["func_id"].ToString());
                         funcionalidad.descripcion = reader["func_descripcion"].ToString();
 
-                        if (user.funcionalidades.All(element => element.id != funcionalidad.id))
-                        {
+                        if (user.funcionalidades.All(element => element.id != funcionalidad.id)) {
                             user.funcionalidades.Add(funcionalidad);
                         }
                     }
@@ -257,8 +236,7 @@ namespace PalcoNet.Utils
                 conn.Close();
                 return user;
             }
-            else
-            {
+            else {
                 return null;
             }
         }

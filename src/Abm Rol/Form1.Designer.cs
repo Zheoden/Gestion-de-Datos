@@ -54,6 +54,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rol_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rol_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.func_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -302,6 +305,10 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.rol_id,
+            this.rol_nombre,
+            this.func_descripcion});
             this.dataGridView1.Location = new System.Drawing.Point(4, 18);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
@@ -329,6 +336,21 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // rol_id
+            // 
+            this.rol_id.HeaderText = "ID de Rol";
+            this.rol_id.Name = "rol_id";
+            // 
+            // rol_nombre
+            // 
+            this.rol_nombre.HeaderText = "Nombre de Rol";
+            this.rol_nombre.Name = "rol_nombre";
+            // 
+            // func_descripcion
+            // 
+            this.func_descripcion.HeaderText = "Funcionalidad";
+            this.func_descripcion.Name = "func_descripcion";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,7 +368,7 @@
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "i";
+            this.Text = "Abm de Roles";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gb_b_avanzada.ResumeLayout(false);
@@ -386,5 +408,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListView lstFiltros;
         private System.Windows.Forms.Button btnFiltro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rol_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rol_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn func_descripcion;
     }
 }

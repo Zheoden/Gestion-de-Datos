@@ -1,20 +1,16 @@
 ﻿using System.Windows.Forms;
-namespace PalcoNet.Utils
-{
-    public class TextBoxHelper
-    {
-        public static void clean(Control parent)
-        {
+namespace PalcoNet.Utils {
+
+    public class TextBoxHelper {
+
+        public static void clean(Control parent) {
             TextBox t;
-            foreach (Control c in parent.Controls)
-            {
+            foreach (Control c in parent.Controls) {
                 t = c as TextBox;
-                if (t != null)
-                {
+                if (t != null) {
                     t.Clear();
                 }
-                if (c.Controls.Count > 0)
-                {
+                if (c.Controls.Count > 0) {
                     clean(c);
                 }
             }

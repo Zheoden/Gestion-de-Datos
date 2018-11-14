@@ -2,12 +2,11 @@
 using System.Data;
 using System.Collections.Generic;
 using System;
-namespace PalcoNet.Utils
-{
-    public class MenuHelper
-    {
-        public static SortedList<int, Funcionalidad> getOptionMenu(int idRol)
-        {
+namespace PalcoNet.Utils {
+
+    public class MenuHelper {
+
+        public static SortedList<int, Funcionalidad> getOptionMenu(int idRol) {
             SortedList<int, Funcionalidad> menuOptions = new SortedList<int, Funcionalidad>();
 
             SqlConnection conn = Connection.getConnection();
@@ -21,10 +20,8 @@ namespace PalcoNet.Utils
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
 
             int position = 0;
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
+            if (reader.HasRows) {
+                while (reader.Read()) {
                     Funcionalidad menuOption = new Funcionalidad();
                     menuOption.descripcion = reader["Descripcion"].ToString();
                     menuOption.id = Convert.ToInt32(reader["Id_Funcionalidad"]);
@@ -38,18 +35,15 @@ namespace PalcoNet.Utils
             return menuOptions;
         }
 
-        public struct functionality
-        {
+        public struct functionality {
             public String folder;
             public String form;
         }
 
-        public static functionality getFunctionality(string id)
-        {
+        public static functionality getFunctionality(string id) {
             functionality func = new functionality();
 
-            switch (id)
-            {
+            switch (id) {
                 case "Login y Seguridad":
                     func.folder = "Seguridad";
                     func.form = "FormCambiarPassword";
