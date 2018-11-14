@@ -21,8 +21,11 @@ namespace PalcoNet.Menu
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string opcion = cmbMenu.Text;
+            opcion = opcion.Replace(' ', '_');
+
             this.Hide();
-            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Abm_Rol" + "." + "Form1").Unwrap();
+            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + opcion + "." + "Form1").Unwrap();
             nextForm.Show();
         }
 

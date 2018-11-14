@@ -33,7 +33,7 @@ namespace PalcoNet.Login
             /* Verifico que sea un login valido */
             if (UsuarioHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password) && UsuarioHelper.usuarioHabilitado(VariablesGlobales.usuario.username))
             {
-                MessageBox.Show("Bienvenido " + VariablesGlobales.usuario.username);
+//                MessageBox.Show("Bienvenido " + VariablesGlobales.usuario.username);
                 UsuarioHelper.cleanFailLogin(VariablesGlobales.usuario.username);
                 VariablesGlobales.usuario = UsuarioHelper.getUserData(VariablesGlobales.usuario.username);
                 this.Hide();

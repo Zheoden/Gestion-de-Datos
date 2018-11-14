@@ -218,6 +218,8 @@ namespace PalcoNet.Utils
 
                 SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
                 Usuario user = new Usuario();
+                user.funcionalidades = new List<Funcionalidad>();
+                user.roles = new List<Rol>();
 
                 if (reader.HasRows)
                 {
@@ -230,21 +232,25 @@ namespace PalcoNet.Utils
                         user.cant_logeo_error = Int32.Parse(reader["usuario_cant_logeo_error"].ToString());
                         user.tipo = reader["usuario_tipo"].ToString();
 
-                        user.roles = new List<Rol>();
                         Rol rol = new Rol();
 
                         rol.id = Int32.Parse(reader["rol_id"].ToString());
                         rol.nombre = reader["rol_nombre"].ToString();
                         rol.habilitado = Convert.ToBoolean(reader["rol_habilitado"].ToString());
 
-                        user.roles.Add(rol);
-                        user.funcionalidades = new List<Funcionalidad>();
+                        if (user.roles.All(element => element.id != rol.id)) {
+                            user.roles.Add(rol);
+                        }
+                        
                         Funcionalidad funcionalidad = new Funcionalidad();
 
                         funcionalidad.id = Int32.Parse(reader["func_id"].ToString());
                         funcionalidad.descripcion = reader["func_descripcion"].ToString();
 
-                        user.funcionalidades.Add(funcionalidad);
+                        if (user.funcionalidades.All(element => element.id != funcionalidad.id))
+                        {
+                            user.funcionalidades.Add(funcionalidad);
+                        }
                     }
                 }
 
