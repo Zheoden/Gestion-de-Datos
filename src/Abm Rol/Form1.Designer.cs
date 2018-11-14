@@ -34,9 +34,9 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gb_b_avanzada = new System.Windows.Forms.GroupBox();
+            this.lstFiltro = new System.Windows.Forms.ListBox();
             this.cmbCampo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lstFiltros = new System.Windows.Forms.ListView();
             this.txtSeleccionAcotada = new System.Windows.Forms.TextBox();
             this.txtTextoExacto = new System.Windows.Forms.TextBox();
             this.txtTextoLibre = new System.Windows.Forms.TextBox();
@@ -52,11 +52,12 @@
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rol_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rol_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.func_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnEliminarFiltro = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -108,9 +109,10 @@
             // 
             // gb_b_avanzada
             // 
+            this.gb_b_avanzada.Controls.Add(this.btnEliminarFiltro);
+            this.gb_b_avanzada.Controls.Add(this.lstFiltro);
             this.gb_b_avanzada.Controls.Add(this.cmbCampo);
             this.gb_b_avanzada.Controls.Add(this.label6);
-            this.gb_b_avanzada.Controls.Add(this.lstFiltros);
             this.gb_b_avanzada.Controls.Add(this.txtSeleccionAcotada);
             this.gb_b_avanzada.Controls.Add(this.txtTextoExacto);
             this.gb_b_avanzada.Controls.Add(this.txtTextoLibre);
@@ -126,6 +128,14 @@
             this.gb_b_avanzada.TabIndex = 4;
             this.gb_b_avanzada.TabStop = false;
             this.gb_b_avanzada.Text = "Busqueda avanzada";
+            // 
+            // lstFiltro
+            // 
+            this.lstFiltro.FormattingEnabled = true;
+            this.lstFiltro.Location = new System.Drawing.Point(647, 29);
+            this.lstFiltro.Name = "lstFiltro";
+            this.lstFiltro.Size = new System.Drawing.Size(316, 69);
+            this.lstFiltro.TabIndex = 6;
             // 
             // cmbCampo
             // 
@@ -143,14 +153,6 @@
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Campo:";
-            // 
-            // lstFiltros
-            // 
-            this.lstFiltros.Location = new System.Drawing.Point(647, 30);
-            this.lstFiltros.Name = "lstFiltros";
-            this.lstFiltros.Size = new System.Drawing.Size(316, 72);
-            this.lstFiltros.TabIndex = 2;
-            this.lstFiltros.UseCompatibleStateImageBehavior = false;
             // 
             // txtSeleccionAcotada
             // 
@@ -186,7 +188,7 @@
             // btnFiltro
             // 
             this.btnFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltro.Location = new System.Drawing.Point(502, 71);
+            this.btnFiltro.Location = new System.Drawing.Point(378, 71);
             this.btnFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(120, 27);
@@ -316,6 +318,21 @@
             this.dataGridView1.Size = new System.Drawing.Size(1104, 213);
             this.dataGridView1.TabIndex = 0;
             // 
+            // rol_id
+            // 
+            this.rol_id.HeaderText = "ID de Rol";
+            this.rol_id.Name = "rol_id";
+            // 
+            // rol_nombre
+            // 
+            this.rol_nombre.HeaderText = "Nombre de Rol";
+            this.rol_nombre.Name = "rol_nombre";
+            // 
+            // func_descripcion
+            // 
+            this.func_descripcion.HeaderText = "Funcionalidad";
+            this.func_descripcion.Name = "func_descripcion";
+            // 
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -336,20 +353,17 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // rol_id
+            // btnEliminarFiltro
             // 
-            this.rol_id.HeaderText = "ID de Rol";
-            this.rol_id.Name = "rol_id";
-            // 
-            // rol_nombre
-            // 
-            this.rol_nombre.HeaderText = "Nombre de Rol";
-            this.rol_nombre.Name = "rol_nombre";
-            // 
-            // func_descripcion
-            // 
-            this.func_descripcion.HeaderText = "Funcionalidad";
-            this.func_descripcion.Name = "func_descripcion";
+            this.btnEliminarFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarFiltro.Location = new System.Drawing.Point(502, 71);
+            this.btnEliminarFiltro.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminarFiltro.Name = "btnEliminarFiltro";
+            this.btnEliminarFiltro.Size = new System.Drawing.Size(120, 27);
+            this.btnEliminarFiltro.TabIndex = 8;
+            this.btnEliminarFiltro.Text = "Eliminar Filtro";
+            this.btnEliminarFiltro.UseVisualStyleBackColor = true;
+            this.btnEliminarFiltro.Click += new System.EventHandler(this.btnEliminarFiltro_Click);
             // 
             // Form1
             // 
@@ -406,10 +420,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbCampo;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListView lstFiltros;
         private System.Windows.Forms.Button btnFiltro;
         private System.Windows.Forms.DataGridViewTextBoxColumn rol_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn rol_nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn func_descripcion;
+        private System.Windows.Forms.ListBox lstFiltro;
+        private System.Windows.Forms.Button btnEliminarFiltro;
     }
 }

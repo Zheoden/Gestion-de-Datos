@@ -36,6 +36,32 @@ namespace PalcoNet.Abm_Rol {
                          "WHERE r.rol_id = fr.rol_id AND " +
                                "fr.func_id = f.func_id";
 
+            if (cb_busquedaAvanzada.Checked) {
+                foreach (string item in lstFiltro.Items) {
+                    string[] items = item.Split(':'); // la tercera posicion no me importa
+                    string tipo = items[0];
+                    string dato = items[1].Split('.')[0].Substring(1);
+                    string campo = mapeoDeCampos(items[2].Substring(1));
+                    string sufijo = obtenerSufijo(campo);
+
+                    MessageBox.Show("Tipo: " + tipo + ". Datos: " + dato + ". Campo: " + campo);
+
+                    if (tipo == "Texto Libre") {
+                        SQL += " AND " + sufijo + "." + campo + " LIKE '%" + dato + "%'";
+                    }
+
+                    if (tipo == "Texto Exacto") {
+                        SQL += " AND " + sufijo + "." + campo + " = " + dato;
+                    }
+
+                    if (tipo == "Seleccion Acotada") {
+                        SQL += " AND " + sufijo + "." + campo + " LIKE '%" + dato + "%'";
+                    }
+                }
+            }
+
+
+
             SqlCommand command = new SqlCommand(SQL, conn);
 
             command.Connection = conn;
@@ -64,13 +90,26 @@ namespace PalcoNet.Abm_Rol {
 
             if (campo != "") {
                 if (texto_libre == "" && texto_exacto == "" && seleccion_acotada == "") {
+                    MessageBox.Show("Escriba al menos un filtro.");
+                }
+                else {
+                    if (texto_libre != "") {
+                        lstFiltro.Items.Add("Texto Libre: " + texto_libre + ". Para el Campo: " + campo);
+                    }
+                    if (texto_exacto != "") {
+                        lstFiltro.Items.Add("Texto Exacto: " + texto_exacto + ". Para el Campo: " + campo);
+                    }
+                    if (seleccion_acotada != "") {
+                        lstFiltro.Items.Add("Seleccion Acotada: " + seleccion_acotada + ". Para el Campo: " + campo);
+                    }
+
+                    lstFiltro.SelectedIndexChanged += ListBoxapp_SelectedIndexChanged;
 
                 }
             }
             else {
                 MessageBox.Show("Seleccione el campo por el cual se desea filtrar.");
             }
-
         }
 
         private void cargarComboBoxCampos() {
@@ -78,5 +117,37 @@ namespace PalcoNet.Abm_Rol {
             cmbCampo.Items.Add("Nombre del Rol");
             cmbCampo.Items.Add("Funcionalidad");
         }
+
+        private string obtenerSufijo(string campo) {
+            return campo.Substring(0, 1);
+        }
+
+        private string mapeoDeCampos(string campo) {
+            switch (campo) {
+                case "Id de Rol":
+                    return "rol_id";
+                case "Nombre del Rol":
+                    return "rol_nombre";
+                case "Funcionalidad":
+                    return "func_descripcion";
+                default:
+                    return "";
+            } 
+        }
+
+        private void btnEliminarFiltro_Click(object sender, EventArgs e) {
+            if (lstFiltro.SelectedIndex != -1 ) {
+                lstFiltro.Items.Remove(lstFiltro.SelectedItem.ToString());
+            }
+            else {
+                MessageBox.Show("Seleccione un filtro para poder eliminarlo.");
+            }
+        }
+
+        private void ListBoxapp_SelectedIndexChanged(object sender, EventArgs e) {
+            ListBox lBox = sender as ListBox;
+            int index = lBox.SelectedIndex;
+        }
+
     }
 }
