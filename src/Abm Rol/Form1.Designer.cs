@@ -34,6 +34,7 @@
             this.txtNombreRol = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gb_b_avanzada = new System.Windows.Forms.GroupBox();
+            this.btnEliminarFiltro = new System.Windows.Forms.Button();
             this.lstFiltro = new System.Windows.Forms.ListBox();
             this.cmbCampo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.func_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnEliminarFiltro = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,6 +69,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(9, 84);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
@@ -78,10 +79,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox1.Controls.Add(this.txtNombreRol);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.gb_b_avanzada);
             this.groupBox1.Controls.Add(this.cb_busquedaAvanzada);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox1.Location = new System.Drawing.Point(9, 113);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -101,6 +104,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.Location = new System.Drawing.Point(18, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 13);
@@ -120,6 +124,7 @@
             this.gb_b_avanzada.Controls.Add(this.btnFiltro);
             this.gb_b_avanzada.Controls.Add(this.label3);
             this.gb_b_avanzada.Controls.Add(this.label2);
+            this.gb_b_avanzada.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.gb_b_avanzada.Location = new System.Drawing.Point(4, 102);
             this.gb_b_avanzada.Margin = new System.Windows.Forms.Padding(2);
             this.gb_b_avanzada.Name = "gb_b_avanzada";
@@ -128,6 +133,19 @@
             this.gb_b_avanzada.TabIndex = 4;
             this.gb_b_avanzada.TabStop = false;
             this.gb_b_avanzada.Text = "Busqueda avanzada";
+            // 
+            // btnEliminarFiltro
+            // 
+            this.btnEliminarFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarFiltro.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEliminarFiltro.Location = new System.Drawing.Point(502, 71);
+            this.btnEliminarFiltro.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminarFiltro.Name = "btnEliminarFiltro";
+            this.btnEliminarFiltro.Size = new System.Drawing.Size(120, 27);
+            this.btnEliminarFiltro.TabIndex = 8;
+            this.btnEliminarFiltro.Text = "Eliminar Filtro";
+            this.btnEliminarFiltro.UseVisualStyleBackColor = true;
+            this.btnEliminarFiltro.Click += new System.EventHandler(this.btnEliminarFiltro_Click);
             // 
             // lstFiltro
             // 
@@ -148,6 +166,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label6.Location = new System.Drawing.Point(69, 32);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
@@ -178,6 +197,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Location = new System.Drawing.Point(14, 85);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
@@ -188,6 +208,7 @@
             // btnFiltro
             // 
             this.btnFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltro.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnFiltro.Location = new System.Drawing.Point(378, 71);
             this.btnFiltro.Margin = new System.Windows.Forms.Padding(2);
             this.btnFiltro.Name = "btnFiltro";
@@ -200,6 +221,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(19, 59);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
@@ -210,6 +232,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(349, 32);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
@@ -220,6 +243,7 @@
             // cb_busquedaAvanzada
             // 
             this.cb_busquedaAvanzada.AutoSize = true;
+            this.cb_busquedaAvanzada.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cb_busquedaAvanzada.Location = new System.Drawing.Point(100, 81);
             this.cb_busquedaAvanzada.Margin = new System.Windows.Forms.Padding(2);
             this.cb_busquedaAvanzada.Name = "cb_busquedaAvanzada";
@@ -293,7 +317,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox3.Location = new System.Drawing.Point(9, 337);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
@@ -353,22 +379,11 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // btnEliminarFiltro
-            // 
-            this.btnEliminarFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarFiltro.Location = new System.Drawing.Point(502, 71);
-            this.btnEliminarFiltro.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEliminarFiltro.Name = "btnEliminarFiltro";
-            this.btnEliminarFiltro.Size = new System.Drawing.Size(120, 27);
-            this.btnEliminarFiltro.TabIndex = 8;
-            this.btnEliminarFiltro.Text = "Eliminar Filtro";
-            this.btnEliminarFiltro.UseVisualStyleBackColor = true;
-            this.btnEliminarFiltro.Click += new System.EventHandler(this.btnEliminarFiltro_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1131, 629);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
@@ -398,7 +413,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnActualizarVista;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnEliminar;
@@ -426,5 +440,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn func_descripcion;
         private System.Windows.Forms.ListBox lstFiltro;
         private System.Windows.Forms.Button btnEliminarFiltro;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

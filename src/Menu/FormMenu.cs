@@ -32,5 +32,10 @@ namespace PalcoNet.Menu {
                 cmbMenu.Items.Add(func.descripcion.ToString());
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

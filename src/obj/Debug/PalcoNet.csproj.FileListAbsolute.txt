@@ -11,3 +11,17 @@ G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.csprojResolveAssemblyReference.cache
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe.config
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.exe
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.exe
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\bin\Debug\PalcoNet.pdb
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.csprojResolveAssemblyReference.cache
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Grado.Form1.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.Form1.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rubro.Form1.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Menu.FormMenu.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Login.FormLogin.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.Form1.resources
