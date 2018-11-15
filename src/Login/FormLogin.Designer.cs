@@ -29,102 +29,112 @@
         private void InitializeComponent()
         {
             this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.lbl_usuario = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.l_nuevaContraseña = new System.Windows.Forms.Label();
+            this.l_registrar = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(178, 101);
+            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtUsuario.Location = new System.Drawing.Point(129, 88);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(153, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(260, 30);
             this.txtUsuario.TabIndex = 0;
-            // 
-            // lbl_usuario
-            // 
-            this.lbl_usuario.AutoSize = true;
-            this.lbl_usuario.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_usuario.Location = new System.Drawing.Point(56, 101);
-            this.lbl_usuario.Name = "lbl_usuario";
-            this.lbl_usuario.Size = new System.Drawing.Size(68, 20);
-            this.lbl_usuario.TabIndex = 1;
-            this.lbl_usuario.Text = "Usuario:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(56, 127);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Contraseña:";
+            this.txtUsuario.Text = "Nombre de usuario";
+            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
+            this.txtUsuario.Enter += new System.EventHandler(this.nameText_Enter);
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(178, 127);
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtPassword.Location = new System.Drawing.Point(129, 126);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(153, 20);
+            this.txtPassword.Size = new System.Drawing.Size(260, 30);
             this.txtPassword.TabIndex = 2;
+            this.txtPassword.Text = "Contraseña";
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.Enter += new System.EventHandler(this.passText_Enter);
             // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FloralWhite;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLogin.Location = new System.Drawing.Point(86, 169);
+            this.btnLogin.Location = new System.Drawing.Point(129, 173);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(99, 34);
+            this.btnLogin.Size = new System.Drawing.Size(260, 42);
             this.btnLogin.TabIndex = 5;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "ENTRAR";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.button_Login_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.BackColor = System.Drawing.Color.FloralWhite;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.btnSalir.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSalir.Location = new System.Drawing.Point(210, 169);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(97, 34);
-            this.btnSalir.TabIndex = 6;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.button_salir_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PalcoNet.Properties.Resources.PalcoNetLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(109, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(157, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(247, 62);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
+            // l_nuevaContraseña
+            // 
+            this.l_nuevaContraseña.AutoSize = true;
+            this.l_nuevaContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.l_nuevaContraseña.Location = new System.Drawing.Point(126, 230);
+            this.l_nuevaContraseña.Name = "l_nuevaContraseña";
+            this.l_nuevaContraseña.Size = new System.Drawing.Size(176, 17);
+            this.l_nuevaContraseña.TabIndex = 8;
+            this.l_nuevaContraseña.Text = "He olvidado mi contraseña";
+            this.l_nuevaContraseña.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // l_registrar
+            // 
+            this.l_registrar.AutoSize = true;
+            this.l_registrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.l_registrar.Location = new System.Drawing.Point(308, 230);
+            this.l_registrar.Name = "l_registrar";
+            this.l_registrar.Size = new System.Drawing.Size(81, 17);
+            this.l_registrar.TabIndex = 9;
+            this.l_registrar.Text = "Registrarse";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label4.Location = new System.Drawing.Point(297, 230);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(12, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "/";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(402, 222);
+            this.ClientSize = new System.Drawing.Size(527, 260);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.l_registrar);
+            this.Controls.Add(this.l_nuevaContraseña);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.lbl_usuario);
             this.Controls.Add(this.txtUsuario);
             this.ForeColor = System.Drawing.SystemColors.Control;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormLogin";
             this.Text = "Login de Usuarios";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -136,11 +146,11 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.Label lbl_usuario;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label l_nuevaContraseña;
+        private System.Windows.Forms.Label l_registrar;
+        private System.Windows.Forms.Label label4;
     }
 }

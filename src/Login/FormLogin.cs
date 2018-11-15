@@ -47,5 +47,45 @@ namespace PalcoNet.Login {
                 }
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nameText_Enter(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text == "Nombre de usuario")
+            {
+                txtUsuario.Text = "";
+                txtUsuario.ForeColor = Color.Black;
+            }
+        }
+
+        private void passText_Enter(object sender, EventArgs e)
+        {
+            if (txtPassword.Text == "Contraseña")
+            {
+                txtPassword.Text = "";
+                txtPassword.ForeColor = Color.Black;
+                txtPassword.PasswordChar = '*';
+            }
+
+        }
     }
 }
