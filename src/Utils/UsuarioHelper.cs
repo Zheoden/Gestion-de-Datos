@@ -187,12 +187,11 @@ namespace PalcoNet.Utils {
             if (existUser(username)) {
                 SqlConnection conn = new SqlConnection(Connection.getStringConnection());
                 conn.Open();
-                string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_cant_logeo_error, u.usuario_tipo, r.rol_id, r.rol_nombre, r.rol_habilitado, f.func_id, f.func_descripcion " +
-                              "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Rol_Usuario ru, EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr, EL_REJUNTE.Funcionalidad f " +
+                string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_cant_logeo_error, u.usuario_tipo, r.rol_id, r.rol_nombre, r.rol_habilitado " +
+                              "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Rol_Usuario ru, EL_REJUNTE.Rol r " +
                               "WHERE ru.usuario_id = u.usuario_id AND " +
                                     "ru.rol_id = r.rol_id AND " +
-                                    "fr.rol_id = r.rol_id AND " +
-                                    "fr.func_id = f.func_id AND " +
+                                    "r.rol_habilitado = 1 AND " +
                                     "UPPER(u.usuario_username) = UPPER('" + username + "')";
                 SqlCommand command = new SqlCommand(SQL, conn);
                 command.Connection = conn;
@@ -222,6 +221,7 @@ namespace PalcoNet.Utils {
                             user.roles.Add(rol);
                         }
 
+                        /*
                         Funcionalidad funcionalidad = new Funcionalidad();
 
                         funcionalidad.id = Int32.Parse(reader["func_id"].ToString());
@@ -229,7 +229,7 @@ namespace PalcoNet.Utils {
 
                         if (user.funcionalidades.All(element => element.id != funcionalidad.id)) {
                             user.funcionalidades.Add(funcionalidad);
-                        }
+                        }*/
                     }
                 }
 
@@ -240,6 +240,44 @@ namespace PalcoNet.Utils {
                 return null;
             }
         }
+
+        public static Usuario getUserFuncionalidades(Usuario user, string rol) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT f.func_id, f.func_descripcion " +
+                          "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Rol_Usuario ru, EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr, EL_REJUNTE.Funcionalidad f " +
+                          "WHERE ru.usuario_id = " + user.id + " AND " +
+                                "ru.rol_id = r.rol_id AND " +
+                                "r.rol_nombre = '" + rol + "' AND " +
+                                "r.rol_habilitado = 1 AND " +
+                                "fr.rol_id = r.rol_id AND " +
+                                "fr.func_id = f.func_id";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            user.funcionalidades = new List<Funcionalidad>();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+
+                    Funcionalidad funcionalidad = new Funcionalidad();
+
+                    funcionalidad.id = Int32.Parse(reader["func_id"].ToString());
+                    funcionalidad.descripcion = reader["func_descripcion"].ToString();
+
+                    if (user.funcionalidades.All(element => element.id != funcionalidad.id)) {
+                        user.funcionalidades.Add(funcionalidad);
+                    }
+                }
+            }
+
+            conn.Close();
+            return user;
+        }
+
         /*
         public static void save(Usuario userData, Int32 hotel, Int32 rol, String password)
         {

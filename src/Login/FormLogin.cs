@@ -37,7 +37,7 @@ namespace PalcoNet.Login {
                 UsuarioHelper.cleanFailLogin(VariablesGlobales.usuario.username);
                 VariablesGlobales.usuario = UsuarioHelper.getUserData(VariablesGlobales.usuario.username);
                 this.Hide();
-                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
+                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Login" + "." + "FormRoles").Unwrap();
                 nextForm.Show();
             }
             else {
