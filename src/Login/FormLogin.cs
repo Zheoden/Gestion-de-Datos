@@ -16,6 +16,10 @@ namespace PalcoNet.Login {
 
         public FormLogin() {
             InitializeComponent();
+            txtUsuario.GotFocus += new EventHandler(this.UserGotFocus);
+            txtUsuario.LostFocus += new EventHandler(this.UserLostFocus);
+            txtPassword.GotFocus += new EventHandler(this.PassGotFocus);
+            txtPassword.LostFocus += new EventHandler(this.PassLostFocus);
         }
 
         private void button_salir_Click(object sender, EventArgs e) {
@@ -58,33 +62,47 @@ namespace PalcoNet.Login {
 
         }
 
-        private void txtUsuario_TextChanged(object sender, EventArgs e)
-        {
+        public void UserGotFocus(object sender, EventArgs e) {
 
-        }
-
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nameText_Enter(object sender, EventArgs e)
-        {
-            if (txtUsuario.Text == "Nombre de usuario")
-            {
+            if (txtUsuario.Text == "Nombre de usuario") {
                 txtUsuario.Text = "";
                 txtUsuario.ForeColor = Color.Black;
             }
         }
 
-        private void passText_Enter(object sender, EventArgs e)
-        {
-            if (txtPassword.Text == "Contraseña")
-            {
+        public void UserLostFocus(object sender, EventArgs e) {
+
+            if (txtUsuario.Text == "") {
+                txtUsuario.Text = "Nombre de usuario";
+                txtUsuario.ForeColor = Color.LightGray;
+            }
+        }
+
+        public void PassGotFocus(object sender, EventArgs e) {
+
+            if (txtPassword.Text == "Contraseña") {
                 txtPassword.Text = "";
                 txtPassword.ForeColor = Color.Black;
                 txtPassword.PasswordChar = '*';
             }
+        }
+
+        public void PassLostFocus(object sender, EventArgs e) {
+
+            if (txtPassword.Text == "") {
+                txtPassword.Text = "Contraseña";
+                txtPassword.ForeColor = Color.LightGray;
+                txtPassword.PasswordChar = '\0';
+            }
+        }
+
+        private void lblRegistrarse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            this.Hide();
+            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Registro_de_Usuario" + "." + "Form1").Unwrap();
+            nextForm.Show();
+        }
+
+        private void lblContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
 
         }
     }

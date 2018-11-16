@@ -428,8 +428,19 @@ GO
 INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_cant_logeo_error, usuario_tipo)
 VALUES('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1, 0, 'Administrador')
 GO
+/* Roles */
 INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado)
-VALUES ('Administrador' , 1)
+VALUES ('Administrativo' , 1)
+GO
+INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado)
+VALUES ('Empresa' , 1)
+GO
+INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado)
+VALUES ('Cliente' , 1)
+GO
+/* Funcionalidades */
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Abm Rol')
 GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
 VALUES ('Abm Cliente')
@@ -438,17 +449,37 @@ INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
 VALUES ('Abm Empresa Espectaculo')
 GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Abm Rubro')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
 VALUES ('Abm Grado')
 GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
-VALUES ('Abm Rol')
+VALUES ('Generar Publicacion')
 GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
-VALUES ('Abm Rubro')
+VALUES ('Editar Publicacion')
 GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Comprar')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Historial del Cliente')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Canjar Puntos')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Generar Pago de Comisiones')
+GO
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
+VALUES ('Listado Estadistico')
+GO
+/* Rol Administrador */
 INSERT INTO EL_REJUNTE.Rol_Usuario (rol_id ,usuario_id)
 VALUES (1 ,1 )
 GO
+/* Rol Administrador */
 INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
 VALUES (1 ,1 )
 GO
@@ -464,7 +495,41 @@ GO
 INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
 VALUES (5 ,1 )
 GO
-
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (6 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (7 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (8 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (9 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (10 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (11 ,1 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (12 ,1 )
+GO
+/* Rol Empresa */
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (3 ,2 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (5 ,2 )
+GO
+/* Rol Cliente */
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (1 ,3 )
+GO
+INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
+VALUES (4 ,3 )
+GO
 
 
 

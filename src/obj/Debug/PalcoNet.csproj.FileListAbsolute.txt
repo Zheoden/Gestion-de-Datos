@@ -39,3 +39,4 @@ D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Login.FormLogin.resources
 D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.Properties.Resources.resources
 D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.csproj.GenerateResource.Cache
 D:\Github\Gestion-de-Datos\src\obj\Debug\PalcoNet.pdb
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.Form1.resources
