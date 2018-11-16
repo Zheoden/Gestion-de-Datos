@@ -41,13 +41,22 @@ namespace PalcoNet.Login {
                 nextForm.Show();
             }
             else {
-                MessageBox.Show("El usuario o la contraseña son invalidos");
                 UsuarioHelper.addFailLogin(VariablesGlobales.usuario.username);
                 VariablesGlobales.usuario = UsuarioHelper.getUserData(VariablesGlobales.usuario.username);
                 if (VariablesGlobales.usuario != null) {
-                    if (VariablesGlobales.usuario.cant_logeo_error > 2) {
-                        MessageBox.Show("Ingreso por lo menos 3 veces mal la contraseña. Su usuario fue bloqueado");
+                    if (VariablesGlobales.usuario.cant_logeo_error > 2 && VariablesGlobales.usuario.habilitado) {
+                        MessageBox.Show("Ingreso por lo menos 3 veces mal la contraseña. Su usuario fue bloqueado.");
+                        UsuarioHelper.bloquear(VariablesGlobales.usuario.username);
                     }
+                    else if (!VariablesGlobales.usuario.habilitado) {
+                        MessageBox.Show("Su usuario esta bloqueado. Reinicie su contraseña para volver a habilitarlo.");
+                    }
+                    else {
+                        MessageBox.Show("El usuario o la contraseña son invalidos.");
+                    }
+                }
+                else {
+                    MessageBox.Show("El usuario o la contraseña son invalidos.");
                 }
             }
         }

@@ -89,6 +89,19 @@ namespace PalcoNet.Utils {
             ProcedureHelper.execute(command, "Habilitar o deshabilitar usuario", false);
         }
 
+        public static void bloquear(string username) {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
+                         "SET usuario_habilitado = 0 " +
+                         "WHERE usuario_id = (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))";
+            command.Connection = conn;
+            command.Connection.Open();
+            command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
+        }
+
         public static void addFailLogin(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();

@@ -20,7 +20,7 @@ namespace PalcoNet.Menu {
 
         private void button1_Click(object sender, EventArgs e) {
             string opcion = cmbMenu.Text;
-            opcion = opcion.Replace(' ', '_');
+            opcion = MapeoDeOpciones(opcion);
 
             this.Hide();
             Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + opcion + "." + "Form1").Unwrap();
@@ -32,10 +32,13 @@ namespace PalcoNet.Menu {
                 cmbMenu.Items.Add(func.descripcion.ToString());
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+        private string MapeoDeOpciones(string opcion) {
+            switch (opcion) {
+            
+                default:
+                    return "";
+            
+            }
         }
     }
 }
