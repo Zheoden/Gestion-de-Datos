@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Data.SqlClient;
 using PalcoNet.Utils;
+using PalcoNet.Objetos;
 
 namespace PalcoNet.Login {
 

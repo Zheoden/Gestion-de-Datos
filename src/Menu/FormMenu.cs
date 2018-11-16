@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using PalcoNet.Utils;
+using PalcoNet.Objetos;
 
 namespace PalcoNet.Menu {
 
@@ -20,24 +21,16 @@ namespace PalcoNet.Menu {
 
         private void button1_Click(object sender, EventArgs e) {
             string opcion = cmbMenu.Text;
-            opcion = MapeoDeOpciones(opcion);
+            Menus menuSeleccionado = MenuHelper.getOpciones(opcion);
 
             this.Hide();
-            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + opcion + "." + "Form1").Unwrap();
+            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
             nextForm.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
             foreach (Funcionalidad func in VariablesGlobales.usuario.funcionalidades) {
                 cmbMenu.Items.Add(func.descripcion.ToString());
-            }
-        }
-        private string MapeoDeOpciones(string opcion) {
-            switch (opcion) {
-            
-                default:
-                    return "";
-            
             }
         }
     }

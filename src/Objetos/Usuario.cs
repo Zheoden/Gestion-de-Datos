@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using PalcoNet;
 
-namespace PalcoNet
+namespace PalcoNet.Objetos
 {
     public class Usuario
     {

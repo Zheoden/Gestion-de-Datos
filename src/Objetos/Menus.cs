@@ -6,9 +6,9 @@ using PalcoNet;
 
 namespace PalcoNet.Objetos
 {
-    public class Funcionalidad
+    public class Menus
     {
-        public int id { get; set; }
-        public string descripcion { get; set; }
+        public string carpeta { get; set; }
+        public string form { get; set; }
     }
 }

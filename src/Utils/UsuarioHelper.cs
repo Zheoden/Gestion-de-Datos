@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
-using PalcoNet;
+using PalcoNet.Objetos;
 
 namespace PalcoNet.Utils {
 

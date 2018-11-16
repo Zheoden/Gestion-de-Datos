@@ -136,6 +136,7 @@
     <Compile Include="Login\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objetos\Menus.cs" />
     <Compile Include="Utils\VariablesGlobales.cs" />
     <Compile Include="Utils\MenuHelper.cs" />
     <Compile Include="Objetos\Cliente.cs" />

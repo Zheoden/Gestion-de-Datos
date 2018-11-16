@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
 using System;
+using PalcoNet.Objetos;
 namespace PalcoNet.Utils {
 
     public class VariablesGlobales {

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Collections.Generic;
 using System;
+using PalcoNet.Objetos;
 namespace PalcoNet.Utils {
 
     public class MenuHelper {
@@ -35,69 +36,60 @@ namespace PalcoNet.Utils {
             return menuOptions;
         }
 
-        public struct functionality {
-            public String folder;
-            public String form;
-        }
-
-        public static functionality getFunctionality(string id) {
-            functionality func = new functionality();
+        public static Menus getOpciones(string id) {
+            Menus menu = new Menus();
 
             switch (id) {
-                case "Login y Seguridad":
-                    func.folder = "Seguridad";
-                    func.form = "FormCambiarPassword";
+                case "Abm Rol":
+                    menu.carpeta = "Abm_Rol";
+                    menu.form = "Form1";
                     break;
-                case "ABM de Rol":
-                    func.folder = "ABM_de_Rol";
-                    func.form = "FormABMRol";
+                case "Abm Cliente":
+                    menu.carpeta = "Abm_Cliente";
+                    menu.form = "Form1";
                     break;
-                case "ABM de Usuario":
-                    func.folder = "ABM_de_Usuario";
-                    func.form = "FormABMUsuario";
+                case "Abm Empresa Espectaculo":
+                    menu.carpeta = "Abm_Empresa_Espectaculo";
+                    menu.form = "Form1";
                     break;
-                case "ABM de Hotel":
-                    func.folder = "ABM_de_Hotel";
-                    func.form = "FormABMHotel";
+                case "Abm Rubro":
+                    menu.carpeta = "Abm_Rubro";
+                    menu.form = "Form1";
                     break;
-                case "ABM de Cliente":
-                    func.folder = "ABM_de_Cliente";
-                    func.form = "FormABMClient";
+                case "Abm Grado":
+                    menu.carpeta = "ABM_de_Cliente";
+                    menu.form = "Form1";
                     break;
-                case "ABM de Habitacion":
-                    func.folder = "ABM_de_Habitacion";
-                    func.form = "FormABMHabitacion";
+                case "Generar Publicacion":
+                    menu.carpeta = "Generar_Publicacion";
+                    menu.form = "Form1";
                     break;
-                case "ABM de Regimen":
-                    func.folder = "ABM_de_Regimen";
-                    func.form = "FormABMRegimen";
+                case "Editar Publicacion":
+                    menu.carpeta = "Editar_Publicacion";
+                    menu.form = "Form1";
                     break;
-                case "Cancelar Reserva":
-                    func.folder = "Cancelar_Reserva";
-                    func.form = "FormCancelarReserva";
+                case "Compra":
+                    menu.carpeta = "Compra";
+                    menu.form = "Form1";
                     break;
-                case "Registrar Estadía":
-                    func.folder = "Registrar_Estadia";
-                    func.form = "FormRegistrarEstadia";
+                case "Historial del Cliente":
+                    menu.carpeta = "Historial_Cliente";
+                    menu.form = "Form1";
                     break;
-                case "Registrar Consumibles":
-                    func.folder = "Registrar_Consumible";
-                    func.form = "FormABMConsumibles";
+                case "Canjear Puntos":
+                    menu.carpeta = "Canje_Puntos";
+                    menu.form = "Form1";
                     break;
-                case "Facturar Publicaciones":
-                    func.folder = "Facturar_Publicaciones";
-                    func.form = "FormFacturarPublicaciones";
-                    break;
-                case "ABM de Reserva":
-                    func.folder = "ABM_de_Reserva";
-                    func.form = "FormABMReserva";
+                case "Generar Pago de Comisiones":
+                    menu.carpeta = "Generar_Rendicion_Comisiones";
+                    menu.form = "Form1";
                     break;
                 case "Listado Estadistico":
-                    func.folder = "Listado_Estadistico";
-                    func.form = "FormListadoEstadistico";
+                    menu.carpeta = "Listado_Estadistico";
+                    menu.form = "Form1";
                     break;
             }
-            return func;
+            return menu;
         }
     }
 }
