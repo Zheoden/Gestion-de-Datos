@@ -156,5 +156,9 @@ namespace PalcoNet.Abm_Rol {
             int index = lBox.SelectedIndex;
         }
 
+        private void btnDarAlta_Click(object sender, EventArgs e) {
+
+        }
+
     }
 }

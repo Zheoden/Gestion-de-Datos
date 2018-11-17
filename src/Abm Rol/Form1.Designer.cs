@@ -92,7 +92,7 @@
             this.groupBox1.Size = new System.Drawing.Size(976, 222);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detalle de Rol";
+            this.groupBox1.Text = "Detalle Rol";
             // 
             // txtNombreRol
             // 
@@ -314,6 +314,7 @@
             this.btnDarAlta.TabIndex = 2;
             this.btnDarAlta.Text = "Dar de Alta";
             this.btnDarAlta.UseVisualStyleBackColor = false;
+            this.btnDarAlta.Click += new System.EventHandler(this.btnDarAlta_Click);
             // 
             // groupBox3
             // 
