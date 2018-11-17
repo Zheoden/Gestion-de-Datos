@@ -23,17 +23,13 @@ namespace PalcoNet.Login {
             txtPassword.LostFocus += new EventHandler(this.PassLostFocus);
         }
 
-        private void button_salir_Click(object sender, EventArgs e) {
-            Application.Exit();
-        }
-
         private void button_Login_Click(object sender, EventArgs e) {
             VariablesGlobales.usuario = new Usuario();
             VariablesGlobales.usuario.username = txtUsuario.Text;
             VariablesGlobales.usuario.password = txtPassword.Text;
 
             /* Verifico que sea un login valido */
-            if (UsuarioHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password) && UsuarioHelper.usuarioHabilitado(VariablesGlobales.usuario.username)) {
+            if (UsuarioHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password) && UsuarioHelper.usuarioBloqueado(VariablesGlobales.usuario.username)) {
                 //                MessageBox.Show("Bienvenido " + VariablesGlobales.usuario.username);
                 UsuarioHelper.cleanFailLogin(VariablesGlobales.usuario.username);
                 VariablesGlobales.usuario = UsuarioHelper.getUserData(VariablesGlobales.usuario.username);
@@ -45,7 +41,7 @@ namespace PalcoNet.Login {
                 UsuarioHelper.addFailLogin(VariablesGlobales.usuario.username);
                 VariablesGlobales.usuario = UsuarioHelper.getUserData(VariablesGlobales.usuario.username);
                 if (VariablesGlobales.usuario != null) {
-                    if (VariablesGlobales.usuario.cant_logeo_error > 2 && VariablesGlobales.usuario.habilitado) {
+                    if (VariablesGlobales.usuario.cant_logeo_error > 2 && VariablesGlobales.usuario.bloqueado) {
                         MessageBox.Show("Ingreso por lo menos 3 veces mal la contraseña. Su usuario fue bloqueado.");
                         UsuarioHelper.bloquear(VariablesGlobales.usuario.username);
                     }

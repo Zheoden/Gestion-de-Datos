@@ -93,7 +93,7 @@ namespace PalcoNet.Utils {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
             command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
-                         "SET usuario_habilitado = 0 " +
+                         "SET usuario_bloqueado = 0 " +
                          "WHERE usuario_id = (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))";
             command.Connection = conn;
             command.Connection.Open();
@@ -150,13 +150,13 @@ namespace PalcoNet.Utils {
             return false;
         }
 
-        public static Boolean usuarioHabilitado(string username) {
+        public static Boolean usuarioBloqueado(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT u.usuario_id " +
                           "FROM EL_REJUNTE.Usuario u " +
                           "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND " +
-                                "u.usuario_habilitado = 1";
+                                "u.usuario_bloqueado = 1";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
             command.CommandType = CommandType.Text;
@@ -200,7 +200,7 @@ namespace PalcoNet.Utils {
             if (existUser(username)) {
                 SqlConnection conn = new SqlConnection(Connection.getStringConnection());
                 conn.Open();
-                string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_cant_logeo_error, u.usuario_tipo, r.rol_id, r.rol_nombre, r.rol_habilitado " +
+                string SQL = "SELECT u.usuario_id, u.usuario_username, u.usuario_password, u.usuario_habilitado, u.usuario_bloqueado, u.usuario_cant_logeo_error, u.usuario_tipo, r.rol_id, r.rol_nombre, r.rol_habilitado " +
                               "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Rol_Usuario ru, EL_REJUNTE.Rol r " +
                               "WHERE ru.usuario_id = u.usuario_id AND " +
                                     "ru.rol_id = r.rol_id AND " +
@@ -221,6 +221,7 @@ namespace PalcoNet.Utils {
                         user.username = reader["usuario_username"].ToString();
                         user.password = reader["usuario_password"].ToString();
                         user.habilitado = Convert.ToBoolean(reader["usuario_habilitado"].ToString());
+                        user.bloqueado = Convert.ToBoolean(reader["usuario_bloqueado"].ToString());
                         user.cant_logeo_error = Int32.Parse(reader["usuario_cant_logeo_error"].ToString());
                         user.tipo = reader["usuario_tipo"].ToString();
 

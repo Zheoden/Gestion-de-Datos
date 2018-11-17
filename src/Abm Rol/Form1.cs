@@ -157,7 +157,9 @@ namespace PalcoNet.Abm_Rol {
         }
 
         private void btnDarAlta_Click(object sender, EventArgs e) {
-
+            this.Hide();
+            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Abm_Rol" + "." + "FormAlta").Unwrap();
+            nextForm.Show();
         }
 
     }
