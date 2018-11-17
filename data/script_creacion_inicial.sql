@@ -197,6 +197,7 @@ CREATE TABLE EL_REJUNTE.Rol(
 	rol_id INT NOT NULL IDENTITY(1,1),
 	rol_nombre nvarchar(255) NOT NULL,
 	rol_habilitado BIT NOT NULL,
+	rol_baja_logica BIT NOT NULL,
  CONSTRAINT PK_Rol PRIMARY KEY CLUSTERED(
 	rol_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -430,14 +431,14 @@ INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habi
 VALUES('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1, 1, 0, 'Administrador')
 GO
 /* Roles */
-INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado)
-VALUES ('Administrativo' , 1)
+INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado, rol_baja_logica)
+VALUES ('Administrativo' , 1, 0)
 GO
-INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado)
-VALUES ('Empresa' , 1)
+INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado, rol_baja_logica)
+VALUES ('Empresa' , 1, 0)
 GO
-INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado)
-VALUES ('Cliente' , 1)
+INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado, rol_baja_logica)
+VALUES ('Cliente' , 1, 0)
 GO
 /* Funcionalidades */
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)

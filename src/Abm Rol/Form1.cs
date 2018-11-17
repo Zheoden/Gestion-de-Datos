@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using PalcoNet.Utils;
+using Microsoft.VisualBasic;
 
 namespace PalcoNet.Abm_Rol {
     public partial class Form1 : Form {
@@ -29,15 +30,20 @@ namespace PalcoNet.Abm_Rol {
         }
 
         private void btnBuscar_Click(object sender, EventArgs e) {
+
+            dgvRoles.Rows.Clear();
+            dgvRoles.Refresh();
+
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT r.rol_id, r.rol_nombre, f.func_descripcion " +
+            string SQL = "SELECT r.rol_id, r.rol_nombre, f.func_descripcion, r.rol_habilitado " +
                          "FROM EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr, EL_REJUNTE.Funcionalidad f " +
                          "WHERE r.rol_id = fr.rol_id AND " +
-                               "fr.func_id = f.func_id";
+                               "fr.func_id = f.func_id AND " + 
+                               "r.rol_baja_logica = 0";
 
             if (txtNombreRol.Text != "") {
-                SQL += " AND r.rol_nombre = " + "'" + txtNombreRol.Text.ToString()+ "'";
+                SQL += " AND r.rol_nombre = " + "'" + txtNombreRol.Text.ToString() + "'";
             }
 
             if (cb_busquedaAvanzada.Checked) {
@@ -75,10 +81,11 @@ namespace PalcoNet.Abm_Rol {
             int cont = 0;
             if (reader.HasRows) {
                 while (reader.Read()) {
-                    dataGridView1.Rows.Add();
-                    dataGridView1.Rows[cont].Cells[0].Value = reader["rol_id"].ToString();
-                    dataGridView1.Rows[cont].Cells[1].Value = reader["rol_nombre"].ToString();
-                    dataGridView1.Rows[cont].Cells[2].Value = reader["func_descripcion"].ToString();
+                    dgvRoles.Rows.Add();
+                    dgvRoles.Rows[cont].Cells[0].Value = reader["rol_id"].ToString();
+                    dgvRoles.Rows[cont].Cells[1].Value = reader["rol_nombre"].ToString();
+                    dgvRoles.Rows[cont].Cells[2].Value = Convert.ToBoolean(reader["rol_habilitado"]);
+                    dgvRoles.Rows[cont].Cells[3].Value = reader["func_descripcion"].ToString();
                     cont++;
                 }
             }
@@ -157,10 +164,64 @@ namespace PalcoNet.Abm_Rol {
         }
 
         private void btnDarAlta_Click(object sender, EventArgs e) {
-            this.Hide();
-            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Abm_Rol" + "." + "FormAlta").Unwrap();
-            nextForm.Show();
+            FormAlta testDialog = new FormAlta();
+            testDialog.ShowDialog(this);
         }
 
+        private void btnModificar_Click(object sender, EventArgs e) {
+
+            if (dgvRoles.SelectedCells.Count > 0) {
+                int selectedrowindex = dgvRoles.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvRoles.Rows[selectedrowindex];
+                string rolSeleccionado = Convert.ToString(selectedRow.Cells["rol_nombre"].Value);
+                if (rolSeleccionado != "") {
+                    MessageBox.Show(rolSeleccionado);
+                }
+                else {
+                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
+                }
+            }
+            else {
+                MessageBox.Show("Buscar los roles aplicando los filtros deseados y luego seleccionar algun rol dentro de la lista para modificar.");
+            }
+        }
+
+        private void dgvRoles_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+            // Update the balance column whenever the value of any cell changes.
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e) {
+            dgvRoles.Rows.Clear();
+            dgvRoles.Refresh();
+            txtNombreRol.Text = "";
+            txtSeleccionAcotada.Text = "";
+            txtTextoExacto.Text = "";
+            txtTextoLibre.Text = "";
+            lstFiltro.Items.Clear();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e) {
+
+            if (dgvRoles.SelectedCells.Count > 0) {
+                int selectedrowindex = dgvRoles.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvRoles.Rows[selectedrowindex];
+                string rolSeleccionado = Convert.ToString(selectedRow.Cells["rol_nombre"].Value);
+                if (rolSeleccionado != "") {
+                   string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el rol " + rolSeleccionado.ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba "+ rolSeleccionado.ToUpper() + " para confirmar la operacion.", "Confirmacion");
+                   if (respuesta.ToUpper() == rolSeleccionado.ToUpper()) {
+                       if (DBHelper.bajaRol(rolSeleccionado)) {
+                           MessageBox.Show("El rol fue eliminado correctamente.");
+                       }
+                   }
+                }
+                else {
+                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
+                }
+            }
+            else {
+                MessageBox.Show("Buscar los roles aplicando los filtros deseados y luego seleccionar algun rol dentro de la lista para modificar.");
+            }
+
+        }
     }
 }

@@ -52,16 +52,17 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.rol_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rol_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.func_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rol_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rol_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rol_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.func_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -288,6 +289,7 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModificar
             // 
@@ -301,6 +303,7 @@
             this.btnModificar.TabIndex = 2;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnDarAlta
             // 
@@ -319,7 +322,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.dgvRoles);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox3.Location = new System.Drawing.Point(9, 337);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
@@ -330,35 +333,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Información";
             // 
-            // dataGridView1
+            // dgvRoles
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvRoles.AllowUserToAddRows = false;
+            this.dgvRoles.AllowUserToDeleteRows = false;
+            this.dgvRoles.BackgroundColor = System.Drawing.Color.White;
+            this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rol_id,
             this.rol_nombre,
+            this.rol_habilitado,
             this.func_descripcion});
-            this.dataGridView1.Location = new System.Drawing.Point(4, 18);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1104, 213);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // rol_id
-            // 
-            this.rol_id.HeaderText = "ID de Rol";
-            this.rol_id.Name = "rol_id";
-            // 
-            // rol_nombre
-            // 
-            this.rol_nombre.HeaderText = "Nombre de Rol";
-            this.rol_nombre.Name = "rol_nombre";
-            // 
-            // func_descripcion
-            // 
-            this.func_descripcion.HeaderText = "Funcionalidad";
-            this.func_descripcion.Name = "func_descripcion";
+            this.dgvRoles.Location = new System.Drawing.Point(4, 18);
+            this.dgvRoles.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvRoles.MultiSelect = false;
+            this.dgvRoles.Name = "dgvRoles";
+            this.dgvRoles.RowTemplate.Height = 24;
+            this.dgvRoles.Size = new System.Drawing.Size(1104, 213);
+            this.dgvRoles.TabIndex = 0;
+            this.dgvRoles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellValueChanged);
             // 
             // btnLimpiar
             // 
@@ -370,6 +363,7 @@
             this.btnLimpiar.TabIndex = 2;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // pictureBox1
             // 
@@ -379,6 +373,27 @@
             this.pictureBox1.Size = new System.Drawing.Size(168, 50);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            // 
+            // rol_id
+            // 
+            this.rol_id.HeaderText = "ID de Rol";
+            this.rol_id.Name = "rol_id";
+            this.rol_id.ReadOnly = true;
+            // 
+            // rol_nombre
+            // 
+            this.rol_nombre.HeaderText = "Nombre de Rol";
+            this.rol_nombre.Name = "rol_nombre";
+            // 
+            // rol_habilitado
+            // 
+            this.rol_habilitado.HeaderText = "Habilitado";
+            this.rol_habilitado.Name = "rol_habilitado";
+            // 
+            // func_descripcion
+            // 
+            this.func_descripcion.HeaderText = "Funcionalidad";
+            this.func_descripcion.Name = "func_descripcion";
             // 
             // Form1
             // 
@@ -404,7 +419,7 @@
             this.gb_b_avanzada.ResumeLayout(false);
             this.gb_b_avanzada.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -420,7 +435,7 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnDarAlta;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvRoles;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.GroupBox gb_b_avanzada;
         private System.Windows.Forms.CheckBox cb_busquedaAvanzada;
@@ -436,11 +451,12 @@
         private System.Windows.Forms.ComboBox cmbCampo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnFiltro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rol_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rol_nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn func_descripcion;
         private System.Windows.Forms.ListBox lstFiltro;
         private System.Windows.Forms.Button btnEliminarFiltro;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rol_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rol_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rol_habilitado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn func_descripcion;
     }
 }

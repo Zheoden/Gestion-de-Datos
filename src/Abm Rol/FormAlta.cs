@@ -63,5 +63,9 @@ namespace PalcoNet.Abm_Rol {
                 MessageBox.Show("Debe ingresar un nombre para el Rol.");
             }
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e) {
+            this.Hide();
+        }
     }
 }

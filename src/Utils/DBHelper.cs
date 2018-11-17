@@ -103,12 +103,27 @@ namespace PalcoNet.Utils {
             return false;
         }
 
+        public static Boolean bajaRol(string rol) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.Rol " +
+                                  "SET rol_baja_logica = 1 " +
+                                  "WHERE rol_nombre = '" + rol + "'";
+            command.Connection = conn;
+            command.Connection.Open();
+            int rows = command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
+            return rows > 0;
+        }
+
         public static Boolean altaRol(string rol, List<string> funcionalidades) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
-            command.CommandText = "INSERT INTO EL_REJUNTE.Rol (rol_nombre, rol_habilitado) " +
-                                  "VALUES ('" + rol + "', 1)";
+            command.CommandText = "INSERT INTO EL_REJUNTE.Rol (rol_nombre, rol_habilitado, rol_baja_logica) " +
+                                  "VALUES ('" + rol + "', 1, 0)";
             command.Connection = conn;
             command.Connection.Open();
             int rows = command.ExecuteNonQuery();
