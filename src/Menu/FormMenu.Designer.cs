@@ -78,6 +78,7 @@
             // 
             // cmbMenu
             // 
+            this.cmbMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMenu.FormattingEnabled = true;
             this.cmbMenu.Location = new System.Drawing.Point(167, 96);
             this.cmbMenu.Name = "cmbMenu";

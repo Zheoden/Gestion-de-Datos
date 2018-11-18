@@ -21,11 +21,16 @@ namespace PalcoNet.Menu {
 
         private void button1_Click(object sender, EventArgs e) {
             string opcion = cmbMenu.Text;
-            Menus menuSeleccionado = MenuHelper.getOpciones(opcion);
+            if (opcion != "") {
+                Menus menuSeleccionado = MenuHelper.getOpciones(opcion);
 
-            this.Hide();
-            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
-            nextForm.Show();
+                this.Hide();
+                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
+                nextForm.Show();
+            }
+            else {
+                MessageBox.Show("Seleccione una opcion de la lista.");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {

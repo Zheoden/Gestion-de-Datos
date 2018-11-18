@@ -63,6 +63,12 @@
     <Compile Include="Abm Cliente\FormModificacion.Designer.cs">
       <DependentUpon>FormModificacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Cliente\FormTarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Cliente\FormTarjeta.Designer.cs">
+      <DependentUpon>FormTarjeta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Empresa Espectaculo\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Cliente\FormModificacion.resx">
       <DependentUpon>FormModificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Cliente\FormTarjeta.resx">
+      <DependentUpon>FormTarjeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Grado\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

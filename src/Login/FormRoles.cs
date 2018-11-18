@@ -21,11 +21,16 @@ namespace PalcoNet.Login {
 
         private void btnAceptar_Click(object sender, EventArgs e) {
             string rol = cmbMenu.Text;
-            VariablesGlobales.usuario = UsuarioHelper.getUserFuncionalidades(VariablesGlobales.usuario, rol);
+            if (rol != "") {
+                VariablesGlobales.usuario = UsuarioHelper.getUserFuncionalidades(VariablesGlobales.usuario, rol);
 
-            this.Hide();
-            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
-            nextForm.Show();
+                this.Hide();
+                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
+                nextForm.Show();
+            }
+            else {
+                MessageBox.Show("Seleccion algun rol de la lista.");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {

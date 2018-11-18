@@ -78,6 +78,7 @@
             // 
             // cmbMenu
             // 
+            this.cmbMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMenu.FormattingEnabled = true;
             this.cmbMenu.Location = new System.Drawing.Point(167, 96);
             this.cmbMenu.Name = "cmbMenu";
@@ -94,7 +95,7 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Elija Rol:";
             // 
-            // FormMenu
+            // FormRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,7 +106,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnAceptar);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "FormMenu";
+            this.Name = "FormRoles";
             this.Text = "Menu Principal";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
