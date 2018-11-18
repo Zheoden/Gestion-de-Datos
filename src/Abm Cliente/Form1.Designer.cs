@@ -66,8 +66,6 @@
             this.clie_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tarj_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario_username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -104,9 +102,7 @@
             this.clie_fecha_creacion,
             this.clie_habilitado,
             this.dire_calle,
-            this.dire_numero,
-            this.tarj_numero,
-            this.usuario_username});
+            this.dire_numero});
             this.dgvClientes.Location = new System.Drawing.Point(4, 18);
             this.dgvClientes.Margin = new System.Windows.Forms.Padding(2);
             this.dgvClientes.Name = "dgvClientes";
@@ -434,18 +430,6 @@
             this.dire_numero.Name = "dire_numero";
             this.dire_numero.ReadOnly = true;
             // 
-            // tarj_numero
-            // 
-            this.tarj_numero.HeaderText = "Numero de Tarjeta";
-            this.tarj_numero.Name = "tarj_numero";
-            this.tarj_numero.ReadOnly = true;
-            // 
-            // usuario_username
-            // 
-            this.usuario_username.HeaderText = "Nombre de Usuario";
-            this.usuario_username.Name = "usuario_username";
-            this.usuario_username.ReadOnly = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -514,7 +498,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clie_habilitado;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_calle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tarj_numero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usuario_username;
     }
 }

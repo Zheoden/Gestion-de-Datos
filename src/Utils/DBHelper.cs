@@ -216,5 +216,20 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
+        public static Boolean bajaCliente(string cliente) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.Cliente " +
+                                  "SET clie_habilitado = 0 " +
+                                  "WHERE clie_nombre = '" + cliente + "'";
+            command.Connection = conn;
+            command.Connection.Open();
+            int rows = command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
+            return rows > 0;
+        }
+
     }
 }

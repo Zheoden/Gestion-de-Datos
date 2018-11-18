@@ -219,12 +219,12 @@ namespace PalcoNet.Abm_Cliente
             if (dgvClientes.SelectedCells.Count > 0) {
                 int selectedrowindex = dgvClientes.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = dgvClientes.Rows[selectedrowindex];
-                string rolSeleccionado = Convert.ToString(selectedRow.Cells["rol_nombre"].Value);
-                if (rolSeleccionado != "") {
-                    string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el rol " + rolSeleccionado.ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba " + rolSeleccionado.ToUpper() + " para confirmar la operacion.", "Confirmacion");
-                    if (respuesta.ToUpper() == rolSeleccionado.ToUpper()) {
-                        if (DBHelper.bajaRol(rolSeleccionado)) {
-                            MessageBox.Show("El rol fue eliminado correctamente.");
+                string clieSeleccionado = Convert.ToString(selectedRow.Cells["clie_nombre"].Value);
+                if (clieSeleccionado != "") {
+                    string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el rol " + clieSeleccionado.ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba " + clieSeleccionado.ToUpper() + " para confirmar la operacion.", "Confirmacion");
+                    if (respuesta.ToUpper() == clieSeleccionado.ToUpper()) {
+                        if (DBHelper.bajaCliente(clieSeleccionado)) {
+                            MessageBox.Show("El Cliente fue eliminado correctamente.");
                         }
                     }
                 }
