@@ -47,3 +47,4 @@ G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormAlta.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormModificacion.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormTarjeta.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormDireccion.resources

@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abm Cliente\FormDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Cliente\FormDireccion.Designer.cs">
+      <DependentUpon>FormDireccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Cliente\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     <Compile Include="Utils\FormHelper.cs" />
     <Compile Include="Utils\TextBoxHelper.cs" />
     <Compile Include="Utils\UsuarioHelper.cs" />
+    <EmbeddedResource Include="Abm Cliente\FormDireccion.resx">
+      <DependentUpon>FormDireccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Cliente\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

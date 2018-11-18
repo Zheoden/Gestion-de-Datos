@@ -26,7 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlta));
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAlta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbTarjeta = new System.Windows.Forms.ComboBox();
@@ -80,18 +80,19 @@
             this.pictureBox2.TabIndex = 38;
             this.pictureBox2.TabStop = false;
             // 
-            // button2
+            // btnAlta
             // 
-            this.button2.BackColor = System.Drawing.Color.SeaGreen;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(87, 418);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 34);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "ConfirmarAlta";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnAlta.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAlta.Location = new System.Drawing.Point(87, 418);
+            this.btnAlta.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.Size = new System.Drawing.Size(128, 34);
+            this.btnAlta.TabIndex = 37;
+            this.btnAlta.Text = "ConfirmarAlta";
+            this.btnAlta.UseVisualStyleBackColor = false;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // label2
             // 
@@ -141,8 +142,11 @@
             // 
             // cmbTarjeta
             // 
+            this.cmbTarjeta.DropDownHeight = 500;
             this.cmbTarjeta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTarjeta.DropDownWidth = 800;
             this.cmbTarjeta.FormattingEnabled = true;
+            this.cmbTarjeta.IntegralHeight = false;
             this.cmbTarjeta.Location = new System.Drawing.Point(143, 269);
             this.cmbTarjeta.Name = "cmbTarjeta";
             this.cmbTarjeta.Size = new System.Drawing.Size(231, 21);
@@ -150,8 +154,11 @@
             // 
             // cmbDireccion
             // 
+            this.cmbDireccion.DropDownHeight = 500;
             this.cmbDireccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDireccion.DropDownWidth = 800;
             this.cmbDireccion.FormattingEnabled = true;
+            this.cmbDireccion.IntegralHeight = false;
             this.cmbDireccion.Location = new System.Drawing.Point(143, 218);
             this.cmbDireccion.Name = "cmbDireccion";
             this.cmbDireccion.Size = new System.Drawing.Size(231, 21);
@@ -175,6 +182,7 @@
             this.btnEliminarDire.TabIndex = 29;
             this.btnEliminarDire.Text = "-";
             this.btnEliminarDire.UseVisualStyleBackColor = true;
+            this.btnEliminarDire.Click += new System.EventHandler(this.btnEliminarDire_Click);
             // 
             // btnEliminarTarj
             // 
@@ -194,6 +202,7 @@
             this.btnAgregarDire.TabIndex = 27;
             this.btnAgregarDire.Text = "+";
             this.btnAgregarDire.UseVisualStyleBackColor = true;
+            this.btnAgregarDire.Click += new System.EventHandler(this.btnAgregarDire_Click);
             // 
             // label9
             // 
@@ -350,7 +359,7 @@
             this.ClientSize = new System.Drawing.Size(463, 475);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormAlta";
@@ -367,7 +376,7 @@
 
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.ComboBox cmbTarjeta;
