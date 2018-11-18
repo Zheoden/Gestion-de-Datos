@@ -45,6 +45,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(168, 50);
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnDarAlta
             // 
@@ -70,6 +71,7 @@
             this.label1.Size = new System.Drawing.Size(130, 26);
             this.label1.TabIndex = 25;
             this.label1.Text = "Alta de Rol";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox1
             // 
@@ -85,6 +87,7 @@
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles del Rol";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lstFuncionalidades
             // 

@@ -34,6 +34,36 @@ namespace PalcoNet.Utils {
             return func;
         }
 
+        public static List<Funcionalidad> getFuncionalidadesPorRol(string rol) {
+            List<Funcionalidad> func = new List<Funcionalidad>();
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT f.func_id, f.func_descripcion " +
+                          "FROM EL_REJUNTE.Funcionalidad f, EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr " + 
+                          "WHERE r.rol_nombre = '" + rol + "' AND "+
+                          "fr.func_id = f.func_id AND " + 
+                          "fr.rol_id = r.rol_id";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+
+                    Funcionalidad funcionalidad = new Funcionalidad();
+                    funcionalidad.id = Int32.Parse(reader["func_id"].ToString());
+                    funcionalidad.descripcion = reader["func_descripcion"].ToString();
+                    func.Add(funcionalidad);
+                }
+            }
+
+            conn.Close();
+            return func;
+        }
+
         public static Boolean rolExistHabilitado(string rol) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
@@ -157,5 +187,34 @@ namespace PalcoNet.Utils {
             conn.Close();
             return rows;
         }
+
+        public static Boolean bajaFuncionalidades(string rol) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "DELETE FROM EL_REJUNTE.Func_Rol " +
+                                  "WHERE rol_id = (SELECT rol_id FROM EL_REJUNTE.Rol WHERE rol_nombre = '" + rol + "') ";
+            command.Connection = conn;
+            command.Connection.Open();
+            int rows = command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
+            return rows > 0;
+        }
+
+        public static Boolean altaFuncionalidades(string rol, string funcionalidad) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO EL_REJUNTE.Func_Rol (func_id, rol_id) " +
+                                  "VALUES ((SELECT func_id FROM EL_REJUNTE.Funcionalidad WHERE func_descripcion = '" + funcionalidad + "'), (SELECT rol_id FROM EL_REJUNTE.Rol WHERE rol_nombre = '" + rol + "') )";
+            command.Connection = conn;
+            command.Connection.Open();
+            int rows = command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
+            return rows > 0;
+        }
+
     }
 }

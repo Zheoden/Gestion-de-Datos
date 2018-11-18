@@ -175,7 +175,11 @@ namespace PalcoNet.Abm_Rol {
                 DataGridViewRow selectedRow = dgvRoles.Rows[selectedrowindex];
                 string rolSeleccionado = Convert.ToString(selectedRow.Cells["rol_nombre"].Value);
                 if (rolSeleccionado != "") {
-                    MessageBox.Show(rolSeleccionado);
+
+                    FormModificacion testDialog = new FormModificacion();
+                    testDialog.txtNombre.Text = rolSeleccionado;
+                    testDialog.ShowDialog(this);
+
                 }
                 else {
                     MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");

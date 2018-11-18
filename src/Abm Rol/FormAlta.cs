@@ -67,5 +67,17 @@ namespace PalcoNet.Abm_Rol {
         private void btnCerrar_Click(object sender, EventArgs e) {
             this.Hide();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e) {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e) {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e) {
+
+        }
     }
 }
