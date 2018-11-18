@@ -120,6 +120,9 @@ namespace PalcoNet.Abm_Rol {
                     lstFiltro.SelectedIndexChanged += ListBoxapp_SelectedIndexChanged;
 
                 }
+                txtSeleccionAcotada.Text = "";
+                txtTextoExacto.Text = "";
+                txtTextoLibre.Text = "";
             }
             else {
                 MessageBox.Show("Seleccione el campo por el cual se desea filtrar.");
