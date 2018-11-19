@@ -7,35 +7,6 @@ namespace PalcoNet.Utils {
 
     public class MenuHelper {
 
-        public static SortedList<int, Funcionalidad> getOptionMenu(int idRol) {
-            SortedList<int, Funcionalidad> menuOptions = new SortedList<int, Funcionalidad>();
-
-            SqlConnection conn = Connection.getConnection();
-
-            string storedProcedureName = "LA_MAYORIA.sp_menu_list_functionality_by_user";
-            SqlCommand command = new SqlCommand(storedProcedureName);
-            command.Connection = conn;
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@p_id_rol", idRol);
-
-            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
-
-            int position = 0;
-            if (reader.HasRows) {
-                while (reader.Read()) {
-                    Funcionalidad menuOption = new Funcionalidad();
-                    menuOption.descripcion = reader["Descripcion"].ToString();
-                    menuOption.id = Convert.ToInt32(reader["Id_Funcionalidad"]);
-                    menuOptions.Add(position, menuOption);
-                    position++;
-                }
-            }
-
-            Connection.close(conn);
-
-            return menuOptions;
-        }
-
         public static Menus getOpciones(string id) {
             Menus menu = new Menus();
 

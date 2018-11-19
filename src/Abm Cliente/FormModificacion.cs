@@ -13,5 +13,13 @@ namespace PalcoNet.Abm_Cliente {
         public FormModificacion() {
             InitializeComponent();
         }
+
+        private void FormModificacion_Load(object sender, EventArgs e) {
+            cargarCliente();
+        }
+
+        private void cargarCliente(){
+        
+        }
     }
 }

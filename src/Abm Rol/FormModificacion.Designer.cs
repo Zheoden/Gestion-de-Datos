@@ -37,6 +37,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cbHabilitado = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +92,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbHabilitado);
             this.groupBox1.Controls.Add(this.btnADerecha);
             this.groupBox1.Controls.Add(this.btnAIzquierda);
             this.groupBox1.Controls.Add(this.lstFuncionalidadesTotales);
@@ -166,7 +168,7 @@
             // 
             this.txtNombre.AcceptsReturn = true;
             this.txtNombre.Enabled = false;
-            this.txtNombre.Location = new System.Drawing.Point(157, 32);
+            this.txtNombre.Location = new System.Drawing.Point(106, 29);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(231, 20);
             this.txtNombre.TabIndex = 1;
@@ -174,11 +176,21 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(45, 35);
+            this.label5.Location = new System.Drawing.Point(14, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Nombre del Rol:";
+            // 
+            // cbHabilitado
+            // 
+            this.cbHabilitado.AutoSize = true;
+            this.cbHabilitado.Location = new System.Drawing.Point(395, 32);
+            this.cbHabilitado.Name = "cbHabilitado";
+            this.cbHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.cbHabilitado.TabIndex = 38;
+            this.cbHabilitado.Text = "Habilitado";
+            this.cbHabilitado.UseVisualStyleBackColor = true;
             // 
             // FormModificacion
             // 
@@ -216,5 +228,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnADerecha;
         private System.Windows.Forms.Button btnAIzquierda;
+        private System.Windows.Forms.CheckBox cbHabilitado;
     }
 }

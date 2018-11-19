@@ -19,7 +19,7 @@ namespace PalcoNet.Abm_Rol {
 
         private void cargarFuncionalidades() {
 
-            List<Funcionalidad> func = DBHelper.getFuncionalidades();
+            List<Funcionalidad> func = ClienteHelper.getFuncionalidades();
             lstFuncionalidades.Items.Clear();
             foreach (Funcionalidad item in func) {
 
@@ -31,13 +31,13 @@ namespace PalcoNet.Abm_Rol {
         private void btnDarAlta_Click(object sender, EventArgs e) {
             string rol = txtNombre.Text;
             if (rol != "") {
-                if (DBHelper.rolExistDesHabilitado(rol)) {
+                if (ClienteHelper.rolExistDesHabilitado(rol)) {
                     MessageBox.Show("El rol que intenta crear ya existe y se encuentra inhabilitado.");
                 }
-                if (DBHelper.rolExistHabilitado(rol)) {
+                if (ClienteHelper.rolExistHabilitado(rol)) {
                     MessageBox.Show("El rol que intenta crear ya existe.");
                 }
-                if (DBHelper.rolDontExist(rol)) {
+                if (ClienteHelper.rolDontExist(rol)) {
                     if (lstFuncionalidades.SelectedItems != null) {
                         //Datos Validos
                         List<String> funcionalidades = new List<String>();
@@ -45,7 +45,7 @@ namespace PalcoNet.Abm_Rol {
                         foreach (string str in lstFuncionalidades.SelectedItems) {
                             funcionalidades.Add(str);
                         }
-                        if (DBHelper.altaRol(rol, funcionalidades)) {
+                        if (ClienteHelper.altaRol(rol, funcionalidades)) {
                             MessageBox.Show("Rol creado correctamente.");
                             txtNombre.Text = "";
                             cargarFuncionalidades();

@@ -197,11 +197,11 @@ namespace PalcoNet.Abm_Cliente
             if (dgvClientes.SelectedCells.Count > 0) {
                 int selectedrowindex = dgvClientes.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = dgvClientes.Rows[selectedrowindex];
-                string rolSeleccionado = Convert.ToString(selectedRow.Cells["rol_nombre"].Value);
-                if (rolSeleccionado != "") {
+                string clienteSeleccionado = Convert.ToString(selectedRow.Cells["clie_id"].Value);
+                if (clienteSeleccionado != "") {
 
                     FormModificacion testDialog = new FormModificacion();
-                    testDialog.txtNombre.Text = rolSeleccionado;
+                    testDialog.txtID.Text = clienteSeleccionado;
                     testDialog.ShowDialog(this);
 
                 }

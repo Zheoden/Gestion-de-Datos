@@ -1,95 +1,17 @@
-﻿using System;
+﻿using System.Data.SqlClient;
+using System.Data;
 using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using PalcoNet.Objetos;
 
 namespace PalcoNet.Utils {
 
-    public class UsuarioHelper {
+    public partial class ClienteHelper {
 
-        public static void search(string name, string rol, string hotel, DataGridView dgvUser) {
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "LA_MAYORIA.sp_user_search";
-
-            command.Parameters.Add(new SqlParameter("@p_user_name", SqlDbType.VarChar, 255));
-            if (name == string.Empty)
-                command.Parameters["@p_user_name"].Value = null;
-            else
-                command.Parameters["@p_user_name"].Value = name;
-
-            command.Parameters.Add(new SqlParameter("@p_id_rol", SqlDbType.Int));
-            if (rol == string.Empty)
-                command.Parameters["@p_id_rol"].Value = null;
-            else
-                command.Parameters["@p_id_rol"].Value = Convert.ToInt16(rol);
-
-            command.Parameters.Add(new SqlParameter("@p_id_hotel", SqlDbType.Int));
-            if (hotel == string.Empty)
-                command.Parameters["@p_id_hotel"].Value = null;
-            else
-                command.Parameters["@p_id_hotel"].Value = Convert.ToInt16(hotel);
-
-            DataGridViewHelper.fill(command, dgvUser);
-        }
-        /*
-                public static Rol getRolByUserHotel(string user, int hotel)
-                {
-                    Rol rol = new Rol();
-
-                    SqlConnection conn = Connection.getConnection();
-                    SqlCommand command = new SqlCommand();
-                    command.Connection = conn;
-                    command.CommandText = "LA_MAYORIA.sp_user_search_rol_hotel_by_user";
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.Add(new SqlParameter("@p_user_name", SqlDbType.VarChar, 255));
-                    if (user == string.Empty)
-                        command.Parameters["@p_user_name"].Value = null;
-                    else
-                        command.Parameters["@p_user_name"].Value = user;
-
-                    command.Parameters.Add(new SqlParameter("@p_id_hotel", SqlDbType.Int));
-                    command.Parameters["@p_id_hotel"].Value = hotel;
-
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        rol.id = Convert.ToInt32(reader["IdRol"]);
-                        rol.description = Convert.ToString(reader["Descripcion"]);
-                    }
-
-                    Connection.close(conn);
-
-                    return rol;
-                }*/
-        public static void enable(string username, Int32 idHotel, Boolean enable) {
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "LA_MAYORIA.sp_user_enable_disable";
-
-            command.Parameters.Add(new SqlParameter("@p_user_name", SqlDbType.VarChar, 255));
-            command.Parameters["@p_user_name"].Value = username;
-
-            command.Parameters.Add(new SqlParameter("@p_id_hotel", SqlDbType.Int));
-            command.Parameters["@p_id_hotel"].Value = idHotel;
-
-            command.Parameters.Add(new SqlParameter("@p_enable_disable", SqlDbType.Int));
-            if (enable) {
-                command.Parameters["@p_enable_disable"].Value = 1;
-            }
-            else {
-                command.Parameters["@p_enable_disable"].Value = 0;
-            }
-
-            ProcedureHelper.execute(command, "Habilitar o deshabilitar usuario", false);
-        }
-
-        public static void bloquear(string username) {
+        public static Boolean bloquear(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
             command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
@@ -97,12 +19,14 @@ namespace PalcoNet.Utils {
                          "WHERE usuario_id = (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))";
             command.Connection = conn;
             command.Connection.Open();
-            command.ExecuteNonQuery();
+            int rows = command.ExecuteNonQuery();
             command.Connection.Close();
             conn.Close();
+
+            return rows > 0;
         }
 
-        public static void addFailLogin(string username) {
+        public static Boolean addFailLogin(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
             command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
@@ -110,12 +34,13 @@ namespace PalcoNet.Utils {
                          "WHERE usuario_id = (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))";
             command.Connection = conn;
             command.Connection.Open();
-            command.ExecuteNonQuery();
+            int rows = command.ExecuteNonQuery();
             command.Connection.Close();
             conn.Close();
+            return rows > 0;
         }
 
-        public static void cleanFailLogin(string username) {
+        public static Boolean cleanFailLogin(string username) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
             command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
@@ -123,9 +48,10 @@ namespace PalcoNet.Utils {
                          "WHERE usuario_id = (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE UPPER(u.usuario_username) = UPPER('" + username + "'))";
             command.Connection = conn;
             command.Connection.Open();
-            command.ExecuteNonQuery();
+            int rows = command.ExecuteNonQuery();
             command.Connection.Close();
             conn.Close();
+            return rows > 0;
         }
 
         public static Boolean existUser(string username) {
@@ -234,16 +160,6 @@ namespace PalcoNet.Utils {
                         if (user.roles.All(element => element.id != rol.id)) {
                             user.roles.Add(rol);
                         }
-
-                        /*
-                        Funcionalidad funcionalidad = new Funcionalidad();
-
-                        funcionalidad.id = Int32.Parse(reader["func_id"].ToString());
-                        funcionalidad.descripcion = reader["func_descripcion"].ToString();
-
-                        if (user.funcionalidades.All(element => element.id != funcionalidad.id)) {
-                            user.funcionalidades.Add(funcionalidad);
-                        }*/
                     }
                 }
 
@@ -292,34 +208,5 @@ namespace PalcoNet.Utils {
             return user;
         }
 
-        /*
-        public static void save(Usuario userData, Int32 hotel, Int32 rol, String password)
-        {
-            SqlCommand sp_save_or_update_user = new SqlCommand();
-            sp_save_or_update_user.CommandType = CommandType.StoredProcedure;
-            sp_save_or_update_user.CommandText = "LA_MAYORIA.sp_user_save_update";
-
-            sp_save_or_update_user.Parameters.AddWithValue("@p_user_name", userData.username);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_name_lastName", userData.nameLastname);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_id_type_document", userData.typeDocument);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_document_number", userData.documentNumber);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_mail", userData.mail);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_telephone", userData.telephone);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_address", userData.address);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_birthdate", userData.birthDate);
-        
-            if (userData.enabled){
-                sp_save_or_update_user.Parameters.AddWithValue("@p_enabled", 1);
-            }else{
-                sp_save_or_update_user.Parameters.AddWithValue("@p_enabled", 0);
-            }
-
-            sp_save_or_update_user.Parameters.AddWithValue("@p_id_hotel", hotel);
-            sp_save_or_update_user.Parameters.AddWithValue("@p_id_rol", rol);
-            if (password != null)
-                sp_save_or_update_user.Parameters.AddWithValue("@p_password", Encrypt.Sha256(password));
-
-            ProcedureHelper.execute(sp_save_or_update_user, "save or update user data", false);
-        }*/
     }
 }

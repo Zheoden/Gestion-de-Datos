@@ -192,7 +192,15 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Objetos\Menus.cs" />
-    <Compile Include="Utils\DBHelper.cs" />
+    <Compile Include="Utils\Copy %282%29 of FuncionalidadHelper.cs" />
+    <Compile Include="Utils\Copy %283%29 of FuncionalidadHelper.cs" />
+    <Compile Include="Utils\Copy %284%29 of FuncionalidadHelper.cs" />
+    <Compile Include="Utils\DireccionHelper.cs" />
+    <Compile Include="Utils\TarjetaHelper.cs" />
+    <Compile Include="Utils\FuncionalidadHelper.cs" />
+    <Compile Include="Utils\UserHelper.cs" />
+    <Compile Include="Utils\RolHelper.cs" />
+    <Compile Include="Utils\ClienteHelper.cs" />
     <Compile Include="Utils\VariablesGlobales.cs" />
     <Compile Include="Utils\MenuHelper.cs" />
     <Compile Include="Objetos\Cliente.cs" />
@@ -220,14 +228,8 @@
     <Compile Include="Registro de Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\CheckBoxHelper.cs" />
-    <Compile Include="Utils\ComboBoxHelper.cs" />
-    <Compile Include="Utils\DataGridViewHelper.cs" />
     <Compile Include="Utils\DateHelper.cs" />
     <Compile Include="Utils\Encrypt.cs" />
-    <Compile Include="Utils\FormHelper.cs" />
-    <Compile Include="Utils\TextBoxHelper.cs" />
-    <Compile Include="Utils\UsuarioHelper.cs" />
     <EmbeddedResource Include="Abm Cliente\FormDireccion.resx">
       <DependentUpon>FormDireccion.cs</DependentUpon>
     </EmbeddedResource>

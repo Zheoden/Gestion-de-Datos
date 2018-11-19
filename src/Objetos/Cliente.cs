@@ -12,7 +12,7 @@ namespace PalcoNet.Objetos
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string tipo_documento { get; set; }
-        public int documento { get; set; }
+        public string documento { get; set; }
         public string cuil { get; set; }
         public string mail { get; set; }
         public string telefono { get; set; }
