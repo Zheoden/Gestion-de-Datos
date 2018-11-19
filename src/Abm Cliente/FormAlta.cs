@@ -54,7 +54,6 @@ namespace PalcoNet.Abm_Cliente {
         }
 
         private void btnAlta_Click(object sender, EventArgs e) {
-            /* Tarjeta */
             Tarjeta tarjeta = new Tarjeta();
             Direccion direccion = new Direccion();
             Cliente cliente = new Cliente();
@@ -70,7 +69,7 @@ namespace PalcoNet.Abm_Cliente {
                     direccion.localidad = items[4].ToString();
                     direccion.codigo_postal = items[5].ToString();
 
-                    if (!ClienteHelper.altaDeDireccion(direccion)) {
+                    if (!DBHelper.altaDeDireccion(direccion)) {
                         MessageBox.Show("Se produjo un error intenta dar de alta la direccion.");
                     }
                 }
@@ -84,7 +83,7 @@ namespace PalcoNet.Abm_Cliente {
                     tarjeta.tipo = items[3].ToString();
                     tarjeta.cod_seguridad = items[4].ToString();
 
-                    if (!ClienteHelper.altaDeTarjeta(tarjeta)) {
+                    if (!DBHelper.altaDeTarjeta(tarjeta)) {
                         MessageBox.Show("Se produjo un error intenta dar de alta la tarjeta.");
                     }
                 }

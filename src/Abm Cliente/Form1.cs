@@ -181,6 +181,7 @@ namespace PalcoNet.Abm_Cliente
         private void btnLimpiar_Click(object sender, EventArgs e) {
             dgvClientes.Rows.Clear();
             dgvClientes.Refresh();
+            txtApellido.Text = "";
             txtNombre.Text = "";
             txtDNI.Text = "";
             txtEmail.Text = "";

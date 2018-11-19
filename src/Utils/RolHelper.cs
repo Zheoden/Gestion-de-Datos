@@ -9,7 +9,7 @@ using PalcoNet.Objetos;
 
 namespace PalcoNet.Utils {
 
-    public partial class ClienteHelper {
+    public partial class DBHelper {
 
         public static Boolean rolExistHabilitado(string rol) {
 

@@ -144,6 +144,20 @@ namespace PalcoNet.Utils {
             conn.Close();
             return cliente;
         }
-   
+        
+        public static Boolean modificarCliente(Cliente cliente) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "UPDATE EL_REJUNTE.Cliente " +
+                               "SET clie_nombre = '" + cliente.nombre + "', clie_apellido = '" + cliente.apellido + "', clie_tipo_documento= '" + cliente.tipo_documento + "', clie_documento= '" + cliente.documento + "', clie_cuil= '" + cliente.cuil + "', clie_email= '" + cliente.mail + "', clie_telefono= '" + cliente.telefono + "', clie_direccion_id = (SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + cliente.dire.calle + "' AND dire_numero = '" + cliente.dire.numero + "' AND dire_piso = '" + cliente.dire.piso + "' AND dire_depto = '" + cliente.dire.depto + "' AND dire_localidad = '" + cliente.dire.localidad + "' AND dire_codigo_postal = '" + cliente.dire.codigo_postal + "') , clie_tarjeta_id = (SELECT TOP 1 tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" + cliente.tarjeta.cod_seguridad + "' AND tarj_vencimiento = '" + cliente.tarjeta.vencimiento + "' AND tarj_titular = '" + cliente.tarjeta.titular + "' AND tarj_tipo = '" + cliente.tarjeta.tipo + "') , clie_habilitado = " + Convert.ToInt32(cliente.habilitado) + " " +
+                               "WHERE clie_id = " + cliente.id;
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
     }
 }

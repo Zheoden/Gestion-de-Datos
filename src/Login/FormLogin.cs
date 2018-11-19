@@ -29,21 +29,21 @@ namespace PalcoNet.Login {
             VariablesGlobales.usuario.password = txtPassword.Text;
 
             /* Verifico que sea un login valido */
-            if (ClienteHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password) && ClienteHelper.usuarioBloqueado(VariablesGlobales.usuario.username)) {
+            if (DBHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password) && DBHelper.usuarioBloqueado(VariablesGlobales.usuario.username)) {
                 //                MessageBox.Show("Bienvenido " + VariablesGlobales.usuario.username);
-                ClienteHelper.cleanFailLogin(VariablesGlobales.usuario.username);
-                VariablesGlobales.usuario = ClienteHelper.getUserData(VariablesGlobales.usuario.username);
+                DBHelper.cleanFailLogin(VariablesGlobales.usuario.username);
+                VariablesGlobales.usuario = DBHelper.getUserData(VariablesGlobales.usuario.username);
                 this.Hide();
                 Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Login" + "." + "FormRoles").Unwrap();
                 nextForm.Show();
             }
             else {
-                ClienteHelper.addFailLogin(VariablesGlobales.usuario.username);
-                VariablesGlobales.usuario = ClienteHelper.getUserData(VariablesGlobales.usuario.username);
+                DBHelper.addFailLogin(VariablesGlobales.usuario.username);
+                VariablesGlobales.usuario = DBHelper.getUserData(VariablesGlobales.usuario.username);
                 if (VariablesGlobales.usuario != null) {
                     if (VariablesGlobales.usuario.cant_logeo_error > 2 && VariablesGlobales.usuario.bloqueado) {
                         MessageBox.Show("Ingreso por lo menos 3 veces mal la contraseña. Su usuario fue bloqueado.");
-                        ClienteHelper.bloquear(VariablesGlobales.usuario.username);
+                        DBHelper.bloquear(VariablesGlobales.usuario.username);
                     }
                     else if (!VariablesGlobales.usuario.habilitado) {
                         MessageBox.Show("Su usuario esta bloqueado. Reinicie su contraseña para volver a habilitarlo.");

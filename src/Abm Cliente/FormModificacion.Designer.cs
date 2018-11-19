@@ -29,6 +29,8 @@
             this.btnAlta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cbHabilitado = new System.Windows.Forms.CheckBox();
             this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.cmbTarjeta = new System.Windows.Forms.ComboBox();
@@ -54,8 +56,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.btnCerrar.BackColor = System.Drawing.Color.SeaGreen;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCerrar.Location = new System.Drawing.Point(233, 565);
+            this.btnCerrar.Location = new System.Drawing.Point(239, 461);
             this.btnCerrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(128, 53);
@@ -87,13 +87,14 @@
             this.btnAlta.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAlta.Location = new System.Drawing.Point(101, 565);
+            this.btnAlta.Location = new System.Drawing.Point(107, 461);
             this.btnAlta.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(128, 53);
             this.btnAlta.TabIndex = 42;
             this.btnAlta.Text = "Confirmar Modificacion";
             this.btnAlta.UseVisualStyleBackColor = false;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // label2
             // 
@@ -139,10 +140,27 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(434, 457);
+            this.groupBox2.Size = new System.Drawing.Size(434, 353);
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles del Cliente";
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(143, 34);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(231, 20);
+            this.txtID.TabIndex = 35;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(21, 13);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "ID:";
             // 
             // cbHabilitado
             // 
@@ -193,6 +211,7 @@
             this.btnAgregarTarj.TabIndex = 30;
             this.btnAgregarTarj.Text = "+";
             this.btnAgregarTarj.UseVisualStyleBackColor = true;
+            this.btnAgregarTarj.Click += new System.EventHandler(this.btnAgregarTarj_Click);
             // 
             // btnEliminarDire
             // 
@@ -202,6 +221,7 @@
             this.btnEliminarDire.TabIndex = 29;
             this.btnEliminarDire.Text = "-";
             this.btnEliminarDire.UseVisualStyleBackColor = true;
+            this.btnEliminarDire.Click += new System.EventHandler(this.btnEliminarDire_Click);
             // 
             // btnEliminarTarj
             // 
@@ -211,6 +231,7 @@
             this.btnEliminarTarj.TabIndex = 28;
             this.btnEliminarTarj.Text = "-";
             this.btnEliminarTarj.UseVisualStyleBackColor = true;
+            this.btnEliminarTarj.Click += new System.EventHandler(this.btnEliminarTarj_Click);
             // 
             // btnAgregarDire
             // 
@@ -220,6 +241,7 @@
             this.btnAgregarDire.TabIndex = 27;
             this.btnAgregarDire.Text = "+";
             this.btnAgregarDire.UseVisualStyleBackColor = true;
+            this.btnAgregarDire.Click += new System.EventHandler(this.btnAgregarDire_Click);
             // 
             // label9
             // 
@@ -362,28 +384,11 @@
             this.label14.TabIndex = 5;
             this.label14.Text = "Nombre:";
             // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(143, 34);
-            this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(231, 20);
-            this.txtID.TabIndex = 35;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 13);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "ID:";
-            // 
             // FormModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 629);
+            this.ClientSize = new System.Drawing.Size(500, 527);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnAlta);

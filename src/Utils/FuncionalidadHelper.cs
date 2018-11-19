@@ -9,7 +9,7 @@ using PalcoNet.Objetos;
 
 namespace PalcoNet.Utils {
 
-    public partial class ClienteHelper {
+    public partial class DBHelper {
 
         public static List<Funcionalidad> getFuncionalidades() {
             List<Funcionalidad> func = new List<Funcionalidad>();

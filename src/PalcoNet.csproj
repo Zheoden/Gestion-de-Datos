@@ -192,9 +192,7 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Objetos\Menus.cs" />
-    <Compile Include="Utils\Copy %282%29 of FuncionalidadHelper.cs" />
-    <Compile Include="Utils\Copy %283%29 of FuncionalidadHelper.cs" />
-    <Compile Include="Utils\Copy %284%29 of FuncionalidadHelper.cs" />
+    <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\DireccionHelper.cs" />
     <Compile Include="Utils\TarjetaHelper.cs" />
     <Compile Include="Utils\FuncionalidadHelper.cs" />

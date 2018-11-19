@@ -216,7 +216,7 @@ namespace PalcoNet.Abm_Rol {
                 if (rolSeleccionado != "") {
                    string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el rol " + rolSeleccionado.ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba "+ rolSeleccionado.ToUpper() + " para confirmar la operacion.", "Confirmacion");
                    if (respuesta.ToUpper() == rolSeleccionado.ToUpper()) {
-                       if (ClienteHelper.bajaRol(rolSeleccionado)) {
+                       if (DBHelper.bajaRol(rolSeleccionado)) {
                            MessageBox.Show("El rol fue eliminado correctamente.");
                        }
                    }

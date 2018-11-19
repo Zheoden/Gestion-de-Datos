@@ -18,7 +18,7 @@ namespace PalcoNet.Abm_Rol {
 
         private void cargarFuncionalidades() {
 
-            List<Funcionalidad> func = ClienteHelper.getFuncionalidades();
+            List<Funcionalidad> func = DBHelper.getFuncionalidades();
             lstFuncionalidadesRol.Items.Clear();
             foreach (Funcionalidad item in func) {
 
@@ -28,12 +28,12 @@ namespace PalcoNet.Abm_Rol {
         }
 
         private void cargarHabilitado() {
-            cbHabilitado.Checked = ClienteHelper.rolStatusHabilitado(txtNombre.Text);
+            cbHabilitado.Checked = DBHelper.rolStatusHabilitado(txtNombre.Text);
         }
 
         private void seleccionarFuncionalidadesDelRol() {
 
-            List<Funcionalidad> func = ClienteHelper.getFuncionalidadesPorRol(txtNombre.Text);
+            List<Funcionalidad> func = DBHelper.getFuncionalidadesPorRol(txtNombre.Text);
             foreach (Funcionalidad item in func) {
 
                 lstFuncionalidadesRol.Items.Add(item.descripcion);
@@ -68,16 +68,16 @@ namespace PalcoNet.Abm_Rol {
 
         private void btnModificacion_Click(object sender, EventArgs e) {
 
-            ClienteHelper.bajaFuncionalidades(txtNombre.Text);
+            DBHelper.bajaFuncionalidades(txtNombre.Text);
 
             foreach (string item in lstFuncionalidadesRol.Items) {
-                ClienteHelper.altaFuncionalidades(txtNombre.Text, item);
+                DBHelper.altaFuncionalidades(txtNombre.Text, item);
             }
             if(cbHabilitado.Checked){
-                ClienteHelper.habilitarRol(txtNombre.Text);
+                DBHelper.habilitarRol(txtNombre.Text);
             }
             else{
-                ClienteHelper.deshabilitarRol(txtNombre.Text);
+                DBHelper.deshabilitarRol(txtNombre.Text);
             }
 
             MessageBox.Show("Modificacion realizada con exito!!");

@@ -22,7 +22,7 @@ namespace PalcoNet.Login {
         private void btnAceptar_Click(object sender, EventArgs e) {
             string rol = cmbMenu.Text;
             if (rol != "") {
-                VariablesGlobales.usuario = ClienteHelper.getUserFuncionalidades(VariablesGlobales.usuario, rol);
+                VariablesGlobales.usuario = DBHelper.getUserFuncionalidades(VariablesGlobales.usuario, rol);
 
                 this.Hide();
                 Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
