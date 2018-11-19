@@ -87,6 +87,12 @@
     <Compile Include="Abm Empresa Espectaculo\FormAlta.Designer.cs">
       <DependentUpon>FormAlta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Empresa Espectaculo\FormDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Empresa Espectaculo\FormDireccion.Designer.cs">
+      <DependentUpon>FormDireccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Grado\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,7 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Objetos\Menus.cs" />
+    <Compile Include="Utils\EmpresaHelper.cs" />
     <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\DireccionHelper.cs" />
     <Compile Include="Utils\TarjetaHelper.cs" />
@@ -242,6 +249,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Cliente\FormTarjeta.resx">
       <DependentUpon>FormTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Empresa Espectaculo\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Empresa Espectaculo\FormAlta.resx">
+      <DependentUpon>FormAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Empresa Espectaculo\FormDireccion.resx">
+      <DependentUpon>FormDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Grado\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -10,7 +10,7 @@ namespace PalcoNet.Objetos
     {
         public int id { get; set; }
         public string razon_social { get; set; }
-        public string cuil { get; set; }
+        public string cuit { get; set; }
         public DateTime fecha_creacion { get; set; }
         public string mail { get; set; }
         public Direccion direccion { get; set; }

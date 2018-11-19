@@ -16,5 +16,10 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
         {
             InitializeComponent();
         }
+
+        private void btnDarAlta_Click(object sender, EventArgs e) {
+            FormAlta testDialog = new FormAlta();
+            testDialog.ShowDialog(this);
+        }
     }
 }
