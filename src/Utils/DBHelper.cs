@@ -231,5 +231,154 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
+        public static Boolean clienteDontExistDocumento(string tipo, string documento) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT 1 " +
+                          "FROM EL_REJUNTE.Cliente c " +
+                          "WHERE c.clie_tipo_documento = '" + tipo + "' AND " +
+                          "c.clie_documento = '" + documento + "'";
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (!reader.HasRows) {
+                return true;
+            }
+
+            conn.Close();
+            return false;
+        }
+
+        public static Boolean clienteDontExistCuil(string cuil) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT 1 " +
+                          "FROM EL_REJUNTE.Cliente c " +
+                          "WHERE c.clie_cuil = '" + cuil + "'";
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (!reader.HasRows) {
+                return true;
+            }
+
+            conn.Close();
+            return false;
+        }
+
+        public static Boolean altaDeTarjeta(Tarjeta tarjeta) {
+            if (verificarTarjetaDontExist(tarjeta)) {
+                SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+                SqlCommand command = conn.CreateCommand();
+                command.CommandText = "INSERT INTO EL_REJUNTE.Tarjeta (tarj_numero, tarj_titular, tarj_vencimiento, tarj_tipo, tarj_cod_seguridad) " +
+                                      "VALUES ('" + tarjeta.numero + "', '" + tarjeta.titular + "', '" + tarjeta.vencimiento + "', '" + tarjeta.tipo + "', '" + tarjeta.cod_seguridad + "')";
+                command.Connection = conn;
+                command.Connection.Open();
+                int rows = command.ExecuteNonQuery();
+                command.Connection.Close();
+                conn.Close();
+                return rows > 0;
+            }
+            else {
+                return true;
+            }
+        }
+
+        public static Boolean altaDeDireccion(Direccion direccion) {
+            if (verificarDireccionDontExist(direccion)) {
+                SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+                SqlCommand command = conn.CreateCommand();
+                command.CommandText = "INSERT INTO EL_REJUNTE.Direccion (dire_calle, dire_numero, dire_piso, dire_depto, dire_localidad, dire_codigo_postal) " +
+                                      "VALUES ('" + direccion.calle + "', '" + direccion.numero + "', '" + direccion.piso + "', '" + direccion.depto + "', '" + direccion.localidad + "', '" + direccion.codigo_postal + "')";
+                command.Connection = conn;
+                command.Connection.Open();
+                int rows = command.ExecuteNonQuery();
+                command.Connection.Close();
+                conn.Close();
+                return rows > 0;
+            }
+            else {
+                return true;
+            }
+        }
+
+        public static Boolean altaCliente(Cliente cliente) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Cliente (clie_nombre, clie_apellido, clie_tipo_documento, clie_documento, clie_cuil, clie_email, clie_telefono, clie_direccion_id, clie_fecha_nacimiento, clie_fecha_creacion, clie_tarjeta_id, clie_habilitado, clie_usuario_id) " +
+                                "VALUES ('" + cliente.nombre + "', '" + cliente.apellido + "', '" + cliente.tipo_documento + "', " + cliente.documento + ", '" + cliente.cuil + "', '" + cliente.mail + "', '" + cliente.telefono + "'," + "(SELECT dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + cliente.dire.calle + "' AND dire_numero = '" + cliente.dire.numero + "' AND dire_piso = '" + cliente.dire.piso + "' AND dire_depto = '" + cliente.dire.depto + "' AND dire_localidad = '" + cliente.dire.localidad + "' AND dire_codigo_postal = '" + cliente.dire.codigo_postal + "') , " + "GETDATE()" + ", " + "GETDATE()" + "," + "(SELECT tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" + cliente.tarjeta.cod_seguridad + "' AND tarj_vencimiento = '" + cliente.tarjeta.vencimiento + "' AND tarj_titular = '" + cliente.tarjeta.titular + "' AND tarj_tipo = '" + cliente.tarjeta.tipo + "')" + ", 1, null" +
+                                ")";
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
+
+        public static Boolean verificarDireccionDontExist(Direccion dire) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT 1 " +
+                         "FROM EL_REJUNTE.Direccion " + 
+                         "WHERE dire_calle = '" + dire.calle + "' AND "+
+                         "dire_numero = '" + dire.numero + "' AND " + 
+                         "dire_piso = '" + dire.piso + "' AND " + 
+                         "dire_depto = '" + dire.depto + "' AND " +
+                         "dire_localidad = '" + dire.localidad + "' AND " +
+                         "dire_codigo_postal = '" + dire.codigo_postal + "'";
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (!reader.HasRows) {
+                return true;
+            }
+
+            conn.Close();
+            return false;
+        }
+
+        public static Boolean verificarTarjetaDontExist(Tarjeta tarjeta) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT 1 " + 
+                         "FROM EL_REJUNTE.Tarjeta " + 
+                         "WHERE tarj_numero = '" + tarjeta.numero + "' AND " + 
+                         "tarj_cod_seguridad = '" + tarjeta.cod_seguridad + "' AND " + 
+                         "tarj_vencimiento = '" + tarjeta.vencimiento + "' AND " + 
+                         "tarj_titular = '" + tarjeta.titular + "' AND " + 
+                         "tarj_tipo = '" + tarjeta.tipo + "'";
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (!reader.HasRows) {
+                return true;
+            }
+
+            conn.Close();
+            return false;
+        }
+
     }
 }

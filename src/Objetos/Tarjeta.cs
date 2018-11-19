@@ -11,7 +11,7 @@ namespace PalcoNet.Objetos
         public int id { get; set; }
         public string numero { get; set; }
         public string cod_seguridad { get; set; }
-        public DateTime vencimiento { get; set; }
+        public string vencimiento { get; set; }
         public string titular { get; set; }
         public string tipo { get; set; }
     }

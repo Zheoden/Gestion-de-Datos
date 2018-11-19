@@ -36,7 +36,6 @@
             this.btnEliminarTarj = new System.Windows.Forms.Button();
             this.btnAgregarDire = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
@@ -53,6 +52,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +107,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.dtpFechaNac);
             this.groupBox2.Controls.Add(this.cmbTarjeta);
             this.groupBox2.Controls.Add(this.cmbDireccion);
             this.groupBox2.Controls.Add(this.btnAgregarTarj);
@@ -114,7 +115,6 @@
             this.groupBox2.Controls.Add(this.btnEliminarTarj);
             this.groupBox2.Controls.Add(this.btnAgregarDire);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.txtFechaNacimiento);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txtTelefono);
@@ -212,13 +212,6 @@
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 23;
             this.label9.Text = "Tarjeta:";
-            // 
-            // txtFechaNacimiento
-            // 
-            this.txtFechaNacimiento.Location = new System.Drawing.Point(143, 244);
-            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
-            this.txtFechaNacimiento.Size = new System.Drawing.Size(231, 20);
-            this.txtFechaNacimiento.TabIndex = 20;
             // 
             // label11
             // 
@@ -352,6 +345,13 @@
             this.label14.TabIndex = 5;
             this.label14.Text = "Nombre:";
             // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.Location = new System.Drawing.Point(143, 245);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.Size = new System.Drawing.Size(231, 20);
+            this.dtpFechaNac.TabIndex = 33;
+            // 
             // FormAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,7 +386,6 @@
         private System.Windows.Forms.Button btnEliminarTarj;
         private System.Windows.Forms.Button btnAgregarDire;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtFechaNacimiento;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtTelefono;
@@ -403,5 +402,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DateTimePicker dtpFechaNac;
     }
 }
