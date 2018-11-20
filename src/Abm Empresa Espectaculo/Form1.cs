@@ -32,10 +32,9 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT e.empre_id, e.empre_razon_social , e.empre_cuit , e.empre_fecha_creacion, e.empre_mail, e.empre_telefono, d.dire_calle, d.dire_numero " +
+            string SQL = "SELECT e.empre_id, e.empre_razon_social , e.empre_cuit , e.empre_fecha_creacion, e.empre_mail, e.empre_telefono, e.empre_baja_logica, d.dire_calle, d.dire_numero " +
                          "FROM EL_REJUNTE.Empresa e, EL_REJUNTE.Direccion d " +
-                         "WHERE e.empre_direccion_id = d.dire_id AND " + 
-                         "e.empre_baja_logica = 0 ";
+                         "WHERE e.empre_direccion_id = d.dire_id ";
 
             if (txtNombre.Text != "") {
                 SQL += " AND e.empre_razon_social LIKE " + "'%" + txtNombre.Text.ToString() + "%'";
@@ -79,8 +78,9 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                     dgvEmpresas.Rows[cont].Cells[3].Value = reader["empre_fecha_creacion"].ToString();
                     dgvEmpresas.Rows[cont].Cells[4].Value = reader["empre_mail"].ToString();
                     dgvEmpresas.Rows[cont].Cells[5].Value = reader["empre_telefono"].ToString();
-                    dgvEmpresas.Rows[cont].Cells[6].Value = reader["dire_calle"].ToString();
-                    dgvEmpresas.Rows[cont].Cells[7].Value = reader["dire_numero"].ToString();
+                    dgvEmpresas.Rows[cont].Cells[6].Value = reader["empre_baja_logica"].ToString();
+                    dgvEmpresas.Rows[cont].Cells[7].Value = reader["dire_calle"].ToString();
+                    dgvEmpresas.Rows[cont].Cells[8].Value = reader["dire_numero"].ToString();
                     cont++;
                 }
             }
@@ -195,6 +195,27 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
         private void ListBoxapp_SelectedIndexChanged(object sender, EventArgs e) {
             ListBox lBox = sender as ListBox;
             int index = lBox.SelectedIndex;
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e) {
+            if (dgvEmpresas.SelectedCells.Count > 0) {
+                int selectedrowindex = dgvEmpresas.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvEmpresas.Rows[selectedrowindex];
+                string clienteSeleccionado = Convert.ToString(selectedRow.Cells["empre_id"].Value);
+                if (clienteSeleccionado != "") {
+
+                    FormModificacion testDialog = new FormModificacion();
+                    testDialog.txtID.Text = clienteSeleccionado;
+                    testDialog.ShowDialog(this);
+
+                }
+                else {
+                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
+                }
+            }
+            else {
+                MessageBox.Show("Buscar los roles aplicando los filtros deseados y luego seleccionar algun rol dentro de la lista para modificar.");
+            }
         }
 
     }

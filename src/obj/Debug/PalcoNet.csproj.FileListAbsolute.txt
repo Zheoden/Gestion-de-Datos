@@ -51,3 +51,4 @@ G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.Form1.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.FormAlta.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.FormDireccion.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.FormModificacion.resources

@@ -16,5 +16,6 @@ namespace PalcoNet.Objetos
         public Direccion direccion { get; set; }
         public string telefono { get; set; }
         public Usuario user { get; set; }
+        public bool baja_logica { get; set; }
     }
 }

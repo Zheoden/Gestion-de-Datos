@@ -57,6 +57,7 @@
             this.empre_fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empre_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empre_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_baja_logica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -98,6 +99,7 @@
             this.empre_fecha_creacion,
             this.empre_email,
             this.empre_telefono,
+            this.empre_baja_logica,
             this.dire_calle,
             this.dire_numero});
             this.dgvEmpresas.Location = new System.Drawing.Point(4, 18);
@@ -133,6 +135,7 @@
             this.btnModificar.TabIndex = 18;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -357,6 +360,12 @@
             this.empre_telefono.Name = "empre_telefono";
             this.empre_telefono.ReadOnly = true;
             // 
+            // empre_baja_logica
+            // 
+            this.empre_baja_logica.HeaderText = "Baja Logica";
+            this.empre_baja_logica.Name = "empre_baja_logica";
+            this.empre_baja_logica.ReadOnly = true;
+            // 
             // dire_calle
             // 
             this.dire_calle.HeaderText = "Calle";
@@ -428,6 +437,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn empre_fecha_creacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn empre_email;
         private System.Windows.Forms.DataGridViewTextBoxColumn empre_telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empre_baja_logica;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_calle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
     }
