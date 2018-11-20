@@ -15,14 +15,29 @@ namespace PalcoNet.Utils {
 
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id , empre_telefono, empre_usuario_id) " +
-                                "VALUES ('" + empresa.razon_social + "', '" + empresa.cuit + "', GETDATE() , '" + empresa.mail + "', (SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + empresa.direccion.calle + "' AND dire_numero = '" + empresa.direccion.numero + "' AND dire_piso = '" + empresa.direccion.piso + "' AND dire_depto = '" + empresa.direccion.depto + "' AND dire_localidad = '" + empresa.direccion.localidad + "' AND dire_codigo_postal = '" + empresa.direccion.codigo_postal + "') , '" + empresa.telefono + "', null" +
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id , empre_telefono, empre_usuario_id, empre_baja_logica) " +
+                                "VALUES ('" + empresa.razon_social + "', '" + empresa.cuit + "', GETDATE() , '" + empresa.mail + "', (SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + empresa.direccion.calle + "' AND dire_numero = '" + empresa.direccion.numero + "' AND dire_piso = '" + empresa.direccion.piso + "' AND dire_depto = '" + empresa.direccion.depto + "' AND dire_localidad = '" + empresa.direccion.localidad + "' AND dire_codigo_postal = '" + empresa.direccion.codigo_postal + "') , '" + empresa.telefono + "', null, 0" +
                                 ")";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();
             comm.Connection.Close();
             connection.Close();
+            return rows > 0;
+        }
+
+        public static Boolean bajaEmpresa(string razon_social) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.Empresa " +
+                                  "SET empre_baja_logica = 1 " +
+                                  "WHERE empre_razon_social = '" + razon_social + "'";
+            command.Connection = conn;
+            command.Connection.Open();
+            int rows = command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
             return rows > 0;
         }
 

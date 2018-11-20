@@ -66,6 +66,7 @@ CREATE TABLE EL_REJUNTE.Empresa(
 	empre_direccion_id INT NULL,
 	empre_telefono nvarchar(50) NULL,
 	empre_usuario_id INT NULL,
+	empre_baja_logica BIT NOT NULL,
  CONSTRAINT PK_Empresa PRIMARY KEY CLUSTERED(
 	empre_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -706,8 +707,8 @@ BEGIN
 					  @Espec_Empresa_Depto = dire_depto AND 
 					  @Espec_Empresa_Cod_Postal = dire_codigo_postal
 				/* Hago el Insert de las Empresas, con sus respectivas Direcciones */
-				INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id, empre_telefono, empre_usuario_id)
-				VALUES (@Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @ID_Direccion, null, null)
+				INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id, empre_telefono, empre_usuario_id, empre_baja_logica)
+				VALUES (@Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @ID_Direccion, null, null, 0)
 			END
 		END
 		/* Reinicio el ID_Direccion para que si no existe el campo, no me tome el valor del insert anterior */

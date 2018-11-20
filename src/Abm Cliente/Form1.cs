@@ -54,7 +54,7 @@ namespace PalcoNet.Abm_Cliente
                     }
 
                     if (tipo == "Texto Exacto") {
-                        SQL += " AND " + sufijo + "." + campo + " = " + dato;
+                        SQL += " AND " + sufijo + "." + campo + " = '" + dato + "'"; ;
                     }
                 }
             }

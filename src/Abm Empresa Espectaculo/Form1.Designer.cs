@@ -31,20 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvClientes = new System.Windows.Forms.DataGridView();
-            this.clie_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_cuil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvEmpresas = new System.Windows.Forms.DataGridView();
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -64,9 +51,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
+            this.empre_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +77,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dgvClientes);
+            this.groupBox3.Controls.Add(this.dgvEmpresas);
             this.groupBox3.Location = new System.Drawing.Point(14, 337);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
@@ -92,108 +87,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Información";
             // 
-            // dgvClientes
+            // dgvEmpresas
             // 
-            this.dgvClientes.BackgroundColor = System.Drawing.Color.White;
-            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clie_id,
-            this.clie_nombre,
-            this.clie_apellido,
-            this.clie_tipo_documento,
-            this.clie_documento,
-            this.clie_cuil,
-            this.clie_email,
-            this.clie_telefono,
-            this.clie_fecha_nacimiento,
-            this.clie_fecha_creacion,
-            this.clie_habilitado,
+            this.dgvEmpresas.BackgroundColor = System.Drawing.Color.White;
+            this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmpresas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.empre_id,
+            this.empre_razon_social,
+            this.empre_cuit,
+            this.empre_fecha_creacion,
+            this.empre_email,
+            this.empre_telefono,
             this.dire_calle,
             this.dire_numero});
-            this.dgvClientes.Location = new System.Drawing.Point(4, 18);
-            this.dgvClientes.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.RowTemplate.Height = 24;
-            this.dgvClientes.Size = new System.Drawing.Size(1104, 213);
-            this.dgvClientes.TabIndex = 0;
-            // 
-            // clie_id
-            // 
-            this.clie_id.HeaderText = "ID de Cliente";
-            this.clie_id.Name = "clie_id";
-            this.clie_id.ReadOnly = true;
-            // 
-            // clie_nombre
-            // 
-            this.clie_nombre.HeaderText = "Nombre";
-            this.clie_nombre.Name = "clie_nombre";
-            this.clie_nombre.ReadOnly = true;
-            // 
-            // clie_apellido
-            // 
-            this.clie_apellido.HeaderText = "Apellido";
-            this.clie_apellido.Name = "clie_apellido";
-            this.clie_apellido.ReadOnly = true;
-            // 
-            // clie_tipo_documento
-            // 
-            this.clie_tipo_documento.HeaderText = "Tipo de Documento";
-            this.clie_tipo_documento.Name = "clie_tipo_documento";
-            this.clie_tipo_documento.ReadOnly = true;
-            // 
-            // clie_documento
-            // 
-            this.clie_documento.HeaderText = "Documento";
-            this.clie_documento.Name = "clie_documento";
-            this.clie_documento.ReadOnly = true;
-            // 
-            // clie_cuil
-            // 
-            this.clie_cuil.HeaderText = "CUIL";
-            this.clie_cuil.Name = "clie_cuil";
-            this.clie_cuil.ReadOnly = true;
-            // 
-            // clie_email
-            // 
-            this.clie_email.HeaderText = "Mail";
-            this.clie_email.Name = "clie_email";
-            this.clie_email.ReadOnly = true;
-            // 
-            // clie_telefono
-            // 
-            this.clie_telefono.HeaderText = "Telefono";
-            this.clie_telefono.Name = "clie_telefono";
-            this.clie_telefono.ReadOnly = true;
-            // 
-            // clie_fecha_nacimiento
-            // 
-            this.clie_fecha_nacimiento.HeaderText = "Fecha de Nacimiento";
-            this.clie_fecha_nacimiento.Name = "clie_fecha_nacimiento";
-            this.clie_fecha_nacimiento.ReadOnly = true;
-            // 
-            // clie_fecha_creacion
-            // 
-            this.clie_fecha_creacion.HeaderText = "Fecha de Creacion";
-            this.clie_fecha_creacion.Name = "clie_fecha_creacion";
-            this.clie_fecha_creacion.ReadOnly = true;
-            // 
-            // clie_habilitado
-            // 
-            this.clie_habilitado.HeaderText = "Habilitado";
-            this.clie_habilitado.Name = "clie_habilitado";
-            this.clie_habilitado.ReadOnly = true;
-            // 
-            // dire_calle
-            // 
-            this.dire_calle.HeaderText = "Calle";
-            this.dire_calle.Name = "dire_calle";
-            this.dire_calle.ReadOnly = true;
-            // 
-            // dire_numero
-            // 
-            this.dire_numero.HeaderText = "Numero de Calle";
-            this.dire_numero.Name = "dire_numero";
-            this.dire_numero.ReadOnly = true;
+            this.dgvEmpresas.Location = new System.Drawing.Point(4, 18);
+            this.dgvEmpresas.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvEmpresas.Name = "dgvEmpresas";
+            this.dgvEmpresas.RowTemplate.Height = 24;
+            this.dgvEmpresas.Size = new System.Drawing.Size(1104, 213);
+            this.dgvEmpresas.TabIndex = 0;
             // 
             // btnDarAlta
             // 
@@ -234,6 +146,7 @@
             this.btnEliminar.TabIndex = 19;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnBuscar
             // 
@@ -245,6 +158,7 @@
             this.btnBuscar.TabIndex = 20;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnLimpiar
             // 
@@ -256,6 +170,7 @@
             this.btnLimpiar.TabIndex = 21;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnActualizarVista
             // 
@@ -338,6 +253,7 @@
             this.btnEliminarFiltro.TabIndex = 8;
             this.btnEliminarFiltro.Text = "Eliminar Filtro";
             this.btnEliminarFiltro.UseVisualStyleBackColor = true;
+            this.btnEliminarFiltro.Click += new System.EventHandler(this.btnEliminarFiltro_Click);
             // 
             // lstFiltro
             // 
@@ -371,6 +287,7 @@
             this.btnFiltro.TabIndex = 2;
             this.btnFiltro.Text = "Agregar filtro";
             this.btnFiltro.UseVisualStyleBackColor = true;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
             // label3
             // 
@@ -402,6 +319,55 @@
             this.cb_busquedaAvanzada.TabIndex = 4;
             this.cb_busquedaAvanzada.Text = "Busqueda avanzada";
             this.cb_busquedaAvanzada.UseVisualStyleBackColor = true;
+            this.cb_busquedaAvanzada.CheckedChanged += new System.EventHandler(this.cb_busquedaAvanzada_CheckedChanged);
+            // 
+            // empre_id
+            // 
+            this.empre_id.HeaderText = "ID de Empresa";
+            this.empre_id.Name = "empre_id";
+            this.empre_id.ReadOnly = true;
+            // 
+            // empre_razon_social
+            // 
+            this.empre_razon_social.HeaderText = "Razon Social";
+            this.empre_razon_social.Name = "empre_razon_social";
+            this.empre_razon_social.ReadOnly = true;
+            // 
+            // empre_cuit
+            // 
+            this.empre_cuit.HeaderText = "CUIT";
+            this.empre_cuit.Name = "empre_cuit";
+            this.empre_cuit.ReadOnly = true;
+            // 
+            // empre_fecha_creacion
+            // 
+            this.empre_fecha_creacion.HeaderText = "Fecha de Creacion";
+            this.empre_fecha_creacion.Name = "empre_fecha_creacion";
+            this.empre_fecha_creacion.ReadOnly = true;
+            // 
+            // empre_email
+            // 
+            this.empre_email.HeaderText = "Mail";
+            this.empre_email.Name = "empre_email";
+            this.empre_email.ReadOnly = true;
+            // 
+            // empre_telefono
+            // 
+            this.empre_telefono.HeaderText = "Telefono";
+            this.empre_telefono.Name = "empre_telefono";
+            this.empre_telefono.ReadOnly = true;
+            // 
+            // dire_calle
+            // 
+            this.dire_calle.HeaderText = "Calle";
+            this.dire_calle.Name = "dire_calle";
+            this.dire_calle.ReadOnly = true;
+            // 
+            // dire_numero
+            // 
+            this.dire_numero.HeaderText = "Numero de Calle";
+            this.dire_numero.Name = "dire_numero";
+            this.dire_numero.ReadOnly = true;
             // 
             // Form1
             // 
@@ -422,7 +388,7 @@
             this.Text = "ABM Empresa";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gb_b_avanzada.ResumeLayout(false);
@@ -436,20 +402,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgvClientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_tipo_documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_cuil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_fecha_nacimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_fecha_creacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clie_habilitado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dire_calle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
+        private System.Windows.Forms.DataGridView dgvEmpresas;
         private System.Windows.Forms.Button btnDarAlta;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
@@ -469,5 +422,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cb_busquedaAvanzada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empre_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empre_razon_social;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empre_cuit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empre_fecha_creacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empre_email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empre_telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dire_calle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
     }
 }
