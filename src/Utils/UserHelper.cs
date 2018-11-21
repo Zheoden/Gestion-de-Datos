@@ -171,12 +171,24 @@ namespace PalcoNet.Utils {
             }
         }
 
-        public static Boolean altaUsuario(Usuario usuario)
-        {
+        public static Boolean altaUsuario(Usuario usuario) {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo) " +
                                 "VALUES ('" + usuario.username + "', '" + usuario.password + "', 1 , 0 , 0 , '" + usuario.roles[0].nombre + "')";
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0 && altaRolUsuario(usuario);
+        }
+
+        public static Boolean altaRolUsuario(Usuario usuario) {
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Rol_Usuario (rol_id, usuario_id) " +
+                                "VALUES ( (SELECT r.rol_id FROM EL_REJUNTE.Rol r WHERE r.rol_nombre = '" + usuario.roles[0].nombre + "') , (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE u.usuario_username = '" + usuario.username + "') )";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();

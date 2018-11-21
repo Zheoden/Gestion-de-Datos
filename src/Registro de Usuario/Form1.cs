@@ -31,7 +31,6 @@ namespace PalcoNet.Registro_de_Usuario
                     newUser.roles = new List<Rol>();
                     Rol rol = new Rol();
                     rol.nombre = "Cliente";
-                    rol.id = 3;
                     newUser.roles.Add(rol);
 
                 }
@@ -40,7 +39,6 @@ namespace PalcoNet.Registro_de_Usuario
                     newUser.roles = new List<Rol>();
                     Rol rol = new Rol();
                     rol.nombre = "Empresa";
-                    rol.id = 2;
                     newUser.roles.Add(rol);
                 }
 

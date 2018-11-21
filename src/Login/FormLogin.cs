@@ -29,13 +29,18 @@ namespace PalcoNet.Login {
             VariablesGlobales.usuario.password = txtPassword.Text;
 
             /* Verifico que sea un login valido */
-            if (DBHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password) && DBHelper.usuarioBloqueado(VariablesGlobales.usuario.username)) {
-                //                MessageBox.Show("Bienvenido " + VariablesGlobales.usuario.username);
-                DBHelper.cleanFailLogin(VariablesGlobales.usuario.username);
-                VariablesGlobales.usuario = DBHelper.getUserData(VariablesGlobales.usuario.username);
-                this.Hide();
-                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Login" + "." + "FormRoles").Unwrap();
-                nextForm.Show();
+            if (DBHelper.validLogin(VariablesGlobales.usuario.username, VariablesGlobales.usuario.password)) {
+                if (!DBHelper.usuarioBloqueado(VariablesGlobales.usuario.username)) {
+                    //                MessageBox.Show("Bienvenido " + VariablesGlobales.usuario.username);
+                    DBHelper.cleanFailLogin(VariablesGlobales.usuario.username);
+                    VariablesGlobales.usuario = DBHelper.getUserData(VariablesGlobales.usuario.username);
+                    this.Hide();
+                    Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Login" + "." + "FormRoles").Unwrap();
+                    nextForm.Show();
+                }
+                else {
+                    MessageBox.Show("Su usuario esta bloqueado. Reinicie su contraseña para volver a habilitarlo.");
+                }
             }
             else {
                 DBHelper.addFailLogin(VariablesGlobales.usuario.username);
@@ -103,9 +108,8 @@ namespace PalcoNet.Login {
         }
 
         private void lblRegistrarse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            this.Hide();
-            Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Registro_de_Usuario" + "." + "Form1").Unwrap();
-            nextForm.Show();
+            PalcoNet.Registro_de_Usuario.Form1 dialog = new PalcoNet.Registro_de_Usuario.Form1();
+            dialog.ShowDialog(this);
         }
 
         private void lblContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {

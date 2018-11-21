@@ -36,8 +36,10 @@ namespace PalcoNet.Abm_Cliente {
             txtTelefono.Text = cliente.telefono;
             dtpFechaNac.Text = cliente.fecha_nacimiento.ToString();
             cbHabilitado.Checked = cliente.habilitado;
-            cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + cliente.dire.calle+ "#" + cliente.dire.numero + "#" + cliente.dire.piso + "#" + cliente.dire.depto + "#" + cliente.dire.localidad + "#" + cliente.dire.codigo_postal);
+            cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + cliente.dire.calle + "#" + cliente.dire.numero + "#" + cliente.dire.piso + "#" + cliente.dire.depto + "#" + cliente.dire.localidad + "#" + cliente.dire.codigo_postal);
+            cmbDireccion.SelectedItem ="Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + cliente.dire.calle + "#" + cliente.dire.numero + "#" + cliente.dire.piso + "#" + cliente.dire.depto + "#" + cliente.dire.localidad + "#" + cliente.dire.codigo_postal;
             cmbTarjeta.Items.Add("Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + cliente.tarjeta.numero + "#" + cliente.tarjeta.titular + "#" + cliente.tarjeta.vencimiento + "#" + cliente.tarjeta.tipo + "#" + cliente.tarjeta.cod_seguridad);
+            cmbTarjeta.SelectedItem = "Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + cliente.tarjeta.numero + "#" + cliente.tarjeta.titular + "#" + cliente.tarjeta.vencimiento + "#" + cliente.tarjeta.tipo + "#" + cliente.tarjeta.cod_seguridad;
         }
 
         private void btnAlta_Click(object sender, EventArgs e) {

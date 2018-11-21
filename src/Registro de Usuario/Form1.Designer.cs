@@ -48,7 +48,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(223, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(118, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(168, 50);
             this.pictureBox1.TabIndex = 24;
@@ -59,7 +59,7 @@
             this.btnDarAlta.BackColor = System.Drawing.Color.SeaGreen;
             this.btnDarAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDarAlta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDarAlta.Location = new System.Drawing.Point(263, 344);
+            this.btnDarAlta.Location = new System.Drawing.Point(135, 257);
             this.btnDarAlta.Margin = new System.Windows.Forms.Padding(2);
             this.btnDarAlta.Name = "btnDarAlta";
             this.btnDarAlta.Size = new System.Drawing.Size(128, 34);
@@ -90,7 +90,7 @@
             // 
             // tb_user
             // 
-            this.tb_user.Location = new System.Drawing.Point(197, 32);
+            this.tb_user.Location = new System.Drawing.Point(140, 32);
             this.tb_user.Name = "tb_user";
             this.tb_user.Size = new System.Drawing.Size(231, 20);
             this.tb_user.TabIndex = 1;
@@ -106,10 +106,11 @@
             // 
             // tb_pass
             // 
-            this.tb_pass.Location = new System.Drawing.Point(197, 58);
+            this.tb_pass.Location = new System.Drawing.Point(140, 58);
             this.tb_pass.Name = "tb_pass";
+            this.tb_pass.PasswordChar = '*';
             this.tb_pass.Size = new System.Drawing.Size(231, 20);
-            this.tb_pass.TabIndex = 1;
+            this.tb_pass.TabIndex = 10;
             // 
             // groupBox1
             // 
@@ -125,17 +126,17 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(452, 149);
+            this.groupBox1.Size = new System.Drawing.Size(393, 149);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles del Usuario";
             // 
             // tb_cuit_cuil
             // 
-            this.tb_cuit_cuil.Location = new System.Drawing.Point(197, 109);
+            this.tb_cuit_cuil.Location = new System.Drawing.Point(140, 109);
             this.tb_cuit_cuil.Name = "tb_cuit_cuil";
             this.tb_cuit_cuil.Size = new System.Drawing.Size(231, 20);
-            this.tb_cuit_cuil.TabIndex = 9;
+            this.tb_cuit_cuil.TabIndex = 30;
             // 
             // label3
             // 
@@ -148,10 +149,11 @@
             // 
             // tb_pass_confirm
             // 
-            this.tb_pass_confirm.Location = new System.Drawing.Point(197, 83);
+            this.tb_pass_confirm.Location = new System.Drawing.Point(140, 83);
             this.tb_pass_confirm.Name = "tb_pass_confirm";
+            this.tb_pass_confirm.PasswordChar = '*';
             this.tb_pass_confirm.Size = new System.Drawing.Size(231, 20);
-            this.tb_pass_confirm.TabIndex = 7;
+            this.tb_pass_confirm.TabIndex = 20;
             // 
             // label2
             // 
@@ -166,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 404);
+            this.ClientSize = new System.Drawing.Size(427, 311);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnDarAlta);
             this.Controls.Add(this.label1);
