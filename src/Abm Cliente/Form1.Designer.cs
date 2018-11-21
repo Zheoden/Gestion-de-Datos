@@ -50,7 +50,7 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnFiltro = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblDescripcion = new System.Windows.Forms.Label();
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clie_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -255,7 +255,7 @@
             this.gb_b_avanzada.Controls.Add(this.txtEmail);
             this.gb_b_avanzada.Controls.Add(this.btnFiltro);
             this.gb_b_avanzada.Controls.Add(this.label3);
-            this.gb_b_avanzada.Controls.Add(this.label2);
+            this.gb_b_avanzada.Controls.Add(this.lblDescripcion);
             this.gb_b_avanzada.Location = new System.Drawing.Point(4, 102);
             this.gb_b_avanzada.Margin = new System.Windows.Forms.Padding(2);
             this.gb_b_avanzada.Name = "gb_b_avanzada";
@@ -323,13 +323,13 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 64);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Email:";
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(32, 64);
+            this.lblDescripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDescripcion.Name = "label2";
+            this.lblDescripcion.Size = new System.Drawing.Size(35, 13);
+            this.lblDescripcion.TabIndex = 0;
+            this.lblDescripcion.Text = "Email:";
             // 
             // cb_busquedaAvanzada
             // 
