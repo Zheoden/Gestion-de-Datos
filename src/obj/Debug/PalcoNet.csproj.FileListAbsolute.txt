@@ -54,3 +54,17 @@ G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.FormModificacion.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Grado.FormModificacion.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Grado.FormAlta.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormDireccion.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormAlta.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormModificacion.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Cliente.FormTarjeta.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.Form1.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.FormAlta.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.FormDireccion.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Empresa_Espectaculo.FormModificacion.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Grado.FormAlta.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Grado.FormModificacion.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.FormAlta.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Abm_Rol.FormModificacion.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Login.FormRoles.resources
+F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Registro_de_Usuario.Form1.resources
