@@ -429,7 +429,7 @@ USE GD2C2018;
 GO
 
 INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo)
-VALUES('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1, 1, 0, 'Administrador')
+VALUES('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1, 0, 0, 'Administrador')
 GO
 /* Roles */
 INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado, rol_baja_logica)

@@ -25,8 +25,8 @@ namespace PalcoNet.Abm_Cliente {
             cargarCliente();
         }
 
-        private void cargarCliente(){
-            
+        private void cargarCliente() {
+
             cliente = DBHelper.getClienteData(Int32.Parse(txtID.Text));
             txtNombre.Text = cliente.nombre;
             txtApellido.Text = cliente.apellido;
@@ -34,12 +34,14 @@ namespace PalcoNet.Abm_Cliente {
             txtCuil.Text = cliente.cuil;
             txtMail.Text = cliente.mail;
             txtTelefono.Text = cliente.telefono;
-            dtpFechaNac.Text = cliente.fecha_nacimiento.ToString();
+            dtpFechaNac.Value = cliente.fecha_nacimiento;
             cbHabilitado.Checked = cliente.habilitado;
             cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + cliente.dire.calle + "#" + cliente.dire.numero + "#" + cliente.dire.piso + "#" + cliente.dire.depto + "#" + cliente.dire.localidad + "#" + cliente.dire.codigo_postal);
-            cmbDireccion.SelectedItem ="Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + cliente.dire.calle + "#" + cliente.dire.numero + "#" + cliente.dire.piso + "#" + cliente.dire.depto + "#" + cliente.dire.localidad + "#" + cliente.dire.codigo_postal;
-            cmbTarjeta.Items.Add("Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + cliente.tarjeta.numero + "#" + cliente.tarjeta.titular + "#" + cliente.tarjeta.vencimiento + "#" + cliente.tarjeta.tipo + "#" + cliente.tarjeta.cod_seguridad);
-            cmbTarjeta.SelectedItem = "Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + cliente.tarjeta.numero + "#" + cliente.tarjeta.titular + "#" + cliente.tarjeta.vencimiento + "#" + cliente.tarjeta.tipo + "#" + cliente.tarjeta.cod_seguridad;
+            cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + cliente.dire.calle + "#" + cliente.dire.numero + "#" + cliente.dire.piso + "#" + cliente.dire.depto + "#" + cliente.dire.localidad + "#" + cliente.dire.codigo_postal;
+            if (cliente.tarjeta != null) {
+                cmbTarjeta.Items.Add("Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + cliente.tarjeta.numero + "#" + cliente.tarjeta.titular + "#" + cliente.tarjeta.vencimiento + "#" + cliente.tarjeta.tipo + "#" + cliente.tarjeta.cod_seguridad);
+                cmbTarjeta.SelectedItem = "Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + cliente.tarjeta.numero + "#" + cliente.tarjeta.titular + "#" + cliente.tarjeta.vencimiento + "#" + cliente.tarjeta.tipo + "#" + cliente.tarjeta.cod_seguridad;
+            }
         }
 
         private void btnAlta_Click(object sender, EventArgs e) {

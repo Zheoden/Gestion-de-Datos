@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PalcoNet.Utils;
 using PalcoNet.Objetos;
+using System.Globalization;
 
 namespace PalcoNet.Abm_Cliente {
     public partial class FormAlta : Form {
@@ -97,6 +98,7 @@ namespace PalcoNet.Abm_Cliente {
                 cliente.cuil = txtCuil.Text;
                 cliente.mail = txtMail.Text;
                 cliente.telefono = txtTelefono.Text;
+                cliente.fecha_nacimiento = dtpFechaNac.Value;
                 cliente.dire = direccion;
                 cliente.tarjeta = tarjeta;
 

@@ -240,7 +240,6 @@
     <Compile Include="Registro de Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DateHelper.cs" />
     <Compile Include="Utils\Encrypt.cs" />
     <EmbeddedResource Include="Abm Cliente\FormDireccion.resx">
       <DependentUpon>FormDireccion.cs</DependentUpon>
