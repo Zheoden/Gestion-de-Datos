@@ -155,12 +155,12 @@ namespace PalcoNet.Abm_Grado
             if (dgvGrados.SelectedCells.Count > 0) {
                 int selectedrowindex = dgvGrados.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = dgvGrados.Rows[selectedrowindex];
-                string EmpreSeleccionado = Convert.ToString(selectedRow.Cells["empre_razon_social"].Value);
-                if (EmpreSeleccionado != "") {
-                    string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el rol " + EmpreSeleccionado.ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba " + EmpreSeleccionado.ToUpper() + " para confirmar la operacion.", "Confirmacion");
-                    if (respuesta.ToUpper() == EmpreSeleccionado.ToUpper()) {
-                        if (DBHelper.bajaEmpresa(EmpreSeleccionado)) {
-                            MessageBox.Show("La empresa fue eliminada correctamente.");
+                int gradoSeleccionado = Int32.Parse(selectedRow.Cells["grado_id"].Value.ToString());
+                if (gradoSeleccionado.ToString() != "") {
+                    string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el grado " + gradoSeleccionado.ToString().ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba " + gradoSeleccionado.ToString().ToUpper() + " para confirmar la operacion.", "Confirmacion");
+                    if (respuesta.ToUpper() == gradoSeleccionado.ToString().ToUpper()) {
+                        if (DBHelper.bajaGrado(gradoSeleccionado)) {
+                            MessageBox.Show("El grado fue eliminado correctamente.");
                         }
                     }
                 }
@@ -169,7 +169,7 @@ namespace PalcoNet.Abm_Grado
                 }
             }
             else {
-                MessageBox.Show("Buscar los roles aplicando los filtros deseados y luego seleccionar algun rol dentro de la lista para modificar.");
+                MessageBox.Show("Buscar los grados aplicando los filtros deseados y luego seleccionar algun rol dentro de la lista para modificar.");
             }
         }
 
@@ -177,11 +177,11 @@ namespace PalcoNet.Abm_Grado
             if (dgvGrados.SelectedCells.Count > 0) {
                 int selectedrowindex = dgvGrados.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = dgvGrados.Rows[selectedrowindex];
-                string clienteSeleccionado = Convert.ToString(selectedRow.Cells["empre_id"].Value);
-                if (clienteSeleccionado != "") {
+                string gradoSeleccionado = Convert.ToString(selectedRow.Cells["grado_id"].Value);
+                if (gradoSeleccionado != "") {
 
                     FormModificacion testDialog = new FormModificacion();
-                    testDialog.txtID.Text = clienteSeleccionado;
+                    testDialog.txtID.Text = gradoSeleccionado;
                     testDialog.ShowDialog(this);
 
                 }
@@ -190,7 +190,7 @@ namespace PalcoNet.Abm_Grado
                 }
             }
             else {
-                MessageBox.Show("Buscar los roles aplicando los filtros deseados y luego seleccionar algun rol dentro de la lista para modificar.");
+                MessageBox.Show("Buscar los grados aplicando los filtros deseados y luego seleccionar algun rol dentro de la lista para modificar.");
             }
         }
 

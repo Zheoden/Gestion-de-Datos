@@ -21,6 +21,8 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
                 FormDireccion testDialog = new FormDireccion();
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text);
+                    cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text;
+                    
                 }
             }
             else {
@@ -71,7 +73,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
 
         private Boolean validarDatos() {
             if (txtNombre.Text != "" && txtCuil.Text != "" && txtMail.Text != "" && txtTelefono.Text != "" && cmbDireccion.Items.Count > 0) {
-                if (txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0, 2) == "20" || txtCuil.Text.Substring(0, 2) == "23" || txtCuil.Text.Substring(0, 2) == "24" || txtCuil.Text.Substring(0, 2) == "27" || txtCuil.Text.Substring(0, 2) == "30" || txtCuil.Text.Substring(0, 2) == "33")) {
+                if (txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0, 2) == "30" || txtCuil.Text.Substring(0, 2) == "33")) {
                     if (DBHelper.EmpresaDontExistCuit(txtCuil.Text)) {
                         return true;
                     }
