@@ -161,6 +161,12 @@
     <Compile Include="Editar Publicacion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generar Publicacion\FormDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicacion\FormDireccion.Designer.cs">
+      <DependentUpon>FormDireccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\FormRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,7 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Objetos\Menus.cs" />
+    <Compile Include="Utils\EstadoHelper.cs" />
     <Compile Include="Utils\GradoHelper.cs" />
     <Compile Include="Utils\EmpresaHelper.cs" />
     <Compile Include="Utils\Helper.cs" />
@@ -288,6 +295,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rubro\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicacion\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicacion\FormDireccion.resx">
+      <DependentUpon>FormDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormRoles.resx">
       <DependentUpon>FormRoles.cs</DependentUpon>

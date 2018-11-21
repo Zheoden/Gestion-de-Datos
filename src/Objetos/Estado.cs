@@ -10,7 +10,6 @@ namespace PalcoNet.Objetos
     {
         public int id { get; set; }
         public string descripcion { get; set; }
-        public bool estado_inicial { get; set; }
-        public bool estado_final { get; set; }
+        public bool habilitado { get; set; }
     }
 }

@@ -1,12 +1,13 @@
 ﻿USE GD2C2018;
 
-
+/* Creacion del schema */
 IF NOT EXISTS (select * from sys.schemas where name = 'EL_REJUNTE')
 BEGIN
 EXEC('create schema EL_REJUNTE')
 END;
 GO
 
+/* Creacion de las tablas */
 IF NOT EXISTS (select * from sysobjects where name='Cliente' and xtype='U')
 CREATE TABLE EL_REJUNTE.Cliente(
 	clie_id INT NOT NULL IDENTITY(1,1),
@@ -92,8 +93,7 @@ IF NOT EXISTS (select * from sysobjects where name='Estado' and xtype='U')
 CREATE TABLE EL_REJUNTE.Estado(
 	estado_id INT NOT NULL IDENTITY(1,1),
 	estado_descripcion nvarchar(255) NOT NULL,
-	estado_inicial BIT NULL,
-	estado_final BIT NULL,
+	estado_habilitado BIT NULL,
  CONSTRAINT PK_Estado PRIMARY KEY CLUSTERED(
 	estado_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -294,7 +294,7 @@ CREATE TABLE EL_REJUNTE.Usuario(
 )ON [PRIMARY]
 GO
 
-
+/* Creacion de claves foraneas */
 ALTER TABLE EL_REJUNTE.Cliente WITH CHECK ADD CONSTRAINT FK_Cliente_Direccion FOREIGN KEY(clie_direccion_id)
 REFERENCES EL_REJUNTE.Direccion (dire_id)
 GO
@@ -424,12 +424,20 @@ USE [master]
 GO
 ALTER DATABASE [GD2C2018] SET READ_WRITE 
 GO
-
-USE GD2C2018;
+/* Creo los estados */
+INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado)
+VALUES ('Borrador' , 1)
+GO
+INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado)
+VALUES ('Publicada' , 1)
+GO
+INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado)
+VALUES ('Finalizada' , 1)
 GO
 
+/* Creo el usuario administrador */
 INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo)
-VALUES('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1, 0, 0, 'Administrador')
+VALUES('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1, 0, 0, 'Administrativo')
 GO
 /* Roles */
 INSERT INTO EL_REJUNTE.Rol (rol_nombre ,rol_habilitado, rol_baja_logica)
@@ -478,7 +486,7 @@ GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
 VALUES ('Listado Estadistico')
 GO
-/* Rol Administrador */
+/* Asigno el Rol Administrador al admin */
 INSERT INTO EL_REJUNTE.Rol_Usuario (rol_id ,usuario_id)
 VALUES (1 ,1 )
 GO
@@ -534,7 +542,7 @@ INSERT INTO EL_REJUNTE.Func_Rol (func_id , rol_id)
 VALUES (4 ,3 )
 GO
 
-
+/* Trigger para desasignar roles cuando se inhabilitan o se dan de baja */
 CREATE TRIGGER EL_REJUNTE.tg_inhabilitar_rol
 ON EL_REJUNTE.Rol
 AFTER UPDATE AS
@@ -547,6 +555,7 @@ BEGIN
 END
 GO
 
+/* Procedure de migracion, se encagarga de levantar toda la tabla maestra y migrar los datos al sistema */
 CREATE PROCEDURE EL_REJUNTE.Migracion
 AS
 BEGIN
