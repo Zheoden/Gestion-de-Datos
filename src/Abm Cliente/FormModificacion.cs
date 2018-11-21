@@ -100,6 +100,8 @@ namespace PalcoNet.Abm_Cliente {
                 FormDireccion testDialog = new FormDireccion();
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text);
+                    cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text;
+                    
                 }
             }
             else {
@@ -116,6 +118,8 @@ namespace PalcoNet.Abm_Cliente {
                 FormTarjeta testDialog = new FormTarjeta();
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbTarjeta.Items.Add("Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + testDialog.txtNumero.Text + "#" + testDialog.txtTitular.Text + "#" + testDialog.txtVencimiento.Text + "#" + testDialog.cmbTipos.Text + "#" + testDialog.txtCodSeg.Text);
+                    cmbTarjeta.SelectedItem = "Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + testDialog.txtNumero.Text + "#" + testDialog.txtTitular.Text + "#" + testDialog.txtVencimiento.Text + "#" + testDialog.cmbTipos.Text + "#" + testDialog.txtCodSeg.Text;
+                
                 }
             }
             else {

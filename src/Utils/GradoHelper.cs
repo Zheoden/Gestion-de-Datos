@@ -25,7 +25,6 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
-
         public static Boolean gradoDontExist(string prioridad, int comision, int porcentaje) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
@@ -46,6 +45,62 @@ namespace PalcoNet.Utils {
 
             conn.Close();
             return false;
+        }
+
+        public static Grado getGrado(int id) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_porcentaje " +
+                          "FROM EL_REJUNTE.Grado g " +
+                          "WHERE g.grado_id = " + id;
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            Grado grado = new Grado();
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    grado.id = Int32.Parse(reader["grado_id"].ToString());
+                    grado.prioridad = reader["grado_prioridad"].ToString();
+                    grado.comision = Int32.Parse(reader["grado_comision"].ToString());
+                    grado.porcentaje = Int32.Parse(reader["grado_porcentaje"].ToString());
+                }
+            }
+
+            conn.Close();
+            return grado;
+        }
+
+        public static Boolean modificarGrado(Grado grado) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "UPDATE EL_REJUNTE.Grado " +
+                               "SET grado_prioridad = '" + grado.prioridad + "', grado_comision = " + grado.comision + ", grado_porcentaje = " + grado.porcentaje + " " +
+                               "WHERE grado_id = " + grado.id;
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
+
+        public static Boolean bajaGrado(int id) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "DELETE FROM EL_REJUNTE.Grado " +
+                               "WHERE grado_id = " + id;
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
         }
 
     }

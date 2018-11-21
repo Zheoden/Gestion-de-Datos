@@ -28,7 +28,7 @@ namespace PalcoNet.Utils {
                     menu.form = "Form1";
                     break;
                 case "Abm Grado":
-                    menu.carpeta = "ABM_de_Cliente";
+                    menu.carpeta = "Abm_Grado";
                     menu.form = "Form1";
                     break;
                 case "Generar Publicacion":
