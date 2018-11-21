@@ -139,7 +139,7 @@ GO
 IF NOT EXISTS (select * from sysobjects where name='Grado' and xtype='U')
 CREATE TABLE EL_REJUNTE.Grado(
 	grado_id INT NOT NULL IDENTITY(1,1),
-	grado_descripcion nvarchar(255) NOT NULL,
+	grado_prioridad nvarchar(255) NOT NULL,
 	grado_comision numeric(18, 0) NOT NULL,
 	grado_porcentaje numeric(18, 0) NOT NULL,
  CONSTRAINT PK_Grado PRIMARY KEY CLUSTERED(

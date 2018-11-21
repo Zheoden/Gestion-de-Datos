@@ -9,8 +9,8 @@ namespace PalcoNet.Objetos
     public class Grado
     {
         public int id { get; set; }
-        public string descripcion { get; set; }
+        public string prioridad { get; set; }
         public int comision { get; set; }
-        public int percentaje { get; set; }
+        public int porcentaje { get; set; }
     }
 }

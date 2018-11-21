@@ -111,6 +111,12 @@
     <Compile Include="Abm Grado\FormAlta.Designer.cs">
       <DependentUpon>FormAlta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Grado\FormModificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Grado\FormModificacion.Designer.cs">
+      <DependentUpon>FormModificacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Rol\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,12 +140,6 @@
     </Compile>
     <Compile Include="Abm Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm Rubro\FormAlta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Rubro\FormAlta.Designer.cs">
-      <DependentUpon>FormAlta.cs</DependentUpon>
     </Compile>
     <Compile Include="Canje Puntos\Form1.cs">
       <SubType>Form</SubType>
@@ -204,6 +204,7 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Objetos\Menus.cs" />
+    <Compile Include="Utils\GradoHelper.cs" />
     <Compile Include="Utils\EmpresaHelper.cs" />
     <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\DireccionHelper.cs" />
@@ -270,6 +271,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Grado\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Grado\FormAlta.resx">
+      <DependentUpon>FormAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Grado\FormModificacion.resx">
+      <DependentUpon>FormModificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

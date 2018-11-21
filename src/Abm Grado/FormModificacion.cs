@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Abm_Rubro {
-    public partial class FormAlta : Form {
-        public FormAlta() {
+namespace PalcoNet.Abm_Grado {
+    public partial class FormModificacion : Form {
+        public FormModificacion() {
             InitializeComponent();
         }
     }
