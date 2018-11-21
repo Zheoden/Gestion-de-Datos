@@ -63,11 +63,11 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnFiltro = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -330,13 +330,13 @@
             // 
             // gb_b_avanzada
             // 
+            this.gb_b_avanzada.Controls.Add(this.label4);
             this.gb_b_avanzada.Controls.Add(this.btnEliminarFiltro);
             this.gb_b_avanzada.Controls.Add(this.lstFiltro);
             this.gb_b_avanzada.Controls.Add(this.txtDNI);
             this.gb_b_avanzada.Controls.Add(this.txtEmail);
             this.gb_b_avanzada.Controls.Add(this.btnFiltro);
             this.gb_b_avanzada.Controls.Add(this.label3);
-            this.gb_b_avanzada.Controls.Add(this.label2);
             this.gb_b_avanzada.Location = new System.Drawing.Point(4, 102);
             this.gb_b_avanzada.Margin = new System.Windows.Forms.Padding(2);
             this.gb_b_avanzada.Name = "gb_b_avanzada";
@@ -402,16 +402,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "DNI:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 64);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Email:";
-            // 
             // cb_busquedaAvanzada
             // 
             this.cb_busquedaAvanzada.AutoSize = true;
@@ -448,6 +438,16 @@
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 68);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Email:";
             // 
             // Form1
             // 
@@ -523,5 +523,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.Label label4;
     }
 }

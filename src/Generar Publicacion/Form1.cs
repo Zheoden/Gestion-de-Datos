@@ -77,7 +77,7 @@ namespace PalcoNet.Generar_Publicacion {
 
         private Boolean validarDatos() {
             int numero;
-            if (txtDescripcion.Text != "" && txtStock.Text != "" && txtPrecio.Text != "" && txtRubro.Text != "" && txtUsuarioResponsable.Text != "" && dtpEspectaculo.Text != "" &&  cmbDireccion.Items.Count > 0 && cmbEstado.SelectedItem != "" && cmbGrado.SelectedItem != "") {
+            if (txtDescripcion.Text != "" && txtStock.Text != "" && txtPrecio.Text != "" && txtRubro.Text != "" && txtUsuarioResponsable.Text != "" && dtpEspectaculo.Text != "" &&  cmbDireccion.Items.Count > 0 && cmbEstado.SelectedItem.ToString() != "" && cmbGrado.SelectedItem.ToString() != "") {
                 if (Int32.TryParse(txtStock.Text, out numero) && Int32.TryParse(txtPrecio.Text, out numero)) {
                     if (cmbFechaEspectaculo.Items.Count > 0) {
                             return true;
