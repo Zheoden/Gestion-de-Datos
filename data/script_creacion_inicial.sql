@@ -478,7 +478,7 @@ INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
 VALUES ('Historial del Cliente')
 GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
-VALUES ('Canjar Puntos')
+VALUES ('Canjear Puntos')
 GO
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion)
 VALUES ('Generar Pago de Comisiones')

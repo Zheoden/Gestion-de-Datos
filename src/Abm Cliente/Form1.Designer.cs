@@ -31,6 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.clie_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_cuil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clie_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -53,24 +66,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.clie_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_cuil = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clie_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -109,6 +112,84 @@
             this.dgvClientes.RowTemplate.Height = 24;
             this.dgvClientes.Size = new System.Drawing.Size(1104, 213);
             this.dgvClientes.TabIndex = 0;
+            // 
+            // clie_id
+            // 
+            this.clie_id.HeaderText = "ID de Cliente";
+            this.clie_id.Name = "clie_id";
+            this.clie_id.ReadOnly = true;
+            // 
+            // clie_nombre
+            // 
+            this.clie_nombre.HeaderText = "Nombre";
+            this.clie_nombre.Name = "clie_nombre";
+            this.clie_nombre.ReadOnly = true;
+            // 
+            // clie_apellido
+            // 
+            this.clie_apellido.HeaderText = "Apellido";
+            this.clie_apellido.Name = "clie_apellido";
+            this.clie_apellido.ReadOnly = true;
+            // 
+            // clie_tipo_documento
+            // 
+            this.clie_tipo_documento.HeaderText = "Tipo de Documento";
+            this.clie_tipo_documento.Name = "clie_tipo_documento";
+            this.clie_tipo_documento.ReadOnly = true;
+            // 
+            // clie_documento
+            // 
+            this.clie_documento.HeaderText = "Documento";
+            this.clie_documento.Name = "clie_documento";
+            this.clie_documento.ReadOnly = true;
+            // 
+            // clie_cuil
+            // 
+            this.clie_cuil.HeaderText = "CUIL";
+            this.clie_cuil.Name = "clie_cuil";
+            this.clie_cuil.ReadOnly = true;
+            // 
+            // clie_email
+            // 
+            this.clie_email.HeaderText = "Mail";
+            this.clie_email.Name = "clie_email";
+            this.clie_email.ReadOnly = true;
+            // 
+            // clie_telefono
+            // 
+            this.clie_telefono.HeaderText = "Telefono";
+            this.clie_telefono.Name = "clie_telefono";
+            this.clie_telefono.ReadOnly = true;
+            // 
+            // clie_fecha_nacimiento
+            // 
+            this.clie_fecha_nacimiento.HeaderText = "Fecha de Nacimiento";
+            this.clie_fecha_nacimiento.Name = "clie_fecha_nacimiento";
+            this.clie_fecha_nacimiento.ReadOnly = true;
+            // 
+            // clie_fecha_creacion
+            // 
+            this.clie_fecha_creacion.HeaderText = "Fecha de Creacion";
+            this.clie_fecha_creacion.Name = "clie_fecha_creacion";
+            this.clie_fecha_creacion.ReadOnly = true;
+            // 
+            // clie_habilitado
+            // 
+            this.clie_habilitado.HeaderText = "Habilitado";
+            this.clie_habilitado.Name = "clie_habilitado";
+            this.clie_habilitado.ReadOnly = true;
+            // 
+            // dire_calle
+            // 
+            this.dire_calle.HeaderText = "Calle";
+            this.dire_calle.Name = "dire_calle";
+            this.dire_calle.ReadOnly = true;
+            // 
+            // dire_numero
+            // 
+            this.dire_numero.HeaderText = "Numero de Calle";
+            this.dire_numero.Name = "dire_numero";
+            this.dire_numero.ReadOnly = true;
             // 
             // btnDarAlta
             // 
@@ -346,95 +427,34 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(483, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(481, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(168, 50);
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-            // clie_id
+            // menu
             // 
-            this.clie_id.HeaderText = "ID de Cliente";
-            this.clie_id.Name = "clie_id";
-            this.clie_id.ReadOnly = true;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(1131, 24);
+            this.menu.TabIndex = 113;
+            this.menu.Text = "menuStrip1";
             // 
-            // clie_nombre
+            // menuToolStripMenuItem
             // 
-            this.clie_nombre.HeaderText = "Nombre";
-            this.clie_nombre.Name = "clie_nombre";
-            this.clie_nombre.ReadOnly = true;
-            // 
-            // clie_apellido
-            // 
-            this.clie_apellido.HeaderText = "Apellido";
-            this.clie_apellido.Name = "clie_apellido";
-            this.clie_apellido.ReadOnly = true;
-            // 
-            // clie_tipo_documento
-            // 
-            this.clie_tipo_documento.HeaderText = "Tipo de Documento";
-            this.clie_tipo_documento.Name = "clie_tipo_documento";
-            this.clie_tipo_documento.ReadOnly = true;
-            // 
-            // clie_documento
-            // 
-            this.clie_documento.HeaderText = "Documento";
-            this.clie_documento.Name = "clie_documento";
-            this.clie_documento.ReadOnly = true;
-            // 
-            // clie_cuil
-            // 
-            this.clie_cuil.HeaderText = "CUIL";
-            this.clie_cuil.Name = "clie_cuil";
-            this.clie_cuil.ReadOnly = true;
-            // 
-            // clie_email
-            // 
-            this.clie_email.HeaderText = "Mail";
-            this.clie_email.Name = "clie_email";
-            this.clie_email.ReadOnly = true;
-            // 
-            // clie_telefono
-            // 
-            this.clie_telefono.HeaderText = "Telefono";
-            this.clie_telefono.Name = "clie_telefono";
-            this.clie_telefono.ReadOnly = true;
-            // 
-            // clie_fecha_nacimiento
-            // 
-            this.clie_fecha_nacimiento.HeaderText = "Fecha de Nacimiento";
-            this.clie_fecha_nacimiento.Name = "clie_fecha_nacimiento";
-            this.clie_fecha_nacimiento.ReadOnly = true;
-            // 
-            // clie_fecha_creacion
-            // 
-            this.clie_fecha_creacion.HeaderText = "Fecha de Creacion";
-            this.clie_fecha_creacion.Name = "clie_fecha_creacion";
-            this.clie_fecha_creacion.ReadOnly = true;
-            // 
-            // clie_habilitado
-            // 
-            this.clie_habilitado.HeaderText = "Habilitado";
-            this.clie_habilitado.Name = "clie_habilitado";
-            this.clie_habilitado.ReadOnly = true;
-            // 
-            // dire_calle
-            // 
-            this.dire_calle.HeaderText = "Calle";
-            this.dire_calle.Name = "dire_calle";
-            this.dire_calle.ReadOnly = true;
-            // 
-            // dire_numero
-            // 
-            this.dire_numero.HeaderText = "Numero de Calle";
-            this.dire_numero.Name = "dire_numero";
-            this.dire_numero.ReadOnly = true;
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Text = "Menu";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1131, 629);
+            this.Controls.Add(this.menu);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnDarAlta);
@@ -447,6 +467,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Abm Cliente";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -454,6 +475,8 @@
             this.gb_b_avanzada.ResumeLayout(false);
             this.gb_b_avanzada.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,5 +521,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clie_habilitado;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_calle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
     }
 }

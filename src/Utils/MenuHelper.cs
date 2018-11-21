@@ -3,6 +3,7 @@ using System.Data;
 using System.Collections.Generic;
 using System;
 using PalcoNet.Objetos;
+using System.Windows.Forms;
 namespace PalcoNet.Utils {
 
     public class MenuHelper {
@@ -39,8 +40,8 @@ namespace PalcoNet.Utils {
                     menu.carpeta = "Editar_Publicacion";
                     menu.form = "Form1";
                     break;
-                case "Compra":
-                    menu.carpeta = "Compra";
+                case "Comprar":
+                    menu.carpeta = "Comprar";
                     menu.form = "Form1";
                     break;
                 case "Historial del Cliente":
@@ -62,5 +63,24 @@ namespace PalcoNet.Utils {
             }
             return menu;
         }
+
+        public void eventClick(object sender, EventArgs e) {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+
+            string opcion = item.Tag.ToString();
+
+            if (opcion != "") {
+                Menus menuSeleccionado = MenuHelper.getOpciones(opcion);
+
+                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
+                nextForm.Show();
+            }
+            else {
+                MessageBox.Show("Seleccione una opcion de la lista.");
+            }
+
+
+        }
+
     }
 }

@@ -34,15 +34,20 @@
             this.btnAlta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnSacarFecha = new System.Windows.Forms.Button();
+            this.btnAgregarFecha = new System.Windows.Forms.Button();
+            this.cmbFechaEspectaculo = new System.Windows.Forms.ComboBox();
             this.dtpEspectaculo = new System.Windows.Forms.DateTimePicker();
+            this.cmbGrado = new System.Windows.Forms.ComboBox();
+            this.txtUsuarioResponsable = new System.Windows.Forms.TextBox();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnEliminarDire = new System.Windows.Forms.Button();
             this.btnAgregarDire = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtRubro = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -52,13 +57,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtUsuarioResponsable = new System.Windows.Forms.TextBox();
-            this.cmbGrado = new System.Windows.Forms.ComboBox();
-            this.cmbFechaEspectaculo = new System.Windows.Forms.ComboBox();
-            this.btnAgregarFecha = new System.Windows.Forms.Button();
-            this.btnSacarFecha = new System.Windows.Forms.Button();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCerrar
@@ -77,7 +80,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(115, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(141, 27);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(168, 50);
             this.pictureBox2.TabIndex = 43;
@@ -142,6 +145,38 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles de la Publicacion";
             // 
+            // btnSacarFecha
+            // 
+            this.btnSacarFecha.Location = new System.Drawing.Point(404, 97);
+            this.btnSacarFecha.Name = "btnSacarFecha";
+            this.btnSacarFecha.Size = new System.Drawing.Size(20, 20);
+            this.btnSacarFecha.TabIndex = 94;
+            this.btnSacarFecha.Text = "-";
+            this.btnSacarFecha.UseVisualStyleBackColor = true;
+            this.btnSacarFecha.Click += new System.EventHandler(this.btnSacarFecha_Click);
+            // 
+            // btnAgregarFecha
+            // 
+            this.btnAgregarFecha.Location = new System.Drawing.Point(378, 97);
+            this.btnAgregarFecha.Name = "btnAgregarFecha";
+            this.btnAgregarFecha.Size = new System.Drawing.Size(20, 20);
+            this.btnAgregarFecha.TabIndex = 93;
+            this.btnAgregarFecha.Text = "+";
+            this.btnAgregarFecha.UseVisualStyleBackColor = true;
+            this.btnAgregarFecha.Click += new System.EventHandler(this.btnAgregarFecha_Click);
+            // 
+            // cmbFechaEspectaculo
+            // 
+            this.cmbFechaEspectaculo.DropDownHeight = 500;
+            this.cmbFechaEspectaculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFechaEspectaculo.DropDownWidth = 800;
+            this.cmbFechaEspectaculo.FormattingEnabled = true;
+            this.cmbFechaEspectaculo.IntegralHeight = false;
+            this.cmbFechaEspectaculo.Location = new System.Drawing.Point(143, 113);
+            this.cmbFechaEspectaculo.Name = "cmbFechaEspectaculo";
+            this.cmbFechaEspectaculo.Size = new System.Drawing.Size(231, 21);
+            this.cmbFechaEspectaculo.TabIndex = 92;
+            // 
             // dtpEspectaculo
             // 
             this.dtpEspectaculo.CustomFormat = "dd/MM/yyyy HH:mm:ss";
@@ -150,6 +185,26 @@
             this.dtpEspectaculo.Name = "dtpEspectaculo";
             this.dtpEspectaculo.Size = new System.Drawing.Size(231, 20);
             this.dtpEspectaculo.TabIndex = 30;
+            // 
+            // cmbGrado
+            // 
+            this.cmbGrado.DropDownHeight = 100;
+            this.cmbGrado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGrado.DropDownWidth = 100;
+            this.cmbGrado.FormattingEnabled = true;
+            this.cmbGrado.IntegralHeight = false;
+            this.cmbGrado.Location = new System.Drawing.Point(143, 220);
+            this.cmbGrado.Name = "cmbGrado";
+            this.cmbGrado.Size = new System.Drawing.Size(231, 21);
+            this.cmbGrado.TabIndex = 91;
+            // 
+            // txtUsuarioResponsable
+            // 
+            this.txtUsuarioResponsable.Location = new System.Drawing.Point(143, 244);
+            this.txtUsuarioResponsable.Name = "txtUsuarioResponsable";
+            this.txtUsuarioResponsable.ReadOnly = true;
+            this.txtUsuarioResponsable.Size = new System.Drawing.Size(231, 20);
+            this.txtUsuarioResponsable.TabIndex = 80;
             // 
             // cmbEstado
             // 
@@ -174,6 +229,15 @@
             this.cmbDireccion.Name = "cmbDireccion";
             this.cmbDireccion.Size = new System.Drawing.Size(231, 21);
             this.cmbDireccion.TabIndex = 60;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(15, 224);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Grado:";
             // 
             // btnEliminarDire
             // 
@@ -221,15 +285,6 @@
             this.label10.Size = new System.Drawing.Size(55, 13);
             this.label10.TabIndex = 19;
             this.label10.Text = "Direccion:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 224);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Grado:";
             // 
             // txtRubro
             // 
@@ -304,74 +359,42 @@
             this.label14.TabIndex = 5;
             this.label14.Text = "Descripcion:";
             // 
-            // txtUsuarioResponsable
+            // menu
             // 
-            this.txtUsuarioResponsable.Location = new System.Drawing.Point(143, 244);
-            this.txtUsuarioResponsable.Name = "txtUsuarioResponsable";
-            this.txtUsuarioResponsable.ReadOnly = true;
-            this.txtUsuarioResponsable.Size = new System.Drawing.Size(231, 20);
-            this.txtUsuarioResponsable.TabIndex = 80;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(456, 24);
+            this.menu.TabIndex = 112;
+            this.menu.Text = "menuStrip1";
             // 
-            // cmbGrado
+            // menuToolStripMenuItem
             // 
-            this.cmbGrado.DropDownHeight = 500;
-            this.cmbGrado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGrado.DropDownWidth = 800;
-            this.cmbGrado.FormattingEnabled = true;
-            this.cmbGrado.IntegralHeight = false;
-            this.cmbGrado.Location = new System.Drawing.Point(143, 220);
-            this.cmbGrado.Name = "cmbGrado";
-            this.cmbGrado.Size = new System.Drawing.Size(231, 21);
-            this.cmbGrado.TabIndex = 91;
-            // 
-            // cmbFechaEspectaculo
-            // 
-            this.cmbFechaEspectaculo.DropDownHeight = 500;
-            this.cmbFechaEspectaculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFechaEspectaculo.DropDownWidth = 800;
-            this.cmbFechaEspectaculo.FormattingEnabled = true;
-            this.cmbFechaEspectaculo.IntegralHeight = false;
-            this.cmbFechaEspectaculo.Location = new System.Drawing.Point(143, 113);
-            this.cmbFechaEspectaculo.Name = "cmbFechaEspectaculo";
-            this.cmbFechaEspectaculo.Size = new System.Drawing.Size(231, 21);
-            this.cmbFechaEspectaculo.TabIndex = 92;
-            // 
-            // btnAgregarFecha
-            // 
-            this.btnAgregarFecha.Location = new System.Drawing.Point(378, 97);
-            this.btnAgregarFecha.Name = "btnAgregarFecha";
-            this.btnAgregarFecha.Size = new System.Drawing.Size(20, 20);
-            this.btnAgregarFecha.TabIndex = 93;
-            this.btnAgregarFecha.Text = "+";
-            this.btnAgregarFecha.UseVisualStyleBackColor = true;
-            this.btnAgregarFecha.Click += new System.EventHandler(this.btnAgregarFecha_Click);
-            // 
-            // btnSacarFecha
-            // 
-            this.btnSacarFecha.Location = new System.Drawing.Point(404, 97);
-            this.btnSacarFecha.Name = "btnSacarFecha";
-            this.btnSacarFecha.Size = new System.Drawing.Size(20, 20);
-            this.btnSacarFecha.TabIndex = 94;
-            this.btnSacarFecha.Text = "-";
-            this.btnSacarFecha.UseVisualStyleBackColor = true;
-            this.btnSacarFecha.Click += new System.EventHandler(this.btnSacarFecha_Click);
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Text = "Menu";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 484);
+            this.Controls.Add(this.menu);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
+            this.MainMenuStrip = this.menu;
             this.Name = "Form1";
             this.Text = "Generar Publicacion";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -407,5 +430,7 @@
         private System.Windows.Forms.Button btnSacarFecha;
         private System.Windows.Forms.Button btnAgregarFecha;
         public System.Windows.Forms.ComboBox cmbFechaEspectaculo;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
     }
 }

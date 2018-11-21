@@ -70,3 +70,9 @@ F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Login.FormRoles.resou
 F:\GDD FACU\GitHub\Gestion-de-Datos\src\obj\Debug\PalcoNet.Registro_de_Usuario.Form1.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Generar_Publicacion.Form1.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Generar_Publicacion.FormDireccion.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Canje_Puntos.Form1.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Comprar.Form1.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Editar_Publicacion.Form1.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Generar_Rendicion_Comisiones.Form1.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Historial_Cliente.Form1.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Listado_Estadistico.Form1.resources

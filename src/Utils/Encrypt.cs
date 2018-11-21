@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
 using System;
+using System.Linq;
+
 namespace PalcoNet.Utils {
 
     public class Encrypt {
@@ -15,5 +17,13 @@ namespace PalcoNet.Utils {
             }
             return hashString;
         }
+
+        public static string RandomString(int length) {
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
     }
 }

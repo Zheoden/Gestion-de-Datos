@@ -32,6 +32,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvGrados = new System.Windows.Forms.DataGridView();
+            this.grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -51,21 +55,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
-            this.grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(480, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(480, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(168, 50);
             this.pictureBox1.TabIndex = 34;
@@ -98,6 +101,29 @@
             this.dgvGrados.RowTemplate.Height = 24;
             this.dgvGrados.Size = new System.Drawing.Size(1104, 213);
             this.dgvGrados.TabIndex = 0;
+            // 
+            // grado_id
+            // 
+            this.grado_id.HeaderText = "ID de Grado";
+            this.grado_id.Name = "grado_id";
+            this.grado_id.ReadOnly = true;
+            // 
+            // grado_prioridad
+            // 
+            this.grado_prioridad.HeaderText = "Prioridad";
+            this.grado_prioridad.Name = "grado_prioridad";
+            this.grado_prioridad.ReadOnly = true;
+            // 
+            // grado_comision
+            // 
+            this.grado_comision.HeaderText = "Comision";
+            this.grado_comision.Name = "grado_comision";
+            this.grado_comision.ReadOnly = true;
+            // 
+            // grado_porcentaje
+            // 
+            this.grado_porcentaje.HeaderText = "Porcentaje";
+            this.grado_porcentaje.Name = "grado_porcentaje";
             // 
             // btnDarAlta
             // 
@@ -314,34 +340,28 @@
             this.cb_busquedaAvanzada.UseVisualStyleBackColor = true;
             this.cb_busquedaAvanzada.CheckedChanged += new System.EventHandler(this.cb_busquedaAvanzada_CheckedChanged);
             // 
-            // grado_id
+            // menu
             // 
-            this.grado_id.HeaderText = "ID de Grado";
-            this.grado_id.Name = "grado_id";
-            this.grado_id.ReadOnly = true;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(1142, 24);
+            this.menu.TabIndex = 113;
+            this.menu.Text = "menuStrip1";
             // 
-            // grado_prioridad
+            // menuToolStripMenuItem
             // 
-            this.grado_prioridad.HeaderText = "Prioridad";
-            this.grado_prioridad.Name = "grado_prioridad";
-            this.grado_prioridad.ReadOnly = true;
-            // 
-            // grado_comision
-            // 
-            this.grado_comision.HeaderText = "Comision";
-            this.grado_comision.Name = "grado_comision";
-            this.grado_comision.ReadOnly = true;
-            // 
-            // grado_porcentaje
-            // 
-            this.grado_porcentaje.HeaderText = "Porcentaje";
-            this.grado_porcentaje.Name = "grado_porcentaje";
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Text = "Menu";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1142, 629);
+            this.Controls.Add(this.menu);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnDarAlta);
@@ -355,6 +375,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "ABM Grado";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrados)).EndInit();
@@ -362,6 +383,8 @@
             this.groupBox1.PerformLayout();
             this.gb_b_avanzada.ResumeLayout(false);
             this.gb_b_avanzada.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,6 +418,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_prioridad;
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_comision;
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_porcentaje;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
 
     }
 }

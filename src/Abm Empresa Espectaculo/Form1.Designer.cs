@@ -32,6 +32,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvEmpresas = new System.Windows.Forms.DataGridView();
+            this.empre_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empre_baja_logica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -51,26 +60,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
-            this.empre_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empre_razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empre_cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empre_fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empre_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empre_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empre_baja_logica = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dire_numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gb_b_avanzada.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(484, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(482, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(168, 50);
             this.pictureBox1.TabIndex = 24;
@@ -108,6 +111,60 @@
             this.dgvEmpresas.RowTemplate.Height = 24;
             this.dgvEmpresas.Size = new System.Drawing.Size(1104, 213);
             this.dgvEmpresas.TabIndex = 0;
+            // 
+            // empre_id
+            // 
+            this.empre_id.HeaderText = "ID de Empresa";
+            this.empre_id.Name = "empre_id";
+            this.empre_id.ReadOnly = true;
+            // 
+            // empre_razon_social
+            // 
+            this.empre_razon_social.HeaderText = "Razon Social";
+            this.empre_razon_social.Name = "empre_razon_social";
+            this.empre_razon_social.ReadOnly = true;
+            // 
+            // empre_cuit
+            // 
+            this.empre_cuit.HeaderText = "CUIT";
+            this.empre_cuit.Name = "empre_cuit";
+            this.empre_cuit.ReadOnly = true;
+            // 
+            // empre_fecha_creacion
+            // 
+            this.empre_fecha_creacion.HeaderText = "Fecha de Creacion";
+            this.empre_fecha_creacion.Name = "empre_fecha_creacion";
+            this.empre_fecha_creacion.ReadOnly = true;
+            // 
+            // empre_email
+            // 
+            this.empre_email.HeaderText = "Mail";
+            this.empre_email.Name = "empre_email";
+            this.empre_email.ReadOnly = true;
+            // 
+            // empre_telefono
+            // 
+            this.empre_telefono.HeaderText = "Telefono";
+            this.empre_telefono.Name = "empre_telefono";
+            this.empre_telefono.ReadOnly = true;
+            // 
+            // empre_baja_logica
+            // 
+            this.empre_baja_logica.HeaderText = "Baja Logica";
+            this.empre_baja_logica.Name = "empre_baja_logica";
+            this.empre_baja_logica.ReadOnly = true;
+            // 
+            // dire_calle
+            // 
+            this.dire_calle.HeaderText = "Calle";
+            this.dire_calle.Name = "dire_calle";
+            this.dire_calle.ReadOnly = true;
+            // 
+            // dire_numero
+            // 
+            this.dire_numero.HeaderText = "Numero de Calle";
+            this.dire_numero.Name = "dire_numero";
+            this.dire_numero.ReadOnly = true;
             // 
             // btnDarAlta
             // 
@@ -324,65 +381,28 @@
             this.cb_busquedaAvanzada.UseVisualStyleBackColor = true;
             this.cb_busquedaAvanzada.CheckedChanged += new System.EventHandler(this.cb_busquedaAvanzada_CheckedChanged);
             // 
-            // empre_id
+            // menu
             // 
-            this.empre_id.HeaderText = "ID de Empresa";
-            this.empre_id.Name = "empre_id";
-            this.empre_id.ReadOnly = true;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(1141, 24);
+            this.menu.TabIndex = 113;
+            this.menu.Text = "menuStrip1";
             // 
-            // empre_razon_social
+            // menuToolStripMenuItem
             // 
-            this.empre_razon_social.HeaderText = "Razon Social";
-            this.empre_razon_social.Name = "empre_razon_social";
-            this.empre_razon_social.ReadOnly = true;
-            // 
-            // empre_cuit
-            // 
-            this.empre_cuit.HeaderText = "CUIT";
-            this.empre_cuit.Name = "empre_cuit";
-            this.empre_cuit.ReadOnly = true;
-            // 
-            // empre_fecha_creacion
-            // 
-            this.empre_fecha_creacion.HeaderText = "Fecha de Creacion";
-            this.empre_fecha_creacion.Name = "empre_fecha_creacion";
-            this.empre_fecha_creacion.ReadOnly = true;
-            // 
-            // empre_email
-            // 
-            this.empre_email.HeaderText = "Mail";
-            this.empre_email.Name = "empre_email";
-            this.empre_email.ReadOnly = true;
-            // 
-            // empre_telefono
-            // 
-            this.empre_telefono.HeaderText = "Telefono";
-            this.empre_telefono.Name = "empre_telefono";
-            this.empre_telefono.ReadOnly = true;
-            // 
-            // empre_baja_logica
-            // 
-            this.empre_baja_logica.HeaderText = "Baja Logica";
-            this.empre_baja_logica.Name = "empre_baja_logica";
-            this.empre_baja_logica.ReadOnly = true;
-            // 
-            // dire_calle
-            // 
-            this.dire_calle.HeaderText = "Calle";
-            this.dire_calle.Name = "dire_calle";
-            this.dire_calle.ReadOnly = true;
-            // 
-            // dire_numero
-            // 
-            this.dire_numero.HeaderText = "Numero de Calle";
-            this.dire_numero.Name = "dire_numero";
-            this.dire_numero.ReadOnly = true;
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Text = "Menu";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 619);
+            this.Controls.Add(this.menu);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnDarAlta);
@@ -395,6 +415,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "ABM Empresa";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).EndInit();
@@ -402,6 +423,8 @@
             this.groupBox1.PerformLayout();
             this.gb_b_avanzada.ResumeLayout(false);
             this.gb_b_avanzada.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +463,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn empre_baja_logica;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_calle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dire_numero;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
     }
 }
