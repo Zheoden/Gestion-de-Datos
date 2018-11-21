@@ -69,28 +69,30 @@ namespace PalcoNet.Utils {
         }
 
         private static int agregarFuncionalidades(string rol, List<string> funcionalidades) {
+            if (funcionalidades.Count > 0) {
+                SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+                SqlCommand command = conn.CreateCommand();
+                string SQL = "INSERT INTO EL_REJUNTE.Func_Rol (func_id, rol_id) " +
+                                      "SELECT f.func_id, r.rol_id " +
+                                      "FROM EL_REJUNTE.Funcionalidad f, EL_REJUNTE.Rol r " +
+                                      "WHERE r.rol_nombre = '" + rol + "' AND " +
+                                      "(";
+                foreach (string item in funcionalidades) {
 
-            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
-            SqlCommand command = conn.CreateCommand();
-            string SQL = "INSERT INTO EL_REJUNTE.Func_Rol (func_id, rol_id) " +
-                                  "SELECT f.func_id, r.rol_id " +
-                                  "FROM EL_REJUNTE.Funcionalidad f, EL_REJUNTE.Rol r " +
-                                  "WHERE r.rol_nombre = '" + rol + "' AND " +
-                                  "(";
-            foreach (string item in funcionalidades) {
+                    SQL += "f.func_descripcion = '" + item + "' OR ";
 
-                SQL += "f.func_descripcion = '" + item + "' OR ";
-
+                }
+                SQL = SQL.Substring(0, SQL.Length - 3);
+                SQL += ")";
+                command.CommandText = SQL;
+                command.Connection = conn;
+                command.Connection.Open();
+                int rows = command.ExecuteNonQuery();
+                command.Connection.Close();
+                conn.Close();
+                return rows;
             }
-            SQL = SQL.Substring(0, SQL.Length - 3);
-            SQL += ")";
-            command.CommandText = SQL;
-            command.Connection = conn;
-            command.Connection.Open();
-            int rows = command.ExecuteNonQuery();
-            command.Connection.Close();
-            conn.Close();
-            return rows;
+            return 1;
         }
 
         public static Boolean bajaFuncionalidades(string rol) {

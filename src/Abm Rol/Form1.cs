@@ -43,7 +43,7 @@ namespace PalcoNet.Abm_Rol {
                                "r.rol_baja_logica = 0";
 
             if (txtNombreRol.Text != "") {
-                SQL += " AND r.rol_nombre = " + "'" + txtNombreRol.Text.ToString() + "'";
+                SQL += " AND r.rol_nombre = '" + txtNombreRol.Text.ToString() + "'";
             }
 
             if (cb_busquedaAvanzada.Checked) {

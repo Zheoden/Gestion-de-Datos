@@ -18,7 +18,7 @@ namespace PalcoNet.Utils {
             string SQL = "SELECT r.rol_id " +
                           "FROM EL_REJUNTE.Rol r " +
                           "WHERE r.rol_nombre = '" + rol + "' AND " +
-                          "r.rol_habilitado = 1";
+                          "r.rol_habilitado = 1 AND r.rol_baja_logica = 0";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
             command.CommandType = CommandType.Text;
@@ -41,7 +41,7 @@ namespace PalcoNet.Utils {
             conn.Open();
             string SQL = "SELECT 1 " +
                           "FROM EL_REJUNTE.Rol r " +
-                          "WHERE r.rol_nombre = '" + rol + "'";
+                          "WHERE r.rol_nombre = '" + rol + "' AND r.rol_baja_logica = 0";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
             command.CommandType = CommandType.Text;
@@ -152,19 +152,62 @@ namespace PalcoNet.Utils {
         }
 
         public static Boolean altaRol(string rol, List<string> funcionalidades) {
+            if (rolDontExistInterno(rol)) {
+                SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+                SqlCommand command = conn.CreateCommand();
+                command.CommandText = "INSERT INTO EL_REJUNTE.Rol (rol_nombre, rol_habilitado, rol_baja_logica) " +
+                                      "VALUES ('" + rol + "', 1, 0)";
+                command.Connection = conn;
+                command.Connection.Open();
+                int rows = command.ExecuteNonQuery();
+                command.Connection.Close();
+                conn.Close();
+                int rowsFunc = agregarFuncionalidades(rol, funcionalidades);
+                return rows > 0 && rowsFunc > 0;
+            }
+            else {
+                agregarFuncionalidades(rol, funcionalidades);
+                return altaLogica(rol);
+            }
+        }
+
+        public static Boolean altaLogica(string rol) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             SqlCommand command = conn.CreateCommand();
-            command.CommandText = "INSERT INTO EL_REJUNTE.Rol (rol_nombre, rol_habilitado, rol_baja_logica) " +
-                                  "VALUES ('" + rol + "', 1, 0)";
+            command.CommandText = "UPDATE EL_REJUNTE.Rol " +
+                                  "SET rol_baja_logica = 0 " +
+                                  "WHERE rol_nombre = '" + rol + "'";
             command.Connection = conn;
             command.Connection.Open();
             int rows = command.ExecuteNonQuery();
             command.Connection.Close();
             conn.Close();
-            int rowsFunc = agregarFuncionalidades(rol, funcionalidades);
-            return rows > 0 && rowsFunc > 0;
+            return rows > 0;
+
         }
+
+        private static Boolean rolDontExistInterno(string rol) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT 1 " +
+                          "FROM EL_REJUNTE.Rol r " +
+                          "WHERE r.rol_nombre = '" + rol + "'";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (!reader.HasRows) {
+                return true;
+            }
+
+            conn.Close();
+            return false;
+        }
+
 
     }
 }

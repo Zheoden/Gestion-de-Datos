@@ -49,6 +49,7 @@ namespace PalcoNet.Abm_Rol {
                             MessageBox.Show("Rol creado correctamente.");
                             txtNombre.Text = "";
                             cargarFuncionalidades();
+                            this.Close();
                         }
                         else {
                             MessageBox.Show("No se pudo crear el Rol. Por favor contacte al administrador.");
@@ -67,5 +68,6 @@ namespace PalcoNet.Abm_Rol {
         private void btnCerrar_Click(object sender, EventArgs e) {
             this.Hide();
         }
+   
     }
 }
