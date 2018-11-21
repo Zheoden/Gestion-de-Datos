@@ -33,16 +33,14 @@
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.tb_user = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.tb_pass = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_cuit_cuil = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_pass_confirm = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +66,7 @@
             this.btnDarAlta.TabIndex = 17;
             this.btnDarAlta.Text = "Dar de Alta";
             this.btnDarAlta.UseVisualStyleBackColor = false;
+            this.btnDarAlta.Click += new System.EventHandler(this.btnDarAlta_Click);
             // 
             // label1
             // 
@@ -89,12 +88,12 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Nombre de Usuario:";
             // 
-            // txtNombre
+            // tb_user
             // 
-            this.txtNombre.Location = new System.Drawing.Point(197, 32);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(231, 20);
-            this.txtNombre.TabIndex = 1;
+            this.tb_user.Location = new System.Drawing.Point(197, 32);
+            this.tb_user.Name = "tb_user";
+            this.tb_user.Size = new System.Drawing.Size(231, 20);
+            this.tb_user.TabIndex = 1;
             // 
             // label7
             // 
@@ -105,33 +104,54 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Contraseña:";
             // 
-            // txtApellido
+            // tb_pass
             // 
-            this.txtApellido.Location = new System.Drawing.Point(197, 58);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(231, 20);
-            this.txtApellido.TabIndex = 1;
+            this.tb_pass.Location = new System.Drawing.Point(197, 58);
+            this.tb_pass.Name = "tb_pass";
+            this.tb_pass.Size = new System.Drawing.Size(231, 20);
+            this.tb_pass.TabIndex = 1;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tb_cuit_cuil);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tb_pass_confirm);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtApellido);
+            this.groupBox1.Controls.Add(this.tb_pass);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtNombre);
+            this.groupBox1.Controls.Add(this.tb_user);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(20, 104);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(638, 222);
+            this.groupBox1.Size = new System.Drawing.Size(452, 149);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles del Usuario";
+            // 
+            // tb_cuit_cuil
+            // 
+            this.tb_cuit_cuil.Location = new System.Drawing.Point(197, 109);
+            this.tb_cuit_cuil.Name = "tb_cuit_cuil";
+            this.tb_cuit_cuil.Size = new System.Drawing.Size(231, 20);
+            this.tb_cuit_cuil.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "CUIL / CUIT:";
+            // 
+            // tb_pass_confirm
+            // 
+            this.tb_pass_confirm.Location = new System.Drawing.Point(197, 83);
+            this.tb_pass_confirm.Name = "tb_pass_confirm";
+            this.tb_pass_confirm.Size = new System.Drawing.Size(231, 20);
+            this.tb_pass_confirm.TabIndex = 7;
             // 
             // label2
             // 
@@ -141,45 +161,6 @@
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Repita Contraseña:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(197, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(231, 20);
-            this.textBox1.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 112);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Razon Social(Solo para Empresas):";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(197, 109);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(231, 20);
-            this.textBox2.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 136);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "CUIL (Solo para Clientes):";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(197, 133);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(231, 20);
-            this.textBox3.TabIndex = 11;
             // 
             // Form1
             // 
@@ -206,16 +187,14 @@
         private System.Windows.Forms.Button btnDarAlta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox tb_user;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox tb_pass;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_pass_confirm;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb_cuit_cuil;
 
     }
 }

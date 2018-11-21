@@ -49,6 +49,30 @@ namespace PalcoNet.Utils {
             return false;
         }
 
+        public static Boolean clienteDontExistUsuario(string usuario)
+        {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT 1 " +
+                          "FROM EL_REJUNTE.Usuario u " +
+                          "WHERE u.usuario_username = '" + usuario + "'";
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (!reader.HasRows)
+            {
+                return true;
+            }
+
+            conn.Close();
+            return false;
+        }
+
         public static Boolean clienteDontExistCuil(string cuil) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
