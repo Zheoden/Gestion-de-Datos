@@ -44,7 +44,7 @@ namespace PalcoNet.Utils {
             conn.Open();
             string SQL = "SELECT e.estado_id, e.estado_descripcion, e.estado_habilitado " +
                           "FROM EL_REJUNTE.Estado e " +
-                          "WHERE e.estado_descripcion = " + descripcion;
+                          "WHERE e.estado_descripcion = '" + descripcion + "'";
 
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;

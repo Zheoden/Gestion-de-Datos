@@ -97,7 +97,6 @@ namespace PalcoNet.Utils {
         }
 
         public static Boolean altaCliente(Cliente cliente) {
-            MessageBox.Show(cliente.fecha_nacimiento.ToString());
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Cliente (clie_nombre, clie_apellido, clie_tipo_documento, clie_documento, clie_cuil, clie_email, clie_telefono, clie_direccion_id, clie_fecha_nacimiento, clie_fecha_creacion, clie_tarjeta_id, clie_habilitado, clie_usuario_id) " +

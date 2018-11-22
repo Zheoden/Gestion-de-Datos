@@ -42,11 +42,10 @@ namespace PalcoNet.Generar_Publicacion {
 
         private void btnAlta_Click(object sender, EventArgs e) {
             Publicacion publi = new Publicacion();
+            Espectaculo espec = new Espectaculo();
+//            Rubro rubro = new Rubro();
             Direccion direccion = new Direccion();
             Grado grado = new Grado();
-            Estado estado = DBHelper.getEstado(cmbEstado.SelectedItem.ToString());
-            Espectaculo espec = new Espectaculo();
-            Rubro rubro = new Rubro();
 
             if (validarDatos()) {
                 /* Agrego todas las direcciones */
@@ -63,9 +62,44 @@ namespace PalcoNet.Generar_Publicacion {
                         MessageBox.Show("Se produjo un error intenta dar de alta la direccion.");
                     }
                 }
+                //precio
+                //rubro
+                grado.prioridad = cmbGrado.SelectedItem.ToString().Split(';')[0].Split(':')[1];
+                grado.comision = Int32.Parse(cmbGrado.SelectedItem.ToString().Split(';')[1].Split(':')[1]);
+                grado.porcentaje = Int32.Parse(cmbGrado.SelectedItem.ToString().Split(';')[2].Split(':')[1]);
+                grado = DBHelper.getGrado(grado.prioridad, grado.comision, grado.porcentaje);
+                Estado estado = DBHelper.getEstado(cmbEstado.SelectedItem.ToString());
 
                 publi.descripcion = txtDescripcion.Text;
                 publi.stock = Int32.Parse(txtStock.Text);
+                publi.user = VariablesGlobales.usuario;
+                publi.estado = estado;
+                publi.grado = grado;
+
+                espec.codigo = publi.codigo;
+                espec.descripcion = publi.descripcion;
+                espec.direccion = direccion;
+                espec.estado = estado;
+
+                publi.espectaculo = espec;
+
+                foreach (DateTime item in cmbFechaEspectaculo.Items) {
+                    publi.codigo = DBHelper.publicacionGetNextCod();
+                    publi.fecha_evento = item;
+                    espec.fecha_venc = item;
+                    if (DBHelper.altaEspectaculo(espec)) {
+                        if (DBHelper.altaPublicacion(publi)) {
+                            MessageBox.Show("Se creo la publicacion correctamente.");
+                        }
+                        else {
+                            MessageBox.Show("Se produjo un error insertando la Publicacion.");
+                        }
+                    }
+                    else {
+                        MessageBox.Show("Se produjo un error insertando el espectaculo.");
+                    }
+
+                }
 
                 /* Creo el Cliente */
                /* if (!DBHelper.altaCliente(cliente)) {
@@ -111,7 +145,7 @@ namespace PalcoNet.Generar_Publicacion {
 
         private Boolean validarDatos() {
             int numero;
-            if (txtDescripcion.Text != "" && txtStock.Text != "" && txtPrecio.Text != "" && txtRubro.Text != "" && txtUsuarioResponsable.Text != "" && dtpEspectaculo.Text != "" &&  cmbDireccion.Items.Count > 0 && cmbEstado.SelectedItem.ToString() != "" && cmbGrado.SelectedItem.ToString() != "") {
+            if (txtDescripcion.Text != "" && txtStock.Text != "" && txtPrecio.Text != "" && txtRubro.Text != "" && txtUsuarioResponsable.Text != "" && dtpEspectaculo.Text != "" && cmbDireccion.Items.Count > 0 && cmbEstado.Text != "" && cmbGrado.Text != "") {
                 if (Int32.TryParse(txtStock.Text, out numero) && Int32.TryParse(txtPrecio.Text, out numero)) {
                     if (cmbFechaEspectaculo.Items.Count > 0) {
                             return true;

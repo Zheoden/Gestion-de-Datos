@@ -210,6 +210,8 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Objetos\Menus.cs" />
+    <Compile Include="Utils\EspectaculoHelper.cs" />
+    <Compile Include="Utils\PublicacionHelper.cs" />
     <Compile Include="Utils\EstadoHelper.cs" />
     <Compile Include="Utils\GradoHelper.cs" />
     <Compile Include="Utils\EmpresaHelper.cs" />

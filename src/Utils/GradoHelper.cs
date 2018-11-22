@@ -74,6 +74,33 @@ namespace PalcoNet.Utils {
             return grado;
         }
 
+        public static Grado getGrado(string prioridad, int comision, int porcentaje) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_porcentaje " +
+                          "FROM EL_REJUNTE.Grado g " +
+                          "WHERE g.grado_prioridad = '" + prioridad + "' AND g.grado_comision = " + comision + " AND g.grado_porcentaje = " + porcentaje;
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            Grado grado = new Grado();
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    grado.id = Int32.Parse(reader["grado_id"].ToString());
+                    grado.prioridad = reader["grado_prioridad"].ToString();
+                    grado.comision = Int32.Parse(reader["grado_comision"].ToString());
+                    grado.porcentaje = Int32.Parse(reader["grado_porcentaje"].ToString());
+                }
+            }
+
+            conn.Close();
+            return grado;
+        }
+
         public static Boolean modificarGrado(Grado grado) {
 
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());

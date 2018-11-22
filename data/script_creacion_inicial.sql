@@ -761,10 +761,10 @@ BEGIN
 			IF(@ID_Espectaculo IS NULL)
 			BEGIN
 				INSERT INTO EL_REJUNTE.Espectaculo (espec_codigo , espec_descripcion, espec_fecha, espec_fecha_venc, espec_rubro_id, espec_estado_id)
-				VALUES (@Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, null, (SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = @Espectaculo_Estado))
+				VALUES (@Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, null, 2)
 				
 				INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo)
-				VALUES (@Espectaculo_Descripcion,(SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = @Espectaculo_Estado) ,@Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Cod)
+				VALUES (@Espectaculo_Descripcion, 2,@Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Cod)
 				
 			END
 		END
