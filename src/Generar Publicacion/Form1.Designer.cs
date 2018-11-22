@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnAlta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,23 +58,11 @@
             this.label14 = new System.Windows.Forms.Label();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.BackColor = System.Drawing.Color.SeaGreen;
-            this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCerrar.Location = new System.Drawing.Point(221, 418);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(128, 51);
-            this.btnCerrar.TabIndex = 110;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = false;
             // 
             // pictureBox2
             // 
@@ -91,7 +78,7 @@
             this.btnAlta.BackColor = System.Drawing.Color.SeaGreen;
             this.btnAlta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAlta.Location = new System.Drawing.Point(89, 418);
+            this.btnAlta.Location = new System.Drawing.Point(141, 407);
             this.btnAlta.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(128, 51);
@@ -362,7 +349,8 @@
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.salirToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(456, 24);
@@ -375,13 +363,19 @@
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.salirToolStripMenuItem.Text = "Cerrar aplicacion";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 484);
             this.Controls.Add(this.menu);
-            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.label2);
@@ -402,7 +396,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Label label2;
@@ -432,5 +425,6 @@
         public System.Windows.Forms.ComboBox cmbFechaEspectaculo;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
     }
 }

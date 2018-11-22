@@ -41,7 +41,41 @@ namespace PalcoNet.Generar_Publicacion {
         }
 
         private void btnAlta_Click(object sender, EventArgs e) {
+            Publicacion publi = new Publicacion();
+            Direccion direccion = new Direccion();
+            Grado grado = new Grado();
+            Estado estado = DBHelper.getEstado(cmbEstado.SelectedItem.ToString());
+            Espectaculo espec = new Espectaculo();
+            Rubro rubro = new Rubro();
 
+            if (validarDatos()) {
+                /* Agrego todas las direcciones */
+                foreach (string item in cmbDireccion.Items) {
+                    string[] items = item.Split('#');
+                    direccion.calle = items[0].Split(':')[1].Substring(1);
+                    direccion.numero = items[1].ToString();
+                    direccion.piso = items[2].ToString();
+                    direccion.depto = items[3].ToString();
+                    direccion.localidad = items[4].ToString();
+                    direccion.codigo_postal = items[5].ToString();
+
+                    if (!DBHelper.altaDeDireccion(direccion)) {
+                        MessageBox.Show("Se produjo un error intenta dar de alta la direccion.");
+                    }
+                }
+
+                publi.descripcion = txtDescripcion.Text;
+                publi.stock = Int32.Parse(txtStock.Text);
+
+                /* Creo el Cliente */
+               /* if (!DBHelper.altaCliente(cliente)) {
+                    MessageBox.Show("Se produjo un error al intentar dar de alta el Cliente");
+                }
+                else {
+                    MessageBox.Show("El cliente se creo correctamente.");
+                    this.Close();
+                }*/
+            }
         }
 
         private void btnAgregarDire_Click(object sender, EventArgs e) {
@@ -120,6 +154,10 @@ namespace PalcoNet.Generar_Publicacion {
 
         private void btnSacarFecha_Click(object sender, EventArgs e) {
             cmbFechaEspectaculo.Items.Remove(cmbFechaEspectaculo.SelectedItem);
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
         }
 
     }

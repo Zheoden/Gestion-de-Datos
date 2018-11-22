@@ -82,7 +82,8 @@ CREATE TABLE EL_REJUNTE.Espectaculo(
 	espec_fecha datetime NULL,
 	espec_fecha_venc datetime NULL,
 	espec_rubro_id INT NULL,
-	espec_estado nvarchar(255) NULL,
+	espec_estado_id INT NOT NULL,
+	espec_direccion_id INT NULL,
  CONSTRAINT PK_Espectaculo PRIMARY KEY CLUSTERED(
 	espec_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -420,9 +421,21 @@ REFERENCES EL_REJUNTE.Cliente (clie_id)
 GO
 ALTER TABLE EL_REJUNTE.Puntaje CHECK CONSTRAINT FK_Puntaje_Cliente
 GO
+ALTER TABLE EL_REJUNTE.Espectaculo WITH CHECK ADD CONSTRAINT FK_Espectaculo_Estado FOREIGN KEY(espec_estado_id)
+REFERENCES EL_REJUNTE.Estado (estado_id)
+GO
+ALTER TABLE EL_REJUNTE.Espectaculo CHECK CONSTRAINT FK_Espectaculo_Estado
+GO
+ALTER TABLE EL_REJUNTE.Espectaculo WITH CHECK ADD CONSTRAINT FK_Espectaculo_Direccion FOREIGN KEY(espec_direccion_id)
+REFERENCES EL_REJUNTE.Direccion (dire_id)
+GO
+ALTER TABLE EL_REJUNTE.Espectaculo CHECK CONSTRAINT FK_Espectaculo_Direccion
+GO
 USE [master]
 GO
 ALTER DATABASE [GD2C2018] SET READ_WRITE 
+GO
+USE GD2C2018;
 GO
 /* Creo los estados */
 INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado)
@@ -744,11 +757,15 @@ BEGIN
 				  espec_descripcion = @Espectaculo_Descripcion AND
 				  espec_fecha = @Espectaculo_Fecha AND
 				  espec_fecha_venc = @Espectaculo_Fecha_Venc AND
-				  espec_estado = @Espectaculo_Estado
+				  espec_estado_id = (SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = @Espectaculo_Estado)
 			IF(@ID_Espectaculo IS NULL)
 			BEGIN
-				INSERT INTO EL_REJUNTE.Espectaculo (espec_codigo , espec_descripcion, espec_fecha, espec_fecha_venc, espec_rubro_id, espec_estado)
-				VALUES (@Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, null, @Espectaculo_Estado)
+				INSERT INTO EL_REJUNTE.Espectaculo (espec_codigo , espec_descripcion, espec_fecha, espec_fecha_venc, espec_rubro_id, espec_estado_id)
+				VALUES (@Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, null, (SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = @Espectaculo_Estado))
+				
+				INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo)
+				VALUES (@Espectaculo_Descripcion,(SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = @Espectaculo_Estado) ,@Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Cod)
+				
 			END
 		END
 		/* Termina el clasificado de Espectaculos */

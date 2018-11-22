@@ -14,6 +14,7 @@ namespace PalcoNet.Objetos
         public DateTime fecha { get; set; }
         public DateTime fecha_venc { get; set; }
         public Rubro rubro { get; set; }
-        public string estado { get; set; }
+        public Estado estado { get; set; }
+        public Direccion direccion { get; set; }
     }
 }
