@@ -17,7 +17,7 @@ CREATE TABLE EL_REJUNTE.Cliente(
 	clie_documento nvarchar(8) NOT NULL,
 	clie_cuil nvarchar(11) NULL,
 	clie_email nvarchar(50) NOT NULL,
-	clie_telefono nvarchar(50) NULL,
+	clie_telefono nvarchar(50) NOT NULL,
 	clie_direccion_id INT NULL,
 	clie_fecha_nacimiento date NOT NULL,
 	clie_fecha_creacion date NOT NULL,
@@ -295,51 +295,6 @@ CREATE TABLE EL_REJUNTE.Usuario(
 )ON [PRIMARY]
 GO
 
-/* Tabla para datos erroneos */
-
-CREATE TABLE EL_REJUNTE.DatosInvalidos(
-	[Espec_Empresa_Razon_Social] [nvarchar](255) NULL,
-	[Espec_Empresa_Cuit] [nvarchar](255) NULL,
-	[Espec_Empresa_Fecha_Creacion] [datetime] NULL,
-	[Espec_Empresa_Mail] [nvarchar](50) NULL,
-	[Espec_Empresa_Dom_Calle] [nvarchar](50) NULL,
-	[Espec_Empresa_Nro_Calle] [numeric](18, 0) NULL,
-	[Espec_Empresa_Piso] [numeric](18, 0) NULL,
-	[Espec_Empresa_Depto] [nvarchar](50) NULL,
-	[Espec_Empresa_Cod_Postal] [nvarchar](50) NULL,
-	[Espectaculo_Cod] [numeric](18, 0) NULL,
-	[Espectaculo_Descripcion] [nvarchar](255) NULL,
-	[Espectaculo_Fecha] [datetime] NULL,
-	[Espectaculo_Fecha_Venc] [datetime] NULL,
-	[Espectaculo_Rubro_Descripcion] [nvarchar](255) NULL,
-	[Espectaculo_Estado] [nvarchar](255) NULL,
-	[Ubicacion_Fila] [varchar](3) NULL,
-	[Ubicacion_Asiento] [numeric](18, 0) NULL,
-	[Ubicacion_Sin_numerar] [bit] NULL,
-	[Ubicacion_Precio] [numeric](18, 0) NULL,
-	[Ubicacion_Tipo_Codigo] [numeric](18, 0) NULL,
-	[Ubicacion_Tipo_Descripcion] [nvarchar](255) NULL,
-	[Cli_Dni] [numeric](18, 0) NULL,
-	[Cli_Apeliido] [nvarchar](255) NULL,
-	[Cli_Nombre] [nvarchar](255) NULL,
-	[Cli_Fecha_Nac] [datetime] NULL,
-	[Cli_Mail] [nvarchar](255) NULL,
-	[Cli_Dom_Calle] [nvarchar](255) NULL,
-	[Cli_Nro_Calle] [numeric](18, 0) NULL,
-	[Cli_Piso] [numeric](18, 0) NULL,
-	[Cli_Depto] [nvarchar](255) NULL,
-	[Cli_Cod_Postal] [nvarchar](255) NULL,
-	[Compra_Fecha] [datetime] NULL,
-	[Compra_Cantidad] [numeric](18, 0) NULL,
-	[Item_Factura_Monto] [numeric](18, 2) NULL,
-	[Item_Factura_Cantidad] [numeric](18, 0) NULL,
-	[Item_Factura_Descripcion] [nvarchar](60) NULL,
-	[Factura_Nro] [numeric](18, 0) NULL,
-	[Factura_Fecha] [datetime] NULL,
-	[Factura_Total] [numeric](18, 2) NULL,
-	[Forma_Pago_Desc] [nvarchar](255) NULL
-) ON [PRIMARY]
-
 /* Creacion de claves foraneas */
 ALTER TABLE EL_REJUNTE.Cliente WITH CHECK ADD CONSTRAINT FK_Cliente_Direccion FOREIGN KEY(clie_direccion_id)
 REFERENCES EL_REJUNTE.Direccion (dire_id)
@@ -482,15 +437,7 @@ ALTER DATABASE [GD2C2018] SET READ_WRITE
 GO
 USE GD2C2018;
 GO
-/*Limpio las tablas antes de insertar */
-DELETE FROM [EL_REJUNTE].[Func_Rol]
-DELETE FROM [EL_REJUNTE].[Rol_Usuario]
-DELETE FROM [EL_REJUNTE].[Funcionalidad]
-DELETE FROM [EL_REJUNTE].[Rol]
-DELETE FROM [EL_REJUNTE].[Usuario]
-DELETE FROM [EL_REJUNTE].[Publicacion]
-DELETE FROM [EL_REJUNTE].[Espectaculo]
-DELETE FROM [EL_REJUNTE].[Estado]
+/* LIMPIO LAS TABLAS ANTES DE EMPEZAR */
 DELETE FROM [EL_REJUNTE].[Ubicacion_Compra]
 DELETE FROM [EL_REJUNTE].[Item_Factura]
 DELETE FROM [EL_REJUNTE].[Compra]
@@ -498,8 +445,14 @@ DELETE FROM [EL_REJUNTE].[Ubicacion]
 DELETE FROM [EL_REJUNTE].[Factura]
 DELETE FROM [EL_REJUNTE].[Cliente]
 DELETE FROM [EL_REJUNTE].[Empresa]
+DELETE FROM [EL_REJUNTE].[Espectaculo]
 DELETE FROM [EL_REJUNTE].[Direccion]
-DELETE FROM [EL_REJUNTE].[DatosInvalidos]
+DELETE FROM [EL_REJUNTE].[Func_Rol]
+DELETE FROM [EL_REJUNTE].[Rol_Usuario]
+DELETE FROM [EL_REJUNTE].[Funcionalidad]
+DELETE FROM [EL_REJUNTE].[Rol]
+DELETE FROM [EL_REJUNTE].[Usuario]
+DELETE FROM [EL_REJUNTE].[Estado]
 
 /* Creo los estados */
 INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado)
@@ -511,6 +464,7 @@ GO
 INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado)
 VALUES ('Finalizada' , 1)
 GO
+
 /* Creo el usuario administrador */
 INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo)
 VALUES('admin','E6B87050BFCB8143FCB8DB0170A4DC9ED00D904DDD3E2A4AD1B1E8DC0FDC9BE7', 1, 0, 0, 'Administrativo')
@@ -630,6 +584,8 @@ BEGIN
 	END
 END
 GO
+
+/* Procedure de migracion, se encagarga de levantar toda la tabla maestra y migrar los datos al sistema */
 CREATE PROCEDURE EL_REJUNTE.Migracion
 AS
 BEGIN
@@ -638,6 +594,19 @@ BEGIN
 	DECLARE @Espec_Empresa_Cuit nvarchar(255)
 	DECLARE @Espec_Empresa_Fecha_Creacion datetime
 	DECLARE @Espec_Empresa_Mail nvarchar(50)
+	/* Variables para las Direcciones de las Empresas */
+	DECLARE @Espec_Empresa_Dom_Calle nvarchar(255)
+	DECLARE @Espec_Empresa_Nro_Calle numeric(18,0)
+	DECLARE @Espec_Empresa_Piso numeric(18,0)
+	DECLARE @Espec_Empresa_Depto nvarchar(255)
+	DECLARE @Espec_Empresa_Cod_Postal nvarchar(255)
+	/* Variables para los Espectaculos */
+	DECLARE @Espectaculo_Cod numeric(18,0)
+	DECLARE @Espectaculo_Descripcion nvarchar(255)
+	DECLARE @Espectaculo_Fecha datetime
+	DECLARE @Espectaculo_Fecha_Venc datetime
+	DECLARE @Espectaculo_Rubro_Descripcion nvarchar(255)
+	DECLARE @Espectaculo_Estado nvarchar(255)
 	/* Variables para las Ubicaciones */
 	DECLARE @Ubicacion_Fila varchar(3)
 	DECLARE @Ubicacion_Asiento numeric(18,0)
@@ -651,6 +620,12 @@ BEGIN
 	DECLARE @Cli_Nombre nvarchar(255)
 	DECLARE @Cli_Fecha_Nac datetime
 	DECLARE @Cli_Mail nvarchar(255)
+	/* Variables para las Direcciones de los Clientes */
+	DECLARE @Cli_Dom_Calle nvarchar(255)
+	DECLARE @Cli_Nro_Calle numeric(18,0)
+	DECLARE @Cli_Piso numeric(18,0)
+	DECLARE @Cli_Depto nvarchar(255)
+	DECLARE @Cli_Cod_Postal nvarchar(255)
 	/* Variables para las Compras */
 	DECLARE @Compra_Fecha datetime
 	DECLARE @Compra_Cantidad numeric(18,0)
@@ -664,184 +639,299 @@ BEGIN
 	DECLARE @Factura_Total numeric(18,2)
 	DECLARE @Forma_Pago_Desc nvarchar(255)
 	/* Otras Variables */
+	DECLARE @ID_Direccion INT
 	DECLARE @ID_Cliente INT
 	DECLARE @ID_Empresa INT
+	DECLARE @ID_Rubro INT
+	DECLARE @ID_Espectaculo INT
 	DECLARE @ID_Ubicacion INT
 	DECLARE @ID_Compra INT
+	DECLARE @ID_Item INT
 	DECLARE @ID_Factura INT
 	
 	DECLARE c_maestro CURSOR FOR
-		SELECT gd.Espec_Empresa_Razon_Social, gd.Espec_Empresa_Cuit, gd.Espec_Empresa_Fecha_Creacion, gd.Espec_Empresa_Mail, gd.Ubicacion_Fila, gd.Ubicacion_Asiento, gd.Ubicacion_Sin_numerar, gd.Ubicacion_Precio, gd.Ubicacion_Tipo_Codigo, gd.Ubicacion_Tipo_Descripcion, gd.Cli_Dni, gd.Cli_Apeliido, gd.Cli_Nombre, gd.Cli_Fecha_Nac, gd.Cli_Mail, gd.Compra_Fecha, gd.Compra_Cantidad, gd.Item_Factura_Monto, gd.Item_Factura_Cantidad, gd.Item_Factura_Descripcion, gd.Factura_Nro, gd.Factura_Fecha, gd.Factura_Total, gd.Forma_Pago_Desc
+		SELECT gd.Espec_Empresa_Razon_Social, gd.Espec_Empresa_Cuit, gd.Espec_Empresa_Fecha_Creacion, gd.Espec_Empresa_Mail, gd.Espec_Empresa_Dom_Calle, gd.Espec_Empresa_Nro_Calle, gd.Espec_Empresa_Piso, gd.Espec_Empresa_Depto, gd.Espec_Empresa_Cod_Postal, gd.Espectaculo_Cod, gd.Espectaculo_Descripcion, gd.Espectaculo_Fecha, gd.Espectaculo_Fecha_Venc, gd.Espectaculo_Rubro_Descripcion, gd.Espectaculo_Estado, gd.Ubicacion_Fila, gd.Ubicacion_Asiento, gd.Ubicacion_Sin_numerar, gd.Ubicacion_Precio, gd.Ubicacion_Tipo_Codigo, gd.Ubicacion_Tipo_Descripcion, gd.Cli_Dni, gd.Cli_Apeliido, gd.Cli_Nombre, gd.Cli_Fecha_Nac, gd.Cli_Mail, gd.Cli_Dom_Calle, gd.Cli_Nro_Calle, gd.Cli_Piso, gd.Cli_Depto, gd.Cli_Cod_Postal, gd.Compra_Fecha, gd.Compra_Cantidad, gd.Item_Factura_Monto, gd.Item_Factura_Cantidad, gd.Item_Factura_Descripcion, gd.Factura_Nro, gd.Factura_Fecha, gd.Factura_Total, gd.Forma_Pago_Desc
 		FROM gd_esquema.Maestra gd
-		WHERE gd.compra_cantidad IS NOT NULL
 			
 	OPEN c_maestro
-	FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Ubicacion_Fila ,@Ubicacion_Asiento ,@Ubicacion_Sin_numerar ,@Ubicacion_Precio ,@Ubicacion_Tipo_Codigo ,@Ubicacion_Tipo_Descripcion, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Compra_Fecha, @Compra_Cantidad, @Item_Factura_Monto, @Item_Factura_Cantidad, @Item_Factura_Descripcion, @Factura_Nro, @Factura_Fecha, @Factura_Total, @Forma_Pago_Desc
+	FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Espec_Empresa_Dom_Calle, @Espec_Empresa_Nro_Calle, @Espec_Empresa_Piso, @Espec_Empresa_Depto, @Espec_Empresa_Cod_Postal, @Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Rubro_Descripcion, @Espectaculo_Estado, @Ubicacion_Fila ,@Ubicacion_Asiento ,@Ubicacion_Sin_numerar ,@Ubicacion_Precio ,@Ubicacion_Tipo_Codigo ,@Ubicacion_Tipo_Descripcion, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Cli_Dom_Calle, @Cli_Nro_Calle,@Cli_Piso, @Cli_Depto, @Cli_Cod_Postal, @Compra_Fecha, @Compra_Cantidad, @Item_Factura_Monto, @Item_Factura_Cantidad, @Item_Factura_Descripcion, @Factura_Nro, @Factura_Fecha, @Factura_Total, @Forma_Pago_Desc
 
 	WHILE(@@FETCH_STATUS=0)
 	BEGIN
-		SELECT @ID_Cliente = clie_id
-		FROM Cliente
-		WHERE clie_nombre = @Cli_Nombre AND
-			  clie_apellido = @Cli_Apellido AND
-			  clie_documento = @Cli_Dni AND
-			  clie_email = @Cli_Mail AND
-			  clie_fecha_nacimiento = @Cli_Fecha_Nac
-			  
-		SELECT @ID_Empresa = empre_id
-		FROM Empresa
-		WHERE empre_razon_social = @Espec_Empresa_Razon_Social AND
-			  empre_cuit = @Espec_Empresa_Cuit AND
-			  empre_fecha_creacion = @Espec_Empresa_Fecha_Creacion AND
-			  empre_mail = @Espec_Empresa_Mail
-		
-			/* Agrego el campo de la tabla intermedia */
-		SELECT @ID_Compra = compra_id
-		FROM Compra
-		WHERE compra_fecha = @Compra_Fecha AND
-			compra_cantidad = @Compra_Cantidad AND
-			compra_cliente_id = @ID_Cliente
-			
-		SELECT @ID_Ubicacion = ubica_id
-		FROM Ubicacion
-		WHERE ubica_fila = @Ubicacion_Fila AND
-			ubica_asiento = @Ubicacion_Asiento AND
-			ubica_sin_numerar = @Ubicacion_Sin_numerar AND
-			ubica_precio = @Ubicacion_Precio AND
-			ubica_tipo_codigo = @Ubicacion_Tipo_Codigo AND 
-			ubica_tipo_descripcion = @Ubicacion_Tipo_Descripcion
-			
-		SELECT @ID_Factura = fact_id
-		FROM Factura
-		WHERE fact_nro = @Factura_Nro AND
-			fact_fecha = @Factura_Fecha AND
-			fact_total = @Factura_Total AND
-			fact_pago_desc = @Forma_Pago_Desc AND
-			fact_cliente_id = @ID_Cliente AND
-			fact_empresa_id = @ID_Empresa
-			
-		IF( @ID_Compra IS NOT NULL AND @ID_Ubicacion IS NOT NULL )
+	/* Empieza el clasificado */
+		/* Valido los datos de Direccion de Usuario que voy a insertar */
+		IF(@Cli_Dom_Calle IS NOT NULL AND @Cli_Nro_Calle IS NOT NULL AND @Cli_Piso IS NOT NULL AND @Cli_Depto IS NOT NULL AND @Cli_Cod_Postal IS NOT NULL )
 		BEGIN
-			INSERT INTO EL_REJUNTE.Ubicacion_Compra(ubica_id, compra_id)
-			VALUES(@ID_Ubicacion, @ID_Compra)
+			/* Verifico si ya existe dentro de la tabla este registro, asi evito datos duplicados */
+			SELECT @ID_Direccion = dire_id 
+			FROM Direccion 
+			WHERE @Cli_Dom_Calle = dire_calle AND 
+				  @Cli_Nro_Calle = dire_numero AND 
+				  @Cli_Piso = dire_piso AND 
+				  @Cli_Depto = dire_depto AND 
+				  @Cli_Cod_Postal = dire_codigo_postal
+					  
+			IF(@ID_Direccion IS NULL)
+			BEGIN
+				/* Si no existe el registro, lo inserto */
+				INSERT INTO EL_REJUNTE.Direccion (dire_calle, dire_numero, dire_piso, dire_depto, dire_codigo_postal)
+				VALUES (@Cli_Dom_Calle, @Cli_Nro_Calle, @Cli_Piso, @Cli_Depto, @Cli_Cod_Postal)
+			END
+		
+			/* Termina el clasificado de Direcciones */
+			/* Ya que los valores son unicos, voy a traerme el ID del campo, en esta instancia tiene que existir si o si */			  
+				
+			/*Verifico si el Cliente ya existe o si es Cliente Nuevo*/
+			SELECT @ID_Cliente = clie_id
+			FROM Cliente
+			WHERE clie_nombre = @Cli_Nombre AND
+				  clie_apellido = @Cli_Apellido AND
+				  clie_documento = @Cli_Dni AND
+				  clie_email = @Cli_Mail AND
+				  clie_direccion_id = @ID_Direccion AND
+				  clie_fecha_nacimiento = @Cli_Fecha_Nac
+			IF(@ID_Cliente IS NULL)
+			BEGIN
+				SELECT @ID_Direccion = dire_id 
+				FROM Direccion 
+				WHERE @Cli_Dom_Calle = dire_calle AND 
+					  @Cli_Nro_Calle = dire_numero AND 
+					  @Cli_Piso = dire_piso AND 
+					  @Cli_Depto = dire_depto AND 
+					  @Cli_Cod_Postal = dire_codigo_postal
+				/* Hago el Insert de los Clientes, con sus respectivas Direcciones */
+				INSERT INTO EL_REJUNTE.Cliente (clie_nombre, clie_apellido, clie_tipo_documento, clie_documento, clie_cuil, clie_email, clie_telefono, clie_direccion_id, clie_fecha_nacimiento,clie_fecha_creacion, clie_tarjeta_id, clie_habilitado, clie_usuario_id)
+				VALUES (@Cli_Nombre, @Cli_Apellido, 'DNI', @Cli_Dni, '123' , @Cli_Mail, 123, @ID_Direccion, @Cli_Fecha_Nac, GETDATE(), null, 1, null)
+			END
 		END
-	/* Termina el clasificado de Facturacion */	
-		
-		IF(@ID_Factura IS NOT NULL AND @ID_Ubicacion IS NOT NULL)
+		/* Reinicio el ID_Direccion para que si no existe el campo, no me tome el valor del insert anterior */
+		SET @ID_Direccion = NULL
+	/* Termina el clasificado de Clientes */
+	
+		/* Valido los datos de Direccion de la Empresa que voy a insertar */
+		IF(@Espec_Empresa_Dom_Calle IS NOT NULL AND @Espec_Empresa_Nro_Calle IS NOT NULL AND @Espec_Empresa_Piso IS NOT NULL AND @Espec_Empresa_Depto IS NOT NULL AND @Espec_Empresa_Cod_Postal IS NOT NULL )
 		BEGIN
-			INSERT INTO EL_REJUNTE.Item_Factura (item_monto , item_cantidad, item_descripcion, item_factura_id, item_ubicacion_id)
-			VALUES (@Item_Factura_Monto, @Item_Factura_Cantidad, @Item_Factura_Descripcion, @ID_Factura, @ID_Ubicacion)
+			/* Verifico si ya existe dentro de la tabla este registro, asi evito datos duplicados */
+			SELECT @ID_Direccion = dire_id 
+			FROM Direccion 
+			WHERE @Espec_Empresa_Dom_Calle = dire_calle AND 
+				  @Espec_Empresa_Nro_Calle = dire_numero AND 
+				  @Espec_Empresa_Piso = dire_piso AND 
+				  @Espec_Empresa_Depto = dire_depto AND 
+				  @Espec_Empresa_Cod_Postal = dire_codigo_postal
+					  
+			IF(@ID_Direccion IS NULL)
+			BEGIN
+				/* Si no existe el registro, lo inserto */
+				INSERT INTO EL_REJUNTE.Direccion (dire_calle, dire_numero, dire_piso, dire_depto, dire_codigo_postal)
+				VALUES (@Espec_Empresa_Dom_Calle, @Espec_Empresa_Nro_Calle, @Espec_Empresa_Piso, @Espec_Empresa_Depto, @Espec_Empresa_Cod_Postal)
+			END
+		
+
+			/*Verifico si la Empresa ya existe o si es Empresa Nueva*/
+			SELECT @ID_Empresa = empre_id
+			FROM Empresa
+			WHERE empre_razon_social = @Espec_Empresa_Razon_Social AND
+				  empre_cuit = @Espec_Empresa_Cuit AND
+				  empre_fecha_creacion = @Espec_Empresa_Fecha_Creacion AND
+				  empre_mail = @Espec_Empresa_Mail AND
+				  empre_direccion_id = @ID_Direccion
+			IF(@ID_Empresa IS NULL)
+			BEGIN
+				SELECT @ID_Direccion = dire_id 
+				FROM Direccion 
+				WHERE @Espec_Empresa_Dom_Calle = dire_calle AND 
+					  @Espec_Empresa_Nro_Calle = dire_numero AND 
+					  @Espec_Empresa_Piso = dire_piso AND 
+					  @Espec_Empresa_Depto = dire_depto AND 
+					  @Espec_Empresa_Cod_Postal = dire_codigo_postal
+				/* Hago el Insert de las Empresas, con sus respectivas Direcciones */
+				INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id, empre_telefono, empre_usuario_id, empre_baja_logica)
+				VALUES (@Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @ID_Direccion, null, null, 0)
+			END
+		END
+		/* Reinicio el ID_Direccion para que si no existe el campo, no me tome el valor del insert anterior */
+		SET @ID_Direccion = NULL
+	/* Termina el clasificado de Empresas */
+	
+		IF(@Espectaculo_Cod IS NOT NULL AND @Espectaculo_Descripcion IS NOT NULL AND @Espectaculo_Fecha IS NOT NULL AND @Espectaculo_Fecha_Venc IS NOT NULL AND @Espectaculo_Estado IS NOT NULL)
+		BEGIN
+		/*Verifico si el Espectaculo ya existe o si es Especulo Nuevo*/
+			SELECT @ID_Espectaculo = espec_id
+			FROM Espectaculo
+			WHERE espec_codigo = @Espectaculo_Cod AND
+				  espec_descripcion = @Espectaculo_Descripcion AND
+				  espec_fecha = @Espectaculo_Fecha AND
+				  espec_fecha_venc = @Espectaculo_Fecha_Venc AND
+				  espec_estado_id = 2
+			IF(@ID_Espectaculo IS NULL)
+			BEGIN
+				INSERT INTO EL_REJUNTE.Espectaculo (espec_codigo , espec_descripcion, espec_fecha, espec_fecha_venc, espec_rubro_id, espec_estado_id)
+				VALUES (@Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, null, 2)
+				
+				INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo)
+				VALUES (@Espectaculo_Descripcion, 2,@Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Cod)
+				
+			END
+		END
+		/* Termina el clasificado de Espectaculos */
+		IF(@Ubicacion_Fila IS NOT NULL AND @Ubicacion_Asiento IS NOT NULL AND @Ubicacion_Sin_numerar IS NOT NULL AND @Ubicacion_Precio IS NOT NULL AND @Ubicacion_Tipo_Codigo IS NOT NULL AND @Ubicacion_Tipo_Descripcion IS NOT NULL)
+		BEGIN
+			/*Verifico si la Ubicacion ya existe o si es Ubicacion Nueva*/
+			SELECT @ID_Ubicacion = ubica_id
+			FROM Ubicacion
+			WHERE ubica_fila = @Ubicacion_Fila AND
+				  ubica_asiento = @Ubicacion_Asiento AND
+				  ubica_sin_numerar = @Ubicacion_Sin_numerar AND
+				  ubica_precio = @Ubicacion_Precio AND
+				  ubica_tipo_codigo = @Ubicacion_Tipo_Codigo AND 
+				  ubica_tipo_descripcion = @Ubicacion_Tipo_Descripcion
+			IF(@ID_Espectaculo IS NULL)
+			BEGIN
+				INSERT INTO EL_REJUNTE.Ubicacion (ubica_fila , ubica_asiento, ubica_sin_numerar, ubica_precio, ubica_tipo_codigo, ubica_tipo_descripcion,ubica_facturada)
+				VALUES (@Ubicacion_Fila, @Ubicacion_Asiento, @Ubicacion_Sin_numerar, @Ubicacion_Precio, @Ubicacion_Tipo_Codigo, @Ubicacion_Tipo_Descripcion, 0)
+			END
+		END
+		/*Verifico si la Compra ya existe o si es Compra Nueva*/
+		IF(@Compra_Fecha IS NOT NULL AND @Compra_Cantidad IS NOT NULL)
+		BEGIN
+			SELECT @ID_Compra = compra_id
+			FROM Compra
+			WHERE compra_fecha = @Compra_Fecha AND
+				  compra_cantidad = @Compra_Cantidad AND
+				  compra_cliente_id = @ID_Cliente
+				  
+			IF(@ID_Compra IS NULL)
+			BEGIN				
+
+				SELECT @ID_Cliente = clie_id
+				FROM Cliente
+				WHERE clie_nombre = @Cli_Nombre AND
+					clie_apellido = @Cli_Apellido AND
+					clie_documento = @Cli_Dni AND
+					clie_email = @Cli_Mail AND
+					clie_direccion_id = @ID_Direccion AND
+					clie_fecha_nacimiento = @Cli_Fecha_Nac
+				  
+				SELECT @ID_Ubicacion = ubica_id
+				FROM Ubicacion
+				WHERE ubica_fila = @Ubicacion_Fila AND
+				  ubica_asiento = @Ubicacion_Asiento AND
+				  ubica_sin_numerar = @Ubicacion_Sin_numerar AND
+				  ubica_precio = @Ubicacion_Precio AND
+				  ubica_tipo_codigo = @Ubicacion_Tipo_Codigo AND 
+				  ubica_tipo_descripcion = @Ubicacion_Tipo_Descripcion
+				  
+				IF(@ID_Cliente IS NOT NULL AND @ID_Ubicacion IS NOT NULL)
+				BEGIN
+					INSERT INTO EL_REJUNTE.Compra (compra_fecha , compra_cantidad, compra_cliente_id)
+					VALUES (@Compra_Fecha, @Compra_Cantidad, @ID_Cliente)
+					/* Agrego el campo de la tabla intermedia */
+		
+					SELECT @ID_Compra = compra_id
+					FROM Compra
+					WHERE compra_fecha = @Compra_Fecha AND
+						compra_cantidad = @Compra_Cantidad AND
+						compra_cliente_id = @ID_Cliente
+			
+					INSERT INTO EL_REJUNTE.Ubicacion_Compra(ubica_id, compra_id)
+					VALUES(@ID_Ubicacion, @ID_Compra)
+				END
+			END
+		END
+	
+	/* Termina el clasificado de Ubicaciones */
+		IF(@Factura_Nro IS NOT NULL AND @Factura_Fecha IS NOT NULL AND @Factura_Total IS NOT NULL AND @Forma_Pago_Desc IS NOT NULL)
+		BEGIN
+			SELECT @ID_Factura = fact_id
+			FROM Factura
+			WHERE fact_nro = @Factura_Nro AND
+				  fact_fecha = @Factura_Fecha AND
+				  fact_total = @Factura_Total AND
+				  fact_pago_desc = @Forma_Pago_Desc
+				  
+			IF(@ID_Factura IS NULL )
+			BEGIN
+				SELECT @ID_Cliente = clie_id
+				FROM Cliente
+				WHERE clie_nombre = @Cli_Nombre AND
+					clie_apellido = @Cli_Apellido AND
+					clie_documento = @Cli_Dni AND
+					clie_email = @Cli_Mail AND
+					clie_direccion_id = @ID_Direccion AND
+					clie_fecha_nacimiento = @Cli_Fecha_Nac
+					
+				SELECT @ID_Empresa = empre_id
+				FROM Empresa
+				WHERE empre_razon_social = @Espec_Empresa_Razon_Social AND
+					empre_cuit = @Espec_Empresa_Cuit AND
+					empre_fecha_creacion = @Espec_Empresa_Fecha_Creacion AND
+					empre_mail = @Espec_Empresa_Mail AND
+					empre_direccion_id = @ID_Direccion
+					
+				IF(@ID_Cliente IS NOT NULL AND @ID_Empresa IS NOT NULL AND @Factura_Nro IS NOT NULL)
+				BEGIN
+					INSERT INTO EL_REJUNTE.Factura (fact_nro , fact_fecha, fact_total, fact_pago_desc, fact_cliente_id, fact_empresa_id)
+					VALUES (@Factura_Nro, @Factura_Fecha, @Factura_Total, @Forma_Pago_Desc, @ID_Cliente, @ID_Empresa)
+				END
+			END
+		END
+	
+	/* Termina el clasificado de Facturacion */
+		IF(@Item_Factura_Monto IS NOT NULL AND @Item_Factura_Cantidad IS NOT NULL AND @Item_Factura_Descripcion IS NOT NULL)
+		BEGIN
+			SELECT @ID_Item = item_id
+			FROM Item_Factura
+			WHERE item_monto = @Item_Factura_Monto AND
+				  item_cantidad = @Item_Factura_Cantidad AND
+				  item_descripcion = @Item_Factura_Descripcion	
+		
+			IF(@ID_Item IS NULL )
+			BEGIN
+				SELECT @ID_Factura = fact_id
+				FROM Factura
+				WHERE fact_nro = @Factura_Nro AND
+					fact_fecha = @Factura_Fecha AND
+					fact_total = @Factura_Total AND
+					fact_pago_desc = @Forma_Pago_Desc
+					
+				SELECT @ID_Ubicacion = ubica_id
+				FROM Ubicacion
+				WHERE ubica_fila = @Ubicacion_Fila AND
+				  ubica_asiento = @Ubicacion_Asiento AND
+				  ubica_sin_numerar = @Ubicacion_Sin_numerar AND
+				  ubica_precio = @Ubicacion_Precio AND
+				  ubica_tipo_codigo = @Ubicacion_Tipo_Codigo AND 
+				  ubica_tipo_descripcion = @Ubicacion_Tipo_Descripcion
+					
+				IF(@ID_Factura IS NOT NULL AND @ID_Ubicacion IS NOT NULL)
+				BEGIN
+					INSERT INTO EL_REJUNTE.Item_Factura (item_monto , item_cantidad, item_descripcion, item_factura_id, item_ubicacion_id)
+					VALUES (@Item_Factura_Monto, @Item_Factura_Cantidad, @Item_Factura_Descripcion, @ID_Factura, @ID_Ubicacion)
+				END
+			END
 		END
 	
 	/* Reinicio las variables Unicas */
+		SET @ID_Direccion = NULL
+		SET @ID_Direccion = NULL
 		SET @ID_Cliente = NULL
 		SET @ID_Empresa = NULL
+		SET @ID_Rubro = NULL
+		SET @ID_Espectaculo = NULL
 		SET @ID_Ubicacion = NULL
 		SET @ID_Compra = NULL
+		SET @ID_Item = NULL
 		SET @ID_Factura = NULL
 		
 	/* Tomo la siguiente Linea */
-		FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Ubicacion_Fila ,@Ubicacion_Asiento ,@Ubicacion_Sin_numerar ,@Ubicacion_Precio ,@Ubicacion_Tipo_Codigo ,@Ubicacion_Tipo_Descripcion, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Compra_Fecha, @Compra_Cantidad, @Item_Factura_Monto, @Item_Factura_Cantidad, @Item_Factura_Descripcion, @Factura_Nro, @Factura_Fecha, @Factura_Total, @Forma_Pago_Desc
+		FETCH NEXT FROM c_maestro INTO @Espec_Empresa_Razon_Social, @Espec_Empresa_Cuit, @Espec_Empresa_Fecha_Creacion, @Espec_Empresa_Mail, @Espec_Empresa_Dom_Calle, @Espec_Empresa_Nro_Calle, @Espec_Empresa_Piso, @Espec_Empresa_Depto, @Espec_Empresa_Cod_Postal, @Espectaculo_Cod, @Espectaculo_Descripcion, @Espectaculo_Fecha, @Espectaculo_Fecha_Venc, @Espectaculo_Rubro_Descripcion, @Espectaculo_Estado, @Ubicacion_Fila ,@Ubicacion_Asiento ,@Ubicacion_Sin_numerar ,@Ubicacion_Precio ,@Ubicacion_Tipo_Codigo ,@Ubicacion_Tipo_Descripcion, @Cli_Dni, @Cli_Apellido, @Cli_Nombre, @Cli_Fecha_Nac, @Cli_Mail, @Cli_Dom_Calle, @Cli_Nro_Calle,@Cli_Piso, @Cli_Depto, @Cli_Cod_Postal, @Compra_Fecha, @Compra_Cantidad, @Item_Factura_Monto, @Item_Factura_Cantidad, @Item_Factura_Descripcion, @Factura_Nro, @Factura_Fecha, @Factura_Total, @Forma_Pago_Desc
 	END
 	/* Termino de recorrer el Cursor, lo cierro y libero la memoria */
 	CLOSE c_maestro
 	DEALLOCATE c_maestro
 END
 GO
-/* Creo una tabla temporal para tener todas las direccion sin validar */
-CREATE TABLE EL_REJUNTE.#Direcciones (	
-    dire_id INT NOT NULL IDENTITY(1,1),
-	dire_calle nvarchar(255) NOT NULL,
-	dire_numero nvarchar(50) NOT NULL,
-	dire_piso nvarchar(50) NULL,
-	dire_depto nvarchar(50) NULL,
-	dire_localidad nvarchar(50) NULL,
-	dire_codigo_postal nvarchar(50) NOT NULL
-	)
-	
-/* DIRECCIONES */	
-	/* Migro las direcciones de los clientes */
-	INSERT INTO EL_REJUNTE.#Direcciones (dire_calle, dire_numero, dire_piso, dire_depto, dire_codigo_postal)
-	(SELECT gd.Cli_Dom_Calle, gd.Cli_Nro_Calle, gd.Cli_Piso, gd.Cli_Depto, gd.Cli_Cod_Postal
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Cli_Dom_Calle IS NOT NULL AND gd.Cli_Nro_Calle IS NOT NULL AND gd.Cli_Piso IS NOT NULL AND gd.Cli_Depto IS NOT NULL AND gd.Cli_Cod_Postal IS NOT NULL)
-	GO
-	/* Migro las direcciones de las empresas */
-	INSERT INTO EL_REJUNTE.#Direcciones (dire_calle, dire_numero, dire_piso, dire_depto, dire_codigo_postal)
-	(SELECT gd.Espec_Empresa_Dom_Calle, gd.Espec_Empresa_Nro_Calle, gd.Espec_Empresa_Piso, gd.Espec_Empresa_Depto, gd.Espec_Empresa_Cod_Postal 
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Espec_Empresa_Dom_Calle IS NOT NULL AND gd.Espec_Empresa_Nro_Calle IS NOT NULL AND gd.Espec_Empresa_Piso IS NOT NULL AND gd.Espec_Empresa_Depto IS NOT NULL AND gd.Espec_Empresa_Cod_Postal IS NOT NULL)
-	GO
-	/* Me quedo con las direcciones sin repetir */
-	INSERT INTO EL_REJUNTE.Direccion(dire_calle, dire_numero, dire_piso, dire_depto, dire_codigo_postal)
-	(SELECT DISTINCT dire_calle, dire_numero, dire_piso, dire_depto, dire_codigo_postal
-	FROM EL_REJUNTE.#Direcciones)
-	GO
-/* CLIENTES */
-	/* Me traigo todos los clientes que sean distintos */
-	INSERT INTO EL_REJUNTE.Cliente (clie_nombre, clie_apellido, clie_tipo_documento, clie_documento, clie_cuil, clie_email, clie_telefono, clie_direccion_id, clie_fecha_nacimiento,clie_fecha_creacion, clie_tarjeta_id, clie_habilitado, clie_usuario_id)
-	(SELECT DISTINCT gd.Cli_Nombre, gd.Cli_Apeliido, 'DNI', gd.Cli_Dni, null, gd.Cli_Mail, null, (SELECT dire_id FROM EL_REJUNTE.Direccion WHERE gd.Cli_Dom_Calle = dire_calle AND gd.Cli_Nro_Calle = dire_numero AND gd.Cli_Piso = dire_piso AND gd.Cli_Depto = dire_depto AND gd.Cli_Cod_Postal = dire_codigo_postal ),gd.Cli_Fecha_Nac, GETDATE(), null, 1, null
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Cli_Dni IS NOT NULL AND gd.Cli_Apeliido IS NOT NULL AND gd.Cli_Nombre IS NOT NULL AND gd.Cli_Fecha_Nac IS NOT NULL AND gd.Cli_Mail IS NOT NULL)
-	GO
-/* EMPRESAS */
-	INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id, empre_telefono, empre_usuario_id, empre_baja_logica)
-	(SELECT DISTINCT gd.Espec_Empresa_Razon_Social, gd.Espec_Empresa_Cuit, gd.Espec_Empresa_Fecha_Creacion, gd.Espec_Empresa_Mail, (SELECT dire_id FROM EL_REJUNTE.Direccion WHERE gd.Espec_Empresa_Dom_Calle = dire_calle AND gd.Espec_Empresa_Nro_Calle = dire_numero AND gd.Espec_Empresa_Piso = dire_piso AND gd.Espec_Empresa_Depto = dire_depto AND gd.Espec_Empresa_Cod_Postal = dire_codigo_postal), null, null, 0
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Espec_Empresa_Razon_Social IS NOT NULL AND gd.Espec_Empresa_Cuit IS NOT NULL AND gd.Espec_Empresa_Fecha_Creacion IS NOT NULL AND gd.Espec_Empresa_Mail IS NOT NULL)
-	GO
-/* ESPECTACULOS */
-	INSERT INTO EL_REJUNTE.Espectaculo (espec_codigo , espec_descripcion, espec_fecha, espec_fecha_venc, espec_rubro_id, espec_estado_id)
-	(SELECT DISTINCT gd.Espectaculo_Cod, gd.Espectaculo_Descripcion, gd.Espectaculo_Fecha, gd.Espectaculo_Fecha_Venc, null, (SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = gd.Espectaculo_Estado)
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Espectaculo_Cod IS NOT NULL AND gd.Espectaculo_Descripcion IS NOT NULL AND gd.Espectaculo_Fecha IS NOT NULL AND gd.Espectaculo_Fecha_Venc IS NOT NULL AND gd.Espectaculo_Rubro_Descripcion IS NOT NULL AND gd.Espectaculo_Estado IS NOT NULL)
-	GO
-/* PUBLICACIONES */
-	INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo, publi_espectaculo_id)
-	(SELECT DISTINCT gd.Espectaculo_Descripcion, (SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = gd.Espectaculo_Estado), gd.Espectaculo_Fecha, gd.Espectaculo_Fecha_Venc, gd.Espectaculo_Cod, (SELECT espec_id FROM EL_REJUNTE.Espectaculo WHERE espec_descripcion = gd.Espectaculo_Descripcion)
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Espectaculo_Cod IS NOT NULL AND gd.Espectaculo_Descripcion IS NOT NULL AND gd.Espectaculo_Fecha IS NOT NULL AND gd.Espectaculo_Fecha_Venc IS NOT NULL AND gd.Espectaculo_Rubro_Descripcion IS NOT NULL AND gd.Espectaculo_Estado IS NOT NULL)
-	GO
-/* UBICACION */
-	INSERT INTO EL_REJUNTE.Ubicacion (ubica_fila , ubica_asiento, ubica_sin_numerar, ubica_precio, ubica_tipo_codigo, ubica_tipo_descripcion,ubica_facturada)
-	(SELECT DISTINCT gd.Ubicacion_Fila, gd.Ubicacion_Asiento, gd.Ubicacion_Sin_numerar, gd.Ubicacion_Precio, gd.Ubicacion_Tipo_Codigo, gd.Ubicacion_Tipo_Descripcion, 0
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Ubicacion_Fila IS NOT NULL AND gd.Ubicacion_Asiento IS NOT NULL AND gd.Ubicacion_Sin_numerar IS NOT NULL AND gd.Ubicacion_Precio IS NOT NULL AND gd.Ubicacion_Tipo_Codigo IS NOT NULL AND gd.Ubicacion_Tipo_Descripcion IS NOT NULL)
-	GO
-/* COMPRA */
-	INSERT INTO EL_REJUNTE.Compra (compra_fecha , compra_cantidad, compra_cliente_id)
-	(SELECT DISTINCT gd.Compra_Fecha, gd.Compra_Cantidad, c.clie_id
-	FROM gd_esquema.Maestra gd, EL_REJUNTE.Cliente c
-	WHERE gd.Compra_Fecha IS NOT NULL AND gd.Compra_Cantidad IS NOT NULL AND c.clie_apellido = gd.Cli_Apeliido AND c.clie_nombre = gd.Cli_Nombre AND c.clie_documento = gd.Cli_Dni)
-	GO
-/* UBICACION_COMPRA
-	INSERT INTO EL_REJUNTE.Ubicacion_Compra(ubica_id, compra_id)
-	(SELECT DISTINCT (SELECT DISTINCT ubica_id FROM EL_REJUNTE.Ubicacion WHERE ubica_fila = gd.Ubicacion_Fila AND ubica_asiento = gd.Ubicacion_Asiento AND ubica_sin_numerar = gd.Ubicacion_Sin_numerar AND ubica_precio = gd.Ubicacion_Precio AND ubica_tipo_codigo = gd.Ubicacion_Tipo_Codigo AND ubica_tipo_descripcion = gd.Ubicacion_Tipo_Descripcion), (SELECT DISTINCT compra_id FROM EL_REJUNTE.Compra WHERE compra_fecha = gd.Compra_Fecha AND compra_cantidad = gd.Compra_Cantidad AND compra_cliente_id = (SELECT DISTINCT c.clie_id FROM EL_REJUNTE.Cliente c WHERE c.clie_apellido = gd.Cli_Apeliido AND c.clie_nombre = gd.Cli_Nombre AND c.clie_documento = gd.Cli_Dni))
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Ubicacion_Fila IS NOT NULL AND gd.Ubicacion_Asiento IS NOT NULL AND gd.Ubicacion_Sin_numerar IS NOT NULL AND gd.Ubicacion_Precio IS NOT NULL AND gd.Ubicacion_Tipo_Codigo IS NOT NULL AND gd.Ubicacion_Tipo_Descripcion IS NOT NULL AND gd.Compra_Fecha IS NOT NULL AND gd.Compra_Cantidad IS NOT NULL AND gd.Cli_Apeliido IS NOT NULL AND gd.Cli_Nombre IS NOT NULL AND gd.Cli_Dni IS NOT NULL)
-	GO
-*/
-/* FACTURA */
-	INSERT INTO EL_REJUNTE.Factura (fact_nro , fact_fecha, fact_total, fact_pago_desc, fact_cliente_id, fact_empresa_id)
-	(SELECT DISTINCT gd.Factura_Nro, gd.Factura_Fecha, gd.Factura_Total, gd.Forma_Pago_Desc, (SELECT clie_id FROM EL_REJUNTE.Cliente WHERE clie_nombre = gd.Cli_Nombre AND clie_apellido = gd.Cli_Apeliido AND clie_documento = gd.Cli_Dni AND clie_email = gd.Cli_Mail AND clie_fecha_nacimiento = gd.Cli_Fecha_Nac), (SELECT empre_id FROM EL_REJUNTE.Empresa WHERE empre_razon_social = gd.Espec_Empresa_Razon_Social AND empre_cuit = gd.Espec_Empresa_Cuit AND empre_fecha_creacion = gd.Espec_Empresa_Fecha_Creacion AND empre_mail = gd.Espec_Empresa_Mail)
-	FROM gd_esquema.Maestra gd
-	WHERE gd.Factura_Nro IS NOT NULL AND gd.Factura_Fecha IS NOT NULL AND gd.Factura_Total IS NOT NULL AND gd.Forma_Pago_Desc IS NOT NULL AND gd.Cli_Nombre IS NOT NULL AND gd.Cli_Apeliido IS NOT NULL AND gd.Cli_Dni IS NOT NULL AND gd.Cli_Mail IS NOT NULL AND gd.Cli_Fecha_Nac IS NOT NULL AND gd.Espec_Empresa_Razon_Social IS NOT NULL AND gd.Espec_Empresa_Cuit IS NOT NULL AND gd.Espec_Empresa_Fecha_Creacion IS NOT NULL AND gd.Espec_Empresa_Mail IS NOT NULL)
-	GO
-/* ITEM_FACTURA
-	INSERT INTO EL_REJUNTE.Item_Factura (item_monto , item_cantidad, item_descripcion, item_factura_id, item_ubicacion_id)
-	(SELECT DISTINCT gd.Item_Factura_Monto, gd.Item_Factura_Cantidad, gd.Item_Factura_Descripcion, f.fact_id , u.ubica_id 
-	FROM gd_esquema.Maestra gd, EL_REJUNTE.Factura f, EL_REJUNTE.Ubicacion u
-	WHERE gd.Item_Factura_Monto IS NOT NULL AND gd.Item_Factura_Cantidad IS NOT NULL AND gd.Item_Factura_Descripcion IS NOT NULL AND gd.Factura_Nro IS NOT NULL AND gd.Factura_Fecha IS NOT NULL AND gd.Factura_Total IS NOT NULL AND gd.Forma_Pago_Desc IS NOT NULL AND gd.Ubicacion_Fila IS NOT NULL AND gd.Ubicacion_Asiento IS NOT NULL AND gd.Ubicacion_Sin_numerar IS NOT NULL AND gd.Ubicacion_Precio IS NOT NULL AND gd.Ubicacion_Tipo_Codigo IS NOT NULL AND gd.Ubicacion_Tipo_Descripcion IS NOT NULL AND f.fact_nro = gd.Factura_Nro AND f.fact_fecha = gd.Factura_Fecha AND f.fact_total = gd.Factura_Total AND f.fact_pago_desc = gd.Forma_Pago_Desc AND u.ubica_fila = gd.Ubicacion_Fila AND u.ubica_asiento = gd.Ubicacion_Asiento AND u.ubica_sin_numerar = gd.Ubicacion_Sin_numerar AND u.ubica_precio = gd.Ubicacion_Precio AND u.ubica_tipo_codigo = gd.Ubicacion_Tipo_Codigo AND u.ubica_tipo_descripcion = gd.Ubicacion_Tipo_Descripcion)
-	GO
-*/
-/* TODOS LOS DATOS */
-INSERT INTO EL_REJUNTE.DatosInvalidos(Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc)
-(SELECT Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc  
-FROM gd_esquema.Maestra)
-GO
 
 EXEC EL_REJUNTE.Migracion
 GO
-
-
-
