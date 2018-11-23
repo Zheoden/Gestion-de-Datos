@@ -15,8 +15,8 @@ namespace PalcoNet.Utils {
 
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_porcentaje) " +
-                                "VALUES ('" + grado.prioridad + "', " + grado.comision + ", " + grado.porcentaje + ")";
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) " +
+                                "VALUES ('" + grado.prioridad + "', " + grado.comision + ", 1 )";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();
@@ -25,13 +25,13 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
-        public static Boolean gradoDontExist(string prioridad, int comision, int porcentaje) {
+        public static Boolean gradoDontExist(string prioridad, int comision) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT 1 " +
                           "FROM EL_REJUNTE.Grado g " +
-                          "WHERE g.grado_prioridad = '" + prioridad + "' AND g.grado_comision = " + comision + " AND g.grado_porcentaje = " + porcentaje;
+                          "WHERE g.grado_prioridad = '" + prioridad + "' AND g.grado_comision = " + comision;
 
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
@@ -51,7 +51,7 @@ namespace PalcoNet.Utils {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_porcentaje " +
+            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_habilitado " +
                           "FROM EL_REJUNTE.Grado g " +
                           "WHERE g.grado_id = " + id;
 
@@ -66,7 +66,7 @@ namespace PalcoNet.Utils {
                     grado.id = Int32.Parse(reader["grado_id"].ToString());
                     grado.prioridad = reader["grado_prioridad"].ToString();
                     grado.comision = Int32.Parse(reader["grado_comision"].ToString());
-                    grado.porcentaje = Int32.Parse(reader["grado_porcentaje"].ToString());
+                    grado.habilitado = Convert.ToBoolean(reader["grado_habilitado"].ToString());
                 }
             }
 
@@ -74,13 +74,13 @@ namespace PalcoNet.Utils {
             return grado;
         }
 
-        public static Grado getGrado(string prioridad, int comision, int porcentaje) {
+        public static Grado getGrado(string prioridad, int comision) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_porcentaje " +
+            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_habilitado " +
                           "FROM EL_REJUNTE.Grado g " +
-                          "WHERE g.grado_prioridad = '" + prioridad + "' AND g.grado_comision = " + comision + " AND g.grado_porcentaje = " + porcentaje;
+                          "WHERE g.grado_prioridad = '" + prioridad + "' AND g.grado_comision = " + comision;
 
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
@@ -93,7 +93,7 @@ namespace PalcoNet.Utils {
                     grado.id = Int32.Parse(reader["grado_id"].ToString());
                     grado.prioridad = reader["grado_prioridad"].ToString();
                     grado.comision = Int32.Parse(reader["grado_comision"].ToString());
-                    grado.porcentaje = Int32.Parse(reader["grado_porcentaje"].ToString());
+                    grado.habilitado = Convert.ToBoolean(reader["grado_habilitado"].ToString());
                 }
             }
 
@@ -106,7 +106,7 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "UPDATE EL_REJUNTE.Grado " +
-                               "SET grado_prioridad = '" + grado.prioridad + "', grado_comision = " + grado.comision + ", grado_porcentaje = " + grado.porcentaje + " " +
+                               "SET grado_prioridad = '" + grado.prioridad + "', grado_comision = " + grado.comision + ", grado_habilitado = " + Convert.ToInt32(grado.habilitado) + " " +
                                "WHERE grado_id = " + grado.id;
             comm.Connection = connection;
             comm.Connection.Open();
@@ -120,8 +120,10 @@ namespace PalcoNet.Utils {
 
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "DELETE FROM EL_REJUNTE.Grado " +
+            comm.CommandText = "UPDATE EL_REJUNTE.Grado " +
+                               "SET grado_habilitado = 0 " +
                                "WHERE grado_id = " + id;
+
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();
@@ -134,7 +136,7 @@ namespace PalcoNet.Utils {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_porcentaje " +
+            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_habilitado " +
                           "FROM EL_REJUNTE.Grado g ";
 
             SqlCommand command = new SqlCommand(SQL, conn);
@@ -149,7 +151,7 @@ namespace PalcoNet.Utils {
                     grado.id = Int32.Parse(reader["grado_id"].ToString());
                     grado.prioridad = reader["grado_prioridad"].ToString();
                     grado.comision = Int32.Parse(reader["grado_comision"].ToString());
-                    grado.porcentaje = Int32.Parse(reader["grado_porcentaje"].ToString());
+                    grado.habilitado = Convert.ToBoolean(reader["grado_habilitado"].ToString());
                     grados.Add(grado);
                 }
             }

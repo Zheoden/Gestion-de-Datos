@@ -21,6 +21,7 @@ namespace PalcoNet.Abm_Grado {
             cmbTipos.Items.Add("Alta");
             cmbTipos.Items.Add("Media");
             cmbTipos.Items.Add("Baja");
+            cmbTipos.Items.Add("Otro");
         }
 
         private void btnAlta_Click(object sender, EventArgs e) {
@@ -29,7 +30,6 @@ namespace PalcoNet.Abm_Grado {
 
                 grado.prioridad = cmbTipos.Text;
                 grado.comision = Int32.Parse(txtComision.Text);
-                grado.porcentaje = Int32.Parse(txtPorcentaje.Text);
 
                 /* Creo el Cliente */
                 if (!DBHelper.modificarGrado(grado)) {
@@ -46,7 +46,6 @@ namespace PalcoNet.Abm_Grado {
 
             grado = DBHelper.getGrado(Int32.Parse(txtID.Text));
             cmbTipos.SelectedItem = grado.prioridad;
-            txtPorcentaje.Text = grado.porcentaje.ToString();
             txtComision.Text = grado.comision.ToString();
         }
 
@@ -54,12 +53,10 @@ namespace PalcoNet.Abm_Grado {
 
             int numero;
 
-            if (cmbTipos.Text != "" && txtComision.Text != "" && txtPorcentaje.Text != "") {
-                if (Int32.TryParse(txtComision.Text, out numero) && Int32.TryParse(txtPorcentaje.Text, out numero)) {
-                    if (DBHelper.gradoDontExist(cmbTipos.Text, Int32.Parse(txtComision.Text), Int32.Parse(txtPorcentaje.Text))) {
-
+            if (cmbTipos.Text != "" && txtComision.Text != "") {
+                if (Int32.TryParse(txtComision.Text, out numero)) {
+                    if (DBHelper.gradoDontExist(cmbTipos.Text, Int32.Parse(txtComision.Text))) {
                         return true;
-
                     }
                     else {
                         MessageBox.Show("Ya exite un cliente con ese tipo y numero de documento.");

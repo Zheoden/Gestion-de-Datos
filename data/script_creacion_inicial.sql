@@ -509,17 +509,17 @@ INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado) VALUES ('F
 INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado) VALUES ('Pausada' , 1)
 
 /* Creo los Rubros */
-INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('No definido', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Otro', 1)
 INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Musical', 1)
 INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Obra Teatral', 1)
 INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Humoristico', 1)
 INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Audio Visual', 1)
 
 /* Creo los Grados de Publicacion */
-INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Alta',0.30, 1);
-INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Media',0.25, 1);
-INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Baja',0.10, 1);
-INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('No Definido',0.00, 1);
+INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Alta',30, 1);
+INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Media',25, 1);
+INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Baja',10, 1);
+INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Otro',0, 1);
 
 /* Creo el usuario administrador */
 INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo)

@@ -9,7 +9,7 @@ namespace PalcoNet.Objetos
     public class Rubro
     {
         public int id { get; set; }
-        public string codigo { get; set; }
+        public bool habilitado { get; set; }
         public string descripcion { get; set; }
     }
 }

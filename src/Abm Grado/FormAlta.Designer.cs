@@ -29,12 +29,10 @@
             this.btnAlta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtPorcentaje = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.cmbTipos = new System.Windows.Forms.ComboBox();
             this.txtComision = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.cmbTipos = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -90,8 +88,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cmbTipos);
-            this.groupBox2.Controls.Add(this.txtPorcentaje);
-            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.txtComision);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label14);
@@ -104,21 +100,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles del Grado";
             // 
-            // txtPorcentaje
+            // cmbTipos
             // 
-            this.txtPorcentaje.Location = new System.Drawing.Point(73, 87);
-            this.txtPorcentaje.Name = "txtPorcentaje";
-            this.txtPorcentaje.Size = new System.Drawing.Size(231, 20);
-            this.txtPorcentaje.TabIndex = 16;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 90);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Porcentaje:";
+            this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipos.FormattingEnabled = true;
+            this.cmbTipos.Location = new System.Drawing.Point(73, 34);
+            this.cmbTipos.Name = "cmbTipos";
+            this.cmbTipos.Size = new System.Drawing.Size(231, 21);
+            this.cmbTipos.TabIndex = 19;
             // 
             // txtComision
             // 
@@ -144,15 +133,6 @@
             this.label14.Size = new System.Drawing.Size(51, 13);
             this.label14.TabIndex = 5;
             this.label14.Text = "Prioridad:";
-            // 
-            // cmbTipos
-            // 
-            this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipos.FormattingEnabled = true;
-            this.cmbTipos.Location = new System.Drawing.Point(73, 34);
-            this.cmbTipos.Name = "cmbTipos";
-            this.cmbTipos.Size = new System.Drawing.Size(231, 21);
-            this.cmbTipos.TabIndex = 19;
             // 
             // FormAlta
             // 
@@ -181,8 +161,6 @@
         private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtPorcentaje;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtComision;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label14;

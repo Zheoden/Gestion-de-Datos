@@ -47,7 +47,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtRubro = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,6 +58,7 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmbRubro = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.menu.SuspendLayout();
@@ -100,6 +100,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmbRubro);
             this.groupBox2.Controls.Add(this.btnSacarFecha);
             this.groupBox2.Controls.Add(this.btnAgregarFecha);
             this.groupBox2.Controls.Add(this.cmbFechaEspectaculo);
@@ -114,7 +115,6 @@
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.txtRubro);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txtPrecio);
             this.groupBox2.Controls.Add(this.label6);
@@ -273,13 +273,6 @@
             this.label10.TabIndex = 19;
             this.label10.Text = "Direccion:";
             // 
-            // txtRubro
-            // 
-            this.txtRubro.Location = new System.Drawing.Point(143, 166);
-            this.txtRubro.Name = "txtRubro";
-            this.txtRubro.Size = new System.Drawing.Size(231, 20);
-            this.txtRubro.TabIndex = 50;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -370,6 +363,18 @@
             this.salirToolStripMenuItem.Text = "Cerrar aplicacion";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
+            // cmbRubro
+            // 
+            this.cmbRubro.DropDownHeight = 100;
+            this.cmbRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRubro.DropDownWidth = 100;
+            this.cmbRubro.FormattingEnabled = true;
+            this.cmbRubro.IntegralHeight = false;
+            this.cmbRubro.Location = new System.Drawing.Point(143, 166);
+            this.cmbRubro.Name = "cmbRubro";
+            this.cmbRubro.Size = new System.Drawing.Size(231, 21);
+            this.cmbRubro.TabIndex = 95;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,7 +413,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtRubro;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label6;
@@ -426,5 +430,6 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        public System.Windows.Forms.ComboBox cmbRubro;
     }
 }

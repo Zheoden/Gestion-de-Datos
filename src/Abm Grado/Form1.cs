@@ -32,7 +32,7 @@ namespace PalcoNet.Abm_Grado
         }
 
         private void btnFiltro_Click(object sender, EventArgs e) {
-            string texto_libre = txtPorcentaje.Text;
+            string texto_libre = "";
             string texto_exacto = txtComision.Text;
 
             if (texto_libre == "" && texto_exacto == "") {
@@ -50,7 +50,6 @@ namespace PalcoNet.Abm_Grado
 
             }
 
-            txtPorcentaje.Text = "";
             txtComision.Text = "";
         }
 
@@ -74,7 +73,7 @@ namespace PalcoNet.Abm_Grado
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_porcentaje " +
+            string SQL = "SELECT g.grado_id, g.grado_prioridad, g.grado_comision, g.grado_habilitado " +
                          "FROM EL_REJUNTE.Grado g " +
                          "WHERE g.grado_id = g.grado_id ";
 
@@ -117,7 +116,7 @@ namespace PalcoNet.Abm_Grado
                     dgvGrados.Rows[cont].Cells[0].Value = reader["grado_id"].ToString();
                     dgvGrados.Rows[cont].Cells[1].Value = reader["grado_prioridad"].ToString();
                     dgvGrados.Rows[cont].Cells[2].Value = reader["grado_comision"].ToString();
-                    dgvGrados.Rows[cont].Cells[3].Value = reader["grado_porcentaje"].ToString();
+                    dgvGrados.Rows[cont].Cells[3].Value = Convert.ToBoolean(reader["grado_habilitado"].ToString());
                     cont++;
                 }
             }
@@ -136,8 +135,8 @@ namespace PalcoNet.Abm_Grado
                     return "grado_prioridad";
                 case "Comision":
                     return "grado_comision";
-                case "Porcentaje":
-                    return "grado_porcentaje";
+                case "Habilitado":
+                    return "grado_habilitado";
                 default:
                     return "";
             }
@@ -200,7 +199,6 @@ namespace PalcoNet.Abm_Grado
             dgvGrados.Refresh();
             txtPrioridad.Text = "";
             txtComision.Text = "";
-            txtPorcentaje.Text = "";
             lstFiltro.Items.Clear();
         }
 

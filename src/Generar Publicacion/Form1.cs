@@ -43,7 +43,6 @@ namespace PalcoNet.Generar_Publicacion {
         private void btnAlta_Click(object sender, EventArgs e) {
             Publicacion publi = new Publicacion();
             Espectaculo espec = new Espectaculo();
-//            Rubro rubro = new Rubro();
             Direccion direccion = new Direccion();
             Grado grado = new Grado();
 
@@ -66,22 +65,25 @@ namespace PalcoNet.Generar_Publicacion {
                 //rubro
                 grado.prioridad = cmbGrado.SelectedItem.ToString().Split(';')[0].Split(':')[1];
                 grado.comision = Int32.Parse(cmbGrado.SelectedItem.ToString().Split(';')[1].Split(':')[1]);
-                grado.porcentaje = Int32.Parse(cmbGrado.SelectedItem.ToString().Split(';')[2].Split(':')[1]);
-                grado = DBHelper.getGrado(grado.prioridad, grado.comision, grado.porcentaje);
-                Estado estado = DBHelper.getEstado(cmbEstado.SelectedItem.ToString());
+                grado.habilitado = Convert.ToBoolean(cmbGrado.SelectedItem.ToString().Split(';')[2].Split(':')[1]);
+                grado = DBHelper.getGrado(grado.prioridad, grado.comision);
+
+                publi.estado = DBHelper.getEstado(cmbEstado.SelectedItem.ToString());
+                publi.rubro = DBHelper.getRubro(cmbRubro.SelectedItem.ToString());
 
                 publi.descripcion = txtDescripcion.Text;
                 publi.stock = Int32.Parse(txtStock.Text);
                 publi.user = VariablesGlobales.usuario;
-                publi.estado = estado;
                 publi.grado = grado;
 
                 espec.codigo = publi.codigo;
                 espec.descripcion = publi.descripcion;
                 espec.direccion = direccion;
-                espec.estado = estado;
+                espec.estado = publi.estado;
+                espec.rubro = publi.rubro;
 
                 publi.espectaculo = espec;
+                
 
                 foreach (DateTime item in cmbFechaEspectaculo.Items) {
                     publi.codigo = DBHelper.publicacionGetNextCod();
@@ -134,18 +136,22 @@ namespace PalcoNet.Generar_Publicacion {
 
             List<Grado> grados = DBHelper.getGrados();
             foreach (Grado grado in grados) {
-                cmbGrado.Items.Add("Prioridad:"+grado.prioridad+"; Comision:" + grado.comision+"; Porcentaje:" + grado.porcentaje);
+                cmbGrado.Items.Add("Prioridad:"+grado.prioridad+"; Comision:" + grado.comision+"; Habilitado:" + grado.habilitado);
             }
 
             List<Estado> estados = DBHelper.getEstados();
             foreach (Estado estado in estados) {
                 cmbEstado.Items.Add(estado.descripcion);
             }
+            List<Rubro> rubros = DBHelper.getRubros();
+            foreach (Rubro rubro in rubros) {
+                cmbRubro.Items.Add(rubro.descripcion);
+            }
         }
 
         private Boolean validarDatos() {
             int numero;
-            if (txtDescripcion.Text != "" && txtStock.Text != "" && txtPrecio.Text != "" && txtRubro.Text != "" && txtUsuarioResponsable.Text != "" && dtpEspectaculo.Text != "" && cmbDireccion.Items.Count > 0 && cmbEstado.Text != "" && cmbGrado.Text != "") {
+            if (txtDescripcion.Text != "" && txtStock.Text != "" && txtPrecio.Text != "" && txtUsuarioResponsable.Text != "" && dtpEspectaculo.Text != "" && cmbDireccion.Items.Count > 0 && cmbEstado.Text != "" && cmbRubro.Text != "" && cmbGrado.Text != "") {
                 if (Int32.TryParse(txtStock.Text, out numero) && Int32.TryParse(txtPrecio.Text, out numero)) {
                     if (cmbFechaEspectaculo.Items.Count > 0) {
                             return true;

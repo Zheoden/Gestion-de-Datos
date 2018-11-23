@@ -11,6 +11,6 @@ namespace PalcoNet.Objetos
         public int id { get; set; }
         public string prioridad { get; set; }
         public int comision { get; set; }
-        public int porcentaje { get; set; }
+        public bool habilitado { get; set; }
     }
 }

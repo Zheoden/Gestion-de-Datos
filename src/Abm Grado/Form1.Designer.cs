@@ -32,10 +32,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvGrados = new System.Windows.Forms.DataGridView();
-            this.grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -50,13 +46,15 @@
             this.btnEliminarFiltro = new System.Windows.Forms.Button();
             this.lstFiltro = new System.Windows.Forms.ListBox();
             this.txtComision = new System.Windows.Forms.TextBox();
-            this.txtPorcentaje = new System.Windows.Forms.TextBox();
             this.btnFiltro = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrados)).BeginInit();
@@ -94,36 +92,13 @@
             this.grado_id,
             this.grado_prioridad,
             this.grado_comision,
-            this.grado_porcentaje});
+            this.grado_habilitado});
             this.dgvGrados.Location = new System.Drawing.Point(4, 18);
             this.dgvGrados.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGrados.Name = "dgvGrados";
             this.dgvGrados.RowTemplate.Height = 24;
             this.dgvGrados.Size = new System.Drawing.Size(1104, 213);
             this.dgvGrados.TabIndex = 0;
-            // 
-            // grado_id
-            // 
-            this.grado_id.HeaderText = "ID de Grado";
-            this.grado_id.Name = "grado_id";
-            this.grado_id.ReadOnly = true;
-            // 
-            // grado_prioridad
-            // 
-            this.grado_prioridad.HeaderText = "Prioridad";
-            this.grado_prioridad.Name = "grado_prioridad";
-            this.grado_prioridad.ReadOnly = true;
-            // 
-            // grado_comision
-            // 
-            this.grado_comision.HeaderText = "Comision";
-            this.grado_comision.Name = "grado_comision";
-            this.grado_comision.ReadOnly = true;
-            // 
-            // grado_porcentaje
-            // 
-            this.grado_porcentaje.HeaderText = "Porcentaje";
-            this.grado_porcentaje.Name = "grado_porcentaje";
             // 
             // btnDarAlta
             // 
@@ -249,10 +224,8 @@
             this.gb_b_avanzada.Controls.Add(this.btnEliminarFiltro);
             this.gb_b_avanzada.Controls.Add(this.lstFiltro);
             this.gb_b_avanzada.Controls.Add(this.txtComision);
-            this.gb_b_avanzada.Controls.Add(this.txtPorcentaje);
             this.gb_b_avanzada.Controls.Add(this.btnFiltro);
             this.gb_b_avanzada.Controls.Add(this.label3);
-            this.gb_b_avanzada.Controls.Add(this.label2);
             this.gb_b_avanzada.Location = new System.Drawing.Point(4, 102);
             this.gb_b_avanzada.Margin = new System.Windows.Forms.Padding(2);
             this.gb_b_avanzada.Name = "gb_b_avanzada";
@@ -284,17 +257,10 @@
             // 
             // txtComision
             // 
-            this.txtComision.Location = new System.Drawing.Point(96, 35);
+            this.txtComision.Location = new System.Drawing.Point(96, 55);
             this.txtComision.Name = "txtComision";
             this.txtComision.Size = new System.Drawing.Size(209, 20);
             this.txtComision.TabIndex = 1;
-            // 
-            // txtPorcentaje
-            // 
-            this.txtPorcentaje.Location = new System.Drawing.Point(96, 61);
-            this.txtPorcentaje.Name = "txtPorcentaje";
-            this.txtPorcentaje.Size = new System.Drawing.Size(209, 20);
-            this.txtPorcentaje.TabIndex = 1;
             // 
             // btnFiltro
             // 
@@ -311,22 +277,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 38);
+            this.label3.Location = new System.Drawing.Point(30, 62);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Comision:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 64);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Porcentaje:";
             // 
             // cb_busquedaAvanzada
             // 
@@ -355,6 +311,29 @@
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // grado_id
+            // 
+            this.grado_id.HeaderText = "ID de Grado";
+            this.grado_id.Name = "grado_id";
+            this.grado_id.ReadOnly = true;
+            // 
+            // grado_prioridad
+            // 
+            this.grado_prioridad.HeaderText = "Prioridad";
+            this.grado_prioridad.Name = "grado_prioridad";
+            this.grado_prioridad.ReadOnly = true;
+            // 
+            // grado_comision
+            // 
+            this.grado_comision.HeaderText = "Comision";
+            this.grado_comision.Name = "grado_comision";
+            this.grado_comision.ReadOnly = true;
+            // 
+            // grado_habilitado
+            // 
+            this.grado_habilitado.HeaderText = "Habilitado";
+            this.grado_habilitado.Name = "grado_habilitado";
             // 
             // Form1
             // 
@@ -409,17 +388,15 @@
         private System.Windows.Forms.Button btnEliminarFiltro;
         private System.Windows.Forms.ListBox lstFiltro;
         private System.Windows.Forms.TextBox txtComision;
-        private System.Windows.Forms.TextBox txtPorcentaje;
         private System.Windows.Forms.Button btnFiltro;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cb_busquedaAvanzada;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_prioridad;
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_comision;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grado_porcentaje;
-        private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grado_habilitado;
 
     }
 }

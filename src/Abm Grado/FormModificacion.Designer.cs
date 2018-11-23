@@ -32,11 +32,10 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbTipos = new System.Windows.Forms.ComboBox();
-            this.txtPorcentaje = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtComision = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.cbHabilitado = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -107,9 +106,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbHabilitado);
             this.groupBox2.Controls.Add(this.cmbTipos);
-            this.groupBox2.Controls.Add(this.txtPorcentaje);
-            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.txtComision);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label14);
@@ -132,22 +130,6 @@
             this.cmbTipos.Name = "cmbTipos";
             this.cmbTipos.Size = new System.Drawing.Size(231, 21);
             this.cmbTipos.TabIndex = 42;
-            // 
-            // txtPorcentaje
-            // 
-            this.txtPorcentaje.Location = new System.Drawing.Point(70, 113);
-            this.txtPorcentaje.Name = "txtPorcentaje";
-            this.txtPorcentaje.Size = new System.Drawing.Size(231, 20);
-            this.txtPorcentaje.TabIndex = 40;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 116);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 13);
-            this.label8.TabIndex = 41;
-            this.label8.Text = "Porcentaje:";
             // 
             // txtComision
             // 
@@ -173,6 +155,16 @@
             this.label14.Size = new System.Drawing.Size(51, 13);
             this.label14.TabIndex = 37;
             this.label14.Text = "Prioridad:";
+            // 
+            // cbHabilitado
+            // 
+            this.cbHabilitado.AutoSize = true;
+            this.cbHabilitado.Location = new System.Drawing.Point(129, 113);
+            this.cbHabilitado.Name = "cbHabilitado";
+            this.cbHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.cbHabilitado.TabIndex = 43;
+            this.cbHabilitado.Text = "Habilitado";
+            this.cbHabilitado.UseVisualStyleBackColor = true;
             // 
             // FormModificacion
             // 
@@ -205,10 +197,9 @@
         public System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.ComboBox cmbTipos;
-        private System.Windows.Forms.TextBox txtPorcentaje;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtComision;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox cbHabilitado;
     }
 }
