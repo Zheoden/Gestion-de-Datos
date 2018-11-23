@@ -510,10 +510,15 @@ INSERT INTO EL_REJUNTE.Estado (estado_descripcion ,estado_habilitado) VALUES ('P
 
 /* Creo los Rubros */
 INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Otro', 1)
-INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Musical', 1)
-INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Obra Teatral', 1)
-INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Humoristico', 1)
-INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Audio Visual', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Artes Escenicas', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Cine', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Circo', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Concurso', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Lucha', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Obra de Teatro', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Recital', 1)
+INSERT INTO EL_REJUNTE.Rubro (rubro_descripcion, rubro_habilitado) VALUES ('Stand-Up', 1)
+
 
 /* Creo los Grados de Publicacion */
 INSERT INTO EL_REJUNTE.Grado (grado_prioridad, grado_comision, grado_habilitado) VALUES ('Alta',30, 1);
