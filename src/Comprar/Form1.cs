@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using PalcoNet.Utils;
 using Microsoft.VisualBasic;
 using PalcoNet.Objetos;
+using System.Globalization;
 
 namespace PalcoNet.Comprar
 {
@@ -242,6 +243,18 @@ namespace PalcoNet.Comprar
             }
 
 
+            var desde = dtpDesde.Value.Date.ToString("yyyy-MM-dd");
+            var hasta = dtpHasta.Value.Date.ToString("yyyy-MM-dd");
+
+
+
+
+            sql += " AND publi_fecha_evento >  " + "'" + desde + "'";
+
+            sql += " AND publi_fecha_evento < " + "'" + hasta + "'";
+
+
+            sql += " order by publi_grado_id ";
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
@@ -252,6 +265,8 @@ namespace PalcoNet.Comprar
             command.CommandType = CommandType.Text;
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            dgvEspectaculos.Rows.Clear();
+            dgvEspectaculos.Refresh(); 
             int cont = 0;
             if (reader.HasRows) {
                 while (reader.Read()) {

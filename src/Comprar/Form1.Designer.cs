@@ -41,8 +41,8 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gb_b_filtro = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.lblFechaHasta = new System.Windows.Forms.Label();
             this.lblFechaDesde = new System.Windows.Forms.Label();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
@@ -170,8 +170,8 @@
             // 
             // gb_b_filtro
             // 
-            this.gb_b_filtro.Controls.Add(this.dateTimePicker2);
-            this.gb_b_filtro.Controls.Add(this.dateTimePicker1);
+            this.gb_b_filtro.Controls.Add(this.dtpHasta);
+            this.gb_b_filtro.Controls.Add(this.dtpDesde);
             this.gb_b_filtro.Controls.Add(this.lblFechaHasta);
             this.gb_b_filtro.Controls.Add(this.lblFechaDesde);
             this.gb_b_filtro.Controls.Add(this.cboCategoria);
@@ -190,19 +190,19 @@
             this.gb_b_filtro.TabStop = false;
             this.gb_b_filtro.Text = "Filtros de espectaculo";
             // 
-            // dateTimePicker2
+            // dtpHasta
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(585, 151);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(205, 20);
-            this.dateTimePicker2.TabIndex = 14;
+            this.dtpHasta.Location = new System.Drawing.Point(585, 151);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(205, 20);
+            this.dtpHasta.TabIndex = 14;
             // 
-            // dateTimePicker1
+            // dtpDesde
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(96, 150);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 20);
-            this.dateTimePicker1.TabIndex = 13;
+            this.dtpDesde.Location = new System.Drawing.Point(96, 150);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(208, 20);
+            this.dtpDesde.TabIndex = 13;
             // 
             // lblFechaHasta
             // 
@@ -352,8 +352,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn publi_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn publi_descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn publi_grado_id;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.DateTimePicker dtpDesde;
         private System.Windows.Forms.Label lblFechaHasta;
         private System.Windows.Forms.Label lblFechaDesde;
     }
