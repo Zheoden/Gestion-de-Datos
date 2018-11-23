@@ -243,5 +243,9 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             nextForm.Show();
         }
 
+        private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
     }
 }

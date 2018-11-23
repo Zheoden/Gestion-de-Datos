@@ -291,5 +291,9 @@ namespace PalcoNet.Comprar
 
         }
 
+        private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
     }
 }

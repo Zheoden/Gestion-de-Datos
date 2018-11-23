@@ -53,6 +53,7 @@
             this.btnFiltro = new System.Windows.Forms.Button();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.cerrarAplicacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -155,7 +156,8 @@
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.cerrarAplicacionToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1131, 24);
@@ -303,6 +305,13 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
             // 
+            // cerrarAplicacionToolStripMenuItem
+            // 
+            this.cerrarAplicacionToolStripMenuItem.Name = "cerrarAplicacionToolStripMenuItem";
+            this.cerrarAplicacionToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.cerrarAplicacionToolStripMenuItem.Text = "Cerrar aplicacion";
+            this.cerrarAplicacionToolStripMenuItem.Click += new System.EventHandler(this.cerrarAplicacionToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,5 +366,6 @@
         private System.Windows.Forms.DateTimePicker dtpDesde;
         private System.Windows.Forms.Label lblFechaHasta;
         private System.Windows.Forms.Label lblFechaDesde;
+        private System.Windows.Forms.ToolStripMenuItem cerrarAplicacionToolStripMenuItem;
     }
 }

@@ -59,5 +59,9 @@ namespace PalcoNet.Historial_Cliente
         {
 
         }
+
+        private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
     }
 }

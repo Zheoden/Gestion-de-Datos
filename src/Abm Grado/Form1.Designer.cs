@@ -32,6 +32,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvGrados = new System.Windows.Forms.DataGridView();
+            this.grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grado_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDarAlta = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -51,10 +55,7 @@
             this.cb_busquedaAvanzada = new System.Windows.Forms.CheckBox();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grado_habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cerrarAplicacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrados)).BeginInit();
@@ -99,6 +100,29 @@
             this.dgvGrados.RowTemplate.Height = 24;
             this.dgvGrados.Size = new System.Drawing.Size(1104, 213);
             this.dgvGrados.TabIndex = 0;
+            // 
+            // grado_id
+            // 
+            this.grado_id.HeaderText = "ID de Grado";
+            this.grado_id.Name = "grado_id";
+            this.grado_id.ReadOnly = true;
+            // 
+            // grado_prioridad
+            // 
+            this.grado_prioridad.HeaderText = "Prioridad";
+            this.grado_prioridad.Name = "grado_prioridad";
+            this.grado_prioridad.ReadOnly = true;
+            // 
+            // grado_comision
+            // 
+            this.grado_comision.HeaderText = "Comision";
+            this.grado_comision.Name = "grado_comision";
+            this.grado_comision.ReadOnly = true;
+            // 
+            // grado_habilitado
+            // 
+            this.grado_habilitado.HeaderText = "Habilitado";
+            this.grado_habilitado.Name = "grado_habilitado";
             // 
             // btnDarAlta
             // 
@@ -299,7 +323,8 @@
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.cerrarAplicacionToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1142, 24);
@@ -312,28 +337,12 @@
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
-            // grado_id
+            // cerrarAplicacionToolStripMenuItem
             // 
-            this.grado_id.HeaderText = "ID de Grado";
-            this.grado_id.Name = "grado_id";
-            this.grado_id.ReadOnly = true;
-            // 
-            // grado_prioridad
-            // 
-            this.grado_prioridad.HeaderText = "Prioridad";
-            this.grado_prioridad.Name = "grado_prioridad";
-            this.grado_prioridad.ReadOnly = true;
-            // 
-            // grado_comision
-            // 
-            this.grado_comision.HeaderText = "Comision";
-            this.grado_comision.Name = "grado_comision";
-            this.grado_comision.ReadOnly = true;
-            // 
-            // grado_habilitado
-            // 
-            this.grado_habilitado.HeaderText = "Habilitado";
-            this.grado_habilitado.Name = "grado_habilitado";
+            this.cerrarAplicacionToolStripMenuItem.Name = "cerrarAplicacionToolStripMenuItem";
+            this.cerrarAplicacionToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.cerrarAplicacionToolStripMenuItem.Text = "Cerrar aplicacion";
+            this.cerrarAplicacionToolStripMenuItem.Click += new System.EventHandler(this.cerrarAplicacionToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -397,6 +406,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_prioridad;
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_comision;
         private System.Windows.Forms.DataGridViewTextBoxColumn grado_habilitado;
+        private System.Windows.Forms.ToolStripMenuItem cerrarAplicacionToolStripMenuItem;
 
     }
 }

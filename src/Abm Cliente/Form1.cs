@@ -267,5 +267,9 @@ namespace PalcoNet.Abm_Cliente
         {
 
         }
+
+        private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
     }
 }

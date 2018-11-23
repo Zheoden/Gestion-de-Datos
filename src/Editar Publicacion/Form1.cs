@@ -42,5 +42,9 @@ namespace PalcoNet.Editar_Publicacion
             Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
             nextForm.Show();
         }
+
+        private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
     }
 }
