@@ -14,9 +14,16 @@ namespace PalcoNet.Historial_Cliente
 {
     public partial class Form1 : Form
     {
+        private const int totalRecords = 43;
+        private const int pageSize = 10;
+
         public Form1()
         {
             InitializeComponent();
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Index" });
+            //bindingNavigator1.BindingSource = bindingSource1;
+            //bindingSource1.CurrentChanged += new System.EventHandler(bindingSource1_CurrentChanged);
+           // bindingSource1.DataSource = new PageOffsetList();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -41,6 +48,16 @@ namespace PalcoNet.Historial_Cliente
             this.Close();
             Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
             nextForm.Show();
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
