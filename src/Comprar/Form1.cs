@@ -220,11 +220,60 @@ namespace PalcoNet.Comprar
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            foreach (DataRow item in lstFiltro.Items)
-            {
-                //string tipo = item.Table;
+            var sql = "Select * ";
+            sql += "from EL_REJUNTE.Publicacion ";
+            sql += "where 1=1 ";
 
+            if (lstFiltro.Items.Count > 0) 
+            {
+                foreach (DataRowView drv in lstFiltro.Items)
+                {
+                    int id = int.Parse(drv.Row[lstFiltro.ValueMember].ToString());
+
+                    sql += " AND publi_rubro_id = " + id;
+
+                }
             }
+            
+            var descripcion = txtDescripcion.Text;
+            if (descripcion != "") 
+            {
+                sql += " AND publi_descripcion LIKE  '%" + descripcion + "%' ";
+            }
+
+
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+
+            SqlCommand command = new SqlCommand(sql, conn);
+
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            int cont = 0;
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    dgvEspectaculos.Rows.Add();
+                    dgvEspectaculos.Rows[cont].Cells[0].Value = reader["publi_id"].ToString();
+                    dgvEspectaculos.Rows[cont].Cells[1].Value = reader["publi_descripcion"].ToString();
+                    dgvEspectaculos.Rows[cont].Cells[2].Value = reader["publi_grado_id"].ToString();
+                    cont++;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron resultados para estos parametros, modifique alguno e intente nuevamente!");
+            }
+
+            Connection.close(conn);
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

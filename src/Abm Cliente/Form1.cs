@@ -262,5 +262,10 @@ namespace PalcoNet.Abm_Cliente
             Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
             nextForm.Show();
         }
+
+        private void btnActualizarVista_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

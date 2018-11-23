@@ -57,6 +57,7 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gb_b_avanzada = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnEliminarFiltro = new System.Windows.Forms.Button();
             this.lstFiltro = new System.Windows.Forms.ListBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
@@ -67,7 +68,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -267,6 +267,7 @@
             this.btnActualizarVista.TabIndex = 12;
             this.btnActualizarVista.Text = "Actualizar Vista";
             this.btnActualizarVista.UseVisualStyleBackColor = true;
+            this.btnActualizarVista.Click += new System.EventHandler(this.btnActualizarVista_Click);
             // 
             // label1
             // 
@@ -345,6 +346,16 @@
             this.gb_b_avanzada.TabIndex = 4;
             this.gb_b_avanzada.TabStop = false;
             this.gb_b_avanzada.Text = "Busqueda avanzada";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 68);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Email:";
             // 
             // btnEliminarFiltro
             // 
@@ -438,16 +449,6 @@
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 68);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Email:";
             // 
             // Form1
             // 

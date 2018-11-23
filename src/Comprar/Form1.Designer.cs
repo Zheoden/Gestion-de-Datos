@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvEspectaculos = new System.Windows.Forms.DataGridView();
+            this.publi_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnContinuar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,21 +41,18 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gb_b_filtro = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaHasta = new System.Windows.Forms.Label();
+            this.lblFechaDesde = new System.Windows.Forms.Label();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnEliminarFiltro = new System.Windows.Forms.Button();
             this.lstFiltro = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnFiltro = new System.Windows.Forms.Button();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.publi_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publi_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publi_grado_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblFechaDesde = new System.Windows.Forms.Label();
-            this.lblFechaHasta = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -86,6 +86,25 @@
             this.dgvEspectaculos.RowTemplate.Height = 24;
             this.dgvEspectaculos.Size = new System.Drawing.Size(1104, 213);
             this.dgvEspectaculos.TabIndex = 0;
+            // 
+            // publi_id
+            // 
+            this.publi_id.HeaderText = "ID de Publicacion";
+            this.publi_id.Name = "publi_id";
+            this.publi_id.ReadOnly = true;
+            this.publi_id.Width = 200;
+            // 
+            // publi_descripcion
+            // 
+            this.publi_descripcion.HeaderText = "Descripcion de la publicacion";
+            this.publi_descripcion.Name = "publi_descripcion";
+            this.publi_descripcion.Width = 200;
+            // 
+            // publi_grado_id
+            // 
+            this.publi_grado_id.HeaderText = "Grado de visivilidad";
+            this.publi_grado_id.Name = "publi_grado_id";
+            this.publi_grado_id.Width = 200;
             // 
             // btnContinuar
             // 
@@ -159,7 +178,7 @@
             this.gb_b_filtro.Controls.Add(this.label3);
             this.gb_b_filtro.Controls.Add(this.btnEliminarFiltro);
             this.gb_b_filtro.Controls.Add(this.lstFiltro);
-            this.gb_b_filtro.Controls.Add(this.textBox1);
+            this.gb_b_filtro.Controls.Add(this.txtDescripcion);
             this.gb_b_filtro.Controls.Add(this.btnFiltro);
             this.gb_b_filtro.Controls.Add(this.lblCategoria);
             this.gb_b_filtro.Location = new System.Drawing.Point(18, 112);
@@ -170,6 +189,38 @@
             this.gb_b_filtro.TabIndex = 114;
             this.gb_b_filtro.TabStop = false;
             this.gb_b_filtro.Text = "Filtros de espectaculo";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(585, 151);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(205, 20);
+            this.dateTimePicker2.TabIndex = 14;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(96, 150);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(208, 20);
+            this.dateTimePicker1.TabIndex = 13;
+            // 
+            // lblFechaHasta
+            // 
+            this.lblFechaHasta.AutoSize = true;
+            this.lblFechaHasta.Location = new System.Drawing.Point(501, 158);
+            this.lblFechaHasta.Name = "lblFechaHasta";
+            this.lblFechaHasta.Size = new System.Drawing.Size(71, 13);
+            this.lblFechaHasta.TabIndex = 12;
+            this.lblFechaHasta.Text = "Fecha Hasta:";
+            // 
+            // lblFechaDesde
+            // 
+            this.lblFechaDesde.AutoSize = true;
+            this.lblFechaDesde.Location = new System.Drawing.Point(21, 157);
+            this.lblFechaDesde.Name = "lblFechaDesde";
+            this.lblFechaDesde.Size = new System.Drawing.Size(74, 13);
+            this.lblFechaDesde.TabIndex = 11;
+            this.lblFechaDesde.Text = "Fecha Desde:";
             // 
             // cboCategoria
             // 
@@ -209,12 +260,13 @@
             this.lstFiltro.Size = new System.Drawing.Size(316, 69);
             this.lstFiltro.TabIndex = 6;
             // 
-            // textBox1
+            // txtDescripcion
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 108);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(209, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtDescripcion.Location = new System.Drawing.Point(95, 108);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(209, 20);
+            this.txtDescripcion.TabIndex = 1;
+            this.txtDescripcion.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnFiltro
             // 
@@ -249,57 +301,6 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
-            // 
-            // publi_id
-            // 
-            this.publi_id.HeaderText = "ID de Publicacion";
-            this.publi_id.Name = "publi_id";
-            this.publi_id.ReadOnly = true;
-            this.publi_id.Width = 200;
-            // 
-            // publi_descripcion
-            // 
-            this.publi_descripcion.HeaderText = "Descripcion de la publicacion";
-            this.publi_descripcion.Name = "publi_descripcion";
-            this.publi_descripcion.Width = 200;
-            // 
-            // publi_grado_id
-            // 
-            this.publi_grado_id.HeaderText = "Grado de visivilidad";
-            this.publi_grado_id.Name = "publi_grado_id";
-            this.publi_grado_id.Width = 200;
-            // 
-            // lblFechaDesde
-            // 
-            this.lblFechaDesde.AutoSize = true;
-            this.lblFechaDesde.Location = new System.Drawing.Point(21, 157);
-            this.lblFechaDesde.Name = "lblFechaDesde";
-            this.lblFechaDesde.Size = new System.Drawing.Size(74, 13);
-            this.lblFechaDesde.TabIndex = 11;
-            this.lblFechaDesde.Text = "Fecha Desde:";
-            // 
-            // lblFechaHasta
-            // 
-            this.lblFechaHasta.AutoSize = true;
-            this.lblFechaHasta.Location = new System.Drawing.Point(501, 158);
-            this.lblFechaHasta.Name = "lblFechaHasta";
-            this.lblFechaHasta.Size = new System.Drawing.Size(71, 13);
-            this.lblFechaHasta.TabIndex = 12;
-            this.lblFechaHasta.Text = "Fecha Hasta:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(96, 150);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 20);
-            this.dateTimePicker1.TabIndex = 13;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(585, 151);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(205, 20);
-            this.dateTimePicker2.TabIndex = 14;
             // 
             // Form1
             // 
@@ -346,7 +347,7 @@
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn publi_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn publi_descripcion;
