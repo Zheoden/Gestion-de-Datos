@@ -25,44 +25,9 @@ namespace PalcoNet.Comprar
 
         public void cargarCategorias()
         {
-            try
-            {
-                SqlConnection conn = new SqlConnection(Connection.getStringConnection());
-                conn.Open();
-                string SQL = "SELECT r.rubro_id, r.rubro_descripcion " +
-                             "FROM EL_REJUNTE.Rubro r";
-                SqlCommand command = new SqlCommand(SQL, conn);
-
-                command.Connection = conn;
-                command.CommandType = CommandType.Text;
-
-                //SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
-                //while (reader.Read())
-                //{
-                //    cboCategoria.Items.Add(reader[1].ToString());
-                //}
-                //conn.Close();
-                //cboCategoria.Items.Insert(0, "Seleccione una categoria");
-                //cboCategoria.SelectedIndex = 0;
-
-                SqlDataAdapter da = new SqlDataAdapter(command);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                conn.Close();
-                cboCategoria.ValueMember = "rubro_id";
-                cboCategoria.DisplayMember = "rubro_descripcion";
-
-                DataRow fila = dt.NewRow();
-                fila["rubro_id"] = -1;
-                fila["rubro_descripcion"] = "Seleccione una categoria";
-                dt.Rows.InsertAt(fila, 0);
-
-                cboCategoria.DataSource = dt;
-
-            }
-            catch (Exception ex)
-            {
-                var algo = 3;
+            List<Rubro> rubros = DBHelper.getRubros();
+            foreach (Rubro rubro in rubros) {
+                cboCategoria.Items.Add(rubro.descripcion);
             }
         }
 
