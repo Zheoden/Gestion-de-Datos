@@ -32,6 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvEspectaculos = new System.Windows.Forms.DataGridView();
+            this.publi_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_fecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_fecha_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rubro_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnContinuar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,11 +63,6 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.publi_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publi_fecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publi_fecha_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.publi_stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rubro_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -107,6 +107,36 @@
             this.dgvEspectaculos.Size = new System.Drawing.Size(569, 346);
             this.dgvEspectaculos.TabIndex = 0;
             // 
+            // publi_descripcion
+            // 
+            this.publi_descripcion.HeaderText = "Descripcion";
+            this.publi_descripcion.Name = "publi_descripcion";
+            this.publi_descripcion.ReadOnly = true;
+            // 
+            // publi_fecha_inicio
+            // 
+            this.publi_fecha_inicio.HeaderText = "Fecha de Publicacion";
+            this.publi_fecha_inicio.Name = "publi_fecha_inicio";
+            this.publi_fecha_inicio.ReadOnly = true;
+            // 
+            // publi_fecha_evento
+            // 
+            this.publi_fecha_evento.HeaderText = "Fecha de Evento";
+            this.publi_fecha_evento.Name = "publi_fecha_evento";
+            this.publi_fecha_evento.ReadOnly = true;
+            // 
+            // publi_stock
+            // 
+            this.publi_stock.HeaderText = "Stock Actual";
+            this.publi_stock.Name = "publi_stock";
+            this.publi_stock.ReadOnly = true;
+            // 
+            // rubro_descripcion
+            // 
+            this.rubro_descripcion.HeaderText = "Rubro";
+            this.rubro_descripcion.Name = "rubro_descripcion";
+            this.rubro_descripcion.ReadOnly = true;
+            // 
             // btnContinuar
             // 
             this.btnContinuar.BackColor = System.Drawing.Color.DodgerBlue;
@@ -147,7 +177,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(481, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(279, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(168, 50);
             this.pictureBox1.TabIndex = 14;
@@ -352,36 +382,6 @@
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // publi_descripcion
-            // 
-            this.publi_descripcion.HeaderText = "Descripcion";
-            this.publi_descripcion.Name = "publi_descripcion";
-            this.publi_descripcion.ReadOnly = true;
-            // 
-            // publi_fecha_inicio
-            // 
-            this.publi_fecha_inicio.HeaderText = "Fecha de Publicacion";
-            this.publi_fecha_inicio.Name = "publi_fecha_inicio";
-            this.publi_fecha_inicio.ReadOnly = true;
-            // 
-            // publi_fecha_evento
-            // 
-            this.publi_fecha_evento.HeaderText = "Fecha de Evento";
-            this.publi_fecha_evento.Name = "publi_fecha_evento";
-            this.publi_fecha_evento.ReadOnly = true;
-            // 
-            // publi_stock
-            // 
-            this.publi_stock.HeaderText = "Stock Actual";
-            this.publi_stock.Name = "publi_stock";
-            this.publi_stock.ReadOnly = true;
-            // 
-            // rubro_descripcion
-            // 
-            this.rubro_descripcion.HeaderText = "Rubro";
-            this.rubro_descripcion.Name = "rubro_descripcion";
-            this.rubro_descripcion.ReadOnly = true;
             // 
             // Form1
             // 
