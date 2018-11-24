@@ -40,6 +40,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarAplicacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gb_b_filtro = new System.Windows.Forms.GroupBox();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
@@ -53,7 +54,6 @@
             this.btnFiltro = new System.Windows.Forms.Button();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.cerrarAplicacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -169,6 +169,13 @@
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
+            // 
+            // cerrarAplicacionToolStripMenuItem
+            // 
+            this.cerrarAplicacionToolStripMenuItem.Name = "cerrarAplicacionToolStripMenuItem";
+            this.cerrarAplicacionToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.cerrarAplicacionToolStripMenuItem.Text = "Cerrar aplicacion";
+            this.cerrarAplicacionToolStripMenuItem.Click += new System.EventHandler(this.cerrarAplicacionToolStripMenuItem_Click);
             // 
             // gb_b_filtro
             // 
@@ -304,13 +311,6 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
-            // 
-            // cerrarAplicacionToolStripMenuItem
-            // 
-            this.cerrarAplicacionToolStripMenuItem.Name = "cerrarAplicacionToolStripMenuItem";
-            this.cerrarAplicacionToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
-            this.cerrarAplicacionToolStripMenuItem.Text = "Cerrar aplicacion";
-            this.cerrarAplicacionToolStripMenuItem.Click += new System.EventHandler(this.cerrarAplicacionToolStripMenuItem_Click);
             // 
             // Form1
             // 

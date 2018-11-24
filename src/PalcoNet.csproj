@@ -153,6 +153,12 @@
     <Compile Include="Comprar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprar\FormComprar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar\FormComprar.Designer.cs">
+      <DependentUpon>FormComprar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data Base\Connection.cs" />
     <Compile Include="Data Base\DBHelper.cs" />
     <Compile Include="Editar Publicacion\Form1.cs">
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar\FormComprar.resx">
+      <DependentUpon>FormComprar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editar Publicacion\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

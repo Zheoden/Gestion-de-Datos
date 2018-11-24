@@ -25,10 +25,46 @@ namespace PalcoNet.Comprar
 
         public void cargarCategorias()
         {
+            cboCategoria.ValueMember = "id";
+            cboCategoria.DisplayMember = "descripcion";
             List<Rubro> rubros = DBHelper.getRubros();
-            foreach (Rubro rubro in rubros) {
-                cboCategoria.Items.Add(rubro.descripcion);
+            foreach (Rubro rubro in rubros)
+            {
+                cboCategoria.Items.Add(rubro);
             }
+
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT r.rubro_id, r.rubro_descripcion " +
+                         "FROM EL_REJUNTE.Rubro r";
+            SqlCommand command = new SqlCommand(SQL, conn);
+
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            //SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            //while (reader.Read())
+            //{
+            //    cboCategoria.Items.Add(reader[1].ToString());
+            //}
+            //conn.Close();
+            //cboCategoria.Items.Insert(0, "Seleccione una categoria");
+            //cboCategoria.SelectedIndex = 0;
+
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            conn.Close();
+            cboCategoria.ValueMember = "rubro_id";
+            cboCategoria.DisplayMember = "rubro_descripcion";
+
+            DataRow fila = dt.NewRow();
+            fila["rubro_id"] = -1;
+            fila["rubro_descripcion"] = "Seleccione una categoria";
+            dt.Rows.InsertAt(fila, 0);
+
+            cboCategoria.DataSource = dt;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -182,72 +218,104 @@ namespace PalcoNet.Comprar
         private void btnContinuar_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnBuscar_Click_1(object sender, EventArgs e)
-        {
-            var sql = "Select * ";
-            sql += "from EL_REJUNTE.Publicacion ";
-            sql += "where 1=1 ";
-
-            if (lstFiltro.Items.Count > 0) 
+            if (dgvEspectaculos.SelectedCells.Count > 0)
             {
-                foreach (DataRowView drv in lstFiltro.Items)
+                int selectedrowindex = dgvEspectaculos.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvEspectaculos.Rows[selectedrowindex];
+                string publicacionSeleccionadaId = Convert.ToString(selectedRow.Cells["publi_id"].Value);
+                string publicacionSeleccionadaDescripcion = Convert.ToString(selectedRow.Cells["publi_descripcion"].Value);
+                if (publicacionSeleccionadaId != "")
                 {
-                    int id = int.Parse(drv.Row[lstFiltro.ValueMember].ToString());
-
-                    sql += " AND publi_rubro_id = " + id;
+                    FormComprar testDialog = new FormComprar();
+                    testDialog.txtPubli_id.Text = publicacionSeleccionadaId;
+                    testDialog.txtPubli_descripcion.Text = publicacionSeleccionadaDescripcion;
+                    testDialog.cargarTipo(Convert.ToInt32(publicacionSeleccionadaId));
+                    testDialog.ShowDialog(this);
 
                 }
-            }
-            
-            var descripcion = txtDescripcion.Text;
-            if (descripcion != "") 
-            {
-                sql += " AND publi_descripcion LIKE  '%" + descripcion + "%' ";
-            }
-
-
-            var desde = dtpDesde.Value.Date.ToString("yyyy-MM-dd");
-            var hasta = dtpHasta.Value.Date.ToString("yyyy-MM-dd");
-
-
-
-
-            sql += " AND publi_fecha_evento >  " + "'" + desde + "'";
-
-            sql += " AND publi_fecha_evento < " + "'" + hasta + "'";
-
-
-            sql += " order by publi_grado_id ";
-
-            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
-            conn.Open();
-
-            SqlCommand command = new SqlCommand(sql, conn);
-
-            command.Connection = conn;
-            command.CommandType = CommandType.Text;
-
-            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
-            dgvEspectaculos.Rows.Clear();
-            dgvEspectaculos.Refresh(); 
-            int cont = 0;
-            if (reader.HasRows) {
-                while (reader.Read()) {
-                    dgvEspectaculos.Rows.Add();
-                    dgvEspectaculos.Rows[cont].Cells[0].Value = reader["publi_id"].ToString();
-                    dgvEspectaculos.Rows[cont].Cells[1].Value = reader["publi_descripcion"].ToString();
-                    dgvEspectaculos.Rows[cont].Cells[2].Value = reader["publi_grado_id"].ToString();
-                    cont++;
+                else
+                {
+                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
                 }
             }
             else
             {
-                MessageBox.Show("No se encontraron resultados para estos parametros, modifique alguno e intente nuevamente!");
+                MessageBox.Show("Buscar una publicacion para poder continuar con la compra.");
             }
+        }
 
-            Connection.close(conn);
+        private void btnBuscar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var sql = "Select * ";
+                sql += "from EL_REJUNTE.Publicacion ";
+                sql += "where 1=1 ";
+
+                if (lstFiltro.Items.Count > 0)
+                {
+                    foreach (DataRowView drv in lstFiltro.Items)
+                    {
+                        int id = int.Parse(drv.Row[lstFiltro.ValueMember].ToString());
+
+                        sql += " AND publi_rubro_id = " + id;
+
+                    }
+                }
+
+                var descripcion = txtDescripcion.Text;
+                if (descripcion != "")
+                {
+                    sql += " AND publi_descripcion LIKE  '%" + descripcion + "%' ";
+                }
+
+
+                var desde = dtpDesde.Value.Date.ToString("yyyy-MM-dd");
+                var hasta = dtpHasta.Value.Date.ToString("yyyy-MM-dd");
+
+
+
+
+                sql += " AND publi_fecha_evento >  " + "'" + desde + "'";
+
+                sql += " AND publi_fecha_evento < " + "'" + hasta + "'";
+
+
+                sql += " order by publi_grado_id ";
+
+                SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+                conn.Open();
+
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Connection = conn;
+                command.CommandType = CommandType.Text;
+
+                SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+                dgvEspectaculos.Rows.Clear();
+                dgvEspectaculos.Refresh();
+                int cont = 0;
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        dgvEspectaculos.Rows.Add();
+                        dgvEspectaculos.Rows[cont].Cells[0].Value = reader["publi_id"].ToString();
+                        dgvEspectaculos.Rows[cont].Cells[1].Value = reader["publi_descripcion"].ToString();
+                        dgvEspectaculos.Rows[cont].Cells[2].Value = reader["publi_grado_id"].ToString();
+                        cont++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron resultados para estos parametros, modifique alguno e intente nuevamente!");
+                }
+
+                Connection.close(conn);
+            }
+            catch (Exception ex) {
+            
+            }
 
         }
 
@@ -256,7 +324,8 @@ namespace PalcoNet.Comprar
 
         }
 
-        private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             Application.Exit();
         }
 

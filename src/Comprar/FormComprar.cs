@@ -14,9 +14,9 @@ using System.Globalization;
 
 namespace PalcoNet.Comprar
 {
-    public partial class FormAlta : Form
+    public partial class FormComprar : Form
     {
-        public FormAlta()
+        public FormComprar()
         {
             InitializeComponent();
         }
@@ -25,5 +25,34 @@ namespace PalcoNet.Comprar
         {
             this.Close();
         }
+
+        private void lblPubli_Id_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void cargarTipo(int Publi_id)
+        {
+            try
+            {
+                cboTipo.ValueMember = "tipo_codigo";
+                cboTipo.DisplayMember = "tipo_descripcion";
+                List<Ubicacion> ubicacionTipos = DBHelper.tiposPorEspectaculo(Publi_id);
+                foreach (var ubicacionTipo in ubicacionTipos)
+                {
+                    cboTipo.Items.Add(ubicacionTipo);
+                }
+
+            }
+            catch (Exception ex) {
+            
+            }
+        }
+
     }
 }
