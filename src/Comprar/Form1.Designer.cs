@@ -41,6 +41,7 @@
             this.cerrarAplicacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gb_b_filtro = new System.Windows.Forms.GroupBox();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.lblFechaHasta = new System.Windows.Forms.Label();
             this.lblFechaDesde = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.lblCategoria = new System.Windows.Forms.Label();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +58,11 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.publi_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_fecha_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_fecha_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.publi_stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rubro_descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -71,24 +76,35 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgvEspectaculos);
+            this.groupBox3.Controls.Add(this.btnContinuar);
+            this.groupBox3.Controls.Add(this.btnLimpiar);
             this.groupBox3.Location = new System.Drawing.Point(12, 217);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(1112, 236);
+            this.groupBox3.Size = new System.Drawing.Size(752, 364);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Espectaculos";
             // 
             // dgvEspectaculos
             // 
+            this.dgvEspectaculos.AllowUserToAddRows = false;
+            this.dgvEspectaculos.AllowUserToDeleteRows = false;
             this.dgvEspectaculos.BackgroundColor = System.Drawing.Color.White;
             this.dgvEspectaculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEspectaculos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.publi_descripcion,
+            this.publi_fecha_inicio,
+            this.publi_fecha_evento,
+            this.publi_stock,
+            this.rubro_descripcion});
             this.dgvEspectaculos.Location = new System.Drawing.Point(4, 18);
             this.dgvEspectaculos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvEspectaculos.Name = "dgvEspectaculos";
+            this.dgvEspectaculos.ReadOnly = true;
             this.dgvEspectaculos.RowTemplate.Height = 24;
-            this.dgvEspectaculos.Size = new System.Drawing.Size(1104, 213);
+            this.dgvEspectaculos.Size = new System.Drawing.Size(569, 346);
             this.dgvEspectaculos.TabIndex = 0;
             // 
             // btnContinuar
@@ -96,7 +112,7 @@
             this.btnContinuar.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnContinuar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContinuar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnContinuar.Location = new System.Drawing.Point(993, 112);
+            this.btnContinuar.Location = new System.Drawing.Point(624, 18);
             this.btnContinuar.Margin = new System.Windows.Forms.Padding(2);
             this.btnContinuar.Name = "btnContinuar";
             this.btnContinuar.Size = new System.Drawing.Size(128, 34);
@@ -108,7 +124,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(993, 177);
+            this.btnLimpiar.Location = new System.Drawing.Point(624, 326);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(128, 34);
@@ -144,7 +160,7 @@
             this.cerrarAplicacionToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1131, 24);
+            this.menu.Size = new System.Drawing.Size(774, 24);
             this.menu.TabIndex = 113;
             this.menu.Text = "menuStrip1";
             // 
@@ -176,21 +192,33 @@
             this.gb_b_filtro.Margin = new System.Windows.Forms.Padding(2);
             this.gb_b_filtro.Name = "gb_b_filtro";
             this.gb_b_filtro.Padding = new System.Windows.Forms.Padding(2);
-            this.gb_b_filtro.Size = new System.Drawing.Size(968, 99);
+            this.gb_b_filtro.Size = new System.Drawing.Size(746, 99);
             this.gb_b_filtro.TabIndex = 114;
             this.gb_b_filtro.TabStop = false;
             this.gb_b_filtro.Text = "Filtros de espectaculo";
             // 
             // dtpHasta
             // 
-            this.dtpHasta.Location = new System.Drawing.Point(398, 27);
+            this.dtpHasta.Location = new System.Drawing.Point(395, 57);
             this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(205, 20);
+            this.dtpHasta.Size = new System.Drawing.Size(208, 20);
             this.dtpHasta.TabIndex = 14;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Location = new System.Drawing.Point(608, 33);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(128, 34);
+            this.btnBuscar.TabIndex = 115;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dtpDesde
             // 
-            this.dtpDesde.Location = new System.Drawing.Point(395, 54);
+            this.dtpDesde.Location = new System.Drawing.Point(395, 27);
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(208, 20);
             this.dtpDesde.TabIndex = 13;
@@ -198,7 +226,7 @@
             // lblFechaHasta
             // 
             this.lblFechaHasta.AutoSize = true;
-            this.lblFechaHasta.Location = new System.Drawing.Point(314, 34);
+            this.lblFechaHasta.Location = new System.Drawing.Point(317, 60);
             this.lblFechaHasta.Name = "lblFechaHasta";
             this.lblFechaHasta.Size = new System.Drawing.Size(71, 13);
             this.lblFechaHasta.TabIndex = 12;
@@ -207,7 +235,7 @@
             // lblFechaDesde
             // 
             this.lblFechaDesde.AutoSize = true;
-            this.lblFechaDesde.Location = new System.Drawing.Point(314, 60);
+            this.lblFechaDesde.Location = new System.Drawing.Point(314, 33);
             this.lblFechaDesde.Name = "lblFechaDesde";
             this.lblFechaDesde.Size = new System.Drawing.Size(74, 13);
             this.lblFechaDesde.TabIndex = 11;
@@ -250,18 +278,6 @@
             this.lblCategoria.TabIndex = 0;
             this.lblCategoria.Text = "Categoria:";
             // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(618, 34);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(128, 34);
-            this.btnBuscar.TabIndex = 115;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
@@ -277,14 +293,14 @@
             this.bindingNavigatorSeparator1,
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorSeparator2});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 453);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 583);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1131, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(774, 25);
             this.bindingNavigator1.TabIndex = 116;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -337,18 +353,46 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // publi_descripcion
+            // 
+            this.publi_descripcion.HeaderText = "Descripcion";
+            this.publi_descripcion.Name = "publi_descripcion";
+            this.publi_descripcion.ReadOnly = true;
+            // 
+            // publi_fecha_inicio
+            // 
+            this.publi_fecha_inicio.HeaderText = "Fecha de Publicacion";
+            this.publi_fecha_inicio.Name = "publi_fecha_inicio";
+            this.publi_fecha_inicio.ReadOnly = true;
+            // 
+            // publi_fecha_evento
+            // 
+            this.publi_fecha_evento.HeaderText = "Fecha de Evento";
+            this.publi_fecha_evento.Name = "publi_fecha_evento";
+            this.publi_fecha_evento.ReadOnly = true;
+            // 
+            // publi_stock
+            // 
+            this.publi_stock.HeaderText = "Stock Actual";
+            this.publi_stock.Name = "publi_stock";
+            this.publi_stock.ReadOnly = true;
+            // 
+            // rubro_descripcion
+            // 
+            this.rubro_descripcion.HeaderText = "Rubro";
+            this.rubro_descripcion.Name = "rubro_descripcion";
+            this.rubro_descripcion.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1131, 478);
+            this.ClientSize = new System.Drawing.Size(774, 608);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.gb_b_filtro);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.btnContinuar);
-            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Abm Cliente";
@@ -399,5 +443,10 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publi_descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publi_fecha_inicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publi_fecha_evento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn publi_stock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rubro_descripcion;
     }
 }

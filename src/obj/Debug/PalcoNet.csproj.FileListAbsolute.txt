@@ -78,4 +78,4 @@ G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Listado_Estadistico.Form1.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Editar_Publicacion.FormDireccion.resources
 G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Editar_Publicacion.FormModificacion.resources
-G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Comprar.FormComprar.resources
+G:\UTN\Gestion de datos\Trabajo Practico\Gestion-de-Datos\src\obj\Debug\PalcoNet.Comprar.FormTarjeta.resources

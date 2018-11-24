@@ -15,26 +15,26 @@ using System.Globalization;
 
 namespace PalcoNet.Comprar {
     public partial class Form1 : Form {
-        private static int totalRecords = DBHelper.clieGetHistorial(DBHelper.clienteGetId(VariablesGlobales.usuario.id)).Count;
-        private const int pageSize = 13;
+        /*private static int totalRecords = DBHelper.publicacionesHabilitadas().Count;
+        private const int pageSize = 100;*/
 
         public Form1() {
             InitializeComponent();
             cargarCategorias();
-
+/*
             bindingNavigator1.BindingSource = bindingSource1;
             bindingSource1.CurrentChanged += new System.EventHandler(bindingSource1_CurrentChanged);
-            bindingSource1.DataSource = new PageOffsetList();
+            bindingSource1.DataSource = new PageOffsetList();*/
 
         }
 
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
+      /*  private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
             // The desired page has changed, so fetch the page of records using the "Current" offset 
             int offset = (int)bindingSource1.Current;
-            var records = new List<ClienteHistorial>();
+            var records = new List<Compra>();
             for (int i = offset; i < offset + pageSize && i < totalRecords; i++) {
-                ClienteHistorial test = new ClienteHistorial();
-                records.Add(DBHelper.clieGetHistorial(DBHelper.clienteGetId(VariablesGlobales.usuario.id))[i]);
+                Compra test = new Compra();
+                records.Add(DBHelper.publicacionesHabilitadas()[i]);
             }
             dgvEspectaculos.DataSource = records;
         }
@@ -49,7 +49,7 @@ namespace PalcoNet.Comprar {
                     pageOffsets.Add(offset);
                 return pageOffsets;
             }
-        }
+        }*/
 
 
         public void cargarCategorias() {
@@ -62,7 +62,9 @@ namespace PalcoNet.Comprar {
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e) {
-
+            txtDescripcion.Text = "";
+            dgvEspectaculos.Rows.Clear();
+            dgvEspectaculos.Refresh();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -91,30 +93,46 @@ namespace PalcoNet.Comprar {
 
         private void btnContinuar_Click(object sender, EventArgs e) {
 
-            if (dgvEspectaculos.SelectedCells.Count > 0) {
-                int selectedrowindex = dgvEspectaculos.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = dgvEspectaculos.Rows[selectedrowindex];
-                string publicacionSeleccionadaId = Convert.ToString(selectedRow.Cells["publi_id"].Value);
-                string publicacionSeleccionadaDescripcion = Convert.ToString(selectedRow.Cells["publi_descripcion"].Value);
-                if (publicacionSeleccionadaId != "") {
-                    FormComprar testDialog = new FormComprar();
-                    testDialog.txtPubli_id.Text = publicacionSeleccionadaId;
-                    testDialog.txtPubli_descripcion.Text = publicacionSeleccionadaDescripcion;
-                    testDialog.cargarTipo(Convert.ToInt32(publicacionSeleccionadaId));
-                    testDialog.ShowDialog(this);
-
-                }
-                else {
-                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
-                }
+            if (!DBHelper.clienteTieneTarjeta(DBHelper.clienteGetId(VariablesGlobales.usuario.id))) {
+                MessageBox.Show("Se detecto que no tiene una tarjeta asociada, para continuar porfavor ingrese su tarjeta: ");
+                FormTarjeta testDialog = new FormTarjeta();
+                testDialog.ShowDialog(this);
             }
             else {
-                MessageBox.Show("Buscar una publicacion para poder continuar con la compra.");
+                MessageBox.Show("Se puede operar.");
             }
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e) {
-
+            dgvEspectaculos.Rows.Clear();
+            dgvEspectaculos.Refresh();
+            List<Compra> compras = new List<Compra>();
+            if (cboCategoria.Text != "" && txtDescripcion.Text != "") {
+                compras = DBHelper.publicacionesHabilitadas(cboCategoria.Text, txtDescripcion.Text);
+            }
+            else if (cboCategoria.Text != "") {
+                compras = DBHelper.publicacionesHabilitadasRubro(cboCategoria.Text);
+            }
+            else if (txtDescripcion.Text != "") {
+                compras = DBHelper.publicacionesHabilitadasDesc(txtDescripcion.Text);
+            }
+            else {
+                compras = DBHelper.publicacionesHabilitadas();
+            }
+            int cont = 0;
+            foreach (Compra compra in compras) {
+                dgvEspectaculos.Rows.Add();
+                dgvEspectaculos.Rows[cont].Cells[0].Value = compra.descripcion;
+                dgvEspectaculos.Rows[cont].Cells[1].Value = compra.fecha_publicacion;
+                dgvEspectaculos.Rows[cont].Cells[2].Value = compra.fecha_evento;
+                dgvEspectaculos.Rows[cont].Cells[3].Value = compra.stock;
+                dgvEspectaculos.Rows[cont].Cells[4].Value = compra.rubro;
+                cont++;
+            }
+            if (dgvEspectaculos.Rows.Count < 1) {
+                MessageBox.Show("No se encontraron resultados.");
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {

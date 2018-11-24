@@ -15,7 +15,7 @@ namespace PalcoNet.Historial_Cliente
     public partial class Form1 : Form
     {
         private static int totalRecords = DBHelper.clieGetHistorial(DBHelper.clienteGetId(VariablesGlobales.usuario.id)).Count;
-        private const int pageSize = 13;
+        private const int pageSize = 25;
 
         public Form1()
         {

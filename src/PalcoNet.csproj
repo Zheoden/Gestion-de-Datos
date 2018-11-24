@@ -153,11 +153,11 @@
     <Compile Include="Comprar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\FormComprar.cs">
+    <Compile Include="Comprar\FormTarjeta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\FormComprar.Designer.cs">
-      <DependentUpon>FormComprar.cs</DependentUpon>
+    <Compile Include="Comprar\FormTarjeta.Designer.cs">
+      <DependentUpon>FormTarjeta.cs</DependentUpon>
     </Compile>
     <Compile Include="Data Base\Connection.cs" />
     <Compile Include="Data Base\DBHelper.cs" />
@@ -237,7 +237,7 @@
     <Compile Include="Utils\EstadoHelper.cs" />
     <Compile Include="Utils\GradoHelper.cs" />
     <Compile Include="Utils\EmpresaHelper.cs" />
-    <Compile Include="Utils\Helper.cs" />
+    <Compile Include="Utils\CompraHelper.cs" />
     <Compile Include="Utils\DireccionHelper.cs" />
     <Compile Include="Utils\TarjetaHelper.cs" />
     <Compile Include="Utils\FuncionalidadHelper.cs" />
@@ -326,8 +326,8 @@
     <EmbeddedResource Include="Comprar\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\FormComprar.resx">
-      <DependentUpon>FormComprar.cs</DependentUpon>
+    <EmbeddedResource Include="Comprar\FormTarjeta.resx">
+      <DependentUpon>FormTarjeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editar Publicacion\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

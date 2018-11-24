@@ -314,5 +314,23 @@ namespace PalcoNet.Utils {
             return 0;
         }
 
+        public static Boolean tieneTarjeta(int id_user) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT DISTINCT clie_tarjeta_id " +
+                         "FROM EL_REJUNTE.Cliente " +
+                         "WHERE clie_usuario_id = " + id_user;
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            bool aux = reader.HasRows;
+            conn.Close();
+            return aux;
+        }
+
     }
 }

@@ -8,9 +8,10 @@ namespace PalcoNet.Objetos
 {
     public class Compra
     {
-        public int id { get; set; }
-        public DateTime fecha { get; set; }
-        public int cantidad { get; set; }
-        public Cliente cliente { get; set; }
+        public int stock { get; set; }
+        public string rubro { get; set; }
+        public string descripcion { get; set; }
+        public DateTime fecha_evento { get; set; }
+        public DateTime fecha_publicacion { get; set; }
     }
 }
