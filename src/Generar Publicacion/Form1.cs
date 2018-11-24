@@ -74,7 +74,7 @@ namespace PalcoNet.Generar_Publicacion {
                 ubica.asiento = 0;
                 ubica.sin_numerar = true;
                 ubica.precio = Int32.Parse(txtPrecio.Text);
-                ubica.tipo_descripcion = "";
+                ubica.tipo_descripcion = "General";
                 //precio
 
                 grado.prioridad = cmbGrado.SelectedItem.ToString().Split(';')[0].Split(':')[1];

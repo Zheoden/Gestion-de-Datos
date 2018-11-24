@@ -15,7 +15,7 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Ubicacion (ubica_fila , ubica_asiento, ubica_sin_numerar, ubica_precio, ubica_tipo_codigo, ubica_tipo_descripcion) " +
-                                "VALUES ( '" + ubica.fila + "', " + ubica.asiento + ", " + Int32.Parse(ubica.sin_numerar.ToString()) + " , " + ubica.precio + ", " + ubica.tipo_codigo + ", '" + ubica.tipo_descripcion + "')";
+                                "VALUES ( '" + ubica.fila + "', " + ubica.asiento + ", " + Convert.ToInt32(ubica.sin_numerar) + " , " + ubica.precio + ", " + ubica.tipo_codigo + ", '" + ubica.tipo_descripcion + "' )";
 
             comm.Connection = connection;
             comm.Connection.Open();

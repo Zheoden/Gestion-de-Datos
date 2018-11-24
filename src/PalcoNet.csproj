@@ -221,6 +221,7 @@
     <Compile Include="Login\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objetos\ClienteHistorial.cs" />
     <Compile Include="Objetos\Ubicacion_Publicacion.cs" />
     <Compile Include="Objetos\Menus.cs" />
     <Compile Include="Utils\UbicacionHelper.cs" />

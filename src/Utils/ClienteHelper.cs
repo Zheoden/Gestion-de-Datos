@@ -254,5 +254,43 @@ namespace PalcoNet.Utils {
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
             return reader.HasRows;
         }
+
+        public static ClienteHistorial clieGetHistorial(int id) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT DISTINCT c.compra_id, c.compra_fecha, i.item_monto, f.fact_pago_desc "+
+                         "FROM EL_REJUNTE.Compra c, EL_REJUNTE.Ubicacion_compra uc, EL_REJUNTE.Ubicacion u, EL_REJUNTE.Item_Factura i, EL_REJUNTE.Factura f "+
+                         "WHERE c.compra_id = uc.compra_id AND " +
+	                           "uc.ubica_id = u.ubica_id AND " +
+	                           "i.item_ubicacion_id = u.ubica_id AND " +
+	                           "f.fact_id = i.item_factura_id AND " +
+	                           "c.compra_cliente_id = " + id + " AND " +
+                               "f.fact_cliente_id = " + id + " " +
+                         "ORDER BY c.compra_id";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            ClienteHistorial cliente = new ClienteHistorial();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    cliente.compra_id = Int32.Parse(reader["clie_id"].ToString());
+                    cliente.fact_pago_desc = reader["clie_nombre"].ToString();
+                    cliente.compra_fecha = Convert.ToDateTime(reader["clie_fecha_creacion"]);
+                    cliente.item_monto = Convert.ToInt32(reader["clie_habilitado"].ToString());
+
+                }
+            }
+
+            conn.Close();
+            return cliente;
+
+
+
+        }
+    
     }
 }
