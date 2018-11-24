@@ -705,7 +705,7 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo, publi_rubro_id, publi_usuario_id,publi_espectaculo_id, publi_grado_id)
 	SELECT DISTINCT gd.Espectaculo_Descripcion, (SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = gd.Espectaculo_Estado), gd.Espectaculo_Fecha, gd.Espectaculo_Fecha_Venc, gd.Espectaculo_Cod, 1, usu.usuario_id,(SELECT espec_id FROM EL_REJUNTE.Espectaculo WHERE espec_descripcion = gd.Espectaculo_Descripcion), 4
 	FROM gd_esquema.Maestra gd, EL_REJUNTE.Usuario usu
-	WHERE left(gd.Espec_Empresa_Mail,charindex('@',gd.Espec_Empresa_Mail,1)-1)=usu.usuario_username
+	WHERE REPLACE(gd.Espec_Empresa_Cuit , '-' , '')=usu.usuario_username
 	ORDER BY gd.Espectaculo_Cod
 	GO
 	
@@ -741,14 +741,14 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	INSERT INTO EL_REJUNTE.Factura (fact_nro , fact_fecha, fact_total, fact_pago_desc, fact_cliente_id, fact_empresa_id)
 	SELECT DISTINCT Factura_Nro,Factura_Fecha,Factura_Total, Forma_Pago_Desc, clie_id, empre_id
 	FROM gd_esquema.Maestra, EL_REJUNTE.Cliente, EL_REJUNTE.Empresa
-	WHERE Factura_Nro IS NOT NULL AND clie_email = Cli_Mail AND empre_cuit = Espec_Empresa_Cuit
+	WHERE Factura_Nro IS NOT NULL AND clie_documento = convert(nvarchar(15),Cli_Dni) AND empre_cuit = REPLACE(Espec_Empresa_Cuit , '-' , '')
 	GO
 
 /* ITEM_FACTURA*/
 	SELECT DISTINCT gd.Item_Factura_Monto, gd.Item_Factura_Cantidad, gd.Item_Factura_Descripcion, f.fact_id , u.ubica_id 
 	INTO #Item_Factura_Aux
 	FROM gd_esquema.Maestra gd, EL_REJUNTE.Factura f, EL_REJUNTE.Ubicacion u,EL_REJUNTE.Cliente c, EL_REJUNTE.Empresa e 
-	WHERE gd.Factura_Nro IS NOT NULL AND f.fact_nro = gd.Factura_Nro AND f.fact_cliente_id = c.clie_id AND c.clie_email = gd.Cli_Mail AND f.fact_empresa_id = e.empre_id AND e.empre_cuit = gd.Espec_Empresa_Cuit AND u.ubica_fila = gd.Ubicacion_Fila AND u.ubica_asiento = gd.Ubicacion_Asiento AND u.ubica_sin_numerar = gd.Ubicacion_Sin_numerar AND u.ubica_precio = gd.Ubicacion_Precio AND u.ubica_tipo_codigo = gd.Ubicacion_Tipo_Codigo AND u.ubica_tipo_descripcion = gd.Ubicacion_Tipo_Descripcion
+	WHERE gd.Factura_Nro IS NOT NULL AND f.fact_nro = gd.Factura_Nro AND f.fact_cliente_id = c.clie_id AND c.clie_email = gd.Cli_Mail AND f.fact_empresa_id = e.empre_id AND e.empre_cuit = REPLACE(Espec_Empresa_Cuit , '-' , '') AND u.ubica_fila = gd.Ubicacion_Fila AND u.ubica_asiento = gd.Ubicacion_Asiento AND u.ubica_sin_numerar = gd.Ubicacion_Sin_numerar AND u.ubica_precio = gd.Ubicacion_Precio AND u.ubica_tipo_codigo = gd.Ubicacion_Tipo_Codigo AND u.ubica_tipo_descripcion = gd.Ubicacion_Tipo_Descripcion
 
 	INSERT INTO EL_REJUNTE.Item_Factura (item_monto , item_cantidad, item_descripcion, item_factura_id, item_ubicacion_id)
 	SELECT Item_Factura_Monto, Item_Factura_Cantidad, Item_Factura_Descripcion, fact_id, ubica_id FROM #Item_Factura_Aux
