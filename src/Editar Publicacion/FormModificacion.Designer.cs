@@ -67,9 +67,10 @@
             this.btnAlta.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(128, 51);
-            this.btnAlta.TabIndex = 104;
+            this.btnAlta.TabIndex = 110;
             this.btnAlta.Text = "Confirmar Publicacion";
             this.btnAlta.UseVisualStyleBackColor = false;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // label2
             // 
@@ -124,7 +125,7 @@
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(231, 20);
-            this.txtID.TabIndex = 106;
+            this.txtID.TabIndex = 1;
             // 
             // label1
             // 
@@ -145,14 +146,14 @@
             this.cmbRubro.Location = new System.Drawing.Point(145, 186);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(231, 21);
-            this.cmbRubro.TabIndex = 95;
+            this.cmbRubro.TabIndex = 60;
             // 
             // btnSacarFecha
             // 
             this.btnSacarFecha.Location = new System.Drawing.Point(406, 117);
             this.btnSacarFecha.Name = "btnSacarFecha";
             this.btnSacarFecha.Size = new System.Drawing.Size(20, 20);
-            this.btnSacarFecha.TabIndex = 94;
+            this.btnSacarFecha.TabIndex = 39;
             this.btnSacarFecha.Text = "-";
             this.btnSacarFecha.UseVisualStyleBackColor = true;
             this.btnSacarFecha.Click += new System.EventHandler(this.btnSacarFecha_Click);
@@ -162,7 +163,7 @@
             this.btnAgregarFecha.Location = new System.Drawing.Point(380, 117);
             this.btnAgregarFecha.Name = "btnAgregarFecha";
             this.btnAgregarFecha.Size = new System.Drawing.Size(20, 20);
-            this.btnAgregarFecha.TabIndex = 93;
+            this.btnAgregarFecha.TabIndex = 35;
             this.btnAgregarFecha.Text = "+";
             this.btnAgregarFecha.UseVisualStyleBackColor = true;
             this.btnAgregarFecha.Click += new System.EventHandler(this.btnAgregarFecha_Click);
@@ -177,7 +178,7 @@
             this.cmbFechaEspectaculo.Location = new System.Drawing.Point(145, 133);
             this.cmbFechaEspectaculo.Name = "cmbFechaEspectaculo";
             this.cmbFechaEspectaculo.Size = new System.Drawing.Size(231, 21);
-            this.cmbFechaEspectaculo.TabIndex = 92;
+            this.cmbFechaEspectaculo.TabIndex = 40;
             // 
             // dtpEspectaculo
             // 
@@ -198,7 +199,7 @@
             this.cmbGrado.Location = new System.Drawing.Point(145, 240);
             this.cmbGrado.Name = "cmbGrado";
             this.cmbGrado.Size = new System.Drawing.Size(231, 21);
-            this.cmbGrado.TabIndex = 91;
+            this.cmbGrado.TabIndex = 80;
             // 
             // txtUsuarioResponsable
             // 
@@ -206,7 +207,7 @@
             this.txtUsuarioResponsable.Name = "txtUsuarioResponsable";
             this.txtUsuarioResponsable.ReadOnly = true;
             this.txtUsuarioResponsable.Size = new System.Drawing.Size(231, 20);
-            this.txtUsuarioResponsable.TabIndex = 80;
+            this.txtUsuarioResponsable.TabIndex = 90;
             // 
             // cmbEstado
             // 
@@ -218,7 +219,7 @@
             this.cmbEstado.Location = new System.Drawing.Point(145, 289);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(231, 21);
-            this.cmbEstado.TabIndex = 90;
+            this.cmbEstado.TabIndex = 100;
             // 
             // cmbDireccion
             // 
@@ -230,7 +231,7 @@
             this.cmbDireccion.Location = new System.Drawing.Point(145, 214);
             this.cmbDireccion.Name = "cmbDireccion";
             this.cmbDireccion.Size = new System.Drawing.Size(231, 21);
-            this.cmbDireccion.TabIndex = 60;
+            this.cmbDireccion.TabIndex = 70;
             // 
             // label8
             // 
@@ -246,7 +247,7 @@
             this.btnEliminarDire.Location = new System.Drawing.Point(406, 214);
             this.btnEliminarDire.Name = "btnEliminarDire";
             this.btnEliminarDire.Size = new System.Drawing.Size(20, 20);
-            this.btnEliminarDire.TabIndex = 29;
+            this.btnEliminarDire.TabIndex = 79;
             this.btnEliminarDire.Text = "-";
             this.btnEliminarDire.UseVisualStyleBackColor = true;
             this.btnEliminarDire.Click += new System.EventHandler(this.btnEliminarDire_Click);
@@ -256,7 +257,7 @@
             this.btnAgregarDire.Location = new System.Drawing.Point(380, 214);
             this.btnAgregarDire.Name = "btnAgregarDire";
             this.btnAgregarDire.Size = new System.Drawing.Size(20, 20);
-            this.btnAgregarDire.TabIndex = 27;
+            this.btnAgregarDire.TabIndex = 75;
             this.btnAgregarDire.Text = "+";
             this.btnAgregarDire.UseVisualStyleBackColor = true;
             this.btnAgregarDire.Click += new System.EventHandler(this.btnAgregarDire_Click);
@@ -302,7 +303,7 @@
             this.txtPrecio.Location = new System.Drawing.Point(145, 160);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(231, 20);
-            this.txtPrecio.TabIndex = 40;
+            this.txtPrecio.TabIndex = 50;
             // 
             // label6
             // 
@@ -327,7 +328,7 @@
             this.txtStock.Location = new System.Drawing.Point(145, 82);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(231, 20);
-            this.txtStock.TabIndex = 10;
+            this.txtStock.TabIndex = 20;
             // 
             // label13
             // 
@@ -343,7 +344,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(145, 56);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(231, 20);
-            this.txtDescripcion.TabIndex = 1;
+            this.txtDescripcion.TabIndex = 10;
             // 
             // label14
             // 
@@ -372,7 +373,7 @@
             this.btnCerrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(128, 51);
-            this.btnCerrar.TabIndex = 105;
+            this.btnCerrar.TabIndex = 120;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.button1_Click);

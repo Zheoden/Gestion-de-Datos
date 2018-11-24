@@ -90,7 +90,6 @@ namespace PalcoNet.Generar_Publicacion {
                 publi.user = VariablesGlobales.usuario;
                 publi.grado = grado;
 
-                espec.codigo = publi.codigo;
                 espec.descripcion = publi.descripcion;
                 espec.direccion = direccion;
                 espec.estado = publi.estado;
@@ -99,15 +98,18 @@ namespace PalcoNet.Generar_Publicacion {
                 publi.espectaculo = espec;
                 
                 foreach (DateTime item in cmbFechaEspectaculo.Items) {
-                    ubica.tipo_codigo = DBHelper.publicacionGetNextCod();
                     publi.codigo = DBHelper.publicacionGetNextCod();
+                    ubica.tipo_codigo = publi.codigo;
+                    espec.codigo = publi.codigo;
+
                     publi.fecha_evento = item;
                     espec.fecha_venc = item;
+
                     ubica_publi.ubicacion = ubica;
                     ubica_publi.publicacion = publi;
                     ubica_publi.disponible = true;
                     if (DBHelper.altaEspectaculo(espec)) {
-                        if (DBHelper.altaPublicacion(ubica_publi)) {
+                        if (DBHelper.altaUbicacion_Publicacion(ubica_publi)) {
                             MessageBox.Show("Se creo la publicacion correctamente.");
                         }
                         else {
@@ -119,15 +121,6 @@ namespace PalcoNet.Generar_Publicacion {
                     }
 
                 }
-
-                /* Creo el Cliente */
-               /* if (!DBHelper.altaCliente(cliente)) {
-                    MessageBox.Show("Se produjo un error al intentar dar de alta el Cliente");
-                }
-                else {
-                    MessageBox.Show("El cliente se creo correctamente.");
-                    this.Close();
-                }*/
             }
         }
 

@@ -255,7 +255,7 @@ namespace PalcoNet.Utils {
             return reader.HasRows;
         }
 
-        public static ClienteHistorial clieGetHistorial(int id) {
+        public static List<ClienteHistorial> clieGetHistorial(int id) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
@@ -273,10 +273,11 @@ namespace PalcoNet.Utils {
             command.CommandType = CommandType.Text;
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
-            ClienteHistorial cliente = new ClienteHistorial();
+            List<ClienteHistorial> clientes = new List<ClienteHistorial>();
 
             if (reader.HasRows) {
                 while (reader.Read()) {
+                    ClienteHistorial cliente = new ClienteHistorial();
                     cliente.compra_id = Int32.Parse(reader["clie_id"].ToString());
                     cliente.fact_pago_desc = reader["clie_nombre"].ToString();
                     cliente.compra_fecha = Convert.ToDateTime(reader["clie_fecha_creacion"]);
@@ -286,7 +287,7 @@ namespace PalcoNet.Utils {
             }
 
             conn.Close();
-            return cliente;
+            return clientes;
 
 
 

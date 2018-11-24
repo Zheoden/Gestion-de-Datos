@@ -34,33 +34,35 @@ namespace PalcoNet.Utils {
             return codigo;
         }
 
-        public static Boolean altaPublicacion(Ubicacion_Publicacion publicacion) {
+        public static int altaPublicacion(Publicacion publicacion) {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo, publi_rubro_id, publi_usuario_id, publi_espectaculo_id, publi_grado_id, publi_stock) " +
-                                "VALUES ( '" + publicacion.publicacion.descripcion + "', " + publicacion.publicacion.estado.id + ", GETDATE(), '" + publicacion.publicacion.fecha_evento.ToString("yyyy-MM-dd HH:mm:ss") + "', " +
-                                publicacion.publicacion.codigo + ", " + publicacion.publicacion.rubro.id + ", " + publicacion.publicacion.user.id + ", (SELECT espec_id FROM EL_REJUNTE.Espectaculo WHERE espec_descripcion = '" + publicacion.publicacion.espectaculo.descripcion + "' AND espec_fecha_venc = '" + publicacion.publicacion.espectaculo.fecha_venc.ToString("yyyy-MM-dd HH:mm:ss") + "'), " + publicacion.publicacion.grado.id + ", " + publicacion.publicacion.stock + ")";
+                                "VALUES ( '" + publicacion.descripcion + "', " + publicacion.estado.id + ", GETDATE(), '" + publicacion.fecha_evento.ToString("yyyy-MM-dd HH:mm:ss") + "', " +
+                                publicacion.codigo + ", " + publicacion.rubro.id + ", " + publicacion.user.id + ", (SELECT espec_id FROM EL_REJUNTE.Espectaculo WHERE espec_descripcion = '" + publicacion.espectaculo.descripcion + "' AND espec_fecha_venc = '" + publicacion.espectaculo.fecha_venc.ToString("yyyy-MM-dd HH:mm:ss") + "'), " + publicacion.grado.id + ", " + publicacion.stock + "); SELECT SCOPE_IDENTITY()";
             comm.Connection = connection;
             comm.Connection.Open();
-            int rows = comm.ExecuteNonQuery();
+            int rows = Convert.ToInt32(comm.ExecuteScalar());
             comm.Connection.Close();
             connection.Close();
-            return rows > 0 && DBHelper.ubicacionAlta(publicacion.ubicacion) ;//&& DBHelper.altaUbicacion_Publicacion(publicacion);
+            return rows;
         }
 
         public static Publicacion publicacionGetData(int id) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT DISTINCT p.publi_descripcion, p.publi_stock, p.publi_fecha_evento, r.rubro_descripcion, d.dire_id, d.dire_calle, d.dire_numero, d.dire_piso, d.dire_depto, d.dire_localidad, d.dire_codigo_postal , g.grado_comision, g.grado_prioridad, g.grado_habilitado " +
-                         "FROM EL_REJUNTE.Publicacion p, EL_REJUNTE.Estado e, EL_REJUNTE.Rubro r, EL_REJUNTE.Grado g, EL_REJUNTE.Espectaculo es, EL_REJUNTE.Direccion d " +
+            string SQL = "SELECT DISTINCT p.publi_descripcion, p.publi_stock, p.publi_fecha_evento, r.rubro_descripcion, d.dire_id, d.dire_calle, d.dire_numero, d.dire_piso, d.dire_depto, d.dire_localidad, d.dire_codigo_postal , g.grado_comision, g.grado_prioridad, g.grado_habilitado, u.ubica_precio " +
+                         "FROM EL_REJUNTE.Publicacion p, EL_REJUNTE.Estado e, EL_REJUNTE.Rubro r, EL_REJUNTE.Grado g, EL_REJUNTE.Espectaculo es, EL_REJUNTE.Direccion d, EL_REJUNTE.Ubicacion_Publicacion up, EL_REJUNTE.Ubicacion u " +
                          "WHERE p.publi_id = " + id + " AND " +
                          "p.publi_estado_id = e.estado_id AND " +
                          "e.estado_id = 1 AND " +
                          "p.publi_rubro_id = r.rubro_id AND " +
                          "p.publi_grado_id = g.grado_id AND " +
                          "p.publi_espectaculo_id = es.espec_id AND " + 
-                         "es.espec_direccion_id = d.dire_id";
+                         "es.espec_direccion_id = d.dire_id AND " +
+                         "up.publi_id = " + id + " AND " + 
+                         "up.ubica_id = u.ubica_id ";
 
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
@@ -77,6 +79,7 @@ namespace PalcoNet.Utils {
                     publi.stock = Int32.Parse(reader["publi_stock"].ToString());
                     publi.fecha_evento = Convert.ToDateTime(reader["publi_fecha_evento"].ToString());
                     publi.rubro.descripcion = reader["rubro_descripcion"].ToString();
+                    publi.precio = Int32.Parse(reader["ubica_precio"].ToString());
 
                     Direccion dire = new Direccion();
 
@@ -103,13 +106,41 @@ namespace PalcoNet.Utils {
             return publi;
         }
 
-        public static Boolean publicacionModificar(Cliente cliente) {
+        public static int publicacionCodigo(int id) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT DISTINCT p.publi_codigo " +
+                         "FROM EL_REJUNTE.Publicacion p " +
+                         "WHERE p.publi_id = " + id;
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            Publicacion publi = new Publicacion();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+
+                    return Int32.Parse(reader["publi_codigo"].ToString());
+                }
+            }
+
+            conn.Close();
+            return 0;
+        }                         
+
+        public static Boolean publicacionModificar(Publicacion publi) {
 
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "UPDATE EL_REJUNTE.Cliente " +
-                               "SET clie_nombre = '" + cliente.nombre + "', clie_apellido = '" + cliente.apellido + "', clie_tipo_documento= '" + cliente.tipo_documento + "', clie_documento= '" + cliente.documento + "', clie_cuil= '" + cliente.cuil + "', clie_email= '" + cliente.mail + "', clie_telefono= '" + cliente.telefono + "', clie_direccion_id = (SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + cliente.dire.calle + "' AND dire_numero = '" + cliente.dire.numero + "' AND dire_piso = '" + cliente.dire.piso + "' AND dire_depto = '" + cliente.dire.depto + "' AND dire_localidad = '" + cliente.dire.localidad + "' AND dire_codigo_postal = '" + cliente.dire.codigo_postal + "') , clie_tarjeta_id = (SELECT TOP 1 tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" + cliente.tarjeta.cod_seguridad + "' AND tarj_vencimiento = '" + cliente.tarjeta.vencimiento + "' AND tarj_titular = '" + cliente.tarjeta.titular + "' AND tarj_tipo = '" + cliente.tarjeta.tipo + "') , clie_habilitado = " + Convert.ToInt32(cliente.habilitado) + " " +
-                               "WHERE clie_id = " + cliente.id;
+            comm.CommandText = "UPDATE EL_REJUNTE.Publicacion " +
+                               "SET publi_descripcion = '" + publi.descripcion + "', publi_estado_id = " + publi.estado.id + ", publi_fecha_evento= '" + publi.fecha_evento.ToString("yyyy-MM-dd HH:mm:ss") +
+                               "', publi_rubro_id= " + publi.rubro.id + ", publi_grado_id= " + publi.grado.id + ", publi_stock= " + publi.stock + " " +
+                               "WHERE publi_id = " + publi.id;
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();
@@ -119,11 +150,12 @@ namespace PalcoNet.Utils {
         }
 
         public static Boolean altaUbicacion_Publicacion(Ubicacion_Publicacion publicacion) {
+            int id_publicacion = DBHelper.altaPublicacion(publicacion.publicacion);
+            int id_ubicacion = DBHelper.ubicacionAltaRetornaID(publicacion.ubicacion);
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo, publi_rubro_id, publi_usuario_id, publi_espectaculo_id, publi_grado_id, publi_stock) " +
-                                "VALUES ( '" + publicacion.publicacion.descripcion + "', " + publicacion.publicacion.estado.id + ", GETDATE(), '" + publicacion.publicacion.fecha_evento.ToString("yyyy-MM-dd HH:mm:ss") + "', " +
-                                publicacion.publicacion.codigo + ", " + publicacion.publicacion.rubro.id + ", " + publicacion.publicacion.user.id + ", (SELECT espec_id FROM EL_REJUNTE.Espectaculo WHERE espec_descripcion = '" + publicacion.publicacion.espectaculo.descripcion + "' AND espec_fecha_venc = '" + publicacion.publicacion.espectaculo.fecha_venc.ToString("yyyy-MM-dd HH:mm:ss") + "'), " + publicacion.publicacion.grado.id + ", " + publicacion.publicacion.stock + ")";
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Ubicacion_Publicacion (ubica_id, publi_id, ubica_disponible) " +
+                                "VALUES ( " + id_ubicacion + ", " + id_publicacion + ", " + Convert.ToInt32(publicacion.disponible) + " )";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();

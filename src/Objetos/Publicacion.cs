@@ -19,5 +19,6 @@ namespace PalcoNet.Objetos
         public Espectaculo espectaculo { get; set; }
         public Grado grado { get; set; }
         public int stock { get; set; }
+        public int precio { get; set; }
     }
 }
