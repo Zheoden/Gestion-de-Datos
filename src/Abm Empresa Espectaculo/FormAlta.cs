@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PalcoNet.Objetos;
 using PalcoNet.Utils;
+using System.Text.RegularExpressions;
 
 namespace PalcoNet.Abm_Empresa_Espectaculo {
     public partial class FormAlta : Form {
@@ -83,7 +84,11 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
 
         private Boolean validarDatos() {
             if (txtNombre.Text != "" && txtCuil.Text != "" && txtMail.Text != "" && txtTelefono.Text != "" && cmbDireccion.Items.Count > 0) {
-                if (txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0, 2) == "30" || txtCuil.Text.Substring(0, 2) == "33")) {
+
+                var regex = @"^(30|33|34)[0-9]{8}[0-9]$";
+                var match = Regex.Match(txtCuil.Text, regex, RegexOptions.IgnoreCase);
+
+                if (match.Success) {//txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0, 2) == "30" || txtCuil.Text.Substring(0, 2) == "33")) {
                     if (DBHelper.EmpresaDontExistCuit(txtCuil.Text)) {
                         return true;
                     }

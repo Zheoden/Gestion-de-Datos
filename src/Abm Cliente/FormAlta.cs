@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using PalcoNet.Utils;
 using PalcoNet.Objetos;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace PalcoNet.Abm_Cliente {
     public partial class FormAlta : Form {
@@ -129,7 +130,11 @@ namespace PalcoNet.Abm_Cliente {
         private Boolean validarDatos(){
 
             if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumento.Text != "" && txtCuil.Text != "" && txtMail.Text != "" && txtTelefono.Text != "" && dtpFechaNac.Text != "" && cmbDireccion.Items.Count > 0 && cmbTarjeta.Items.Count > 0) {
-                if (txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0,2) == "20" || txtCuil.Text.Substring(0,2) == "23" || txtCuil.Text.Substring(0,2) == "24" || txtCuil.Text.Substring(0,2) == "27") ) {
+
+                var regex = @"^(20|23|24|27)[0-9]{8}[0-9]$";
+                var match = Regex.Match(txtCuil.Text, regex, RegexOptions.IgnoreCase);
+
+                if (match.Success && txtCuil.Text.Substring(2,8) == txtDocumento.Text) { //txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0,2) == "20" || txtCuil.Text.Substring(0,2) == "23" || txtCuil.Text.Substring(0,2) == "24" || txtCuil.Text.Substring(0,2) == "27") ) {
                     if (DBHelper.clienteDontExistDocumento(txtTipoDoc.Text, txtDocumento.Text)) {
                         if (DBHelper.clienteDontExistCuil(txtCuil.Text)) {
                             return true;
