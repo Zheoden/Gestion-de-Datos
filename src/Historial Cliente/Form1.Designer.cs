@@ -35,11 +35,7 @@
             this.cerrarAplicacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.compra_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.item_monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fact_pago_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.compra_fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -52,7 +48,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -66,7 +62,7 @@
             this.cerrarAplicacionToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(477, 24);
+            this.menu.Size = new System.Drawing.Size(509, 24);
             this.menu.TabIndex = 113;
             this.menu.Text = "menuStrip1";
             // 
@@ -103,56 +99,26 @@
             this.label1.TabIndex = 114;
             this.label1.Text = "Historial de Cliente";
             // 
-            // dataGridView1
+            // dgvHistorial
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.compra_id,
-            this.item_monto,
-            this.fact_pago_desc,
-            this.compra_fecha});
-            this.dataGridView1.Location = new System.Drawing.Point(5, 42);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(443, 356);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
-            // 
-            // compra_id
-            // 
-            this.compra_id.HeaderText = "ID de Compra";
-            this.compra_id.Name = "compra_id";
-            this.compra_id.ReadOnly = true;
-            // 
-            // item_monto
-            // 
-            this.item_monto.HeaderText = "Precio";
-            this.item_monto.Name = "item_monto";
-            this.item_monto.ReadOnly = true;
-            // 
-            // fact_pago_desc
-            // 
-            this.fact_pago_desc.HeaderText = "Metodo de pago";
-            this.fact_pago_desc.Name = "fact_pago_desc";
-            this.fact_pago_desc.ReadOnly = true;
-            // 
-            // compra_fecha
-            // 
-            this.compra_fecha.HeaderText = "Fecha de Compra";
-            this.compra_fecha.Name = "compra_fecha";
-            this.compra_fecha.ReadOnly = true;
+            this.dgvHistorial.BackgroundColor = System.Drawing.Color.White;
+            this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHistorial.Location = new System.Drawing.Point(5, 42);
+            this.dgvHistorial.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvHistorial.Name = "dgvHistorial";
+            this.dgvHistorial.RowTemplate.Height = 24;
+            this.dgvHistorial.Size = new System.Drawing.Size(478, 356);
+            this.dgvHistorial.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.bindingNavigator1);
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.dgvHistorial);
             this.groupBox3.Location = new System.Drawing.Point(11, 131);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(453, 445);
+            this.groupBox3.Size = new System.Drawing.Size(487, 445);
             this.groupBox3.TabIndex = 115;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Información";
@@ -179,7 +145,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(449, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(483, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -236,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 587);
+            this.ClientSize = new System.Drawing.Size(509, 587);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label1);
@@ -247,7 +213,7 @@
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
@@ -265,11 +231,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn compra_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn item_monto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fact_pago_desc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn compra_fecha;
+        private System.Windows.Forms.DataGridView dgvHistorial;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;

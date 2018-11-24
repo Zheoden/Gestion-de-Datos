@@ -14,20 +14,19 @@ namespace PalcoNet.Historial_Cliente
 {
     public partial class Form1 : Form
     {
-        private const int totalRecords = 43;
-        private const int pageSize = 10;
+        private static int totalRecords = DBHelper.clieGetHistorial(DBHelper.clienteGetId(VariablesGlobales.usuario.id)).Count;
+        private const int pageSize = 13;
 
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Index" });
-            //bindingNavigator1.BindingSource = bindingSource1;
-            //bindingSource1.CurrentChanged += new System.EventHandler(bindingSource1_CurrentChanged);
-           // bindingSource1.DataSource = new PageOffsetList();
+
+            bindingNavigator1.BindingSource = bindingSource1;
+            bindingSource1.CurrentChanged += new System.EventHandler(bindingSource1_CurrentChanged);
+            bindingSource1.DataSource = new PageOffsetList();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-
             foreach (Funcionalidad func in VariablesGlobales.usuario.funcionalidades) {
                 ToolStripMenuItem item = new ToolStripMenuItem(func.descripcion);
                 item.Tag = func.descripcion.ToString();
@@ -37,6 +36,30 @@ namespace PalcoNet.Historial_Cliente
                 item.Click += new EventHandler(eventClick);
             }
         }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
+            // The desired page has changed, so fetch the page of records using the "Current" offset 
+            int offset = (int)bindingSource1.Current;
+            var records = new List<ClienteHistorial>();
+            for (int i = offset; i < offset + pageSize && i < totalRecords; i++) {
+                ClienteHistorial test = new ClienteHistorial();
+                records.Add(DBHelper.clieGetHistorial(DBHelper.clienteGetId(VariablesGlobales.usuario.id))[i]);
+            }
+            dgvHistorial.DataSource = records;
+        }
+
+        class PageOffsetList : System.ComponentModel.IListSource {
+            public bool ContainsListCollection { get; protected set; }
+
+            public System.Collections.IList GetList() {
+                // Return a list of page offsets based on "totalRecords" and "pageSize"
+                var pageOffsets = new List<int>();
+                for (int offset = 0; offset < totalRecords; offset += pageSize)
+                    pageOffsets.Add(offset);
+                return pageOffsets;
+            }
+        }
+
 
         public void eventClick(object sender, EventArgs e) {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
@@ -48,16 +71,6 @@ namespace PalcoNet.Historial_Cliente
             this.Close();
             Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
             nextForm.Show();
-        }
-
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {

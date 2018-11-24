@@ -278,20 +278,41 @@ namespace PalcoNet.Utils {
             if (reader.HasRows) {
                 while (reader.Read()) {
                     ClienteHistorial cliente = new ClienteHistorial();
-                    cliente.compra_id = Int32.Parse(reader["clie_id"].ToString());
-                    cliente.fact_pago_desc = reader["clie_nombre"].ToString();
-                    cliente.compra_fecha = Convert.ToDateTime(reader["clie_fecha_creacion"]);
-                    cliente.item_monto = Convert.ToInt32(reader["clie_habilitado"].ToString());
-
+                    cliente.compra_id = Int32.Parse(reader["compra_id"].ToString());
+                    cliente.fact_pago_desc = reader["fact_pago_desc"].ToString();
+                    cliente.compra_fecha = Convert.ToDateTime(reader["compra_fecha"]);
+                    cliente.item_monto = float.Parse(reader["item_monto"].ToString());
+                    clientes.Add(cliente);
                 }
             }
 
             conn.Close();
             return clientes;
 
-
-
         }
-    
+
+        public static int clienteGetId(int id_user) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT DISTINCT clie_id " +
+                         "FROM EL_REJUNTE.Cliente " +
+                         "WHERE clie_usuario_id = " + id_user;
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (reader.HasRows) {
+                reader.Read();
+                return Convert.ToInt32(reader["clie_id"]);
+            }
+
+            conn.Close();
+            return 0;
+        }
+
     }
 }
