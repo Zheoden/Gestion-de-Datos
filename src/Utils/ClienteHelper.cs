@@ -105,8 +105,8 @@ namespace PalcoNet.Utils {
                                 "' AND dire_piso = '" + cliente.dire.piso + "' AND dire_depto = '" + cliente.dire.depto + "' AND dire_localidad = '" + cliente.dire.localidad + "' AND dire_codigo_postal = '" +
                                 cliente.dire.codigo_postal + "') , '" + cliente.fecha_nacimiento.ToString("yyyy-MM-dd HH:mm:ss") + 
                                 "', " + "GETDATE()" + "," + "(SELECT TOP 1 tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" + 
-                                cliente.tarjeta.cod_seguridad + "' AND tarj_vencimiento = '" + cliente.tarjeta.vencimiento + "' AND tarj_titular = '" + cliente.tarjeta.titular + "' AND tarj_tipo = '" + 
-                                cliente.tarjeta.tipo + "')" + ", 1, null" +
+                                cliente.tarjeta.cod_seguridad + "' AND tarj_vencimiento = '" + cliente.tarjeta.vencimiento + "' AND tarj_titular = '" + cliente.tarjeta.titular + "' AND tarj_tipo = '" +
+                                cliente.tarjeta.tipo + "')" + ", 1, (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE u.usuario_username = '" + cliente.documento + "')" +
                                 ")";
             comm.Connection = connection;
             comm.Connection.Open();

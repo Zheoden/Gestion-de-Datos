@@ -60,13 +60,23 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
                 empresa.telefono = txtTelefono.Text;
                 empresa.direccion = direccion;
 
-                /* Creo la Empresa */
-                if (!DBHelper.altaEmpresa(empresa)) {
-                    MessageBox.Show("Se produjo un error al intentar dar de alta la Empresa");
-                }
-                else {
-                    MessageBox.Show("La Empresa se creo correctamente.");
-                    this.Close();
+                Usuario user = new Usuario();
+                user.username = txtCuil.Text;
+                user.password = Encrypt.Sha256(Encrypt.RandomString(9));
+                Rol rol = new Rol();
+                rol.nombre = "Empresa";
+                user.roles = new List<Rol>();
+
+                user.roles.Add(rol);
+                /* Creo el Cliente */
+                if (DBHelper.altaUsuario(user)) {
+                    if (DBHelper.altaEmpresa(empresa)) {
+                        MessageBox.Show("La Empresa se creo correctamente.");
+                        this.Close();
+                    }
+                    else {
+                        MessageBox.Show("Se produjo un error al intentar dar de alta la Empresa");
+                    }
                 }
             }
         }

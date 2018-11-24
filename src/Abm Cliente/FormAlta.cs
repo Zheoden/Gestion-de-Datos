@@ -101,14 +101,27 @@ namespace PalcoNet.Abm_Cliente {
                 cliente.fecha_nacimiento = dtpFechaNac.Value;
                 cliente.dire = direccion;
                 cliente.tarjeta = tarjeta;
+                Usuario user = new Usuario();
+                user.username = txtDocumento.Text;
+                user.password = Encrypt.Sha256(Encrypt.RandomString(9));
+                Rol rol = new Rol();
+                rol.nombre = "Cliente";
+                user.roles = new List<Rol>();
 
+                user.roles.Add(rol);
                 /* Creo el Cliente */
-                if (!DBHelper.altaCliente(cliente)) {
-                    MessageBox.Show("Se produjo un error al intentar dar de alta el Cliente");
+                if (DBHelper.altaUsuario(user)) {
+                    if (DBHelper.altaCliente(cliente)) {
+                        MessageBox.Show("El cliente se creo correctamente.");
+                        this.Close();
+                    }
+                    else {
+                        MessageBox.Show("Se produjo un error al intentar dar de alta el Cliente");
+                    }
+                    
                 }
                 else {
-                    MessageBox.Show("El cliente se creo correctamente.");
-                    this.Close();
+                    MessageBox.Show("Se produjo un error al intentar dar de alta el Usuario");
                 }
             }
         }

@@ -587,6 +587,17 @@ BEGIN
 	END
 END
 GO
+/* Trigger para evitar que se asignen roles inhabilitados 
+CREATE TRIGGER EL_REJUNTE.tg_validar_rol
+ON EL_REJUNTE.Rol_Usuario
+AFTER INSERT AS
+BEGIN
+	IF EXISTS(SELECT 1 FROM inserted i, EL_REJUNTE.Rol r WHERE (r.rol_baja_logica = 1 OR r.rol_habilitado = 0) AND r.rol_id = i.rol_id)
+	BEGIN
+		ROLLBACK TRANSACTION
+	END
+END
+GO*/
 
 /* Creo una tabla temporal para tener todas las direccion sin validar */
 CREATE TABLE EL_REJUNTE.#Direcciones (	
@@ -624,7 +635,7 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	/* Me traigo todos los clientes que sean distintos */
 
 	/*Se agrupa clientes de la tabla Maestra y se inserta en una tabla Temporal*/
-	SELECT Cli_Nombre AS Nombre,Cli_Apeliido AS Apellido,Cli_Dni AS Dni ,Cli_Fecha_Nac,Cli_Mail as Email,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal
+	SELECT Cli_Nombre AS Nombre,Cli_Apeliido AS Apellido,convert(nvarchar(15),Cli_Dni) AS Dni ,Cli_Fecha_Nac,Cli_Mail as Email,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal
 	INTO #Temp_Clientes
 	FROM GD2C2018.gd_esquema.Maestra
 	WHERE Cli_Dni IS NOT NULL
@@ -641,7 +652,7 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	
 	/* Se cren los usuarios de los Clientes */
 	INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo)
-	SELECT left(Email,charindex('@',Email,1)-1) AS username ,'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1, 0, 0, 'Cliente'
+	SELECT Dni AS username ,'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1, 0, 0, 'Cliente'
 	FROM #Temp_Cli_Incons
 	WHERE cantDni = 1 AND cantEmail = 1
 	
@@ -656,7 +667,7 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	SELECT Nombre, Apellido, 'DNI', Dni, null, Email, null, (SELECT dire_id FROM EL_REJUNTE.Direccion WHERE tmp.Cli_Dom_Calle = dire_calle AND tmp.Cli_Nro_Calle = dire_numero AND tmp.Cli_Piso = dire_piso AND tmp.Cli_Depto = dire_depto AND tmp.Cli_Cod_Postal = dire_codigo_postal ),tmp.Cli_Fecha_Nac, GETDATE(), null, 1,usu.usuario_id
 	FROM #Temp_Cli_Incons tmp
 	INNER JOIN EL_REJUNTE.Usuario usu
-	ON left(email,charindex('@',email,1)-1) = usu.usuario_username
+	ON Dni = usu.usuario_username
 	WHERE cantDni = 1 and cantEmail = 1
 	ORDER BY dni
 	
@@ -666,7 +677,7 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 /* EMPRESAS */
 	/* Se cren los usuarios de las Empresas */
 	INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo)
-	SELECT DISTINCT left(Espec_Empresa_Mail,charindex('@',Espec_Empresa_Mail,1)-1) AS username ,'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1, 0, 0, 'Empresa'
+	SELECT DISTINCT REPLACE(Espec_Empresa_Cuit , '-' , '') AS username ,'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 1, 0, 0, 'Empresa'
 	FROM gd_esquema.Maestra
 	WHERE Espec_Empresa_Cuit IS NOT NULL
 
@@ -677,11 +688,11 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	WHERE usuario_id NOT IN (SELECT usuario_id FROM EL_REJUNTE.Rol_Usuario)
 
 	INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id, empre_telefono, empre_usuario_id, empre_baja_logica)
-	SELECT DISTINCT gd.Espec_Empresa_Razon_Social, gd.Espec_Empresa_Cuit, gd.Espec_Empresa_Fecha_Creacion, gd.Espec_Empresa_Mail, (SELECT dire_id FROM EL_REJUNTE.Direccion WHERE gd.Espec_Empresa_Dom_Calle = dire_calle AND gd.Espec_Empresa_Nro_Calle = dire_numero AND gd.Espec_Empresa_Piso = dire_piso AND gd.Espec_Empresa_Depto = dire_depto AND gd.Espec_Empresa_Cod_Postal = dire_codigo_postal), null, usu.usuario_id, 0
+	SELECT DISTINCT gd.Espec_Empresa_Razon_Social, REPLACE(gd.Espec_Empresa_Cuit , '-' , ''), gd.Espec_Empresa_Fecha_Creacion, gd.Espec_Empresa_Mail, (SELECT dire_id FROM EL_REJUNTE.Direccion WHERE gd.Espec_Empresa_Dom_Calle = dire_calle AND gd.Espec_Empresa_Nro_Calle = dire_numero AND gd.Espec_Empresa_Piso = dire_piso AND gd.Espec_Empresa_Depto = dire_depto AND gd.Espec_Empresa_Cod_Postal = dire_codigo_postal), null, usu.usuario_id, 0
 	FROM gd_esquema.Maestra gd
 	INNER JOIN EL_REJUNTE.Usuario usu
-	ON left(gd.Espec_Empresa_Mail,charindex('@',gd.Espec_Empresa_Mail,1)-1)=usu.usuario_username
-	ORDER BY Espec_Empresa_Cuit
+	ON REPLACE(gd.Espec_Empresa_Cuit , '-' , '')=usu.usuario_username
+	ORDER BY gd.Espec_Empresa_Razon_Social
 	
 /* ESPECTACULOS */
 	INSERT INTO EL_REJUNTE.Espectaculo (espec_codigo , espec_descripcion, espec_fecha, espec_fecha_venc, espec_rubro_id, espec_estado_id, espec_direccion_id)

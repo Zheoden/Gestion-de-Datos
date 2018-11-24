@@ -172,16 +172,19 @@ namespace PalcoNet.Utils {
         }
 
         public static Boolean altaUsuario(Usuario usuario) {
-            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
-            SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo) " +
-                                "VALUES ('" + usuario.username + "', '" + usuario.password + "', 1 , 0 , 0 , '" + usuario.roles[0].nombre + "')";
-            comm.Connection = connection;
-            comm.Connection.Open();
-            int rows = comm.ExecuteNonQuery();
-            comm.Connection.Close();
-            connection.Close();
-            return rows > 0 && altaRolUsuario(usuario);
+            if (!existUser(usuario.username)) {
+                SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+                SqlCommand comm = connection.CreateCommand();
+                comm.CommandText = "INSERT INTO EL_REJUNTE.Usuario (usuario_username, usuario_password, usuario_habilitado, usuario_bloqueado, usuario_cant_logeo_error, usuario_tipo) " +
+                                    "VALUES ('" + usuario.username + "', '" + usuario.password + "', 1 , 0 , 0 , '" + usuario.roles[0].nombre + "')";
+                comm.Connection = connection;
+                comm.Connection.Open();
+                int rows = comm.ExecuteNonQuery();
+                comm.Connection.Close();
+                connection.Close();
+                return rows > 0 && altaRolUsuario(usuario);
+            }
+            return false;
         }
 
         public static Boolean altaRolUsuario(Usuario usuario) {

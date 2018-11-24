@@ -16,7 +16,7 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Empresa (empre_razon_social, empre_cuit, empre_fecha_creacion, empre_mail, empre_direccion_id , empre_telefono, empre_usuario_id, empre_baja_logica) " +
-                                "VALUES ('" + empresa.razon_social + "', '" + empresa.cuit + "', GETDATE() , '" + empresa.mail + "', (SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + empresa.direccion.calle + "' AND dire_numero = '" + empresa.direccion.numero + "' AND dire_piso = '" + empresa.direccion.piso + "' AND dire_depto = '" + empresa.direccion.depto + "' AND dire_localidad = '" + empresa.direccion.localidad + "' AND dire_codigo_postal = '" + empresa.direccion.codigo_postal + "') , '" + empresa.telefono + "', null, 0" +
+                                "VALUES ('" + empresa.razon_social + "', '" + empresa.cuit + "', GETDATE() , '" + empresa.mail + "', (SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + empresa.direccion.calle + "' AND dire_numero = '" + empresa.direccion.numero + "' AND dire_piso = '" + empresa.direccion.piso + "' AND dire_depto = '" + empresa.direccion.depto + "' AND dire_localidad = '" + empresa.direccion.localidad + "' AND dire_codigo_postal = '" + empresa.direccion.codigo_postal + "') , '" + empresa.telefono + "', (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE u.usuario_username = '" + empresa.cuit + "'), 0" +
                                 ")";
             comm.Connection = connection;
             comm.Connection.Open();
