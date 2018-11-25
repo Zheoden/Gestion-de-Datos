@@ -126,7 +126,7 @@ namespace PalcoNet.Generar_Publicacion {
 
         private void btnAgregarDire_Click(object sender, EventArgs e) {
             if (cmbDireccion.Items.Count == 0) {
-                FormDireccion testDialog = new FormDireccion();
+                Forms_Comunes.FormDireccion testDialog = new Forms_Comunes.FormDireccion();
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text);
                     cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text;

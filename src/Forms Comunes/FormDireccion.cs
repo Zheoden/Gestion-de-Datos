@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Generar_Publicacion {
+namespace PalcoNet.Forms_Comunes {
     public partial class FormDireccion : Form {
         public FormDireccion() {
             InitializeComponent();

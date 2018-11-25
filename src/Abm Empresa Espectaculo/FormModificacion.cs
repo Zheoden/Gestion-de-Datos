@@ -62,7 +62,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
 
         private void btnAgregarDire_Click(object sender, EventArgs e) {
             if (cmbDireccion.Items.Count == 0) {
-                FormDireccion testDialog = new FormDireccion();
+                Forms_Comunes.FormDireccion testDialog = new Forms_Comunes.FormDireccion();
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text);
                     cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text;
@@ -114,6 +114,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
             txtTelefono.Text = empresa.telefono;
             cbHabilitado.Checked = empresa.baja_logica;
             cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + empresa.direccion.calle + "#" + empresa.direccion.numero + "#" + empresa.direccion.piso + "#" + empresa.direccion.depto + "#" + empresa.direccion.localidad + "#" + empresa.direccion.codigo_postal);
+            cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + empresa.direccion.calle + "#" + empresa.direccion.numero + "#" + empresa.direccion.piso + "#" + empresa.direccion.depto + "#" + empresa.direccion.localidad + "#" + empresa.direccion.codigo_postal;
         }
     }
 }

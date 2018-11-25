@@ -25,7 +25,7 @@ namespace PalcoNet.Abm_Cliente {
 
         private void btnAgregarTarj_Click(object sender, EventArgs e) {
             if (cmbTarjeta.Items.Count == 0) {
-                FormTarjeta testDialog = new FormTarjeta();
+                Forms_Comunes.FormTarjeta testDialog = new Forms_Comunes.FormTarjeta();
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbTarjeta.Items.Add("Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + testDialog.txtNumero.Text + "#" + testDialog.txtTitular.Text + "#" + testDialog.txtVencimiento.Text + "#" + testDialog.cmbTipos.Text + "#" + testDialog.txtCodSeg.Text);
                     cmbTarjeta.SelectedItem = "Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + testDialog.txtNumero.Text + "#" + testDialog.txtTitular.Text + "#" + testDialog.txtVencimiento.Text + "#" + testDialog.cmbTipos.Text + "#" + testDialog.txtCodSeg.Text;
@@ -42,7 +42,7 @@ namespace PalcoNet.Abm_Cliente {
 
         private void btnAgregarDire_Click(object sender, EventArgs e) {
             if (cmbDireccion.Items.Count == 0) {
-                FormDireccion testDialog = new FormDireccion();
+                Forms_Comunes.FormDireccion testDialog = new Forms_Comunes.FormDireccion();
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text);
                     cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text;

@@ -45,12 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abm Cliente\FormDireccion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Cliente\FormDireccion.Designer.cs">
-      <DependentUpon>FormDireccion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Cliente\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,12 +63,6 @@
     <Compile Include="Abm Cliente\FormModificacion.Designer.cs">
       <DependentUpon>FormModificacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Cliente\FormTarjeta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Cliente\FormTarjeta.Designer.cs">
-      <DependentUpon>FormTarjeta.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Empresa Espectaculo\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,12 +74,6 @@
     </Compile>
     <Compile Include="Abm Empresa Espectaculo\FormAlta.Designer.cs">
       <DependentUpon>FormAlta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormDireccion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Empresa Espectaculo\FormDireccion.Designer.cs">
-      <DependentUpon>FormDireccion.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Empresa Espectaculo\FormModificacion.cs">
       <SubType>Form</SubType>
@@ -153,12 +135,6 @@
     <Compile Include="Comprar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\FormTarjeta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprar\FormTarjeta.Designer.cs">
-      <DependentUpon>FormTarjeta.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data Base\Connection.cs" />
     <Compile Include="Data Base\DBHelper.cs" />
     <Compile Include="Editar Publicacion\Form1.cs">
@@ -167,23 +143,23 @@
     <Compile Include="Editar Publicacion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editar Publicacion\FormDireccion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editar Publicacion\FormDireccion.Designer.cs">
-      <DependentUpon>FormDireccion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Editar Publicacion\FormModificacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editar Publicacion\FormModificacion.Designer.cs">
       <DependentUpon>FormModificacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Publicacion\FormDireccion.cs">
+    <Compile Include="Forms Comunes\FormDireccion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Publicacion\FormDireccion.Designer.cs">
+    <Compile Include="Forms Comunes\FormDireccion.Designer.cs">
       <DependentUpon>FormDireccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms Comunes\FormTarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms Comunes\FormTarjeta.Designer.cs">
+      <DependentUpon>FormTarjeta.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\FormRoles.cs">
       <SubType>Form</SubType>
@@ -272,9 +248,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\Encrypt.cs" />
-    <EmbeddedResource Include="Abm Cliente\FormDireccion.resx">
-      <DependentUpon>FormDireccion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Abm Cliente\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -284,17 +257,11 @@
     <EmbeddedResource Include="Abm Cliente\FormModificacion.resx">
       <DependentUpon>FormModificacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Cliente\FormTarjeta.resx">
-      <DependentUpon>FormTarjeta.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Abm Empresa Espectaculo\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Empresa Espectaculo\FormAlta.resx">
       <DependentUpon>FormAlta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Abm Empresa Espectaculo\FormDireccion.resx">
-      <DependentUpon>FormDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Empresa Espectaculo\FormModificacion.resx">
       <DependentUpon>FormModificacion.cs</DependentUpon>
@@ -326,23 +293,20 @@
     <EmbeddedResource Include="Comprar\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\FormTarjeta.resx">
-      <DependentUpon>FormTarjeta.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Editar Publicacion\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Editar Publicacion\FormDireccion.resx">
-      <DependentUpon>FormDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editar Publicacion\FormModificacion.resx">
       <DependentUpon>FormModificacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms Comunes\FormDireccion.resx">
+      <DependentUpon>FormDireccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms Comunes\FormTarjeta.resx">
+      <DependentUpon>FormTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Generar Publicacion\FormDireccion.resx">
-      <DependentUpon>FormDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Rendicion Comisiones\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

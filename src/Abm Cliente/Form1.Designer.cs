@@ -49,7 +49,6 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnActualizarVista = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
@@ -258,18 +257,6 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // btnActualizarVista
-            // 
-            this.btnActualizarVista.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarVista.Location = new System.Drawing.Point(993, 133);
-            this.btnActualizarVista.Margin = new System.Windows.Forms.Padding(2);
-            this.btnActualizarVista.Name = "btnActualizarVista";
-            this.btnActualizarVista.Size = new System.Drawing.Size(128, 34);
-            this.btnActualizarVista.TabIndex = 12;
-            this.btnActualizarVista.Text = "Actualizar Vista";
-            this.btnActualizarVista.UseVisualStyleBackColor = true;
-            this.btnActualizarVista.Click += new System.EventHandler(this.btnActualizarVista_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -472,7 +459,6 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnActualizarVista);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -502,7 +488,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Button btnActualizarVista;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtNombre;

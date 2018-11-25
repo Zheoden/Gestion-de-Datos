@@ -95,7 +95,7 @@ namespace PalcoNet.Comprar {
 
             if (!DBHelper.clienteTieneTarjeta(DBHelper.clienteGetId(VariablesGlobales.usuario.id))) {
                 MessageBox.Show("Se detecto que no tiene una tarjeta asociada, para continuar porfavor ingrese su tarjeta: ");
-                FormTarjeta testDialog = new FormTarjeta();
+                Forms_Comunes.FormTarjeta testDialog = new Forms_Comunes.FormTarjeta();
                 testDialog.ShowDialog(this);
             }
             else {

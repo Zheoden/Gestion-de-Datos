@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.Abm_Empresa_Espectaculo {
+﻿namespace PalcoNet.Forms_Comunes {
     partial class FormDireccion {
         /// <summary>
         /// Required designer variable.

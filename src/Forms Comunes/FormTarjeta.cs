@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Abm_Cliente {
+namespace PalcoNet.Forms_Comunes {
     public partial class FormTarjeta : Form {
         public FormTarjeta() {
             InitializeComponent();
