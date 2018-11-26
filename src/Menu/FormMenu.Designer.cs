@@ -107,7 +107,7 @@
             this.Controls.Add(this.btnAceptar);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormMenu";
-            this.Text = "Menu Principal";
+            this.Text = "Seleccion del Menu Inicial";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -29,6 +29,7 @@
             this.btnAlta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.cmbTarjeta = new System.Windows.Forms.ComboBox();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
             this.btnAgregarTarj = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -139,6 +139,13 @@
             this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles del Cliente";
+            // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.Location = new System.Drawing.Point(143, 245);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.Size = new System.Drawing.Size(231, 20);
+            this.dtpFechaNac.TabIndex = 33;
             // 
             // cmbTarjeta
             // 
@@ -345,13 +352,6 @@
             this.label14.TabIndex = 5;
             this.label14.Text = "Nombre:";
             // 
-            // dtpFechaNac
-            // 
-            this.dtpFechaNac.Location = new System.Drawing.Point(143, 245);
-            this.dtpFechaNac.Name = "dtpFechaNac";
-            this.dtpFechaNac.Size = new System.Drawing.Size(231, 20);
-            this.dtpFechaNac.TabIndex = 33;
-            // 
             // FormAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,7 +363,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormAlta";
-            this.Text = "FormAlta";
+            this.Text = "Alta de Cliente";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

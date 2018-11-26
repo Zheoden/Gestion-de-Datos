@@ -395,7 +395,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Abm Cliente";
+            this.Text = "Comprar";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).EndInit();

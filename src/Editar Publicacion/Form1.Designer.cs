@@ -282,7 +282,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menu);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Buscador de Publicaciones";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();

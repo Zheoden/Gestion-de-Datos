@@ -396,7 +396,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormModificacion";
-            this.Text = "FormModificacion";
+            this.Text = "Modificacion de Clientes";
             this.Load += new System.EventHandler(this.FormModificacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);

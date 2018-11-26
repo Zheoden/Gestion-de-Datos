@@ -65,7 +65,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.menu);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Canje de Puntos";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();

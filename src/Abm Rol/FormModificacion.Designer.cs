@@ -29,6 +29,7 @@
             this.btnModificacion = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbHabilitado = new System.Windows.Forms.CheckBox();
             this.btnADerecha = new System.Windows.Forms.Button();
             this.btnAIzquierda = new System.Windows.Forms.Button();
             this.lstFuncionalidadesTotales = new System.Windows.Forms.ListBox();
@@ -37,7 +38,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbHabilitado = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -109,6 +109,16 @@
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles del Rol";
+            // 
+            // cbHabilitado
+            // 
+            this.cbHabilitado.AutoSize = true;
+            this.cbHabilitado.Location = new System.Drawing.Point(395, 32);
+            this.cbHabilitado.Name = "cbHabilitado";
+            this.cbHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.cbHabilitado.TabIndex = 38;
+            this.cbHabilitado.Text = "Habilitado";
+            this.cbHabilitado.UseVisualStyleBackColor = true;
             // 
             // btnADerecha
             // 
@@ -182,16 +192,6 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Nombre del Rol:";
             // 
-            // cbHabilitado
-            // 
-            this.cbHabilitado.AutoSize = true;
-            this.cbHabilitado.Location = new System.Drawing.Point(395, 32);
-            this.cbHabilitado.Name = "cbHabilitado";
-            this.cbHabilitado.Size = new System.Drawing.Size(73, 17);
-            this.cbHabilitado.TabIndex = 38;
-            this.cbHabilitado.Text = "Habilitado";
-            this.cbHabilitado.UseVisualStyleBackColor = true;
-            // 
             // FormModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,7 +203,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormModificacion";
-            this.Text = "FormModificacion";
+            this.Text = "Modificacion de Roles";
             this.Load += new System.EventHandler(this.FormModificacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

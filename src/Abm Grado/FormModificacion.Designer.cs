@@ -31,11 +31,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbHabilitado = new System.Windows.Forms.CheckBox();
             this.cmbTipos = new System.Windows.Forms.ComboBox();
             this.txtComision = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.cbHabilitado = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -122,6 +122,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles del Grado";
             // 
+            // cbHabilitado
+            // 
+            this.cbHabilitado.AutoSize = true;
+            this.cbHabilitado.Location = new System.Drawing.Point(129, 113);
+            this.cbHabilitado.Name = "cbHabilitado";
+            this.cbHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.cbHabilitado.TabIndex = 43;
+            this.cbHabilitado.Text = "Habilitado";
+            this.cbHabilitado.UseVisualStyleBackColor = true;
+            // 
             // cmbTipos
             // 
             this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -156,16 +166,6 @@
             this.label14.TabIndex = 37;
             this.label14.Text = "Prioridad:";
             // 
-            // cbHabilitado
-            // 
-            this.cbHabilitado.AutoSize = true;
-            this.cbHabilitado.Location = new System.Drawing.Point(129, 113);
-            this.cbHabilitado.Name = "cbHabilitado";
-            this.cbHabilitado.Size = new System.Drawing.Size(73, 17);
-            this.cbHabilitado.TabIndex = 43;
-            this.cbHabilitado.Text = "Habilitado";
-            this.cbHabilitado.UseVisualStyleBackColor = true;
-            // 
             // FormModificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,7 +177,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormModificacion";
-            this.Text = "FormModificacion";
+            this.Text = "Modificacion de Grado";
             this.Load += new System.EventHandler(this.FormModificacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox2.ResumeLayout(false);

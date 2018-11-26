@@ -88,7 +88,7 @@
             this.groupBox1.Size = new System.Drawing.Size(691, 222);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detalle de Grado";
+            this.groupBox1.Text = "Detalle de Rubro";
             // 
             // comboBox1
             // 

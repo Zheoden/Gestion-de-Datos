@@ -389,7 +389,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormModificacion";
-            this.Text = "FormModificacion";
+            this.Text = "Modificacion de Publicaciones";
             this.Load += new System.EventHandler(this.FormModificacion_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
