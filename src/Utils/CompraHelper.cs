@@ -20,6 +20,7 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
+                               "p.publi_stock > 0 AND "+
                                "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
                          "ORDER BY p.publi_grado_id, p.publi_fecha_evento, p.publi_stock";
 
@@ -56,6 +57,7 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
+                               "p.publi_stock > 0 AND " +
                                "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
                                "p.publi_descripcion LIKE '%" + descripcion + "%' AND " +
                                "r.rubro_descripcion = '" + rubro + "' " +
@@ -93,6 +95,7 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
+                               "p.publi_stock > 0 AND " +
                                "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
                                "r.rubro_descripcion = '" + rubro + "' " +
                          "ORDER BY p.publi_grado_id";
@@ -129,6 +132,7 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
+                               "p.publi_stock > 0 AND " +
                                "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
                                "p.publi_descripcion LIKE '%" + descripcion + "%'" +
                          "ORDER BY p.publi_grado_id";

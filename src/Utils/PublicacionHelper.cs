@@ -131,7 +131,39 @@ namespace PalcoNet.Utils {
 
             conn.Close();
             return 0;
-        }                         
+        }
+
+        public static int publicacionGetID(Publicacion publicacion) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT p.publi_id " +
+                         "FROM EL_REJUNTE.Publicacion p, EL_REJUNTE.Rubro r " +
+                         "WHERE p.publi_descripcion = '" + publicacion.descripcion + "' AND " +
+                               "p.publi_fecha_inicio = '" + publicacion.fecha_inicio.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' AND " +
+                               "p.publi_fecha_evento =  '" + publicacion.fecha_evento.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' AND " +
+                               "p.publi_stock =  " + publicacion.stock + " AND " +
+                               "p.publi_rubro_id = r.rubro_id AND " +
+                               "r.rubro_descripcion =  '" + publicacion.rubro.descripcion + "'";
+
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            Publicacion publi = new Publicacion();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+
+                    return Int32.Parse(reader["publi_id"].ToString());
+                }
+            }
+
+            conn.Close();
+            return 0;
+        }         
 
         public static Boolean publicacionModificar(Publicacion publi) {
 
@@ -164,6 +196,20 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
+        public static Boolean publicacionModificarStock(int publi_id, int publi_stock) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "UPDATE EL_REJUNTE.Publicacion " +
+                               "SET publi_stock= " + publi_stock + " " +
+                               "WHERE publi_id = " + publi_id;
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
 
     }
 }

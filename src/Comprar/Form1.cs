@@ -128,7 +128,16 @@ namespace PalcoNet.Comprar {
                         }
                         else {
                             /* Aca se acepta esta todo valido y se procede al pago de las entradas. */
+                            Publicacion publi = new Publicacion();
+                            publi.rubro = new Rubro();
 
+                            publi.descripcion = Convert.ToString(selectedRow.Cells["publi_descripcion"].Value);
+                            publi.fecha_inicio = Convert.ToDateTime(selectedRow.Cells["publi_fecha_inicio"].Value);
+                            publi.fecha_evento = Convert.ToDateTime(selectedRow.Cells["publi_fecha_evento"].Value);
+                            publi.stock = Convert.ToInt32(selectedRow.Cells["publi_stock"].Value);
+                            publi.rubro.descripcion = Convert.ToString(selectedRow.Cells["rubro_descripcion"].Value);
+                            int id = DBHelper.publicacionGetID(publi);
+                            DBHelper.publicacionModificarStock(id, publi.stock - 1);
 
                             using (Forms_Comunes.FormEspera frm = new Forms_Comunes.FormEspera(saveData)) {
                                 frm.ShowDialog(this);
@@ -136,7 +145,16 @@ namespace PalcoNet.Comprar {
                             MessageBox.Show("Operacion realizada con exito!");
                         }
                     }
+                    else {
+                        MessageBox.Show("Se cancelo la operacion actual.");
+                    }
                 }
+                else {
+                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
+                }
+            }
+            else {
+                MessageBox.Show("Utilice el buscador para encontrar los espectaculos que mas le gusten!!!");
             }
         }
 
