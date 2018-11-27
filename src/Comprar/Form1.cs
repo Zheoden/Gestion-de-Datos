@@ -12,6 +12,7 @@ using PalcoNet.Utils;
 using Microsoft.VisualBasic;
 using PalcoNet.Objetos;
 using System.Globalization;
+using System.Threading;
 
 namespace PalcoNet.Comprar {
     public partial class Form1 : Form {
@@ -94,12 +95,41 @@ namespace PalcoNet.Comprar {
         private void btnContinuar_Click(object sender, EventArgs e) {
 
             if (!DBHelper.clienteTieneTarjeta(DBHelper.clienteGetId(VariablesGlobales.usuario.id))) {
-                MessageBox.Show("Se detecto que no tiene una tarjeta asociada, para continuar porfavor ingrese su tarjeta: ");
-                Forms_Comunes.FormTarjeta testDialog = new Forms_Comunes.FormTarjeta();
-                testDialog.ShowDialog(this);
+                if (VariablesGlobales.usuario.id != 1) {
+                    MessageBox.Show("Se detecto que no tiene una tarjeta asociada, para continuar porfavor ingrese su tarjeta: ");
+                    Forms_Comunes.FormTarjeta testDialog = new Forms_Comunes.FormTarjeta();
+                    if (testDialog.ShowDialog(this) == DialogResult.OK) {
+                        Tarjeta tarjeta = new Tarjeta();
+                        tarjeta.numero = testDialog.txtNumero.Text;
+                        tarjeta.titular = testDialog.txtTitular.Text;
+                        tarjeta.vencimiento = testDialog.txtVencimiento.Text;
+                        tarjeta.tipo = testDialog.cmbTipos.Text;
+                        tarjeta.cod_seguridad = testDialog.txtCodSeg.Text;
+                        if (DBHelper.altaDeTarjeta(tarjeta) && DBHelper.asociarTarjeta(tarjeta)) {
+
+                        }
+                        else {
+                            MessageBox.Show("Se produjo un error intenta dar de alta la tarjeta.");
+                        }
+                    }
+                }
+                else {
+                    MessageBox.Show("Se detecto que se está operando con el usuario \"admin\", este usuario no puede realizar compras, por favor entre con un usuario Cliente.");
+                }
             }
             else {
                 MessageBox.Show("Se puede operar.");
+                using (Forms_Comunes.FormEspera frm = new Forms_Comunes.FormEspera(saveData)) {
+                    frm.ShowDialog(this);
+                }
+            }
+
+        }
+
+        private void saveData() {
+
+            for (int i = 0; i <= 500; i++) {
+                Thread.Sleep(10);
             }
 
         }
