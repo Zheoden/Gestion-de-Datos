@@ -11,7 +11,7 @@ namespace PalcoNet.Utils {
 
     public partial class DBHelper {
 
-        public static List<Compra> publicacionesHabilitadas() {
+        public static List<Compra> publicacionesHabilitadas(DateTime desde, DateTime hasta) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
@@ -19,8 +19,10 @@ namespace PalcoNet.Utils {
                          "FROM EL_REJUNTE.Publicacion p, EL_REJUNTE.Rubro r, EL_REJUNTE.Grado g " +
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
-                               "p.publi_estado_id = 2 "+
-                         "ORDER BY p.publi_grado_id";
+                               "p.publi_estado_id = 2 AND " +
+                               "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                         "ORDER BY p.publi_grado_id, p.publi_fecha_evento, p.publi_stock";
+
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
             command.CommandType = CommandType.Text;
@@ -45,7 +47,7 @@ namespace PalcoNet.Utils {
 
         }
 
-        public static List<Compra> publicacionesHabilitadas(string rubro, string descripcion) {
+        public static List<Compra> publicacionesHabilitadas(string rubro, string descripcion, DateTime desde, DateTime hasta) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
@@ -54,6 +56,7 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
+                               "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
                                "p.publi_descripcion LIKE '%" + descripcion + "%' AND " +
                                "r.rubro_descripcion = '" + rubro + "' " +
                          "ORDER BY p.publi_grado_id";
@@ -81,7 +84,7 @@ namespace PalcoNet.Utils {
 
         }
 
-        public static List<Compra> publicacionesHabilitadasRubro(string rubro) {
+        public static List<Compra> publicacionesHabilitadasRubro(string rubro, DateTime desde, DateTime hasta) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
@@ -90,6 +93,7 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
+                               "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
                                "r.rubro_descripcion = '" + rubro + "' " +
                          "ORDER BY p.publi_grado_id";
             SqlCommand command = new SqlCommand(SQL, conn);
@@ -116,7 +120,7 @@ namespace PalcoNet.Utils {
 
         }
 
-        public static List<Compra> publicacionesHabilitadasDesc(string descripcion) {
+        public static List<Compra> publicacionesHabilitadasDesc(string descripcion, DateTime desde, DateTime hasta) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
@@ -125,6 +129,7 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
+                               "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
                                "p.publi_descripcion LIKE '%" + descripcion + "%'" +
                          "ORDER BY p.publi_grado_id";
             SqlCommand command = new SqlCommand(SQL, conn);

@@ -159,9 +159,9 @@
             // 
             // cmbFechaEspectaculo
             // 
-            this.cmbFechaEspectaculo.DropDownHeight = 500;
+            this.cmbFechaEspectaculo.DropDownHeight = 100;
             this.cmbFechaEspectaculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFechaEspectaculo.DropDownWidth = 800;
+            this.cmbFechaEspectaculo.DropDownWidth = 100;
             this.cmbFechaEspectaculo.FormattingEnabled = true;
             this.cmbFechaEspectaculo.IntegralHeight = false;
             this.cmbFechaEspectaculo.Location = new System.Drawing.Point(143, 113);

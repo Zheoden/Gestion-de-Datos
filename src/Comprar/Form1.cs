@@ -94,36 +94,57 @@ namespace PalcoNet.Comprar {
 
         private void btnContinuar_Click(object sender, EventArgs e) {
 
-            if (!DBHelper.clienteTieneTarjeta(DBHelper.clienteGetId(VariablesGlobales.usuario.id))) {
-                if (VariablesGlobales.usuario.id != 1) {
-                    MessageBox.Show("Se detecto que no tiene una tarjeta asociada, para continuar porfavor ingrese su tarjeta: ");
-                    Forms_Comunes.FormTarjeta testDialog = new Forms_Comunes.FormTarjeta();
-                    if (testDialog.ShowDialog(this) == DialogResult.OK) {
-                        Tarjeta tarjeta = new Tarjeta();
-                        tarjeta.numero = testDialog.txtNumero.Text;
-                        tarjeta.titular = testDialog.txtTitular.Text;
-                        tarjeta.vencimiento = testDialog.txtVencimiento.Text;
-                        tarjeta.tipo = testDialog.cmbTipos.Text;
-                        tarjeta.cod_seguridad = testDialog.txtCodSeg.Text;
-                        if (DBHelper.altaDeTarjeta(tarjeta) && DBHelper.asociarTarjeta(tarjeta)) {
-
+            if (dgvEspectaculos.SelectedCells.Count > 0) {
+                int selectedrowindex = dgvEspectaculos.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvEspectaculos.Rows[selectedrowindex];
+                string espectaculo = Convert.ToString(selectedRow.Cells["publi_descripcion"].Value);
+                if (espectaculo != "") {
+                    string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a realizar la compra del espectaculo: " + espectaculo.ToUpper() + ", esta seguro que desea comprarlo? Se le van a realizar cargos a su tarjeta asociada.\nEscriba SI para confirmar la operacion.", "Confirmacion");
+                    if (respuesta.ToUpper() == "SI") {
+                        if (!DBHelper.clienteTieneTarjeta(DBHelper.clienteGetId(VariablesGlobales.usuario.id))) {
+                            if (VariablesGlobales.usuario.id != 1) {
+                                MessageBox.Show("UPS, lamentamos el inconveniente pero se detecto que no tiene una tarjeta asociada, para continuar porfavor ingrese su tarjeta. ");
+                                Forms_Comunes.FormTarjeta testDialog = new Forms_Comunes.FormTarjeta();
+                                if (testDialog.ShowDialog(this) == DialogResult.OK) {
+                                    Tarjeta tarjeta = new Tarjeta();
+                                    tarjeta.numero = testDialog.txtNumero.Text;
+                                    tarjeta.titular = testDialog.txtTitular.Text;
+                                    tarjeta.vencimiento = testDialog.txtVencimiento.Text;
+                                    tarjeta.tipo = testDialog.cmbTipos.Text;
+                                    tarjeta.cod_seguridad = testDialog.txtCodSeg.Text;
+                                    if (DBHelper.altaDeTarjeta(tarjeta) && DBHelper.asociarTarjeta(tarjeta)) {
+                                        MessageBox.Show("Gracias por asociar una tarjeta, vuelva a seleccionar el espectaculo para poder comprarlo.");
+                                    }
+                                    else {
+                                        MessageBox.Show("Se produjo un error intenta dar de alta la tarjeta.");
+                                    }
+                                }
+                                else {
+                                    MessageBox.Show("Se cancelo la operacion actual.");
+                                }
+                            }
+                            else {
+                                MessageBox.Show("Se detecto que se está operando con el usuario \"admin\", este usuario no puede realizar compras, por favor entre con un usuario Cliente.");
+                            }
                         }
                         else {
-                            MessageBox.Show("Se produjo un error intenta dar de alta la tarjeta.");
+                            /* Aca se acepta esta todo valido y se procede al pago de las entradas. */
+
+
+                            using (Forms_Comunes.FormEspera frm = new Forms_Comunes.FormEspera(saveData)) {
+                                frm.ShowDialog(this);
+                            }
+                            MessageBox.Show("Operacion realizada con exito!");
                         }
                     }
                 }
                 else {
-                    MessageBox.Show("Se detecto que se está operando con el usuario \"admin\", este usuario no puede realizar compras, por favor entre con un usuario Cliente.");
+                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
                 }
             }
             else {
-                MessageBox.Show("Se puede operar.");
-                using (Forms_Comunes.FormEspera frm = new Forms_Comunes.FormEspera(saveData)) {
-                    frm.ShowDialog(this);
-                }
+                MessageBox.Show("No seleccionó ningun espectaculo, por favor utilice el buscador para seleccionar un espectaculo.");
             }
-
         }
 
         private void saveData() {
@@ -135,33 +156,39 @@ namespace PalcoNet.Comprar {
         }
 
         private void btnBuscar_Click(object sender, EventArgs e) {
-            dgvEspectaculos.Rows.Clear();
-            dgvEspectaculos.Refresh();
-            List<Compra> compras = new List<Compra>();
-            if (cboCategoria.Text != "" && txtDescripcion.Text != "") {
-                compras = DBHelper.publicacionesHabilitadas(cboCategoria.Text, txtDescripcion.Text);
-            }
-            else if (cboCategoria.Text != "") {
-                compras = DBHelper.publicacionesHabilitadasRubro(cboCategoria.Text);
-            }
-            else if (txtDescripcion.Text != "") {
-                compras = DBHelper.publicacionesHabilitadasDesc(txtDescripcion.Text);
+            if (dtpDesde.Value > DateTime.Today) {
+                dgvEspectaculos.Rows.Clear();
+                dgvEspectaculos.Refresh();
+                List<Compra> compras = new List<Compra>();
+                if (cboCategoria.Text != "" && txtDescripcion.Text != "") {
+                    compras = DBHelper.publicacionesHabilitadas(cboCategoria.Text, txtDescripcion.Text, dtpDesde.Value, dtpHasta.Value);
+                }
+                else if (cboCategoria.Text != "") {
+                    compras = DBHelper.publicacionesHabilitadasRubro(cboCategoria.Text, dtpDesde.Value, dtpHasta.Value);
+                }
+                else if (txtDescripcion.Text != "") {
+                    compras = DBHelper.publicacionesHabilitadasDesc(txtDescripcion.Text, dtpDesde.Value, dtpHasta.Value);
+                }
+                else {
+                    compras = DBHelper.publicacionesHabilitadas(dtpDesde.Value, dtpHasta.Value);
+                }
+                int cont = 0;
+                foreach (Compra compra in compras) {
+                    dgvEspectaculos.Rows.Add();
+                    dgvEspectaculos.Rows[cont].Cells[0].Value = compra.descripcion;
+                    dgvEspectaculos.Rows[cont].Cells[1].Value = compra.fecha_publicacion;
+                    dgvEspectaculos.Rows[cont].Cells[2].Value = compra.fecha_evento;
+                    dgvEspectaculos.Rows[cont].Cells[3].Value = compra.stock;
+                    dgvEspectaculos.Rows[cont].Cells[4].Value = compra.rubro;
+                    cont++;
+                }
+                if (dgvEspectaculos.Rows.Count < 1) {
+                    MessageBox.Show("No se encontraron resultados.");
+                }
             }
             else {
-                compras = DBHelper.publicacionesHabilitadas();
-            }
-            int cont = 0;
-            foreach (Compra compra in compras) {
-                dgvEspectaculos.Rows.Add();
-                dgvEspectaculos.Rows[cont].Cells[0].Value = compra.descripcion;
-                dgvEspectaculos.Rows[cont].Cells[1].Value = compra.fecha_publicacion;
-                dgvEspectaculos.Rows[cont].Cells[2].Value = compra.fecha_evento;
-                dgvEspectaculos.Rows[cont].Cells[3].Value = compra.stock;
-                dgvEspectaculos.Rows[cont].Cells[4].Value = compra.rubro;
-                cont++;
-            }
-            if (dgvEspectaculos.Rows.Count < 1) {
-                MessageBox.Show("No se encontraron resultados.");
+                MessageBox.Show("Desde: " + dtpDesde.Value.ToString("yyyy-MM-dd HH:mm:ss") + ", Hasta: " + dtpHasta.Value.ToString("yyyy-MM-dd HH:mm:ss") + ", Hoy: " + DateTime.Today.ToString("yyyy-MM-dd HH:mm:ss"));
+                MessageBox.Show("No se pueden buscar eventos pasados, por favor modifique la fecha de inicio.");
             }
         }
 
