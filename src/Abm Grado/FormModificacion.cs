@@ -31,7 +31,6 @@ namespace PalcoNet.Abm_Grado {
                 grado.prioridad = cmbTipos.Text;
                 grado.comision = Int32.Parse(txtComision.Text);
 
-                /* Creo el Cliente */
                 if (!DBHelper.modificarGrado(grado)) {
                     MessageBox.Show("Se produjo un error al intentar modificar el Grado");
                 }
@@ -59,7 +58,7 @@ namespace PalcoNet.Abm_Grado {
                         return true;
                     }
                     else {
-                        MessageBox.Show("Ya exite un cliente con ese tipo y numero de documento.");
+                        MessageBox.Show("Ya exite un Grado con esas Caracteristicas.");
                     }
                 }
                 else {
@@ -74,6 +73,10 @@ namespace PalcoNet.Abm_Grado {
 
         private void FormModificacion_Load(object sender, EventArgs e) {
             cargarGrado();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e) {
+            this.Close();
         }
 
     }

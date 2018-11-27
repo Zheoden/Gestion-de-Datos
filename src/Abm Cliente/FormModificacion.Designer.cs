@@ -395,7 +395,9 @@
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormModificacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Modificacion de Clientes";
             this.Load += new System.EventHandler(this.FormModificacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -123,7 +123,6 @@ namespace PalcoNet.Abm_Cliente {
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbTarjeta.Items.Add("Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + testDialog.txtNumero.Text + "#" + testDialog.txtTitular.Text + "#" + testDialog.txtVencimiento.Text + "#" + testDialog.cmbTipos.Text + "#" + testDialog.txtCodSeg.Text);
                     cmbTarjeta.SelectedItem = "Datos de la Tarjeta(Numero;Titular;Vencimiento;Tipo;Codigo de Seguidad): " + testDialog.txtNumero.Text + "#" + testDialog.txtTitular.Text + "#" + testDialog.txtVencimiento.Text + "#" + testDialog.cmbTipos.Text + "#" + testDialog.txtCodSeg.Text;
-                
                 }
             }
             else {
