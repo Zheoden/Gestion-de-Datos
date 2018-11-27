@@ -93,7 +93,6 @@ namespace PalcoNet.Comprar {
         }
 
         private void btnContinuar_Click(object sender, EventArgs e) {
-
             if (dgvEspectaculos.SelectedCells.Count > 0) {
                 int selectedrowindex = dgvEspectaculos.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = dgvEspectaculos.Rows[selectedrowindex];
@@ -138,12 +137,6 @@ namespace PalcoNet.Comprar {
                         }
                     }
                 }
-                else {
-                    MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");
-                }
-            }
-            else {
-                MessageBox.Show("No seleccionó ningun espectaculo, por favor utilice el buscador para seleccionar un espectaculo.");
             }
         }
 
