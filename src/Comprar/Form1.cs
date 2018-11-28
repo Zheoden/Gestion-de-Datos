@@ -136,13 +136,20 @@ namespace PalcoNet.Comprar {
                             publi.fecha_evento = Convert.ToDateTime(selectedRow.Cells["publi_fecha_evento"].Value);
                             publi.stock = Convert.ToInt32(selectedRow.Cells["publi_stock"].Value);
                             publi.rubro.descripcion = Convert.ToString(selectedRow.Cells["rubro_descripcion"].Value);
-                            int id = DBHelper.publicacionGetID(publi);
-                            DBHelper.publicacionModificarStock(id, publi.stock - 1);
+                            int id_publicacion = DBHelper.publicacionGetID(publi);
+
+                            DBHelper.publicacionModificarStock(id_publicacion, publi.stock - 1);
+                            int id_compra = DBHelper.comprar();
+                            DBHelper.altaUbicacion_Compra(1, id_compra);
+                            DBHelper.clienteAcreditarPuntos(DBHelper.clienteGetId(VariablesGlobales.usuario.id), Convert.ToInt32(selectedRow.Cells["ubica_precio"].Value));
+
 
                             using (Forms_Comunes.FormEspera frm = new Forms_Comunes.FormEspera(saveData)) {
                                 frm.ShowDialog(this);
                             }
                             MessageBox.Show("Operacion realizada con exito!");
+                            dgvEspectaculos.Rows.Clear();
+                            dgvEspectaculos.Refresh();
                         }
                     }
                     else {
@@ -191,6 +198,7 @@ namespace PalcoNet.Comprar {
                     dgvEspectaculos.Rows[cont].Cells[2].Value = compra.fecha_evento;
                     dgvEspectaculos.Rows[cont].Cells[3].Value = compra.stock;
                     dgvEspectaculos.Rows[cont].Cells[4].Value = compra.rubro;
+                    dgvEspectaculos.Rows[cont].Cells[5].Value = compra.precio;
                     cont++;
                 }
                 if (dgvEspectaculos.Rows.Count < 1) {

@@ -63,6 +63,7 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.ubica_precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -82,7 +83,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(752, 364);
+            this.groupBox3.Size = new System.Drawing.Size(811, 364);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Espectaculos";
@@ -98,13 +99,14 @@
             this.publi_fecha_inicio,
             this.publi_fecha_evento,
             this.publi_stock,
-            this.rubro_descripcion});
+            this.rubro_descripcion,
+            this.ubica_precio});
             this.dgvEspectaculos.Location = new System.Drawing.Point(4, 18);
             this.dgvEspectaculos.Margin = new System.Windows.Forms.Padding(2);
             this.dgvEspectaculos.Name = "dgvEspectaculos";
             this.dgvEspectaculos.ReadOnly = true;
             this.dgvEspectaculos.RowTemplate.Height = 24;
-            this.dgvEspectaculos.Size = new System.Drawing.Size(569, 346);
+            this.dgvEspectaculos.Size = new System.Drawing.Size(671, 346);
             this.dgvEspectaculos.TabIndex = 0;
             // 
             // publi_descripcion
@@ -142,7 +144,7 @@
             this.btnContinuar.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnContinuar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContinuar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnContinuar.Location = new System.Drawing.Point(624, 18);
+            this.btnContinuar.Location = new System.Drawing.Point(679, 18);
             this.btnContinuar.Margin = new System.Windows.Forms.Padding(2);
             this.btnContinuar.Name = "btnContinuar";
             this.btnContinuar.Size = new System.Drawing.Size(128, 34);
@@ -154,7 +156,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(624, 326);
+            this.btnLimpiar.Location = new System.Drawing.Point(679, 326);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(128, 34);
@@ -190,7 +192,7 @@
             this.cerrarAplicacionToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(774, 24);
+            this.menu.Size = new System.Drawing.Size(834, 24);
             this.menu.TabIndex = 113;
             this.menu.Text = "menuStrip1";
             // 
@@ -222,7 +224,7 @@
             this.gb_b_filtro.Margin = new System.Windows.Forms.Padding(2);
             this.gb_b_filtro.Name = "gb_b_filtro";
             this.gb_b_filtro.Padding = new System.Windows.Forms.Padding(2);
-            this.gb_b_filtro.Size = new System.Drawing.Size(746, 99);
+            this.gb_b_filtro.Size = new System.Drawing.Size(801, 99);
             this.gb_b_filtro.TabIndex = 114;
             this.gb_b_filtro.TabStop = false;
             this.gb_b_filtro.Text = "Filtros de espectaculo";
@@ -237,7 +239,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(608, 33);
+            this.btnBuscar.Location = new System.Drawing.Point(669, 33);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(128, 34);
@@ -330,7 +332,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(774, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(834, 25);
             this.bindingNavigator1.TabIndex = 116;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -383,11 +385,17 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // ubica_precio
+            // 
+            this.ubica_precio.HeaderText = "Precio";
+            this.ubica_precio.Name = "ubica_precio";
+            this.ubica_precio.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 608);
+            this.ClientSize = new System.Drawing.Size(834, 608);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.gb_b_filtro);
             this.Controls.Add(this.menu);
@@ -450,5 +458,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn publi_fecha_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn publi_stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn rubro_descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ubica_precio;
     }
 }

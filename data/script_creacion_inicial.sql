@@ -587,6 +587,19 @@ BEGIN
 	END
 END
 GO
+/* Pasa automaticamente las publicaciones a finalizadas cuando su stock llega a 0 */
+CREATE TRIGGER EL_REJUNTE.tg_finalizar_publicacion
+ON EL_REJUNTE.Publicacion
+AFTER UPDATE AS
+BEGIN
+	IF EXISTS(SELECT 1 FROM inserted i WHERE i.publi_stock = 0)
+	BEGIN
+		UPDATE EL_REJUNTE.Publicacion
+		SET publi_estado_id = 3
+		WHERE publi_id = (SELECT i.publi_id FROM inserted i)
+	END
+END
+GO
 /* Trigger para evitar que se asignen roles inhabilitados 
 CREATE TRIGGER EL_REJUNTE.tg_validar_rol
 ON EL_REJUNTE.Rol_Usuario

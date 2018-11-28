@@ -332,5 +332,19 @@ namespace PalcoNet.Utils {
             return aux;
         }
 
+        public static Boolean clienteAcreditarPuntos(int id_cliente, int puntos) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Puntaje (punt_cliente_id, punt_cantidad, punt_vencimiento) " +
+                               "VALUES (" + id_cliente + ", " + puntos + ", (DateAdd(yy, +1, GetDate())))";
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
+
     }
 }
