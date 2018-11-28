@@ -12,5 +12,6 @@ namespace PalcoNet.Objetos
         public Cliente cliente { get; set; }
         public DateTime vencimiento { get; set; }
         public int cantidad { get; set; }
+        public bool habilitado { get; set; }
     }
 }

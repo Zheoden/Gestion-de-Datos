@@ -187,6 +187,7 @@ CREATE TABLE EL_REJUNTE.Puntaje(
 	punt_id INT NOT NULL IDENTITY(1,1),
 	punt_cliente_id INT NOT NULL,
 	punt_cantidad INT NOT NULL,
+	punt_disponible BIT NOT NULL,
 	punt_vencimiento datetime NOT NULL,
  CONSTRAINT PK_Puntaje PRIMARY KEY CLUSTERED(
 	punt_id ASC

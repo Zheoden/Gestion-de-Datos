@@ -336,14 +336,110 @@ namespace PalcoNet.Utils {
 
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO EL_REJUNTE.Puntaje (punt_cliente_id, punt_cantidad, punt_vencimiento) " +
-                               "VALUES (" + id_cliente + ", " + puntos + ", (DateAdd(yy, +1, GetDate())))";
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Puntaje (punt_cliente_id, punt_cantidad, punt_vencimiento, punt_disponible) " +
+                               "VALUES (" + id_cliente + ", " + puntos + ", (DateAdd(yy, +1, GetDate())), 1)";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();
             comm.Connection.Close();
             connection.Close();
             return rows > 0;
+        }
+
+        public static int clienteGetPuntos(int id) {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT SUM(p.punt_cantidad) as Puntos "+
+                          "FROM EL_REJUNTE.Puntaje p " +
+                          "WHERE p.punt_cliente_id = " + id + " AND " +
+                                "p.punt_disponible = 1 AND  p.punt_vencimiento >= GETDATE()";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            int puntaje = 0;
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    if (reader["Puntos"].ToString() != null) {
+                        Int32.TryParse(reader["Puntos"].ToString(), out puntaje);
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+            }
+
+            conn.Close();
+            return puntaje;
+        }
+
+        public static Boolean puntosInhabilitar(int idPuntos) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "UPDATE EL_REJUNTE.Puntaje " +
+                               "SET punt_disponible = 0 " +
+                               "WHERE punt_id = " + idPuntos;
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+
+        }
+
+        public static Boolean puntosReducir(int idPuntos, int nuevaCantidad) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "UPDATE EL_REJUNTE.Puntaje " +
+                               "SET punt_cantidad = " + nuevaCantidad + " " +
+                               "WHERE punt_id = " + idPuntos;
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+
+        }
+
+        public static Boolean puntosCanjear(int idcliente, int cantidad) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT punt_id, punt_cantidad " +
+                         "FROM EL_REJUNTE.Puntaje " +
+                         "WHERE punt_cliente_id = " + idcliente + " AND "+
+                         "punt_disponible = 1 AND  punt_vencimiento >= GETDATE() " +
+                         "ORDER BY punt_vencimiento";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            int puntaje = 0;
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    puntaje = Int32.Parse(reader["punt_cantidad"].ToString());
+                    if ((cantidad - puntaje) > 0) {
+                        DBHelper.puntosInhabilitar(Int32.Parse(reader["punt_id"].ToString()));
+                        cantidad -= puntaje;
+                    }else if ((cantidad - puntaje) == 0) {
+                        DBHelper.puntosInhabilitar(Int32.Parse(reader["punt_id"].ToString()));
+                        return true;
+                    }else if ((cantidad - puntaje) < 0) {
+                        DBHelper.puntosReducir(Int32.Parse(reader["punt_id"].ToString()), puntaje - cantidad);
+                        return true;
+                    }
+                }
+            }
+
+            conn.Close();
+            return true;
+
         }
 
     }
