@@ -32,8 +32,8 @@ namespace PalcoNet.Forms_Comunes {
                         string aux1 = txtVencimiento.Text.Split('/')[1];
                         mes = Convert.ToInt32(aux);
                         anio = Convert.ToInt32(aux1);
-
-                    }catch(Exception){
+                    }
+                    catch (Exception) {
                         MessageBox.Show("Formato de fecha incorrecta.");
                         return;
                     }

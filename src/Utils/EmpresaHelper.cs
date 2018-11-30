@@ -77,7 +77,7 @@ namespace PalcoNet.Utils {
             connection.Close();
             return rows > 0;
         }
-    
+
         public static Empresa cargarEmpresa(int id) {
 
             Empresa empresa = new Empresa();
@@ -121,8 +121,6 @@ namespace PalcoNet.Utils {
             conn.Close();
             return empresa;
         }
-
-
 
     }
 }

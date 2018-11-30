@@ -7,14 +7,11 @@ using System.Text;
 using System.Windows.Forms;
 using PalcoNet.Objetos;
 
-namespace PalcoNet.Utils
-{
+namespace PalcoNet.Utils {
 
-    public partial class DBHelper
-    {
+    public partial class DBHelper {
 
-        public static Boolean ubicacionAlta(Ubicacion ubica)
-        {
+        public static Boolean ubicacionAlta(Ubicacion ubica) {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Ubicacion (ubica_fila , ubica_asiento, ubica_sin_numerar, ubica_precio, ubica_tipo_codigo, ubica_tipo_descripcion) " +
@@ -28,9 +25,7 @@ namespace PalcoNet.Utils
             return rows > 0;
         }
 
-
-        public static int ubicacionAltaRetornaID(Ubicacion ubica)
-        {
+        public static int ubicacionAltaRetornaID(Ubicacion ubica) {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Ubicacion (ubica_fila , ubica_asiento, ubica_sin_numerar, ubica_precio, ubica_tipo_codigo, ubica_tipo_descripcion) " +
@@ -44,8 +39,7 @@ namespace PalcoNet.Utils
             return rows;
         }
 
-        public static Boolean ubicacionModificar(Ubicacion ubica)
-        {
+        public static Boolean ubicacionModificar(Ubicacion ubica) {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "UPDATE EL_REJUNTE.Ubicacion " +
@@ -59,8 +53,7 @@ namespace PalcoNet.Utils
             return rows > 0;
         }
 
-        public static List<Ubicacion> tiposPorEspectaculo(int id)
-        {
+        public static List<Ubicacion> tiposPorEspectaculo(int id) {
             var rv = new List<Ubicacion>();
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
@@ -77,10 +70,8 @@ namespace PalcoNet.Utils
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
+            if (reader.HasRows) {
+                while (reader.Read()) {
                     var ubicacion = new Ubicacion();
                     ubicacion.tipo_descripcion = reader["ubica_tipo_descripcion"].ToString();
                     ubicacion.tipo_codigo = Int32.Parse(reader["ubica_tipo_codigo"].ToString());

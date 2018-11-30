@@ -344,7 +344,6 @@
             this.dgvRoles.RowTemplate.Height = 24;
             this.dgvRoles.Size = new System.Drawing.Size(1104, 213);
             this.dgvRoles.TabIndex = 0;
-            this.dgvRoles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellValueChanged);
             // 
             // rol_id
             // 

@@ -37,6 +37,11 @@ namespace PalcoNet.Login {
             foreach (Rol rol in VariablesGlobales.usuario.roles) {
                 cmbMenu.Items.Add(rol.nombre.ToString());
             }
+
+            if (cmbMenu.Items.Count == 0) {
+                MessageBox.Show("Se detecto que no tiene ningun rol asignado, por lo que no podra continuar operando. Por favor contacte a un administrador.");
+                Application.Exit();
+            }
         }
     }
 }

@@ -12,18 +12,14 @@ using PalcoNet.Utils;
 using Microsoft.VisualBasic;
 using PalcoNet.Objetos;
 
-namespace PalcoNet.Abm_Cliente
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace PalcoNet.Abm_Cliente {
+    public partial class Form1 : Form {
+        public Form1() {
             InitializeComponent();
             gb_b_avanzada.Visible = false;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
+        private void btnBuscar_Click(object sender, EventArgs e) {
             dgvClientes.Rows.Clear();
             dgvClientes.Refresh();
 
@@ -59,8 +55,6 @@ namespace PalcoNet.Abm_Cliente
                     }
                 }
             }
-
-
 
             SqlCommand command = new SqlCommand(SQL, conn);
 
@@ -136,24 +130,24 @@ namespace PalcoNet.Abm_Cliente
             string texto_libre = txtEmail.Text;
             string texto_exacto = txtDNI.Text;
 
-                if (texto_libre == "" && texto_exacto == "") {
-                    MessageBox.Show("Escriba al menos un filtro.");
-                }
-                else {
-                    if (texto_libre != "") {
-                        lstFiltro.Items.Add("Texto Libre: " + texto_libre + ". Para el Campo: Email");
-                    }
-                    if (texto_exacto != "") {
-                        lstFiltro.Items.Add("Texto Exacto: " + texto_exacto + ". Para el Campo: Documento");
-                    }
-
-                    lstFiltro.SelectedIndexChanged += ListBoxapp_SelectedIndexChanged;
-
-                }
-
-                txtEmail.Text = "";
-                txtDNI.Text = "";
+            if (texto_libre == "" && texto_exacto == "") {
+                MessageBox.Show("Escriba al menos un filtro.");
             }
+            else {
+                if (texto_libre != "") {
+                    lstFiltro.Items.Add("Texto Libre: " + texto_libre + ". Para el Campo: Email");
+                }
+                if (texto_exacto != "") {
+                    lstFiltro.Items.Add("Texto Exacto: " + texto_exacto + ". Para el Campo: Documento");
+                }
+
+                lstFiltro.SelectedIndexChanged += ListBoxapp_SelectedIndexChanged;
+
+            }
+
+            txtEmail.Text = "";
+            txtDNI.Text = "";
+        }
 
         private void ListBoxapp_SelectedIndexChanged(object sender, EventArgs e) {
             ListBox lBox = sender as ListBox;
@@ -261,11 +255,6 @@ namespace PalcoNet.Abm_Cliente
             this.Close();
             Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + menuSeleccionado.carpeta + "." + menuSeleccionado.form).Unwrap();
             nextForm.Show();
-        }
-
-        private void btnActualizarVista_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cerrarAplicacionToolStripMenuItem_Click(object sender, EventArgs e) {

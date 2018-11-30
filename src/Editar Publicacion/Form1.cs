@@ -11,12 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Editar_Publicacion
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace PalcoNet.Editar_Publicacion {
+    public partial class Form1 : Form {
+        public Form1() {
             InitializeComponent();
         }
 
@@ -63,9 +60,9 @@ namespace PalcoNet.Editar_Publicacion
             conn.Open();
             string SQL = "SELECT DISTINCT p.publi_id, p.publi_descripcion, e.estado_descripcion, p.publi_fecha_evento, p.publi_codigo, r.rubro_descripcion, g.grado_prioridad, p.publi_stock " +
                          "FROM EL_REJUNTE.Publicacion p, EL_REJUNTE.Estado e, EL_REJUNTE.Rubro r, EL_REJUNTE.Grado g, EL_REJUNTE.Usuario u " +
-                         "WHERE p.publi_estado_id = e.estado_id AND " + 
-                               "e.estado_id = 1 AND " + 
-                               "p.publi_rubro_id = r.rubro_id AND " + 
+                         "WHERE p.publi_estado_id = e.estado_id AND " +
+                               "e.estado_id = 1 AND " +
+                               "p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_usuario_id = " + VariablesGlobales.usuario.id;
 

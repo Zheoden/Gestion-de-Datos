@@ -50,8 +50,7 @@ namespace PalcoNet.Utils {
             return false;
         }
 
-        public static Boolean clienteDontExistUsuario(string usuario)
-        {
+        public static Boolean clienteDontExistUsuario(string usuario) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
@@ -65,8 +64,7 @@ namespace PalcoNet.Utils {
 
             SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
 
-            if (!reader.HasRows)
-            {
+            if (!reader.HasRows) {
                 return true;
             }
 
@@ -100,11 +98,11 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Cliente (clie_nombre, clie_apellido, clie_tipo_documento, clie_documento, clie_cuil, clie_email, clie_telefono, clie_direccion_id, clie_fecha_nacimiento, clie_fecha_creacion, clie_tarjeta_id, clie_habilitado, clie_usuario_id) " +
-                                "VALUES ('" + cliente.nombre + "', '" + cliente.apellido + "', '" + cliente.tipo_documento + "', '" + cliente.documento + "', '" + cliente.cuil + "', '" + cliente.mail + "'," + 
-                                " '" + cliente.telefono + "'," + "(SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + cliente.dire.calle + "' AND dire_numero = '" + cliente.dire.numero + 
+                                "VALUES ('" + cliente.nombre + "', '" + cliente.apellido + "', '" + cliente.tipo_documento + "', '" + cliente.documento + "', '" + cliente.cuil + "', '" + cliente.mail + "'," +
+                                " '" + cliente.telefono + "'," + "(SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + cliente.dire.calle + "' AND dire_numero = '" + cliente.dire.numero +
                                 "' AND dire_piso = '" + cliente.dire.piso + "' AND dire_depto = '" + cliente.dire.depto + "' AND dire_localidad = '" + cliente.dire.localidad + "' AND dire_codigo_postal = '" +
-                                cliente.dire.codigo_postal + "') , '" + cliente.fecha_nacimiento.ToString("yyyy-MM-dd HH:mm:ss") + 
-                                "', " + "GETDATE()" + "," + "(SELECT TOP 1 tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" + 
+                                cliente.dire.codigo_postal + "') , '" + cliente.fecha_nacimiento.ToString("yyyy-MM-dd HH:mm:ss") +
+                                "', " + "GETDATE()" + "," + "(SELECT TOP 1 tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" +
                                 cliente.tarjeta.cod_seguridad + "' AND tarj_vencimiento = '" + cliente.tarjeta.vencimiento + "' AND tarj_titular = '" + cliente.tarjeta.titular + "' AND tarj_tipo = '" +
                                 cliente.tarjeta.tipo + "')" + ", 1, (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE u.usuario_username = '" + cliente.documento + "')" +
                                 ")";
@@ -222,7 +220,7 @@ namespace PalcoNet.Utils {
                 return cliente;
             }
         }
-        
+
         public static Boolean modificarCliente(Cliente cliente) {
 
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
@@ -259,13 +257,13 @@ namespace PalcoNet.Utils {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT DISTINCT c.compra_id, c.compra_fecha, i.item_monto, f.fact_pago_desc "+
-                         "FROM EL_REJUNTE.Compra c, EL_REJUNTE.Ubicacion_compra uc, EL_REJUNTE.Ubicacion u, EL_REJUNTE.Item_Factura i, EL_REJUNTE.Factura f "+
+            string SQL = "SELECT DISTINCT c.compra_id, c.compra_fecha, i.item_monto, f.fact_pago_desc " +
+                         "FROM EL_REJUNTE.Compra c, EL_REJUNTE.Ubicacion_compra uc, EL_REJUNTE.Ubicacion u, EL_REJUNTE.Item_Factura i, EL_REJUNTE.Factura f " +
                          "WHERE c.compra_id = uc.compra_id AND " +
-	                           "uc.ubica_id = u.ubica_id AND " +
-	                           "i.item_ubicacion_id = u.ubica_id AND " +
-	                           "f.fact_id = i.item_factura_id AND " +
-	                           "c.compra_cliente_id = " + id + " AND " +
+                               "uc.ubica_id = u.ubica_id AND " +
+                               "i.item_ubicacion_id = u.ubica_id AND " +
+                               "f.fact_id = i.item_factura_id AND " +
+                               "c.compra_cliente_id = " + id + " AND " +
                                "f.fact_cliente_id = " + id + " " +
                          "ORDER BY c.compra_id";
             SqlCommand command = new SqlCommand(SQL, conn);
@@ -349,7 +347,7 @@ namespace PalcoNet.Utils {
         public static int clienteGetPuntos(int id) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT SUM(p.punt_cantidad) as Puntos "+
+            string SQL = "SELECT SUM(p.punt_cantidad) as Puntos " +
                           "FROM EL_REJUNTE.Puntaje p " +
                           "WHERE p.punt_cliente_id = " + id + " AND " +
                                 "p.punt_disponible = 1 AND  p.punt_vencimiento >= GETDATE()";
@@ -412,7 +410,7 @@ namespace PalcoNet.Utils {
             conn.Open();
             string SQL = "SELECT punt_id, punt_cantidad " +
                          "FROM EL_REJUNTE.Puntaje " +
-                         "WHERE punt_cliente_id = " + idcliente + " AND "+
+                         "WHERE punt_cliente_id = " + idcliente + " AND " +
                          "punt_disponible = 1 AND  punt_vencimiento >= GETDATE() " +
                          "ORDER BY punt_vencimiento";
             SqlCommand command = new SqlCommand(SQL, conn);
@@ -427,10 +425,12 @@ namespace PalcoNet.Utils {
                     if ((cantidad - puntaje) > 0) {
                         DBHelper.puntosInhabilitar(Int32.Parse(reader["punt_id"].ToString()));
                         cantidad -= puntaje;
-                    }else if ((cantidad - puntaje) == 0) {
+                    }
+                    else if ((cantidad - puntaje) == 0) {
                         DBHelper.puntosInhabilitar(Int32.Parse(reader["punt_id"].ToString()));
                         return true;
-                    }else if ((cantidad - puntaje) < 0) {
+                    }
+                    else if ((cantidad - puntaje) < 0) {
                         DBHelper.puntosReducir(Int32.Parse(reader["punt_id"].ToString()), puntaje - cantidad);
                         return true;
                     }

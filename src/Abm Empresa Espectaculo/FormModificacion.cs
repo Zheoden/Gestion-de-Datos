@@ -66,7 +66,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
                 if (testDialog.ShowDialog(this) == DialogResult.OK) {
                     cmbDireccion.Items.Add("Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text);
                     cmbDireccion.SelectedItem = "Datos de la direccion(Calle;Numero;Piso;Departamento;Localidad;Codigo Postal): " + testDialog.txtCalle.Text + "#" + testDialog.txtNumero.Text + "#" + testDialog.txtPiso.Text + "#" + testDialog.txtDepartamento.Text + "#" + testDialog.txtLocalidad.Text + "#" + testDialog.txtCodigoPostal.Text;
-                
+
                 }
             }
             else {
@@ -79,17 +79,17 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
         }
 
         private Boolean validarDatos() {
-            if (txtNombre.Text == empresa.razon_social && txtCUIT.Text == empresa.cuit && txtMail.Text == empresa.mail && txtTelefono.Text == empresa.telefono && cmbDireccion.Items.Count > 0 ) {
+            if (txtNombre.Text == empresa.razon_social && txtCUIT.Text == empresa.cuit && txtMail.Text == empresa.mail && txtTelefono.Text == empresa.telefono && cmbDireccion.Items.Count > 0) {
                 return true;
             }
-            if (txtNombre.Text != "" && txtCUIT.Text != "" && txtMail.Text != "" && txtTelefono.Text != "" && cmbDireccion.Items.Count > 0 ) {
+            if (txtNombre.Text != "" && txtCUIT.Text != "" && txtMail.Text != "" && txtTelefono.Text != "" && cmbDireccion.Items.Count > 0) {
                 if (txtTelefono.Text.Length == 11 && (txtTelefono.Text.Substring(0, 2) == "20" || txtTelefono.Text.Substring(0, 2) == "23" || txtTelefono.Text.Substring(0, 2) == "24" || txtTelefono.Text.Substring(0, 2) == "27" || txtTelefono.Text.Substring(0, 2) == "30" || txtTelefono.Text.Substring(0, 2) == "33")) {
                     if (DBHelper.EmpresaDontExistCuit(empresa.cuit) || empresa.cuit == txtCUIT.Text) {
-                            return true;
-                        }
-                        else {
-                            MessageBox.Show("Ya exite una empresa con ese CUIT.");
-                        }
+                        return true;
+                    }
+                    else {
+                        MessageBox.Show("Ya exite una empresa con ese CUIT.");
+                    }
                 }
                 else {
                     MessageBox.Show("El cuil es invalido, por favor ingreselo nuevamente");

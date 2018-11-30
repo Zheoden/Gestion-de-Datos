@@ -122,7 +122,6 @@
             this.label5.Size = new System.Drawing.Size(123, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Nombre de espectáculo:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // gb_b_avanzada
             // 
@@ -140,7 +139,6 @@
             this.gb_b_avanzada.TabIndex = 4;
             this.gb_b_avanzada.TabStop = false;
             this.gb_b_avanzada.Text = "Busqueda avanzada";
-            this.gb_b_avanzada.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // textBox3
             // 
@@ -215,7 +213,6 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Buscar";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -278,7 +275,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(818, 213);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button7
             // 
@@ -290,7 +286,6 @@
             this.button7.TabIndex = 2;
             this.button7.Text = "Limpiar";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // pictureBox1
             // 

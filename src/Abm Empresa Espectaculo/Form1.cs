@@ -12,12 +12,9 @@ using PalcoNet.Utils;
 using PalcoNet.Objetos;
 using Microsoft.VisualBasic;
 
-namespace PalcoNet.Abm_Empresa_Espectaculo
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace PalcoNet.Abm_Empresa_Espectaculo {
+    public partial class Form1 : Form {
+        public Form1() {
             InitializeComponent();
             gb_b_avanzada.Visible = false;
         }
@@ -123,27 +120,26 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             string texto_libre = txtEmail.Text;
             string texto_exacto = txtCUIT.Text;
 
-                if (texto_libre == "" && texto_exacto == "") {
-                    MessageBox.Show("Escriba al menos un filtro.");
+            if (texto_libre == "" && texto_exacto == "") {
+                MessageBox.Show("Escriba al menos un filtro.");
+            }
+            else {
+                if (texto_libre != "") {
+                    lstFiltro.Items.Add("Texto Libre: " + texto_libre + ". Para el Campo: Email");
                 }
-                else {
-                    if (texto_libre != "") {
-                        lstFiltro.Items.Add("Texto Libre: " + texto_libre + ". Para el Campo: Email");
-                    }
-                    if (texto_exacto != "") {
-                        lstFiltro.Items.Add("Texto Exacto: " + texto_exacto + ". Para el Campo: CUIT");
-                    }
-
-                    lstFiltro.SelectedIndexChanged += ListBoxapp_SelectedIndexChanged;
-
+                if (texto_exacto != "") {
+                    lstFiltro.Items.Add("Texto Exacto: " + texto_exacto + ". Para el Campo: CUIT");
                 }
 
-                txtEmail.Text = "";
-                txtCUIT.Text = "";
+                lstFiltro.SelectedIndexChanged += ListBoxapp_SelectedIndexChanged;
+
             }
 
-        private void btnEliminarFiltro_Click(object sender, EventArgs e)
-        {
+            txtEmail.Text = "";
+            txtCUIT.Text = "";
+        }
+
+        private void btnEliminarFiltro_Click(object sender, EventArgs e) {
             if (lstFiltro.SelectedIndex != -1) {
                 lstFiltro.Items.Remove(lstFiltro.SelectedItem.ToString());
             }

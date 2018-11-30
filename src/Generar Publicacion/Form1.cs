@@ -96,7 +96,7 @@ namespace PalcoNet.Generar_Publicacion {
                 espec.rubro = publi.rubro;
 
                 publi.espectaculo = espec;
-                
+
                 foreach (DateTime item in cmbFechaEspectaculo.Items) {
                     publi.codigo = DBHelper.publicacionGetNextCod();
                     ubica.tipo_codigo = publi.codigo;
@@ -146,7 +146,7 @@ namespace PalcoNet.Generar_Publicacion {
 
             List<Grado> grados = DBHelper.getGrados();
             foreach (Grado grado in grados) {
-                cmbGrado.Items.Add("Prioridad:"+grado.prioridad+"; Comision:" + grado.comision+"; Habilitado:" + grado.habilitado);
+                cmbGrado.Items.Add("Prioridad:" + grado.prioridad + "; Comision:" + grado.comision + "; Habilitado:" + grado.habilitado);
             }
 
             List<Estado> estados = DBHelper.getEstados();
@@ -164,15 +164,15 @@ namespace PalcoNet.Generar_Publicacion {
             if (txtDescripcion.Text != "" && txtStock.Text != "" && txtPrecio.Text != "" && txtUsuarioResponsable.Text != "" && dtpEspectaculo.Text != "" && cmbDireccion.Items.Count > 0 && cmbEstado.Text != "" && cmbRubro.Text != "" && cmbGrado.Text != "") {
                 if (Int32.TryParse(txtStock.Text, out numero) && Int32.TryParse(txtPrecio.Text, out numero)) {
                     if (cmbFechaEspectaculo.Items.Count > 0) {
-                            return true;
-                        }
-                        else {
-                            MessageBox.Show("Ingrese al menos una fecha para el espectaculo.");
-                        }
+                        return true;
                     }
                     else {
-                        MessageBox.Show("El stock y el precio deben ser numeros.");
+                        MessageBox.Show("Ingrese al menos una fecha para el espectaculo.");
                     }
+                }
+                else {
+                    MessageBox.Show("El stock y el precio deben ser numeros.");
+                }
             }
             else {
                 MessageBox.Show("Todos los campos son obligatorios.");
@@ -186,7 +186,7 @@ namespace PalcoNet.Generar_Publicacion {
                     MessageBox.Show("Este horario ya existe");
                 }
                 else {
-                    cmbFechaEspectaculo.SelectedIndex = cmbFechaEspectaculo.Items.Count -1 ;
+                    cmbFechaEspectaculo.SelectedIndex = cmbFechaEspectaculo.Items.Count - 1;
                     if (Convert.ToDateTime(cmbFechaEspectaculo.SelectedItem.ToString()) > dtpEspectaculo.Value) {
                         MessageBox.Show("Solo se pueden agregar eventos posteriores a los ya ingresados.");
                     }
@@ -208,18 +208,6 @@ namespace PalcoNet.Generar_Publicacion {
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
-        }
-
-        private void label2_Click(object sender, EventArgs e) {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e) {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e) {
-
         }
 
     }

@@ -88,7 +88,6 @@
             this.label2.Size = new System.Drawing.Size(228, 26);
             this.label2.TabIndex = 40;
             this.label2.Text = "Generar Publicacion";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // groupBox2
             // 
@@ -123,7 +122,6 @@
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles de la Publicacion";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // cmbRubro
             // 
@@ -376,7 +374,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(168, 50);
             this.pictureBox2.TabIndex = 43;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // Form1
             // 

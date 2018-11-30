@@ -11,12 +11,9 @@ using System.Data.SqlClient;
 using PalcoNet.Utils;
 using PalcoNet.Objetos;
 
-namespace PalcoNet.Abm_Grado
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace PalcoNet.Abm_Grado {
+    public partial class Form1 : Form {
+        public Form1() {
             InitializeComponent();
             gb_b_avanzada.Visible = false;
         }

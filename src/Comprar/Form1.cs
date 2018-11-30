@@ -22,35 +22,35 @@ namespace PalcoNet.Comprar {
         public Form1() {
             InitializeComponent();
             cargarCategorias();
-/*
-            bindingNavigator1.BindingSource = bindingSource1;
-            bindingSource1.CurrentChanged += new System.EventHandler(bindingSource1_CurrentChanged);
-            bindingSource1.DataSource = new PageOffsetList();*/
+            /*
+                        bindingNavigator1.BindingSource = bindingSource1;
+                        bindingSource1.CurrentChanged += new System.EventHandler(bindingSource1_CurrentChanged);
+                        bindingSource1.DataSource = new PageOffsetList();*/
 
         }
 
-      /*  private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
-            // The desired page has changed, so fetch the page of records using the "Current" offset 
-            int offset = (int)bindingSource1.Current;
-            var records = new List<Compra>();
-            for (int i = offset; i < offset + pageSize && i < totalRecords; i++) {
-                Compra test = new Compra();
-                records.Add(DBHelper.publicacionesHabilitadas()[i]);
-            }
-            dgvEspectaculos.DataSource = records;
-        }
+        /*  private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
+              // The desired page has changed, so fetch the page of records using the "Current" offset 
+              int offset = (int)bindingSource1.Current;
+              var records = new List<Compra>();
+              for (int i = offset; i < offset + pageSize && i < totalRecords; i++) {
+                  Compra test = new Compra();
+                  records.Add(DBHelper.publicacionesHabilitadas()[i]);
+              }
+              dgvEspectaculos.DataSource = records;
+          }
 
-        class PageOffsetList : System.ComponentModel.IListSource {
-            public bool ContainsListCollection { get; protected set; }
+          class PageOffsetList : System.ComponentModel.IListSource {
+              public bool ContainsListCollection { get; protected set; }
 
-            public System.Collections.IList GetList() {
-                // Return a list of page offsets based on "totalRecords" and "pageSize"
-                var pageOffsets = new List<int>();
-                for (int offset = 0; offset < totalRecords; offset += pageSize)
-                    pageOffsets.Add(offset);
-                return pageOffsets;
-            }
-        }*/
+              public System.Collections.IList GetList() {
+                  // Return a list of page offsets based on "totalRecords" and "pageSize"
+                  var pageOffsets = new List<int>();
+                  for (int offset = 0; offset < totalRecords; offset += pageSize)
+                      pageOffsets.Add(offset);
+                  return pageOffsets;
+              }
+          }*/
 
 
         public void cargarCategorias() {

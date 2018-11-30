@@ -20,9 +20,9 @@ namespace PalcoNet.Utils {
                          "WHERE p.publi_rubro_id = r.rubro_id AND " +
                                "p.publi_grado_id = g.grado_id AND " +
                                "p.publi_estado_id = 2 AND " +
-                               "p.publi_stock > 0 AND "+
-                               "u.ubica_id = up.ubica_id AND " + 
-                               "up.publi_id = p.publi_id AND "+
+                               "p.publi_stock > 0 AND " +
+                               "u.ubica_id = up.ubica_id AND " +
+                               "up.publi_id = p.publi_id AND " +
                                "p.publi_fecha_evento BETWEEN '" + desde.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + hasta.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
                          "ORDER BY p.publi_grado_id, p.publi_fecha_evento, p.publi_stock";
 
@@ -185,7 +185,7 @@ namespace PalcoNet.Utils {
             return rows;
         }
 
-        public static Boolean altaUbicacion_Compra( int id_publi, int id_compra) {
+        public static Boolean altaUbicacion_Compra(int id_publi, int id_compra) {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Ubicacion_Compra (ubica_id, compra_id, ubica_facturada) " +

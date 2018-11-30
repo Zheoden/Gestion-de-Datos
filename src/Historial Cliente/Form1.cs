@@ -10,15 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Historial_Cliente
-{
-    public partial class Form1 : Form
-    {
+namespace PalcoNet.Historial_Cliente {
+    public partial class Form1 : Form {
         private static int totalRecords = DBHelper.clieGetHistorial(DBHelper.clienteGetId(VariablesGlobales.usuario.id)).Count;
         private const int pageSize = 25;
 
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
 
             bindingNavigator1.BindingSource = bindingSource1;

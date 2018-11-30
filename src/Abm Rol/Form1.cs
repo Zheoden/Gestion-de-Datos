@@ -40,7 +40,7 @@ namespace PalcoNet.Abm_Rol {
             string SQL = "SELECT r.rol_id, r.rol_nombre, f.func_descripcion, r.rol_habilitado " +
                          "FROM EL_REJUNTE.Rol r, EL_REJUNTE.Func_Rol fr, EL_REJUNTE.Funcionalidad f " +
                          "WHERE r.rol_id = fr.rol_id AND " +
-                               "fr.func_id = f.func_id AND " + 
+                               "fr.func_id = f.func_id AND " +
                                "r.rol_baja_logica = 0";
 
             if (txtNombreRol.Text != "") {
@@ -150,11 +150,11 @@ namespace PalcoNet.Abm_Rol {
                     return "func_descripcion";
                 default:
                     return "";
-            } 
+            }
         }
 
         private void btnEliminarFiltro_Click(object sender, EventArgs e) {
-            if (lstFiltro.SelectedIndex != -1 ) {
+            if (lstFiltro.SelectedIndex != -1) {
                 lstFiltro.Items.Remove(lstFiltro.SelectedItem.ToString());
             }
             else {
@@ -194,10 +194,6 @@ namespace PalcoNet.Abm_Rol {
             }
         }
 
-        private void dgvRoles_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
-            // Update the balance column whenever the value of any cell changes.
-        }
-
         private void btnLimpiar_Click(object sender, EventArgs e) {
             dgvRoles.Rows.Clear();
             dgvRoles.Refresh();
@@ -215,12 +211,12 @@ namespace PalcoNet.Abm_Rol {
                 DataGridViewRow selectedRow = dgvRoles.Rows[selectedrowindex];
                 string rolSeleccionado = Convert.ToString(selectedRow.Cells["rol_nombre"].Value);
                 if (rolSeleccionado != "") {
-                   string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el rol " + rolSeleccionado.ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba "+ rolSeleccionado.ToUpper() + " para confirmar la operacion.", "Confirmacion");
-                   if (respuesta.ToUpper() == rolSeleccionado.ToUpper()) {
-                       if (DBHelper.bajaRol(rolSeleccionado)) {
-                           MessageBox.Show("El rol fue eliminado correctamente.");
-                       }
-                   }
+                    string respuesta = Microsoft.VisualBasic.Interaction.InputBox("Se va a proceder a borrar el rol " + rolSeleccionado.ToUpper() + ", esta seguro que desea eliminarlo?\n\nEscriba " + rolSeleccionado.ToUpper() + " para confirmar la operacion.", "Confirmacion");
+                    if (respuesta.ToUpper() == rolSeleccionado.ToUpper()) {
+                        if (DBHelper.bajaRol(rolSeleccionado)) {
+                            MessageBox.Show("El rol fue eliminado correctamente.");
+                        }
+                    }
                 }
                 else {
                     MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");

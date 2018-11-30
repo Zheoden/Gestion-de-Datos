@@ -59,9 +59,9 @@ namespace PalcoNet.Utils {
                          "e.estado_id = 1 AND " +
                          "p.publi_rubro_id = r.rubro_id AND " +
                          "p.publi_grado_id = g.grado_id AND " +
-                         "p.publi_espectaculo_id = es.espec_id AND " + 
+                         "p.publi_espectaculo_id = es.espec_id AND " +
                          "es.espec_direccion_id = d.dire_id AND " +
-                         "up.publi_id = " + id + " AND " + 
+                         "up.publi_id = " + id + " AND " +
                          "up.ubica_id = u.ubica_id ";
 
             SqlCommand command = new SqlCommand(SQL, conn);
@@ -163,7 +163,7 @@ namespace PalcoNet.Utils {
 
             conn.Close();
             return 0;
-        }         
+        }
 
         public static Boolean publicacionModificar(Publicacion publi) {
 

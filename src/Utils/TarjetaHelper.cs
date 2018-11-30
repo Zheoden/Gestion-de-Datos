@@ -34,7 +34,7 @@ namespace PalcoNet.Utils {
             SqlCommand command = conn.CreateCommand();
             command.CommandText = "UPDATE EL_REJUNTE.Cliente " +
                                   "SET clie_tarjeta_id = " + DBHelper.tarjetaGetID(tarjeta) + " " +
-                                  "WHERE clie_id = " + DBHelper.clienteGetId(VariablesGlobales.usuario.id) ;
+                                  "WHERE clie_id = " + DBHelper.clienteGetId(VariablesGlobales.usuario.id);
             command.Connection = conn;
             command.Connection.Open();
             int rows = command.ExecuteNonQuery();

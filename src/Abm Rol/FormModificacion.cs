@@ -73,10 +73,10 @@ namespace PalcoNet.Abm_Rol {
             foreach (string item in lstFuncionalidadesRol.Items) {
                 DBHelper.altaFuncionalidades(txtNombre.Text, item);
             }
-            if(cbHabilitado.Checked){
+            if (cbHabilitado.Checked) {
                 DBHelper.habilitarRol(txtNombre.Text);
             }
-            else{
+            else {
                 DBHelper.deshabilitarRol(txtNombre.Text);
             }
 

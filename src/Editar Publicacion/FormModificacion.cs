@@ -142,14 +142,14 @@ namespace PalcoNet.Editar_Publicacion {
                 publi.user = VariablesGlobales.usuario;
                 publi.grado = grado;
                 publi.id = Int32.Parse(txtID.Text);
-                
+
                 espec.descripcion = publi.descripcion;
                 espec.direccion = direccion;
                 espec.estado = publi.estado;
                 espec.rubro = publi.rubro;
 
                 publi.espectaculo = espec;
-                
+
                 foreach (DateTime item in cmbFechaEspectaculo.Items) {
 
                     publi.codigo = DBHelper.publicacionCodigo(publi.id);
@@ -158,7 +158,7 @@ namespace PalcoNet.Editar_Publicacion {
 
                     publi.fecha_evento = item;
                     espec.fecha_venc = item;
-           
+
                     ubica_publi.ubicacion = ubica;
                     ubica_publi.publicacion = publi;
                     ubica_publi.disponible = true;
