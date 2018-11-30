@@ -122,6 +122,30 @@ namespace PalcoNet.Utils {
             return false;
         }
 
+        public static Boolean validLoginMail(string username, string mail) {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT u.usuario_id " +
+                          "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Cliente c " +
+                          "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND " +
+                                "UPPER(c.clie_email) = UPPER('" + mail + "') AND " +
+                                "c.clie_usuario_id = u.usuario_id";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    return reader["usuario_id"].ToString() != null;
+                }
+            }
+
+            conn.Close();
+            return false;
+        }
+
         public static Usuario getUserData(string username) {
             if (existUser(username)) {
                 SqlConnection conn = new SqlConnection(Connection.getStringConnection());
@@ -235,6 +259,20 @@ namespace PalcoNet.Utils {
 
             conn.Close();
             return user;
+        }
+
+        public static Boolean cambiarContraseña(string username, string password) {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.Usuario " +
+                         "SET usuario_password = '" + Encrypt.Sha256(password) + "' " +
+                         "WHERE usuario_username = '" + username + "'";
+            command.Connection = conn;
+            command.Connection.Open();
+            int rows = command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
+            return rows > 0;
         }
 
     }

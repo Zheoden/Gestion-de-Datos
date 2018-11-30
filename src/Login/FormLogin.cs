@@ -113,7 +113,8 @@ namespace PalcoNet.Login {
         }
 
         private void lblContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-
+            FormReinicioPass dialog = new FormReinicioPass();
+            dialog.ShowDialog(this);
         }
     }
 }

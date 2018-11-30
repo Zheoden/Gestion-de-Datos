@@ -167,6 +167,18 @@
     <Compile Include="Forms Comunes\FormTarjeta.Designer.cs">
       <DependentUpon>FormTarjeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\FormReinicioPassMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormReinicioPassMail.Designer.cs">
+      <DependentUpon>FormReinicioPassMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormReinicioPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormReinicioPass.Designer.cs">
+      <DependentUpon>FormReinicioPass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\FormRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -325,6 +337,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Listado Estadistico\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormReinicioPassMail.resx">
+      <DependentUpon>FormReinicioPassMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormReinicioPass.resx">
+      <DependentUpon>FormReinicioPass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormRoles.resx">
       <DependentUpon>FormRoles.cs</DependentUpon>
