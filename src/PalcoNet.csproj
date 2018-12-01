@@ -250,7 +250,7 @@
     <Compile Include="Objetos\Grado.cs" />
     <Compile Include="Objetos\Item_Factura.cs" />
     <Compile Include="Objetos\Publicacion.cs" />
-    <Compile Include="Objetos\Puntaje.cs" />
+    <Compile Include="Objetos\CompraNoFacturada.cs" />
     <Compile Include="Objetos\Rol.cs" />
     <Compile Include="Objetos\Rubro.cs" />
     <Compile Include="Objetos\Tarjeta.cs" />

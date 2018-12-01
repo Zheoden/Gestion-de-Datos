@@ -36,6 +36,7 @@ CREATE TABLE EL_REJUNTE.Compra(
 	compra_fecha datetime NOT NULL,
 	compra_cantidad numeric(18, 0) NOT NULL,
 	compra_cliente_id INT NOT NULL,
+	compra_facturada BIT NOT NULL,
  CONSTRAINT PK_Compra PRIMARY KEY CLUSTERED(
 	compra_id ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -262,7 +263,6 @@ IF NOT EXISTS (select * from sysobjects where name='Ubicacion_Compra' and xtype=
 CREATE TABLE EL_REJUNTE.Ubicacion_Compra(
 	ubica_id INT NOT NULL,
 	compra_id INT NOT NULL,
-	ubica_facturada BIT NOT NULL,
 CONSTRAINT PK_Ubicacion_Compra PRIMARY KEY CLUSTERED(
 	ubica_id ASC,
 	compra_id ASC
@@ -547,7 +547,7 @@ INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion) VALUES ('Editar Publicac
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion) VALUES ('Comprar')
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion) VALUES ('Historial del Cliente')
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion) VALUES ('Canjear Puntos')
-INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion) VALUES ('Generar Pa de Comisiones')
+INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion) VALUES ('Generar Pago de Comisiones')
 INSERT INTO EL_REJUNTE.Funcionalidad (func_descripcion) VALUES ('Listado Estadistico')
 
 /* Asigno el Rol Administrador al admin */
@@ -713,7 +713,6 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	SELECT DISTINCT gd.Espectaculo_Cod, gd.Espectaculo_Descripcion, gd.Espectaculo_Fecha, gd.Espectaculo_Fecha_Venc, 1, (SELECT estado_id FROM EL_REJUNTE.Estado WHERE estado_descripcion = gd.Espectaculo_Estado), null
 	FROM gd_esquema.Maestra gd
 	WHERE gd.Espectaculo_Cod IS NOT NULL
-	GO
 
 /* PUBLICACIONES */
 	INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo, publi_rubro_id, publi_usuario_id,publi_espectaculo_id, publi_grado_id)
@@ -721,14 +720,12 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	FROM gd_esquema.Maestra gd, EL_REJUNTE.Usuario usu
 	WHERE REPLACE(gd.Espec_Empresa_Cuit , '-' , '')=usu.usuario_username
 	ORDER BY gd.Espectaculo_Cod
-	GO
 	
 /* UBICACION */
 	INSERT INTO EL_REJUNTE.Ubicacion (ubica_fila , ubica_asiento, ubica_sin_numerar, ubica_precio, ubica_tipo_codigo, ubica_tipo_descripcion)
 	SELECT DISTINCT gd.Ubicacion_Fila, gd.Ubicacion_Asiento, gd.Ubicacion_Sin_numerar, gd.Ubicacion_Precio, gd.Ubicacion_Tipo_Codigo, gd.Ubicacion_Tipo_Descripcion
 	FROM gd_esquema.Maestra gd
 	WHERE gd.Ubicacion_Fila IS NOT NULL
-	GO
 	
 /* UBICACION_PUBLICACION */
 	INSERT INTO EL_REJUNTE.Ubicacion_Publicacion (ubica_id, publi_id, ubica_disponible)
@@ -738,17 +735,16 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	ORDER BY ubica_id
 	
 /* COMPRA */
-	INSERT INTO EL_REJUNTE.Compra (compra_fecha , compra_cantidad, compra_cliente_id)
-	SELECT DISTINCT gd.Compra_Fecha, gd.Compra_Cantidad, c.clie_id
+	INSERT INTO EL_REJUNTE.Compra (compra_fecha , compra_cantidad, compra_cliente_id, compra_facturada)
+	SELECT DISTINCT gd.Compra_Fecha, gd.Compra_Cantidad, c.clie_id, 1
 	FROM gd_esquema.Maestra gd, EL_REJUNTE.Cliente c
-	WHERE gd.Compra_Fecha IS NOT NULL AND gd.Compra_Cantidad IS NOT NULL AND c.clie_apellido = gd.Cli_Apeliido AND c.clie_nombre = gd.Cli_Nombre AND c.clie_documento = gd.Cli_Dni
-	GO
+	WHERE gd.Compra_Fecha IS NOT NULL AND gd.Compra_Cantidad IS NOT NULL AND c.clie_apellido = gd.Cli_Apeliido AND c.clie_nombre = gd.Cli_Nombre AND c.clie_documento = gd.Cli_Dni AND gd.Factura_Nro IS NOT NULL
 
 /* UBICACION_COMPRA */
-	INSERT INTO EL_REJUNTE.Ubicacion_Compra(ubica_id, compra_id, ubica_facturada)	
-	SELECT DISTINCT u.ubica_id, c.compra_id, 0
+	INSERT INTO EL_REJUNTE.Ubicacion_Compra(ubica_id, compra_id)	
+	SELECT DISTINCT u.ubica_id, c.compra_id
 	FROM gd_esquema.Maestra gd, EL_REJUNTE.Ubicacion u, EL_REJUNTE.Compra c, EL_REJUNTE.Cliente cl
-	WHERE u.ubica_fila = gd.Ubicacion_Fila AND u.ubica_asiento = gd.Ubicacion_Asiento AND u.ubica_sin_numerar = gd.Ubicacion_Sin_numerar AND u.ubica_precio = gd.Ubicacion_Precio AND u.ubica_tipo_codigo = gd.Ubicacion_Tipo_Codigo AND u.ubica_tipo_descripcion = gd.Ubicacion_Tipo_Descripcion AND c.compra_cliente_id = cl.clie_id AND cl.clie_email = Cli_Mail AND c.compra_fecha = gd.Compra_Fecha AND c.compra_cantidad = gd.Compra_Cantidad AND gd.Factura_Nro IS NOT NULL AND gd.Compra_Cantidad IS NOT NULL
+	WHERE u.ubica_fila = gd.Ubicacion_Fila AND u.ubica_asiento = gd.Ubicacion_Asiento AND u.ubica_sin_numerar = gd.Ubicacion_Sin_numerar AND u.ubica_precio = gd.Ubicacion_Precio AND u.ubica_tipo_codigo = gd.Ubicacion_Tipo_Codigo AND u.ubica_tipo_descripcion = gd.Ubicacion_Tipo_Descripcion AND c.compra_cliente_id = cl.clie_id AND cl.clie_email = Cli_Mail AND c.compra_fecha = gd.Compra_Fecha AND c.compra_cantidad = gd.Compra_Cantidad AND gd.Compra_Cantidad IS NOT NULL
 	
 
 /* FACTURA */
@@ -773,9 +769,9 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	UPDATE P SET P.publi_stock = (SELECT COUNT(*)  FROM EL_REJUNTE.Ubicacion_Publicacion up  WHERE up.publi_id = P.publi_id)
 	FROM EL_REJUNTE.Publicacion P
 	
-/* TODOS LOS DATOS
-INSERT INTO EL_REJUNTE.DatosInvalidos(Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc)
-(SELECT Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc  
-FROM gd_esquema.Maestra)
-GO*/
+/* TODOS LOS DATOS */
+	INSERT INTO EL_REJUNTE.DatosInvalidos(Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc)
+	(SELECT Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc  
+	FROM gd_esquema.Maestra)
+	GO
 

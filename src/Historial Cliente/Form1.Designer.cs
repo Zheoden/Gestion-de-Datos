@@ -46,6 +46,7 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
@@ -112,6 +113,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.bindingNavigator1);
             this.groupBox3.Controls.Add(this.dgvHistorial);
             this.groupBox3.Location = new System.Drawing.Point(11, 131);
@@ -121,7 +123,6 @@
             this.groupBox3.Size = new System.Drawing.Size(487, 445);
             this.groupBox3.TabIndex = 115;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Información";
             // 
             // bindingNavigator1
             // 
@@ -198,6 +199,16 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(412, 26);
+            this.label2.TabIndex = 117;
+            this.label2.Text = "Recuerde que toda la informacion mostrada en este listado es de compras facturada" +
+    "s.\r\nLas compras en proceso de facturacion NO se muestran en este listado.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,5 +256,6 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ToolStripMenuItem cerrarAplicacionToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -175,8 +175,8 @@ namespace PalcoNet.Utils {
         public static int comprar() {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO EL_REJUNTE.Compra (compra_fecha, compra_cantidad, compra_cliente_id) " +
-                                "VALUES ( GETDATE(), 1 , " + DBHelper.clienteGetId(VariablesGlobales.usuario.id) + " ); SELECT SCOPE_IDENTITY()";
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Compra (compra_fecha, compra_cantidad, compra_cliente_id, compra_facturada) " +
+                                "VALUES ( GETDATE(), 1 , " + DBHelper.clienteGetId(VariablesGlobales.usuario.id) + ", 0 ); SELECT SCOPE_IDENTITY()";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = Convert.ToInt32(comm.ExecuteScalar());
@@ -188,8 +188,8 @@ namespace PalcoNet.Utils {
         public static Boolean altaUbicacion_Compra(int id_publi, int id_compra) {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO EL_REJUNTE.Ubicacion_Compra (ubica_id, compra_id, ubica_facturada) " +
-                                "VALUES ( (SELECT TOP 1 u.ubica_id FROM EL_REJUNTE.Ubicacion u, EL_REJUNTE.Ubicacion_Publicacion up, EL_REJUNTE.Publicacion p WHERE u.ubica_id = up.ubica_id AND up.publi_id = " + id_publi + "), " + id_compra + ", 0 )";
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Ubicacion_Compra (ubica_id, compra_id) " +
+                                "VALUES ( (SELECT TOP 1 u.ubica_id FROM EL_REJUNTE.Ubicacion u, EL_REJUNTE.Ubicacion_Publicacion up, EL_REJUNTE.Publicacion p WHERE u.ubica_id = up.ubica_id AND up.publi_id = " + id_publi + "), " + id_compra + ")";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();
@@ -198,5 +198,41 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
+        public static List<CompraNoFacturada> comprasNoFacturadas() {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT CONCAT(cl.clie_nombre, ' ', cl.clie_apellido) AS FullName, cl.clie_documento, c.compra_fecha, c.compra_cantidad, u.ubica_tipo_descripcion, u.ubica_precio " +
+                         "FROM EL_REJUNTE.Compra c, EL_REJUNTE.Ubicacion u, EL_REJUNTE.Ubicacion_Compra uc, EL_REJUNTE.Cliente cl " +
+                         "WHERE c.compra_cliente_id = cl.clie_id AND " +
+                               "uc.compra_id = c.compra_id AND " +
+	                           "uc.ubica_id = u.ubica_id AND " +
+	                           "c.compra_facturada = 0";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            List<CompraNoFacturada> compras_no_facturadas = new List<CompraNoFacturada>();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    CompraNoFacturada comprs_no_facturada = new CompraNoFacturada();
+                    comprs_no_facturada.fullName = reader["FullName"].ToString();
+                    comprs_no_facturada.documento = reader["clie_documento"].ToString();
+                    comprs_no_facturada.fecha = Convert.ToDateTime(reader["compra_fecha"]);
+                    comprs_no_facturada.cantidad = Int32.Parse(reader["compra_cantidad"].ToString());
+                    comprs_no_facturada.descripcion = reader["ubica_tipo_descripcion"].ToString();
+                    comprs_no_facturada.precio = Int32.Parse(reader["ubica_precio"].ToString());
+                    compras_no_facturadas.Add(comprs_no_facturada);
+                }
+            }
+
+            conn.Close();
+            return compras_no_facturadas;
+
+
+
+        }
     }
 }
