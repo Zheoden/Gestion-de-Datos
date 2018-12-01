@@ -19,6 +19,8 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             InitializeComponent();
         }
 
+        List<CompraNoFacturada> compras = DBHelper.comprasNoFacturadas();
+
         private void Form1_Load(object sender, EventArgs e) {
             cargarCompras();
             foreach (Funcionalidad func in VariablesGlobales.usuario.funcionalidades) {
@@ -48,7 +50,25 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
         }
 
         private void btnModificar_Click(object sender, EventArgs e) {
-
+            int cont = 0;
+            foreach (DataGridViewRow row in dgvCompras.Rows) {
+                CompraNoFacturada compra = new CompraNoFacturada();
+                compra.id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                compra.fullName = row.Cells[1].Value.ToString();
+                compra.documento = row.Cells[2].Value.ToString();
+                compra.fecha = Convert.ToDateTime(row.Cells[3].Value.ToString());
+                compra.cantidad = Convert.ToInt32(row.Cells[4].Value.ToString());
+                compra.descripcion = row.Cells[5].Value.ToString();
+                compra.precio = Convert.ToInt32(row.Cells[6].Value.ToString());
+                compra.ubica_id = compras[cont].ubica_id;
+                if (compra != null) {
+                    if (DBHelper.altaItem_Factura(compra, DBHelper.altaFactura(compra)) && DBHelper.facturarCompra(compra.id)) {
+                        MessageBox.Show("Se Facturo correctamente!");
+                    }
+                }
+                cont++;
+            }
+            cargarCompras();
         }
 
         private void cargarCompras() {
@@ -57,19 +77,18 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             dgvCompras.Refresh();
             int cont = 0;
 
-            List<CompraNoFacturada> compras = DBHelper.comprasNoFacturadas();
             foreach (CompraNoFacturada item in compras) {
                 dgvCompras.Rows.Add();
-                dgvCompras.Rows[cont].Cells[0].Value = item.fullName;
-                dgvCompras.Rows[cont].Cells[1].Value = item.documento;
-                dgvCompras.Rows[cont].Cells[2].Value = item.fecha;
-                dgvCompras.Rows[cont].Cells[3].Value = item.cantidad;
-                dgvCompras.Rows[cont].Cells[4].Value = item.descripcion;
-                dgvCompras.Rows[cont].Cells[5].Value = item.precio;
+                dgvCompras.Rows[cont].Cells[0].Value = item.id;
+                dgvCompras.Rows[cont].Cells[1].Value = item.fullName;
+                dgvCompras.Rows[cont].Cells[2].Value = item.documento;
+                dgvCompras.Rows[cont].Cells[3].Value = item.fecha;
+                dgvCompras.Rows[cont].Cells[4].Value = item.cantidad;
+                dgvCompras.Rows[cont].Cells[5].Value = item.descripcion;
+                dgvCompras.Rows[cont].Cells[6].Value = item.precio;
                 cont++;
 
             }
-
         }
     }
 }

@@ -202,7 +202,7 @@ namespace PalcoNet.Utils {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
-            string SQL = "SELECT CONCAT(cl.clie_nombre, ' ', cl.clie_apellido) AS FullName, cl.clie_documento, c.compra_fecha, c.compra_cantidad, u.ubica_tipo_descripcion, u.ubica_precio " +
+            string SQL = "SELECT c.compra_id, CONCAT(cl.clie_nombre, ' ', cl.clie_apellido) AS FullName, cl.clie_documento, c.compra_fecha, c.compra_cantidad, u.ubica_tipo_descripcion, u.ubica_precio, u.ubica_id " +
                          "FROM EL_REJUNTE.Compra c, EL_REJUNTE.Ubicacion u, EL_REJUNTE.Ubicacion_Compra uc, EL_REJUNTE.Cliente cl " +
                          "WHERE c.compra_cliente_id = cl.clie_id AND " +
                                "uc.compra_id = c.compra_id AND " +
@@ -217,14 +217,16 @@ namespace PalcoNet.Utils {
 
             if (reader.HasRows) {
                 while (reader.Read()) {
-                    CompraNoFacturada comprs_no_facturada = new CompraNoFacturada();
-                    comprs_no_facturada.fullName = reader["FullName"].ToString();
-                    comprs_no_facturada.documento = reader["clie_documento"].ToString();
-                    comprs_no_facturada.fecha = Convert.ToDateTime(reader["compra_fecha"]);
-                    comprs_no_facturada.cantidad = Int32.Parse(reader["compra_cantidad"].ToString());
-                    comprs_no_facturada.descripcion = reader["ubica_tipo_descripcion"].ToString();
-                    comprs_no_facturada.precio = Int32.Parse(reader["ubica_precio"].ToString());
-                    compras_no_facturadas.Add(comprs_no_facturada);
+                    CompraNoFacturada compra_no_facturada = new CompraNoFacturada();
+                    compra_no_facturada.id = Int32.Parse(reader["compra_id"].ToString());
+                    compra_no_facturada.fullName = reader["FullName"].ToString();
+                    compra_no_facturada.documento = reader["clie_documento"].ToString();
+                    compra_no_facturada.fecha = Convert.ToDateTime(reader["compra_fecha"]);
+                    compra_no_facturada.cantidad = Int32.Parse(reader["compra_cantidad"].ToString());
+                    compra_no_facturada.descripcion = reader["ubica_tipo_descripcion"].ToString();
+                    compra_no_facturada.precio = Int32.Parse(reader["ubica_precio"].ToString());
+                    compra_no_facturada.ubica_id = Int32.Parse(reader["ubica_id"].ToString());
+                    compras_no_facturadas.Add(compra_no_facturada);
                 }
             }
 
@@ -234,5 +236,55 @@ namespace PalcoNet.Utils {
 
 
         }
+
+        public static Boolean facturarCompra(int compra) {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "UPDATE EL_REJUNTE.COMPRA " +
+                                  "SET compra_facturada = 1 " +
+                                  "WHERE compra_id = '" + compra + "'";
+            command.Connection = conn;
+            command.Connection.Open();
+            int rows = command.ExecuteNonQuery();
+            command.Connection.Close();
+            conn.Close();
+            return rows > 0;
+        }
+
+        public static Boolean altaItem_Factura(CompraNoFacturada compra, int id_fact) {
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Item_Factura (item_monto, item_cantidad, item_descripcion, item_factura_id, item_ubicacion_id) " +
+                                "VALUES ( " + compra.precio + ", " +
+                                compra.cantidad + ", " +
+                                "'Comision por compra', " +
+                                id_fact + ", " +
+                                compra.ubica_id + " )";
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
+
+        public static int altaFactura(CompraNoFacturada compra) {
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "INSERT INTO EL_REJUNTE.Factura (fact_nro, fact_fecha, fact_total, fact_pago_desc, fact_cliente_id, fact_empresa_id) " +
+                                "VALUES ( (SELECT MAX(fact_nro) + 1 FROM EL_REJUNTE.Factura), " + 
+                                "GETDATE(), " + 
+                                compra.precio + ", " +
+                                "CONCAT('Tarjeta de Credito (ID: ',(SELECT clie_tarjeta_id FROM EL_REJUNTE.Cliente WHERE clie_documento = '40388828'),' )'), " + 
+                                "(SELECT clie_id FROM EL_REJUNTE.Cliente WHERE clie_documento = '" + compra.documento + "'), " +
+                                "1 ); SELECT SCOPE_IDENTITY()";
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = Convert.ToInt32(comm.ExecuteScalar());
+            comm.Connection.Close();
+            connection.Close();
+            return rows;
+        }
+
     }
 }

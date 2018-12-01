@@ -24,7 +24,7 @@ namespace PalcoNet.Login {
             if (rol != "") {
                 VariablesGlobales.usuario = DBHelper.getUserFuncionalidades(VariablesGlobales.usuario, rol);
 
-                this.Hide();
+                this.Close();
                 Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
                 nextForm.Show();
             }
@@ -34,11 +34,21 @@ namespace PalcoNet.Login {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            foreach (Rol rol in VariablesGlobales.usuario.roles) {
-                cmbMenu.Items.Add(rol.nombre.ToString());
+            if (VariablesGlobales.usuario.roles.Count > 1) {
+                foreach (Rol rol in VariablesGlobales.usuario.roles) {
+                    cmbMenu.Items.Add(rol.nombre.ToString());
+                }
             }
 
-            if (cmbMenu.Items.Count == 0) {
+            if (VariablesGlobales.usuario.roles.Count == 1) {
+                MessageBox.Show("Se detecto que tiene solo un rol asignado (" + VariablesGlobales.usuario.roles[0].nombre + "), por lo que se conectó automaticamente con ese rol.");
+                VariablesGlobales.usuario = DBHelper.getUserFuncionalidades(VariablesGlobales.usuario, VariablesGlobales.usuario.roles[0].nombre);
+                this.Close();
+                Form nextForm = (Form)Activator.CreateInstance(null, "PalcoNet" + "." + "Menu" + "." + "FormMenu").Unwrap();
+                nextForm.Show();
+            }
+
+            if (VariablesGlobales.usuario.roles.Count == 0) {
                 MessageBox.Show("Se detecto que no tiene ningun rol asignado, por lo que no podra continuar operando. Por favor contacte a un administrador.");
                 Application.Exit();
             }

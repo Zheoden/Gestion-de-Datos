@@ -93,6 +93,8 @@
             // 
             // dgvEmpresas
             // 
+            this.dgvEmpresas.AllowUserToAddRows = false;
+            this.dgvEmpresas.AllowUserToDeleteRows = false;
             this.dgvEmpresas.BackgroundColor = System.Drawing.Color.White;
             this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmpresas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

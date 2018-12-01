@@ -72,7 +72,7 @@ namespace PalcoNet.Abm_Rol {
             }
 
 
-
+            SQL += " ORDER BY r.rol_id";
             SqlCommand command = new SqlCommand(SQL, conn);
 
             command.Connection = conn;
