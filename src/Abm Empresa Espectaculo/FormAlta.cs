@@ -88,7 +88,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
                 var regex = @"^(30|33|34)[0-9]{8}[0-9]$";
                 var match = Regex.Match(txtCuil.Text, regex, RegexOptions.IgnoreCase);
 
-                if (match.Success) {//txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0, 2) == "30" || txtCuil.Text.Substring(0, 2) == "33")) {
+                if (match.Success) {
                     if (DBHelper.EmpresaDontExistCuit(txtCuil.Text)) {
                         return true;
                     }

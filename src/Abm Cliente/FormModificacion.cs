@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PalcoNet.Objetos;
 using PalcoNet.Utils;
+using System.Text.RegularExpressions;
 
 namespace PalcoNet.Abm_Cliente {
 
@@ -139,7 +140,11 @@ namespace PalcoNet.Abm_Cliente {
                 return true;
             }
             if (txtNombre.Text != "" && txtApellido.Text != "" && txtDocumento.Text != "" && txtCuil.Text != "" && txtMail.Text != "" && txtTelefono.Text != "" && dtpFechaNac.Text != "" && cmbDireccion.Items.Count > 0 && cmbTarjeta.Items.Count > 0) {
-                if (txtCuil.Text.Length == 11 && (txtCuil.Text.Substring(0, 2) == "20" || txtCuil.Text.Substring(0, 2) == "23" || txtCuil.Text.Substring(0, 2) == "24" || txtCuil.Text.Substring(0, 2) == "27" || txtCuil.Text.Substring(0, 2) == "30" || txtCuil.Text.Substring(0, 2) == "33")) {
+               
+                var regex = @"^(20|23|24|27)[0-9]{8}[0-9]$";
+                var match = Regex.Match(txtCuil.Text, regex, RegexOptions.IgnoreCase);
+
+                if (match.Success && txtCuil.Text.Substring(2, 8) == txtDocumento.Text) {   
                     if (DBHelper.clienteDontExistDocumento(txtTipoDoc.Text, txtDocumento.Text) || cliente.documento == txtDocumento.Text) {
                         if (DBHelper.clienteDontExistCuil(txtCuil.Text) || cliente.cuil == txtCuil.Text) {
                             return true;

@@ -38,7 +38,7 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Publicacion (publi_descripcion , publi_estado_id, publi_fecha_inicio, publi_fecha_evento, publi_codigo, publi_rubro_id, publi_usuario_id, publi_espectaculo_id, publi_grado_id, publi_stock) " +
-                                "VALUES ( '" + publicacion.descripcion + "', " + publicacion.estado.id + ", GETDATE(), '" + publicacion.fecha_evento.ToString("yyyy-MM-dd HH:mm:ss") + "', " +
+                                "VALUES ( '" + publicacion.descripcion + "', " + publicacion.estado.id + ", '" + VariablesGlobales.FechaHoraSistemaString + "', '" + publicacion.fecha_evento.ToString("yyyy-MM-dd HH:mm:ss") + "', " +
                                 publicacion.codigo + ", " + publicacion.rubro.id + ", " + publicacion.user.id + ", (SELECT espec_id FROM EL_REJUNTE.Espectaculo WHERE espec_descripcion = '" + publicacion.espectaculo.descripcion + "' AND espec_fecha_venc = '" + publicacion.espectaculo.fecha_venc.ToString("yyyy-MM-dd HH:mm:ss") + "'), " + publicacion.grado.id + ", " + publicacion.stock + "); SELECT SCOPE_IDENTITY()";
             comm.Connection = connection;
             comm.Connection.Open();

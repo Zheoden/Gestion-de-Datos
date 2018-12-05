@@ -102,7 +102,7 @@ namespace PalcoNet.Utils {
                                 " '" + cliente.telefono + "'," + "(SELECT TOP 1 dire_id FROM EL_REJUNTE.Direccion WHERE dire_calle = '" + cliente.dire.calle + "' AND dire_numero = '" + cliente.dire.numero +
                                 "' AND dire_piso = '" + cliente.dire.piso + "' AND dire_depto = '" + cliente.dire.depto + "' AND dire_localidad = '" + cliente.dire.localidad + "' AND dire_codigo_postal = '" +
                                 cliente.dire.codigo_postal + "') , '" + cliente.fecha_nacimiento.ToString("yyyy-MM-dd HH:mm:ss") +
-                                "', " + "GETDATE()" + "," + "(SELECT TOP 1 tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" +
+                                "', '" + VariablesGlobales.FechaHoraSistemaString + "' ," + "(SELECT TOP 1 tarj_id FROM EL_REJUNTE.Tarjeta WHERE tarj_numero = '" + cliente.tarjeta.numero + "' AND tarj_cod_seguridad = '" +
                                 cliente.tarjeta.cod_seguridad + "' AND tarj_vencimiento = '" + cliente.tarjeta.vencimiento + "' AND tarj_titular = '" + cliente.tarjeta.titular + "' AND tarj_tipo = '" +
                                 cliente.tarjeta.tipo + "')" + ", 1, (SELECT u.usuario_id FROM EL_REJUNTE.Usuario u WHERE u.usuario_username = '" + cliente.documento + "')" +
                                 ")";
@@ -335,7 +335,7 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Puntaje (punt_cliente_id, punt_cantidad, punt_vencimiento, punt_disponible) " +
-                               "VALUES (" + id_cliente + ", " + puntos + ", (DateAdd(yy, +1, GetDate())), 1)";
+                               "VALUES (" + id_cliente + ", " + puntos + ", (DateAdd(yy, +1, '" + VariablesGlobales.FechaHoraSistemaString + "')), 1)";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = comm.ExecuteNonQuery();
@@ -350,7 +350,7 @@ namespace PalcoNet.Utils {
             string SQL = "SELECT SUM(p.punt_cantidad) as Puntos " +
                           "FROM EL_REJUNTE.Puntaje p " +
                           "WHERE p.punt_cliente_id = " + id + " AND " +
-                                "p.punt_disponible = 1 AND  p.punt_vencimiento >= GETDATE()";
+                                "p.punt_disponible = 1 AND  p.punt_vencimiento >= '" + VariablesGlobales.FechaHoraSistemaString + "'";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
             command.CommandType = CommandType.Text;
@@ -411,7 +411,7 @@ namespace PalcoNet.Utils {
             string SQL = "SELECT punt_id, punt_cantidad " +
                          "FROM EL_REJUNTE.Puntaje " +
                          "WHERE punt_cliente_id = " + idcliente + " AND " +
-                         "punt_disponible = 1 AND  punt_vencimiento >= GETDATE() " +
+                         "punt_disponible = 1 AND  punt_vencimiento >= '" + VariablesGlobales.FechaHoraSistemaString + "' " +
                          "ORDER BY punt_vencimiento";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;

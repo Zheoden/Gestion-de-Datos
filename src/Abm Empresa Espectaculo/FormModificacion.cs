@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PalcoNet.Objetos;
 using PalcoNet.Utils;
+using System.Text.RegularExpressions;
 
 namespace PalcoNet.Abm_Empresa_Espectaculo {
     public partial class FormModificacion : Form {
@@ -83,7 +84,11 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
                 return true;
             }
             if (txtNombre.Text != "" && txtCUIT.Text != "" && txtMail.Text != "" && txtTelefono.Text != "" && cmbDireccion.Items.Count > 0) {
-                if (txtTelefono.Text.Length == 11 && (txtTelefono.Text.Substring(0, 2) == "20" || txtTelefono.Text.Substring(0, 2) == "23" || txtTelefono.Text.Substring(0, 2) == "24" || txtTelefono.Text.Substring(0, 2) == "27" || txtTelefono.Text.Substring(0, 2) == "30" || txtTelefono.Text.Substring(0, 2) == "33")) {
+                var regex = @"^(30|33|34)[0-9]{8}[0-9]$";
+                var match = Regex.Match(txtCUIT.Text, regex, RegexOptions.IgnoreCase);
+
+                if (match.Success) {  
+                    
                     if (DBHelper.EmpresaDontExistCuit(empresa.cuit) || empresa.cuit == txtCUIT.Text) {
                         return true;
                     }
@@ -92,7 +97,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
                     }
                 }
                 else {
-                    MessageBox.Show("El cuil es invalido, por favor ingreselo nuevamente");
+                    MessageBox.Show("El cuit es invalido, por favor ingreselo nuevamente");
                 }
             }
             else {

@@ -46,8 +46,6 @@ namespace PalcoNet.Abm_Empresa_Espectaculo {
                     string campo = mapeoDeCampos(items[2].Substring(1));
                     string sufijo = obtenerSufijo(campo);
 
-                    MessageBox.Show("Tipo: " + tipo + ". Datos: " + dato + ". Campo: " + campo);
-
                     if (tipo == "Texto Libre") {
                         SQL += " AND " + sufijo + "." + campo + " LIKE '%" + dato + "%'";
                     }

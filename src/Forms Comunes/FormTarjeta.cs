@@ -37,7 +37,7 @@ namespace PalcoNet.Forms_Comunes {
                         MessageBox.Show("Formato de fecha incorrecta.");
                         return;
                     }
-                    if (txtVencimiento.Text.Length == 5 && mes > 00 && mes < 13 && anio > 19 && anio < 24) {
+                    if ((txtVencimiento.Text.Length == 5) && ((mes > 00 && mes < 13 && anio > 18 && anio < 26) || (mes == 12 && anio == 18) ) ) {
                         if (txtCodSeg.Text.Length == 3 && long.TryParse(txtCodSeg.Text, out numero)) {
                             this.DialogResult = DialogResult.OK;
                             this.Close();

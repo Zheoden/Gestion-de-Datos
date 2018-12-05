@@ -176,7 +176,7 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Compra (compra_fecha, compra_cantidad, compra_cliente_id, compra_facturada) " +
-                                "VALUES ( GETDATE(), 1 , " + DBHelper.clienteGetId(VariablesGlobales.usuario.id) + ", 0 ); SELECT SCOPE_IDENTITY()";
+                                "VALUES ( '" + VariablesGlobales.FechaHoraSistemaString + "', 1 , " + DBHelper.clienteGetId(VariablesGlobales.usuario.id) + ", 0 ); SELECT SCOPE_IDENTITY()";
             comm.Connection = connection;
             comm.Connection.Open();
             int rows = Convert.ToInt32(comm.ExecuteScalar());
@@ -272,8 +272,8 @@ namespace PalcoNet.Utils {
             SqlConnection connection = new SqlConnection(Connection.getStringConnection());
             SqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO EL_REJUNTE.Factura (fact_nro, fact_fecha, fact_total, fact_pago_desc, fact_cliente_id, fact_empresa_id) " +
-                                "VALUES ( (SELECT MAX(fact_nro) + 1 FROM EL_REJUNTE.Factura), " + 
-                                "GETDATE(), " + 
+                                "VALUES ( (SELECT MAX(fact_nro) + 1 FROM EL_REJUNTE.Factura), " +
+                                "'" + VariablesGlobales.FechaHoraSistemaString + "', " + 
                                 compra.precio + ", " +
                                 "CONCAT('Tarjeta de Credito (ID: ',(SELECT clie_tarjeta_id FROM EL_REJUNTE.Cliente WHERE clie_documento = '40388828'),' )'), " + 
                                 "(SELECT clie_id FROM EL_REJUNTE.Cliente WHERE clie_documento = '" + compra.documento + "'), " +
