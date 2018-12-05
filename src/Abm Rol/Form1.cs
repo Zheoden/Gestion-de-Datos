@@ -182,7 +182,7 @@ namespace PalcoNet.Abm_Rol {
                     FormModificacion testDialog = new FormModificacion();
                     testDialog.txtNombre.Text = rolSeleccionado;
                     testDialog.ShowDialog(this);
-
+                    btnBuscar_Click(sender, e);
                 }
                 else {
                     MessageBox.Show("Seleccionó una celda invalida, por favor seleccione otra.");

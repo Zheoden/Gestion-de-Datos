@@ -300,7 +300,7 @@ GO
 
 /* Tabla para datos erroneos */
 
-CREATE TABLE EL_REJUNTE.DatosInvalidos(
+CREATE TABLE EL_REJUNTE.TodosLosDatos(
 	[Espec_Empresa_Razon_Social] [nvarchar](255) NULL,
 	[Espec_Empresa_Cuit] [nvarchar](255) NULL,
 	[Espec_Empresa_Fecha_Creacion] [datetime] NULL,
@@ -506,7 +506,7 @@ DELETE FROM [EL_REJUNTE].[Factura]
 DELETE FROM [EL_REJUNTE].[Cliente]
 DELETE FROM [EL_REJUNTE].[Empresa]
 DELETE FROM [EL_REJUNTE].[Direccion]
-DELETE FROM [EL_REJUNTE].[DatosInvalidos]
+DELETE FROM [EL_REJUNTE].[TodosLosDatos]
 DELETE FROM [EL_REJUNTE].[Usuario]
 
 /* Creo los estados */
@@ -776,7 +776,7 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	FROM EL_REJUNTE.Publicacion P
 	
 /* TODOS LOS DATOS */
-	INSERT INTO EL_REJUNTE.DatosInvalidos(Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc)
+	INSERT INTO EL_REJUNTE.TodosLosDatos(Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc)
 	(SELECT Espec_Empresa_Razon_Social,Espec_Empresa_Cuit,Espec_Empresa_Fecha_Creacion,Espec_Empresa_Mail,Espec_Empresa_Dom_Calle,Espec_Empresa_Nro_Calle,Espec_Empresa_Piso,Espec_Empresa_Depto,Espec_Empresa_Cod_Postal,Espectaculo_Cod,Espectaculo_Descripcion,Espectaculo_Fecha,Espectaculo_Fecha_Venc,Espectaculo_Rubro_Descripcion,Espectaculo_Estado,Ubicacion_Fila,Ubicacion_Asiento,Ubicacion_Sin_numerar,Ubicacion_Precio,Ubicacion_Tipo_Codigo,Ubicacion_Tipo_Descripcion,Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal,Compra_Fecha,Compra_Cantidad,Item_Factura_Monto,Item_Factura_Cantidad,Item_Factura_Descripcion,Factura_Nro,Factura_Fecha,Factura_Total,Forma_Pago_Desc  
 	FROM gd_esquema.Maestra)
 	GO

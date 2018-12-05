@@ -179,6 +179,7 @@ namespace PalcoNet.Abm_Grado {
                     FormModificacion testDialog = new FormModificacion();
                     testDialog.txtID.Text = gradoSeleccionado;
                     testDialog.ShowDialog(this);
+                    btnBuscar_Click(sender, e);
 
                 }
                 else {

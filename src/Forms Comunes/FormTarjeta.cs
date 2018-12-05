@@ -47,7 +47,7 @@ namespace PalcoNet.Forms_Comunes {
                         }
                     }
                     else {
-                        MessageBox.Show("El fecha de vencimiento invalida.");
+                        MessageBox.Show("El fecha de vencimiento invalida. Recuerde que la fecha puede ir desde 12/18 hasta 12/25");
                     }
                 }
                 else {

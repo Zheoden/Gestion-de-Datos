@@ -196,6 +196,7 @@ namespace PalcoNet.Abm_Cliente {
                     FormModificacion testDialog = new FormModificacion();
                     testDialog.txtID.Text = clienteSeleccionado;
                     testDialog.ShowDialog(this);
+                    btnBuscar_Click(sender, e);
 
                 }
                 else {
