@@ -291,10 +291,10 @@ namespace PalcoNet.Utils {
             if (reader.HasRows) {
                 while (reader.Read()) {
                     ClienteHistorial cliente = new ClienteHistorial();
-                    cliente.compra_id = Int32.Parse(reader["compra_id"].ToString());
-                    cliente.fact_pago_desc = reader["fact_pago_desc"].ToString();
-                    cliente.compra_fecha = Convert.ToDateTime(reader["compra_fecha"]);
-                    cliente.item_monto = float.Parse(reader["item_monto"].ToString());
+                    cliente.id_Compra = Int32.Parse(reader["compra_id"].ToString());
+                    cliente.Descripcion_Del_Pago = reader["fact_pago_desc"].ToString();
+                    cliente.Fecha_De_Compra = Convert.ToDateTime(reader["compra_fecha"]);
+                    cliente.Monto_De_Item = float.Parse(reader["item_monto"].ToString());
                     clientes.Add(cliente);
                 }
             }
@@ -454,6 +454,84 @@ namespace PalcoNet.Utils {
 
             conn.Close();
             return true;
+
+        }
+
+        public static List<ClientesPuntosVencidos> clientesMayoresPuntosVencidos(DateTime inicio, DateTime final) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT TOP 5 SUM(p.punt_cantidad) as Puntos, c.clie_id, CONCAT(c.clie_nombre, ' ', c.clie_apellido) as 'Nombre Completo', c.clie_tipo_documento ,c.clie_documento, c.clie_cuil, c.clie_email, c.clie_telefono, c.clie_fecha_nacimiento " +
+                         "FROM EL_REJUNTE.Puntaje p, EL_REJUNTE.Cliente c " +
+                         "WHERE p.punt_disponible = 1 AND " +
+                               "p.punt_cliente_id = c.clie_id AND " +
+                               "p.punt_vencimiento <= '" + VariablesGlobales.FechaHoraSistemaString + "' AND " +
+                               "p.punt_vencimiento BETWEEN '" + inicio.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + final.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                         "GROUP BY c.clie_id, c.clie_nombre, c.clie_apellido, c.clie_tipo_documento ,c.clie_documento, c.clie_cuil, c.clie_email, c.clie_telefono, c.clie_fecha_nacimiento " +
+                         "ORDER BY Puntos desc";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            List<ClientesPuntosVencidos> clientes = new List<ClientesPuntosVencidos>();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    ClientesPuntosVencidos cliente = new ClientesPuntosVencidos();
+                    cliente.Cantidad_De_Puntos = Int32.Parse(reader["Puntos"].ToString());
+                    cliente.Cliente_id = Int32.Parse(reader["clie_id"].ToString());
+                    cliente.Nombre_Completo = reader["Nombre Completo"].ToString();
+                    cliente.Tipo_Documento = reader["clie_tipo_documento"].ToString();
+                    cliente.Documento = reader["clie_documento"].ToString();
+                    cliente.CUIL = reader["clie_cuil"].ToString();
+                    cliente.Mail = reader["clie_email"].ToString();
+                    cliente.Telefono = reader["clie_telefono"].ToString();
+                    cliente.Fecha_De_Nacimiento = Convert.ToDateTime(reader["clie_fecha_nacimiento"].ToString());
+                    clientes.Add(cliente);
+                }
+            }
+
+            conn.Close();
+            return clientes;
+
+        }
+
+        public static List<ClientesMasCompras> clientesMasCompras(DateTime inicio, DateTime final) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT TOP 5 COUNT(*) as 'Cantidad De Compras', c.clie_id, CONCAT(c.clie_nombre, ' ', c.clie_apellido) as 'Nombre Completo', c.clie_tipo_documento ,c.clie_documento, c.clie_cuil, c.clie_email, c.clie_telefono, c.clie_fecha_nacimiento " +
+                         "FROM EL_REJUNTE.Compra co, EL_REJUNTE.Cliente c " +
+                         "WHERE co.compra_cliente_id = c.clie_id AND " +
+                               "co.compra_fecha BETWEEN '" + inicio.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + final.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                         "GROUP BY co.compra_empresa_id, co.compra_cliente_id, c.clie_id, c.clie_nombre, c.clie_apellido, c.clie_tipo_documento ,c.clie_documento, c.clie_cuil, c.clie_email, c.clie_telefono, c.clie_fecha_nacimiento " +
+                         "ORDER BY 1 desc";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            List<ClientesMasCompras> clientes = new List<ClientesMasCompras>();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    ClientesMasCompras cliente = new ClientesMasCompras();
+                    cliente.Cantidad_De_Compras = Int32.Parse(reader["Cantidad De Compras"].ToString());
+                    cliente.Cliente_id = Int32.Parse(reader["clie_id"].ToString());
+                    cliente.Nombre_Completo = reader["Nombre Completo"].ToString();
+                    cliente.Tipo_Documento = reader["clie_tipo_documento"].ToString();
+                    cliente.Documento = reader["clie_documento"].ToString();
+                    cliente.CUIL = reader["clie_cuil"].ToString();
+                    cliente.Mail = reader["clie_email"].ToString();
+                    cliente.Telefono = reader["clie_telefono"].ToString();
+                    cliente.Fecha_De_Nacimiento = Convert.ToDateTime(reader["clie_fecha_nacimiento"].ToString());
+                    clientes.Add(cliente);
+                }
+            }
+
+            conn.Close();
+            return clientes;
 
         }
 

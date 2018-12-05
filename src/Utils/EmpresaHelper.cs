@@ -137,5 +137,44 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
+        public static List<EmpresasMenosVendidas> empresasMenosVendidas(DateTime inicio, DateTime final, int grado_id) {
+
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT TOP 5 SUM(p.publi_stock) as 'Bucatas no Vendidas', e.empre_id, e.empre_razon_social, e.empre_cuit, e.empre_mail, e.empre_telefono, g.grado_prioridad " +
+                         "FROM EL_REJUNTE.Publicacion p, EL_REJUNTE.Usuario u, EL_REJUNTE.Empresa e, EL_REJUNTE.Grado g " +
+                         "WHERE p.publi_usuario_id = u.usuario_id AND " +
+                               "e.empre_usuario_id = usuario_id AND " +
+                               "p.publi_grado_id = g.grado_id AND " +
+                               "p.publi_fecha_inicio BETWEEN '" + inicio.ToString("yyyy-MM-dd HH:mm:ss") + "' AND '" + final.ToString("yyyy-MM-dd HH:mm:ss") + "' AND " +
+                               "g.grado_id = " + grado_id +" " +
+                         "GROUP BY e.empre_id, e.empre_razon_social, e.empre_cuit, e.empre_mail, e.empre_telefono, g.grado_comision,  g.grado_prioridad " +
+                         "ORDER BY 1 desc, g.grado_comision";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+            List<EmpresasMenosVendidas> clientes = new List<EmpresasMenosVendidas>();
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    EmpresasMenosVendidas cliente = new EmpresasMenosVendidas();
+                    cliente.Butacas_No_Vendidas = Int32.Parse(reader["Bucatas no Vendidas"].ToString());
+                    cliente.Empresa_id = Int32.Parse(reader["empre_id"].ToString());
+                    cliente.Razon_Social = reader["empre_razon_social"].ToString();
+                    cliente.CUIT = reader["empre_cuit"].ToString();
+                    cliente.Mail = reader["empre_mail"].ToString();
+                    cliente.Telefono = reader["empre_telefono"].ToString();
+                    cliente.Grado_De_Visibilidad = reader["grado_prioridad"].ToString();
+                    clientes.Add(cliente);
+                }
+            }
+
+            conn.Close();
+            return clientes;
+
+        }
+
     }
 }

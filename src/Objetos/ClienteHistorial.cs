@@ -7,9 +7,9 @@ using PalcoNet;
 namespace PalcoNet.Objetos
 {
     public class ClienteHistorial {
-        public int compra_id { get; set; }
-        public DateTime compra_fecha { get; set; }
-        public float item_monto { get; set; }
-        public string fact_pago_desc { get; set; }
+        public int id_Compra { get; set; }
+        public DateTime Fecha_De_Compra { get; set; }
+        public float Monto_De_Item { get; set; }
+        public string Descripcion_Del_Pago { get; set; }
     }
 }
