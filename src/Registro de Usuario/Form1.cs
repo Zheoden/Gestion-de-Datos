@@ -27,6 +27,15 @@ namespace PalcoNet.Registro_de_Usuario {
                     rol.nombre = "Cliente";
                     newUser.roles.Add(rol);
 
+                    //query
+                    if (!DBHelper.altaUsuario(newUser) && !DBHelper.asociarUsuarioCliente(tb_cuit_cuil.Text)) {
+                        MessageBox.Show("Se produjo un error intenta dar de alta el usuario");
+                    }
+                    else {
+                        MessageBox.Show("El usuario se creo correctamente.");
+                        this.Close();
+                    }
+
                 }
                 else if (!DBHelper.EmpresaDontExistCuit(tb_cuit_cuil.Text)) {
                     //Si es empresa
@@ -34,15 +43,15 @@ namespace PalcoNet.Registro_de_Usuario {
                     Rol rol = new Rol();
                     rol.nombre = "Empresa";
                     newUser.roles.Add(rol);
-                }
 
-                //query
-                if (!DBHelper.altaUsuario(newUser)) {
-                    MessageBox.Show("Se produjo un error intenta dar de alta el usuario");
-                }
-                else {
-                    MessageBox.Show("El usuario se creo correctamente.");
-                    this.Close();
+                    //query
+                    if (!DBHelper.altaUsuario(newUser) && !DBHelper.asociarUsuarioEmpresa(tb_cuit_cuil.Text)) {
+                        MessageBox.Show("Se produjo un error intenta dar de alta el usuario");
+                    }
+                    else {
+                        MessageBox.Show("El usuario se creo correctamente.");
+                        this.Close();
+                    }
                 }
             }
         }
@@ -55,7 +64,7 @@ namespace PalcoNet.Registro_de_Usuario {
                             return true;
                         }
                         else {
-                            MessageBox.Show("El Cliente/Empresa no existe en la base de datos");
+                            MessageBox.Show("El CUIL/CUIT no corresponde a  un cliente o empresa en la base de datos");
                         }
                     }
                     else {

@@ -14,10 +14,6 @@ namespace PalcoNet.Abm_Grado {
     public partial class FormAlta : Form {
         public FormAlta() {
             InitializeComponent();
-            cmbTipos.Items.Add("Alta");
-            cmbTipos.Items.Add("Media");
-            cmbTipos.Items.Add("Baja");
-            cmbTipos.Items.Add("Otro");
         }
 
         private void btnAlta_Click(object sender, EventArgs e) {
@@ -25,7 +21,7 @@ namespace PalcoNet.Abm_Grado {
 
             if (validarDatos()) {
 
-                grado.prioridad = cmbTipos.Text;
+                grado.prioridad = txtTipos.Text;
                 grado.comision = Int32.Parse(txtComision.Text);
 
                 /* Creo el Cliente */
@@ -43,9 +39,9 @@ namespace PalcoNet.Abm_Grado {
 
             int numero;
 
-            if (cmbTipos.Text != "" && txtComision.Text != "") {
+            if (txtTipos.Text != "" && txtComision.Text != "") {
                 if (Int32.TryParse(txtComision.Text, out numero)) {
-                    if (DBHelper.gradoDontExist(cmbTipos.Text, Int32.Parse(txtComision.Text))) {
+                    if (DBHelper.gradoDontExist(txtTipos.Text, Int32.Parse(txtComision.Text))) {
 
                         return true;
 

@@ -16,5 +16,6 @@ namespace PalcoNet.Objetos
         public string descripcion { get; set; }
         public int precio { get; set; }
         public int ubica_id { get; set; }
+        public int compra_empresa_id { get; set; }
     }
 }

@@ -29,10 +29,10 @@
             this.btnAlta = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmbTipos = new System.Windows.Forms.ComboBox();
             this.txtComision = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.txtTipos = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +87,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cmbTipos);
+            this.groupBox2.Controls.Add(this.txtTipos);
             this.groupBox2.Controls.Add(this.txtComision);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label14);
@@ -99,15 +99,6 @@
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalles del Grado";
-            // 
-            // cmbTipos
-            // 
-            this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipos.FormattingEnabled = true;
-            this.cmbTipos.Location = new System.Drawing.Point(73, 34);
-            this.cmbTipos.Name = "cmbTipos";
-            this.cmbTipos.Size = new System.Drawing.Size(231, 21);
-            this.cmbTipos.TabIndex = 19;
             // 
             // txtComision
             // 
@@ -133,6 +124,13 @@
             this.label14.Size = new System.Drawing.Size(51, 13);
             this.label14.TabIndex = 5;
             this.label14.Text = "Prioridad:";
+            // 
+            // txtTipos
+            // 
+            this.txtTipos.Location = new System.Drawing.Point(72, 35);
+            this.txtTipos.Name = "txtTipos";
+            this.txtTipos.Size = new System.Drawing.Size(231, 20);
+            this.txtTipos.TabIndex = 16;
             // 
             // FormAlta
             // 
@@ -166,6 +164,6 @@
         private System.Windows.Forms.TextBox txtComision;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label14;
-        public System.Windows.Forms.ComboBox cmbTipos;
+        private System.Windows.Forms.TextBox txtTipos;
     }
 }

@@ -18,17 +18,13 @@ namespace PalcoNet.Abm_Grado {
 
         public FormModificacion() {
             InitializeComponent();
-            cmbTipos.Items.Add("Alta");
-            cmbTipos.Items.Add("Media");
-            cmbTipos.Items.Add("Baja");
-            cmbTipos.Items.Add("Otro");
         }
 
         private void btnAlta_Click(object sender, EventArgs e) {
 
             if (validarDatos()) {
 
-                grado.prioridad = cmbTipos.Text;
+                grado.prioridad = txtTipos.Text;
                 grado.comision = Int32.Parse(txtComision.Text);
 
                 if (!DBHelper.modificarGrado(grado)) {
@@ -44,7 +40,7 @@ namespace PalcoNet.Abm_Grado {
         private void cargarGrado() {
 
             grado = DBHelper.getGrado(Int32.Parse(txtID.Text));
-            cmbTipos.SelectedItem = grado.prioridad;
+            txtTipos.Text = grado.prioridad;
             txtComision.Text = grado.comision.ToString();
         }
 
@@ -52,9 +48,9 @@ namespace PalcoNet.Abm_Grado {
 
             int numero;
 
-            if (cmbTipos.Text != "" && txtComision.Text != "") {
+            if (txtTipos.Text != "" && txtComision.Text != "") {
                 if (Int32.TryParse(txtComision.Text, out numero)) {
-                    if (DBHelper.gradoDontExist(cmbTipos.Text, Int32.Parse(txtComision.Text))) {
+                    if (DBHelper.gradoDontExist(txtTipos.Text, Int32.Parse(txtComision.Text))) {
                         return true;
                     }
                     else {

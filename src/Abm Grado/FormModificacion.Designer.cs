@@ -32,10 +32,10 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbHabilitado = new System.Windows.Forms.CheckBox();
-            this.cmbTipos = new System.Windows.Forms.ComboBox();
             this.txtComision = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.txtTipos = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -107,8 +107,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtTipos);
             this.groupBox2.Controls.Add(this.cbHabilitado);
-            this.groupBox2.Controls.Add(this.cmbTipos);
             this.groupBox2.Controls.Add(this.txtComision);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label14);
@@ -132,15 +132,6 @@
             this.cbHabilitado.TabIndex = 43;
             this.cbHabilitado.Text = "Habilitado";
             this.cbHabilitado.UseVisualStyleBackColor = true;
-            // 
-            // cmbTipos
-            // 
-            this.cmbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipos.FormattingEnabled = true;
-            this.cmbTipos.Location = new System.Drawing.Point(70, 60);
-            this.cmbTipos.Name = "cmbTipos";
-            this.cmbTipos.Size = new System.Drawing.Size(231, 21);
-            this.cmbTipos.TabIndex = 42;
             // 
             // txtComision
             // 
@@ -166,6 +157,13 @@
             this.label14.Size = new System.Drawing.Size(51, 13);
             this.label14.TabIndex = 37;
             this.label14.Text = "Prioridad:";
+            // 
+            // txtTipos
+            // 
+            this.txtTipos.Location = new System.Drawing.Point(69, 61);
+            this.txtTipos.Name = "txtTipos";
+            this.txtTipos.Size = new System.Drawing.Size(231, 20);
+            this.txtTipos.TabIndex = 44;
             // 
             // FormModificacion
             // 
@@ -199,10 +197,10 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.GroupBox groupBox2;
-        public System.Windows.Forms.ComboBox cmbTipos;
         private System.Windows.Forms.TextBox txtComision;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckBox cbHabilitado;
+        private System.Windows.Forms.TextBox txtTipos;
     }
 }

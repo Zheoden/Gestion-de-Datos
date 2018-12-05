@@ -122,7 +122,7 @@ namespace PalcoNet.Utils {
             return false;
         }
 
-        public static Boolean validLoginMail(string username, string mail) {
+        public static Boolean validLoginMailCliente(string username, string mail) {
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());
             conn.Open();
             string SQL = "SELECT u.usuario_id " +
@@ -130,6 +130,30 @@ namespace PalcoNet.Utils {
                           "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND " +
                                 "UPPER(c.clie_email) = UPPER('" + mail + "') AND " +
                                 "c.clie_usuario_id = u.usuario_id";
+            SqlCommand command = new SqlCommand(SQL, conn);
+            command.Connection = conn;
+            command.CommandType = CommandType.Text;
+
+            SqlDataReader reader = command.ExecuteReader() as SqlDataReader;
+
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    return reader["usuario_id"].ToString() != null;
+                }
+            }
+
+            conn.Close();
+            return false;
+        }
+
+        public static Boolean validLoginMailEmpresa(string username, string mail) {
+            SqlConnection conn = new SqlConnection(Connection.getStringConnection());
+            conn.Open();
+            string SQL = "SELECT u.usuario_id " +
+                          "FROM EL_REJUNTE.Usuario u, EL_REJUNTE.Empresa e " +
+                          "WHERE UPPER(u.usuario_username) = UPPER('" + username + "') AND " +
+                                "UPPER(e.empre_mail) = UPPER('" + mail + "') AND " +
+                                "e.empre_usuario_id = u.usuario_id";
             SqlCommand command = new SqlCommand(SQL, conn);
             command.Connection = conn;
             command.CommandType = CommandType.Text;

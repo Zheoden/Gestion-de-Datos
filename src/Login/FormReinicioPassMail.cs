@@ -22,7 +22,7 @@ namespace PalcoNet.Login {
 
         private Boolean validarDatos() {
             if (txtMail.Text != "" && txtPass.Text != "" && txtPassConfirm.Text != "" && txtUser.Text != "") {
-                if (DBHelper.validLoginMail(txtUser.Text, txtMail.Text)) {
+                if (DBHelper.validLoginMailCliente(txtUser.Text, txtMail.Text) || DBHelper.validLoginMailEmpresa(txtUser.Text, txtMail.Text)) {
                     if (txtPass.Text == txtPassConfirm.Text) {
                         if (DBHelper.cambiarContraseña(txtUser.Text, txtPassConfirm.Text)) {
                             MessageBox.Show("Contraseña cambiada correctamente!");

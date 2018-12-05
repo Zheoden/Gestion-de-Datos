@@ -236,6 +236,21 @@ namespace PalcoNet.Utils {
             return rows > 0;
         }
 
+        public static Boolean asociarUsuarioCliente(string cuil) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "UPDATE EL_REJUNTE.Cliente " +
+                               "SET clie_usuario_id = (SELECT usuario_id FROM EL_REJUNTE.Usuario WHERE usuario_username = '" + cuil + "') " +
+                               "WHERE clie_cuil = '" + cuil + "'";
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
+
         public static Boolean clienteTieneTarjeta(int id) {
 
             SqlConnection conn = new SqlConnection(Connection.getStringConnection());

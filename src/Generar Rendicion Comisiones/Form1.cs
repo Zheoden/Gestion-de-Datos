@@ -61,9 +61,11 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                 compra.descripcion = row.Cells[5].Value.ToString();
                 compra.precio = Convert.ToInt32(row.Cells[6].Value.ToString());
                 compra.ubica_id = compras[cont].ubica_id;
+                compra.compra_empresa_id = compras[cont].compra_empresa_id;
                 if (compra != null) {
                     if (DBHelper.altaItem_Factura(compra, DBHelper.altaFactura(compra)) && DBHelper.facturarCompra(compra.id)) {
                         MessageBox.Show("Se Facturo correctamente!");
+                        compras = DBHelper.comprasNoFacturadas();
                     }
                 }
                 cont++;

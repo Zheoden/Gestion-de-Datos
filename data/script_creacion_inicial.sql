@@ -36,6 +36,7 @@ CREATE TABLE EL_REJUNTE.Compra(
 	compra_fecha datetime NOT NULL,
 	compra_cantidad numeric(18, 0) NOT NULL,
 	compra_cliente_id INT NOT NULL,
+	compra_empresa_id INT NOT NULL,
 	compra_facturada BIT NOT NULL,
  CONSTRAINT PK_Compra PRIMARY KEY CLUSTERED(
 	compra_id ASC
@@ -362,6 +363,11 @@ ALTER TABLE EL_REJUNTE.Compra WITH CHECK ADD CONSTRAINT FK_Compra_Cliente FOREIG
 REFERENCES EL_REJUNTE.Cliente (clie_id)
 GO
 ALTER TABLE EL_REJUNTE.Compra CHECK CONSTRAINT FK_Compra_Cliente
+GO
+ALTER TABLE EL_REJUNTE.Compra WITH CHECK ADD CONSTRAINT FK_Compra_Empresa FOREIGN KEY(compra_empresa_id)
+REFERENCES EL_REJUNTE.Empresa (empre_id)
+GO
+ALTER TABLE EL_REJUNTE.Compra CHECK CONSTRAINT FK_Compra_Empresa
 GO
 ALTER TABLE EL_REJUNTE.Empresa WITH CHECK ADD CONSTRAINT FK_Empresa_Direccion FOREIGN KEY(empre_direccion_id)
 REFERENCES EL_REJUNTE.Direccion (dire_id)
@@ -735,10 +741,10 @@ CREATE TABLE EL_REJUNTE.#Direcciones (
 	ORDER BY ubica_id
 	
 /* COMPRA */
-	INSERT INTO EL_REJUNTE.Compra (compra_fecha , compra_cantidad, compra_cliente_id, compra_facturada)
-	SELECT DISTINCT gd.Compra_Fecha, gd.Compra_Cantidad, c.clie_id, 1
-	FROM gd_esquema.Maestra gd, EL_REJUNTE.Cliente c
-	WHERE gd.Compra_Fecha IS NOT NULL AND gd.Compra_Cantidad IS NOT NULL AND c.clie_apellido = gd.Cli_Apeliido AND c.clie_nombre = gd.Cli_Nombre AND c.clie_documento = gd.Cli_Dni AND gd.Factura_Nro IS NOT NULL
+	INSERT INTO EL_REJUNTE.Compra (compra_fecha , compra_cantidad, compra_cliente_id, compra_empresa_id, compra_facturada)
+	SELECT DISTINCT gd.Compra_Fecha, gd.Compra_Cantidad, c.clie_id, e.empre_id, 1
+	FROM gd_esquema.Maestra gd, EL_REJUNTE.Cliente c, EL_REJUNTE.Empresa e
+	WHERE gd.Compra_Fecha IS NOT NULL AND gd.Compra_Cantidad IS NOT NULL AND c.clie_apellido = gd.Cli_Apeliido AND c.clie_nombre = gd.Cli_Nombre AND c.clie_documento = gd.Cli_Dni AND gd.Factura_Nro IS NOT NULL AND e.empre_cuit = REPLACE(gd.Espec_Empresa_Cuit , '-' , '')
 
 /* UBICACION_COMPRA */
 	INSERT INTO EL_REJUNTE.Ubicacion_Compra(ubica_id, compra_id)	

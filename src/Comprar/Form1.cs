@@ -139,7 +139,7 @@ namespace PalcoNet.Comprar {
                             int id_publicacion = DBHelper.publicacionGetID(publi);
 
                             DBHelper.publicacionModificarStock(id_publicacion, publi.stock - 1);
-                            int id_compra = DBHelper.comprar();
+                            int id_compra = DBHelper.comprar(id_publicacion);
                             DBHelper.altaUbicacion_Compra(id_publicacion, id_compra);
                             DBHelper.clienteAcreditarPuntos(DBHelper.clienteGetId(VariablesGlobales.usuario.id), Convert.ToInt32(selectedRow.Cells["ubica_precio"].Value));
 

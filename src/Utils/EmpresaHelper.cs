@@ -122,5 +122,20 @@ namespace PalcoNet.Utils {
             return empresa;
         }
 
+        public static Boolean asociarUsuarioEmpresa(string cuit) {
+
+            SqlConnection connection = new SqlConnection(Connection.getStringConnection());
+            SqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "UPDATE EL_REJUNTE.Empresa " +
+                               "SET empre_usuario_id = (SELECT usuario_id FROM EL_REJUNTE.Usuario WHERE usuario_username = '" + cuit + "') " +
+                               "WHERE empre_cuit = '" + cuit + "'";
+            comm.Connection = connection;
+            comm.Connection.Open();
+            int rows = comm.ExecuteNonQuery();
+            comm.Connection.Close();
+            connection.Close();
+            return rows > 0;
+        }
+
     }
 }

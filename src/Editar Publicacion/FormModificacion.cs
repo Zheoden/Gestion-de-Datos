@@ -165,6 +165,7 @@ namespace PalcoNet.Editar_Publicacion {
                     if (DBHelper.modificarEspectaculo(espec)) {
                         if (DBHelper.publicacionModificar(ubica_publi.publicacion) && DBHelper.ubicacionModificar(ubica_publi.ubicacion)) {
                             MessageBox.Show("Se actualizo la publicacion correctamente.");
+                            this.Close();
                         }
                         else {
                             MessageBox.Show("Se produjo un error actualizando la Publicacion.");
